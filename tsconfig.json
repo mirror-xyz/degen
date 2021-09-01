@@ -9,11 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": false,
@@ -22,16 +18,8 @@
     "skipLibCheck": false,
     "strict": true,
     "target": "ESNext",
-    "types": [
-      "jest",
-      "node",
-      "vite/client"
-    ]
+    "types": ["jest", "node", "vite/client"]
   },
-  "include": [
-    "./src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["./src"],
+  "exclude": ["node_modules"]
 }

@@ -1,6 +1,6 @@
 {
   "name": "degen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React library for web3",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
@@ -13,7 +13,7 @@
   "files": [
     "dist/**"
   ],
-  "repository": "tmm/react-feedback",
+  "repository": "tmm/degen",
   "license": "MIT",
   "scripts": {
     "build": "vite build",
