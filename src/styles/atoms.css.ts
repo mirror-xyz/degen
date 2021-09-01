@@ -1,0 +1,71 @@
+import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
+
+import { vars } from './theme.css'
+
+const atomicStyles = createAtomicStyles({
+  conditions: {
+    sm: {},
+    md: { '@media': '(min-width: 768px)' },
+    lg: { '@media': '(min-width: 1024px)' },
+    xl: { '@media': '(min-width: 1280px)' },
+  },
+  defaultCondition: 'sm',
+  properties: {
+    background: vars.colors,
+    borderRadius: vars.borderRadius,
+    bottom: vars.space,
+    color: vars.colors,
+    display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
+    flexDirection: ['column', 'row'],
+    fontFamily: vars.fontFamily,
+    fontSize: vars.fontSize,
+    height: vars.space,
+    inset: vars.space,
+    left: vars.space,
+    margin: vars.space,
+    marginBottom: vars.space,
+    marginLeft: vars.space,
+    marginRight: vars.space,
+    marginTop: vars.space,
+    maxHeight: vars.space,
+    maxWidth: vars.space,
+    minHeight: vars.space,
+    minWidth: vars.space,
+    overflow: ['hidden'],
+    paddingBottom: vars.space,
+    paddingLeft: vars.space,
+    paddingRight: vars.space,
+    paddingTop: vars.space,
+    position: ['absolute', 'fixed'],
+    right: vars.space,
+    textAlign: ['center', 'left', 'right'],
+    top: vars.space,
+    verticalAlign: ['middle'],
+    width: vars.space,
+    zIndex: vars.zIndex,
+  },
+  shorthands: {
+    h: ['height'],
+    insetX: ['left', 'right'],
+    insetY: ['bottom', 'top'],
+    m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    mb: ['marginBottom'],
+    ml: ['marginLeft'],
+    mr: ['marginRight'],
+    mt: ['marginTop'],
+    mx: ['marginLeft', 'marginRight'],
+    my: ['marginTop', 'marginBottom'],
+    p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    pb: ['paddingBottom'],
+    pl: ['paddingLeft'],
+    pr: ['paddingRight'],
+    pt: ['paddingTop'],
+    px: ['paddingLeft', 'paddingRight'],
+    py: ['paddingTop', 'paddingBottom'],
+    w: ['width'],
+  },
+})
+
+export const atoms = createAtomsFn(atomicStyles)
+
+export type Atoms = Parameters<typeof atoms>[0]

@@ -1,0 +1,73 @@
+name: Main
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Set up Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Load yarn cache
+        uses: actions/cache@v2.1.6
+        id: yarn-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-cache-
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Lint code
+        run: yarn lint
+
+      - name: Check types
+        run: yarn lint:types
+
+      - name: Format other files
+        run: yarn lint:format --check
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+
+      - name: Set up Node ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Load yarn cache
+        uses: actions/cache@v2.1.6
+        id: yarn-cache
+        with:
+          path: ./node_modules
+          key: ${{ runner.os }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-cache-
+
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn --frozen-lockfile
+
+      - name: Test
+        run: yarn test
