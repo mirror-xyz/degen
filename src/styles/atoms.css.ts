@@ -3,8 +3,6 @@ import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
 import { vars } from './theme.css'
 import { getColor } from './utils'
 
-console.log('vars', vars)
-
 const colors = {
   ...vars.color,
   accent: getColor(vars.theme.color.accent),

@@ -21,9 +21,7 @@ export type UseThemeProps = {
   setTheme(theme: Theme): void
 }
 
-export const ThemeContext = React.createContext<UseThemeProps | undefined>(
-  undefined,
-)
+const ThemeContext = React.createContext<UseThemeProps | undefined>(undefined)
 export const useTheme = () => React.useContext(ThemeContext) as UseThemeProps
 
 export type ThemeProps = WithChildren<{
