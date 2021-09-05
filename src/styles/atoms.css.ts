@@ -1,8 +1,38 @@
 import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
 
 import { vars } from './theme.css'
+import { getColor } from './utils'
 
-const atomicStyles = createAtomicStyles({
+console.log('vars', vars)
+
+const colors = {
+  ...vars.color,
+  accent: getColor(vars.theme.color.accent),
+  accentSecondary: getColor(
+    vars.theme.color.accent,
+    vars.theme.shade.accentSecondary,
+  ),
+  background: getColor(vars.theme.color.background),
+  backgroundSecondary: getColor(vars.theme.color.backgroundSecondary),
+  backgroundTertiary: getColor(vars.theme.color.backgroundTertiary),
+  foreground: getColor(vars.theme.color.foreground),
+  foregroundSecondary: getColor(
+    vars.theme.color.foreground,
+    vars.theme.shade.foregroundSecondary,
+  ),
+  groupBackground: getColor(vars.theme.color.groupBackground),
+  groupBorder: getColor(
+    vars.theme.color.groupBorder,
+    vars.theme.shade.groupBorder,
+  ),
+  text: getColor(vars.theme.color.foreground, vars.theme.shade.text),
+  textTertiary: getColor(
+    vars.theme.color.foreground,
+    `calc(${vars.theme.shade.text} * 0.66)`,
+  ),
+}
+
+const responsiveStyles = createAtomicStyles({
   conditions: {
     sm: {},
     md: { '@media': '(min-width: 768px)' },
@@ -11,17 +41,43 @@ const atomicStyles = createAtomicStyles({
   },
   defaultCondition: 'sm',
   properties: {
-    background: vars.colors,
-    borderRadius: vars.borderRadius,
+    alignItems: [
+      'baseline',
+      'center',
+      'flex-end',
+      'flex-start',
+      'inherit',
+      'initial',
+      'stretch',
+    ],
+    background: colors,
+    borderBottomWidth: vars.borderWidth,
+    borderLeftWidth: vars.borderWidth,
+    borderRightWidth: vars.borderWidth,
+    borderTopWidth: vars.borderWidth,
+    borderWidth: vars.borderWidth,
     bottom: vars.space,
-    color: vars.colors,
+    color: colors,
     display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
     flexDirection: ['column', 'row'],
-    fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
+    fontWeight: vars.fontWeight,
+    gap: vars.space,
     height: vars.space,
     inset: vars.space,
+    justifyContent: [
+      'center',
+      'flex-end',
+      'flex-start',
+      'inherit',
+      'initial',
+      'space-around',
+      'space-between',
+      'space-evenly',
+    ],
     left: vars.space,
+    letterSpacing: vars.letterSpacing,
+    lineHeight: vars.lineHeight,
     margin: vars.space,
     marginBottom: vars.space,
     marginLeft: vars.space,
@@ -31,20 +87,42 @@ const atomicStyles = createAtomicStyles({
     maxWidth: vars.space,
     minHeight: vars.space,
     minWidth: vars.space,
+    opacity: vars.opacity,
     overflow: ['hidden'],
     paddingBottom: vars.space,
     paddingLeft: vars.space,
     paddingRight: vars.space,
     paddingTop: vars.space,
-    position: ['absolute', 'fixed'],
+    position: ['absolute', 'fixed', 'relative'],
     right: vars.space,
     textAlign: ['center', 'left', 'right'],
     top: vars.space,
     verticalAlign: ['middle'],
+    whiteSpace: [
+      'normal',
+      'nowrap',
+      'pre',
+      'pre-line',
+      'pre-wrap',
+      'initial',
+      'inherit',
+    ],
+    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
     width: vars.space,
-    zIndex: vars.zIndex,
   },
   shorthands: {
+    b: [
+      'borderBottomWidth',
+      'borderLeftWidth',
+      'borderRightWidth',
+      'borderTopWidth',
+    ],
+    bb: ['borderBottomWidth'],
+    bl: ['borderLeftWidth'],
+    br: ['borderRightWidth'],
+    bt: ['borderTopWidth'],
+    bx: ['borderLeftWidth', 'borderRightWidth'],
+    by: ['borderBottomWidth', 'borderTopWidth'],
     h: ['height'],
     insetX: ['left', 'right'],
     insetY: ['bottom', 'top'],
@@ -66,6 +144,6 @@ const atomicStyles = createAtomicStyles({
   },
 })
 
-export const atoms = createAtomsFn(atomicStyles)
+export const atoms = createAtomsFn(responsiveStyles)
 
 export type Atoms = Parameters<typeof atoms>[0]

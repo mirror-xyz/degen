@@ -14,11 +14,15 @@
     "moduleResolution": "Node",
     "noEmit": false,
     "outDir": "./dist/types",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": false,
     "strict": true,
     "target": "ESNext",
-    "types": ["jest", "node", "vite/client"]
+    "types": ["jest", "node", "@testing-library/jest-dom", "@types/webpack-env"]
   },
   "include": ["./src"],
   "exclude": ["node_modules"]

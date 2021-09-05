@@ -1,10 +1,21 @@
 import type { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
-  preset: 'ts-jest',
-  moduleNameMapper: {
-    '\\.(css)$': 'identity-obj-proxy',
+  globals: {
+    'ts-jest': {
+      babelConfig: {
+        plugins: ['@vanilla-extract/babel-plugin'],
+      },
+    },
   },
+  moduleNameMapper: {
+    '~/(.*)$': '<rootDir>/src/$1',
+    '@/(.*)$': '<rootDir>/$1',
+    '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
+    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/file.js',
+  },
+  preset: 'ts-jest',
+  roots: ['<rootDir>'],
   testEnvironment: 'jsdom',
   testRegex: '.*\\.test\\.(ts|tsx)$',
   watchPlugins: [

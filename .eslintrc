@@ -13,6 +13,7 @@
   "plugins": ["@typescript-eslint", "import", "react"],
   "extends": [
     "eslint:recommended",
+    "plugin:eslint-comments/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",

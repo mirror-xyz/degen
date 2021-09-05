@@ -1,5 +1,4 @@
-import { createBox } from 'dessert-box'
-
-import { atoms } from '../../styles/atoms.css'
+import { createBox } from '~/utils/create-box'
+import { atoms } from '~/styles/atoms.css'
 
 export const { Box, createVariants } = createBox({ atoms })
