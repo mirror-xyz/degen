@@ -1,32 +1,30 @@
 import * as React from 'react'
 import { RenderResult, render as defaultRender } from '@testing-library/react'
 import {
+  RenderHookOptions,
   WrapperComponent,
   renderHook as defaultRenderHook,
 } from '@testing-library/react-hooks'
+import { axe, toHaveNoViolations } from 'jest-axe'
+import { RunOptions } from 'axe-core'
 
-import { ThemeProvider } from '~/components'
+import { ThemeProps, ThemeProvider } from '~/components'
 
 import '@testing-library/jest-dom/extend-expect'
 import './__mocks__/match-media'
 
-const Providers = ({
-  children,
-}: {
-  children: React.ReactElement<any, string | React.JSXElementConstructor<any>> &
-    React.ReactNode
-}) => {
-  return <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
+type ProvidersProps = {
+  children:
+    | React.ReactElement<any, string | React.JSXElementConstructor<any>>
+    | React.ReactNode
+  themeProps?: Partial<Omit<ThemeProps, 'children'>>
+}
+export const Providers = ({ children, themeProps }: ProvidersProps) => {
+  return <ThemeProvider {...themeProps}>{children}</ThemeProvider>
 }
 
 // --------------------------------------------------
-// Override the default test render with our own
-//
-// You can override the router mock like this:
-//
-// const { baseElement } = render(<MyComponent />, {
-//   router: { pathname: '/my-custom-pathname' },
-// });
+// Override default test render with our own
 // --------------------------------------------------
 type DefaultParams = Parameters<typeof defaultRender>
 type RenderUI = DefaultParams[0]
@@ -41,27 +39,36 @@ const render = (
 }
 
 // --------------------------------------------------
-// Override the default test renderHook with our own
-//
-// You can override the router mock like this:
-//
-// const result = renderHook(() => myHook(), {
-//   router: { pathname: '/my-custom-pathname' },
-// });
+// Override default test renderHook with our own
 // --------------------------------------------------
-type DefaultHookParams = Parameters<typeof defaultRenderHook>
-type RenderHook = DefaultHookParams[0]
-type RenderHookOptions = DefaultHookParams[1]
-
-export const renderHook = (
-  hook: RenderHook,
-  { wrapper, ...options }: RenderHookOptions = {},
+export const renderHook = <TProps, TResult>(
+  hook: (props: TProps) => TResult,
+  { wrapper, ...options }: RenderHookOptions<TProps> | undefined = {},
 ) => {
-  if (!wrapper) wrapper = Providers as WrapperComponent<unknown>
-  return defaultRenderHook(hook, { wrapper, ...options })
+  if (!wrapper) wrapper = Providers as WrapperComponent<TProps>
+  return defaultRenderHook<TProps, TResult>(hook, { wrapper, ...options })
 }
 
+// --------------------------------------------------
+// Basic checker for a11y violations
+// --------------------------------------------------
+expect.extend(toHaveNoViolations)
+
+type TestA11YOptions = RenderOptions & { axeOptions?: RunOptions }
+export const testA11y = async (
+  ui: React.ReactElement,
+  { axeOptions, ...options }: TestA11YOptions = {},
+) => {
+  const container = React.isValidElement(ui)
+    ? render(ui, options).container
+    : ui
+  const results = await axe(container, axeOptions)
+  expect(results).toHaveNoViolations()
+}
+
+// --------------------------------------------------
 // re-export everything
+// --------------------------------------------------
 /* eslint-disable import/export */
 export * from '@testing-library/react'
 /* eslint-enable import/export */

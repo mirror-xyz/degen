@@ -2,17 +2,17 @@ import * as React from 'react'
 
 import { cleanup, render, screen, testA11y } from '@/test'
 
-import { Box } from './'
+import { Text } from './'
 
-describe('<Box />', () => {
+describe('<Text />', () => {
   afterEach(cleanup)
 
   it('passes a11y', async () => {
-    await testA11y(<Box>foo bar baz</Box>)
+    await testA11y(<Text>foo bar baz</Text>)
   })
 
   it('renders', () => {
-    render(<Box>foo bar baz</Box>)
+    render(<Text>foo bar baz</Text>)
     expect(screen.getByText(/foo/i)).toBeInTheDocument()
   })
 })
