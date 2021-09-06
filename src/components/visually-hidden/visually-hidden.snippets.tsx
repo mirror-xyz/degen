@@ -1,15 +1,11 @@
 import * as React from 'react'
 
 import { Snippet } from '~/playroom/types'
-import { Box } from './box'
+import { VisuallyHidden } from './visually-hidden'
 
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <Box>Foo Bar Baz</Box>,
-  },
-  {
-    name: 'Flex',
-    code: <Box display="flex">Foo Bar Baz</Box>,
+    code: <VisuallyHidden>Foo Bar Baz</VisuallyHidden>,
   },
 ]

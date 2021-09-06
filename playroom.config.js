@@ -4,8 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
 module.exports = {
-  components: './src/components/index.ts',
-  outputPath: './site/dist/playroom',
+  components: './src/playroom/components.ts',
+  outputPath: './site/playroom',
   title: 'Mirror',
   snippets: './src/playroom/snippets.ts',
   themes: './src/playroom/themes.ts',
@@ -15,12 +15,6 @@ module.exports = {
   widths: [320, 768, 1024, 1400],
   openBrowser: false,
   port: 8082,
-
-  reactDocgenTypescriptConfig: {
-    shouldExtractLiteralValuesFromEnum: true,
-    propFilter: (prop) =>
-      prop.parent ? !/node_modules/.test(prop.parent.fileName) : true,
-  },
 
   webpackConfig: () => ({
     plugins: [

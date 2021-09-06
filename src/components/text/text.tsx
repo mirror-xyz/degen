@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { WithChildren } from '~/types'
 import { Atoms } from '~/styles/atoms.css'
 import { Box, createVariants } from '../box'
 
@@ -24,12 +23,13 @@ const variants = createVariants({
   },
 })
 
-type Props = WithChildren<{
+type Props = {
   as?: 'div' | 'span' | 'p' | 'label' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  color: Atoms['color']
+  children: React.ReactNode
+  color?: Atoms['color']
   variant?: keyof typeof variants
   weight?: Atoms['fontWeight']
-}>
+}
 
 export const Text = ({
   as = 'div',

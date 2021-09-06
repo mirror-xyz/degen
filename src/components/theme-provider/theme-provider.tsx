@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
 
-import { WithChildren } from '~/types'
 import {
   theme as baseTheme,
   darkTheme,
@@ -24,14 +23,15 @@ export type UseThemeProps = {
 const ThemeContext = React.createContext<UseThemeProps | undefined>(undefined)
 export const useTheme = () => React.useContext(ThemeContext) as UseThemeProps
 
-export type ThemeProps = WithChildren<{
+export type ThemeProps = {
+  children: React.ReactNode
   /** Default accent name. Defaults to blue */
   defaultAccent?: Accent
   /** Default theme name. Defaults to light */
   defaultTheme?: Theme
   /** Forced theme name for the current page */
   forcedTheme?: Theme
-}>
+}
 
 export const ThemeProvider = ({
   children,

@@ -27,7 +27,7 @@ const base = {
 export const baseVars = createThemeContract(base)
 export const theme = createTheme(baseVars, base)
 
-// Create color mode theme
+// Create color theme
 const modeContract = {
   color: {
     ...color.light,

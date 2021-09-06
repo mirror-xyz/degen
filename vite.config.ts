@@ -35,7 +35,13 @@ export default defineConfig({
   plugins: [
     vanillaExtractPlugin(),
     dts({
-      exclude: ['src/**test.ts*', 'src/playroom/**', 'src/styles/**'],
+      exclude: [
+        'src/**.test.ts*',
+        'src/**.snippets.ts*',
+        'src/**.css.ts*',
+        'src/playroom/**',
+        'src/styles/**',
+      ],
       beforeWriteFile: (filePath, content) => ({
         content,
         filePath: filePath.replace('src', ''),

@@ -19,7 +19,7 @@
       "@/*": ["./*"]
     },
     "resolveJsonModule": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
     "types": ["jest", "node", "@testing-library/jest-dom", "@types/webpack-env"]

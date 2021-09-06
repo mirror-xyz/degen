@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import { WithChildren } from '~/types'
 import { Box } from '../box'
-
 import { clip } from './styles.css'
 
-type Props = WithChildren
+type Props = {
+  children: React.ReactNode
+}
 
 export const VisuallyHidden = ({ children }: Props) => {
   return (
