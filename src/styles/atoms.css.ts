@@ -24,10 +24,17 @@ const colors = {
     vars.theme.shade.groupBorder,
   ),
   text: getColor(vars.theme.color.foreground, vars.theme.shade.text),
+  textSecondary: getColor(
+    vars.theme.color.foreground,
+    vars.theme.shade.textSecondary,
+  ),
   textTertiary: getColor(
     vars.theme.color.foreground,
     `calc(${vars.theme.shade.text} * 0.66)`,
   ),
+  // accents
+  blue: getColor(vars.theme.color.blue),
+  green: getColor(vars.theme.color.green),
 }
 
 const responsiveStyles = createAtomicStyles({
@@ -143,6 +150,13 @@ const responsiveStyles = createAtomicStyles({
   },
 })
 
-export const atoms = createAtomsFn(responsiveStyles)
+const styles = createAtomicStyles({
+  properties: {
+    cursor: ['not-allowed', 'pointer'],
+    strokeWidth: vars.borderWidth,
+  },
+})
+
+export const atoms = createAtomsFn(responsiveStyles, styles)
 
 export type Atoms = Parameters<typeof atoms>[0]

@@ -38,6 +38,7 @@ export const shade = {
     foregroundSecondary: '0.075',
     groupBorder: '0.075',
     text: '0.8',
+    textSecondary: '0.4',
   },
   dark: {
     accent: '0.66',
@@ -45,5 +46,6 @@ export const shade = {
     foregroundSecondary: '0.1',
     groupBorder: '0',
     text: '0.7',
+    textSecondary: '0.35',
   },
 }

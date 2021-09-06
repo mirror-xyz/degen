@@ -1,20 +1,27 @@
 import * as React from 'react'
 
 import { Atoms } from '~/styles/atoms.css'
+import { useBoxProps } from '~/hooks'
 import { createVariants } from '~/utils'
 import { Box } from '../box'
 
 const variants = createVariants({
-  base: {},
+  base: {
+    color: 'foreground',
+    fontFamily: 'sans',
+    fontSize: 'base',
+  },
   description: {
-    fontSize: { sm: 'lg', md: 'xl' },
-    wordWrap: 'break-word',
-    letterSpacing: { sm: 'normal', md: 'snug' },
-    fontWeight: 550,
     color: 'textTertiary',
+    fontFamily: 'sans',
+    fontSize: { sm: 'lg', md: 'xl' },
+    fontWeight: 550,
+    letterSpacing: { sm: 'normal', md: 'snug' },
+    wordWrap: 'break-word',
   },
   title: {
     color: 'text',
+    fontFamily: 'sans',
     fontSize: { sm: '3xl', md: '4xl', lg: '5xl' },
     fontWeight: 'semibold',
     letterSpacing: { sm: 'snug', md: 'tight' },
@@ -27,26 +34,37 @@ type Props = {
   children: React.ReactNode
   color?: Atoms['color']
   fontFamily?: Atoms['fontFamily']
+  fontSize?: Atoms['fontSize']
+  letterSpacing?: Atoms['letterSpacing']
+  lineHeight?: Atoms['lineHeight']
   variant?: keyof typeof variants
   weight?: Atoms['fontWeight']
+  whiteSpace?: Atoms['whiteSpace']
 }
 
 export const Text = ({
-  as = 'div',
-  color = 'foreground',
+  as,
+  color,
   children,
-  fontFamily = 'sans',
+  fontFamily,
+  fontSize,
+  letterSpacing,
+  lineHeight,
   variant = 'base',
   weight,
+  whiteSpace,
 }: Props) => {
+  const boxProps = useBoxProps({
+    color,
+    fontFamily,
+    fontSize,
+    fontWeight: weight,
+    letterSpacing,
+    lineHeight,
+    whiteSpace,
+  })
   return (
-    <Box
-      as={as}
-      color={color}
-      fontFamily={fontFamily}
-      fontWeight={weight}
-      {...variants[variant]}
-    >
+    <Box as={as} {...variants[variant]} {...boxProps}>
       {children}
     </Box>
   )

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { cleanup, render, screen } from '@/test'
 
-import { VisuallyHidden } from './'
+import { VisuallyHidden } from './visually-hidden'
 
 describe('<VisuallyHidden />', () => {
   afterEach(cleanup)

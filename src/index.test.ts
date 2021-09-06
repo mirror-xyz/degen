@@ -5,6 +5,8 @@ it('should expose correct exports', () => {
     'useTheme',
     'createVariants',
     'Box',
+    'Button',
+    'Spinner',
     'Text',
     'ThemeContext',
     'ThemeProvider',

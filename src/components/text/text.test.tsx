@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { cleanup, render, screen, testA11y } from '@/test'
 
-import { Text } from './'
+import { Text } from './text'
 
 describe('<Text />', () => {
   afterEach(cleanup)

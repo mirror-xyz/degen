@@ -1,4 +1,6 @@
 export { Box } from './box'
+export * from './button'
+export * from './spinner'
 export * from './text'
 export * from './theme-provider'
 export * from './visually-hidden'

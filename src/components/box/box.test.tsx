@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { cleanup, render, screen, testA11y } from '@/test'
 
-import { Box } from './'
+import { Box } from './box'
 
 describe('<Box />', () => {
   afterEach(cleanup)

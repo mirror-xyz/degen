@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Box } from '../box'
-import { clip } from './styles.css'
+import { visuallyHidden } from './styles.css'
 
 type Props = {
   children: React.ReactNode
@@ -11,7 +11,7 @@ export const VisuallyHidden = ({ children }: Props) => {
   return (
     <Box
       borderWidth={0}
-      className={clip}
+      className={visuallyHidden}
       h="px"
       m="-px"
       overflow="hidden"
