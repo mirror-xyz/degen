@@ -58,6 +58,7 @@ const responsiveStyles = createAtomicStyles({
     color: colors,
     display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
     flexDirection: ['column', 'row'],
+    fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
     gap: vars.space,

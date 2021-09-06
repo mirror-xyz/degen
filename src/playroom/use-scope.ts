@@ -1,4 +1,4 @@
-import { useTheme } from '~/components'
+import { useTheme } from '~/hooks'
 
 const useScope = () => ({
   theme: useTheme(),

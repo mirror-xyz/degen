@@ -6,10 +6,14 @@ import { Box } from './box'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <Box>Foo Bar Baz</Box>,
+    code: <Box fontFamily="sans">Foo Bar Baz</Box>,
   },
   {
     name: 'Flex',
-    code: <Box display="flex">Foo Bar Baz</Box>,
+    code: (
+      <Box display="flex" fontFamily="sans">
+        Foo Bar Baz
+      </Box>
+    ),
   },
 ]

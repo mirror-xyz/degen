@@ -9,7 +9,7 @@ import {
 } from '~/styles/theme.css'
 import { Accent, Theme, color } from '~/styles/tokens'
 
-export type UseThemeProps = {
+export type ThemeContextProps = {
   /** Active accent name */
   accent: Accent
   /** Active theme name */
@@ -20,8 +20,9 @@ export type UseThemeProps = {
   setTheme(theme: Theme): void
 }
 
-const ThemeContext = React.createContext<UseThemeProps | undefined>(undefined)
-export const useTheme = () => React.useContext(ThemeContext) as UseThemeProps
+export const ThemeContext = React.createContext<ThemeContextProps | undefined>(
+  undefined,
+)
 
 export type ThemeProps = {
   children: React.ReactNode

@@ -11,11 +11,14 @@ type Props = {
 }
 
 const FrameComponent = ({ children, theme }: Props) => (
-  <ThemeProvider defaultTheme={theme}>
-    <Box background="background" minHeight="screenHeight">
-      {children}
-    </Box>
-  </ThemeProvider>
+  <>
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+    <ThemeProvider defaultTheme={theme}>
+      <Box background="background" minHeight="screenHeight">
+        {children}
+      </Box>
+    </ThemeProvider>
+  </>
 )
 
 export default FrameComponent

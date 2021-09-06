@@ -3,7 +3,6 @@ import { globalStyle } from '@vanilla-extract/css'
 globalStyle('html', {
   MozOsxFontSmoothing: 'grayscale',
   WebkitFontSmoothing: 'antialiased',
-  fontFamily: 'sans-serif',
   fontSize: '16px',
   textRendering: 'optimizeLegibility',
 })

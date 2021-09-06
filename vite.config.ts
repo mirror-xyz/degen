@@ -36,9 +36,9 @@ export default defineConfig({
     vanillaExtractPlugin(),
     dts({
       exclude: [
-        'src/**.test.ts*',
-        'src/**.snippets.ts*',
-        'src/**.css.ts*',
+        'src/**/*.test.ts*',
+        'src/**/*.snippets.tsx',
+        'src/**/*.css.ts',
         'src/playroom/**',
         'src/styles/**',
       ],

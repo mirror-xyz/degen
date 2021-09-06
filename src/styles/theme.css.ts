@@ -3,6 +3,7 @@ import { createTheme, createThemeContract } from '@vanilla-extract/css'
 import {
   borderWidth,
   color,
+  fontFamily,
   fontSize,
   fontWeight,
   letterSpacing,
@@ -16,6 +17,7 @@ import {
 const base = {
   borderWidth,
   color: color.base,
+  fontFamily,
   fontSize,
   fontWeight,
   letterSpacing,
