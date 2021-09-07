@@ -1,9 +1,15 @@
-import { createVar, fallbackVar } from '@vanilla-extract/css'
-import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
+import {
+  ConditionalValue,
+  createAtomicStyles,
+  createAtomsFn,
+  createNormalizeValueFn,
+} from '@vanilla-extract/sprinkles'
 
 import { vars } from './theme.css'
-import { getColor } from './utils'
 
+// --------------------------------------------------
+// Responsive styles
+// --------------------------------------------------
 const responsiveStyles = createAtomicStyles({
   conditions: {
     sm: {},
@@ -22,11 +28,11 @@ const responsiveStyles = createAtomicStyles({
       'initial',
       'stretch',
     ],
+    borderWidth: vars.borderWidth,
     borderBottomWidth: vars.borderWidth,
     borderLeftWidth: vars.borderWidth,
     borderRightWidth: vars.borderWidth,
     borderTopWidth: vars.borderWidth,
-    borderWidth: vars.borderWidth,
     borderRadius: vars.borderRadius,
     borderBottomLeftRadius: vars.borderRadius,
     borderBottomRightRadius: vars.borderRadius,
@@ -35,9 +41,7 @@ const responsiveStyles = createAtomicStyles({
     bottom: vars.space,
     display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
     flexDirection: ['column', 'row'],
-    fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
-    fontWeight: vars.fontWeight,
     gap: vars.space,
     height: vars.space,
     inset: vars.space,
@@ -65,6 +69,7 @@ const responsiveStyles = createAtomicStyles({
     minWidth: vars.space,
     opacity: vars.opacity,
     overflow: ['hidden'],
+    padding: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
     paddingRight: vars.space,
@@ -74,16 +79,6 @@ const responsiveStyles = createAtomicStyles({
     textAlign: ['center', 'left', 'right'],
     top: vars.space,
     verticalAlign: ['middle'],
-    whiteSpace: [
-      'normal',
-      'nowrap',
-      'pre',
-      'pre-line',
-      'pre-wrap',
-      'initial',
-      'inherit',
-    ],
-    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
     width: vars.space,
   },
   shorthands: {
@@ -102,14 +97,14 @@ const responsiveStyles = createAtomicStyles({
     h: ['height'],
     insetX: ['left', 'right'],
     insetY: ['bottom', 'top'],
-    m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    m: ['margin'],
     mb: ['marginBottom'],
     ml: ['marginLeft'],
     mr: ['marginRight'],
     mt: ['marginTop'],
     mx: ['marginLeft', 'marginRight'],
     my: ['marginTop', 'marginBottom'],
-    p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    p: ['padding'],
     pb: ['paddingBottom'],
     pl: ['paddingLeft'],
     pr: ['paddingRight'],
@@ -124,123 +119,64 @@ const responsiveStyles = createAtomicStyles({
   },
 })
 
-export const colors = {
-  ...vars.color,
-  accent: getColor(vars.theme.color.accent),
-  accentText: getColor(vars.theme.color.accentText),
-  accentSecondary: getColor(
-    vars.theme.color.accent,
-    vars.theme.shade.accentSecondary,
-  ),
-  accentSecondaryHover: getColor(
-    vars.theme.color.accent,
-    vars.theme.shade.accentSecondaryHover,
-  ),
-  accentTertiary: getColor(
-    vars.theme.color.accent,
-    `calc(${vars.theme.shade.accentSecondary} * 0.5)`,
-  ),
-  background: getColor(vars.theme.color.background),
-  backgroundSecondary: getColor(vars.theme.color.backgroundSecondary),
-  backgroundTertiary: getColor(vars.theme.color.backgroundTertiary),
-  foreground: getColor(vars.theme.color.foreground),
-  foregroundSecondary: getColor(
-    vars.theme.color.foreground,
-    vars.theme.shade.foregroundSecondary,
-  ),
-  foregroundSecondaryHover: getColor(
-    vars.theme.color.foreground,
-    vars.theme.shade.foregroundSecondaryHover,
-  ),
-  foregroundTertiary: getColor(
-    vars.theme.color.foreground,
-    `calc(${vars.theme.shade.accentSecondary} * 0.15)`,
-  ),
-  groupBackground: getColor(vars.theme.color.groupBackground),
-  groupBorder: getColor(
-    vars.theme.color.groupBorder,
-    vars.theme.shade.groupBorder,
-  ),
-  text: getColor(vars.theme.color.foreground, vars.theme.shade.text),
-  textPrimary: getColor(
-    vars.theme.color.foreground,
-    `calc(${vars.theme.shade.text} + 0.1)`,
-  ),
-  textSecondary: getColor(
-    vars.theme.color.foreground,
-    vars.theme.shade.textSecondary,
-  ),
-  textTertiary: getColor(
-    vars.theme.color.foreground,
-    `calc(${vars.theme.shade.text} * 0.66)`,
-  ),
-  // accents
-  blue: getColor(vars.theme.color.blue),
-  green: getColor(vars.theme.color.green),
-  indigo: getColor(vars.theme.color.indigo),
-  orange: getColor(vars.theme.color.orange),
-  pink: getColor(vars.theme.color.pink),
-  purple: getColor(vars.theme.color.purple),
-  red: getColor(vars.theme.color.red),
-  teal: getColor(vars.theme.color.teal),
-  yellow: getColor(vars.theme.color.yellow),
-}
+export type ResponsiveValue<Value extends string | number> = ConditionalValue<
+  typeof responsiveStyles,
+  Value
+>
 
-const boxShadowColor = createVar()
+export const normalizeResponsiveValue = createNormalizeValueFn(responsiveStyles)
 
-const stateStyles = createAtomicStyles({
+// --------------------------------------------------
+// Selector styles
+// --------------------------------------------------
+const selectorStyles = createAtomicStyles({
   conditions: {
-    default: {},
+    base: {},
     hover: { selector: '&:hover' },
     active: { selector: '&:active' },
     focus: { selector: '&:focus' },
   },
-  defaultCondition: 'default',
+  defaultCondition: 'base',
   properties: {
-    background: colors,
-    boxShadow: {
-      containerMd: {
-        boxShadow: `0 0 0 0.25rem ${fallbackVar(
-          boxShadowColor,
-          colors.foregroundSecondaryHover,
-        )}`,
-      },
-      containerSm: {
-        boxShadow: `0 0 0 0.125rem ${fallbackVar(
-          boxShadowColor,
-          colors.foregroundSecondaryHover,
-        )}`,
-      },
-    },
-    boxShadowColor: {
-      accent: { vars: { [boxShadowColor]: colors.accent } },
-      accentSecondaryHover: {
-        vars: { [boxShadowColor]: colors.accentSecondaryHover },
-      },
-      foregroundSecondaryHover: {
-        vars: { [boxShadowColor]: colors.foregroundSecondaryHover },
-      },
-      green: {
-        vars: { [boxShadowColor]: colors.green },
-      },
-      red: {
-        vars: { [boxShadowColor]: colors.red },
-      },
-    },
-    color: colors,
+    background: vars.color,
+    color: vars.color,
   },
 })
 
+export type SelectorValue<Value extends string | number> = ConditionalValue<
+  typeof selectorStyles,
+  Value
+>
+
+export const normalizeSelectorValue = createNormalizeValueFn(selectorStyles)
+
+// --------------------------------------------------
+// Plain styles
+// --------------------------------------------------
 const styles = createAtomicStyles({
   properties: {
     cursor: ['not-allowed', 'pointer'],
+    fontFamily: vars.fontFamily,
+    fontWeight: vars.fontWeight,
     strokeWidth: vars.borderWidth,
     transitionDuration: vars.transitionDuration,
     transitionProperty: vars.transitionProperty,
     transitionTimingFunction: vars.transitionTimingFunction,
+    whiteSpace: [
+      'normal',
+      'nowrap',
+      'pre',
+      'pre-line',
+      'pre-wrap',
+      'initial',
+      'inherit',
+    ],
+    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
   },
 })
 
-export const atoms = createAtomsFn(responsiveStyles, stateStyles, styles)
-
+// --------------------------------------------------
+// Create atoms
+// --------------------------------------------------
+export const atoms = createAtomsFn(responsiveStyles, selectorStyles, styles)
 export type Atoms = Parameters<typeof atoms>[0]

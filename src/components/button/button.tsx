@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { Box, createVariants, useBoxProps } from '../box'
 import { Text } from '../text'
+import { Spinner } from '../spinner'
+import * as styles from './styles.css'
 
 const sizes = createVariants({
   sm: {
@@ -22,34 +24,44 @@ const variants = createVariants({
   highlight: {
     color: 'accentText',
     background: 'accent',
-    boxShadow: { hover: 'containerMd', active: 'containerSm' },
-    boxShadowColor: 'accent',
   },
   primary: {
     color: 'accent',
-    background: { default: 'accentSecondary', hover: 'accentSecondaryHover' },
-    boxShadow: { hover: 'containerMd', active: 'containerSm' },
-    boxShadowColor: 'accentSecondaryHover',
+    background: { base: 'accentSecondary', hover: 'accentSecondaryHover' },
   },
   secondary: {
     color: 'text',
     background: {
-      default: 'foregroundSecondary',
+      base: 'foregroundSecondary',
       hover: 'foregroundSecondaryHover',
     },
-    boxShadow: { hover: 'containerMd', active: 'containerSm' },
+  },
+  tertiary: {
+    color: 'textSecondary',
+    background: {
+      base: 'foregroundTertiary',
+      hover: 'foregroundSecondary',
+    },
+  },
+  transparent: {
+    color: 'text',
+    background: {
+      hover: 'foregroundSecondaryHover',
+    },
+  },
+  transparentSecondary: {
+    color: 'textSecondary',
+    background: {
+      hover: 'foregroundSecondaryHover',
+    },
   },
   positive: {
     color: 'accentText',
     background: 'green',
-    boxShadow: { hover: 'containerMd', active: 'containerSm' },
-    boxShadowColor: 'green',
   },
   critical: {
     color: 'accentText',
     background: 'red',
-    boxShadow: { hover: 'containerMd', active: 'containerSm' },
-    boxShadowColor: 'red',
   },
 })
 
@@ -96,22 +108,27 @@ export const Button = React.forwardRef(
     })
     return (
       <Box
+        alignItems="center"
         as="button"
+        className={styles.boxShadowVariants[variant]}
+        disabled={!clickable}
+        display="flex"
         ref={ref}
+        tabIndex={tabIndex}
+        transitionDuration={150}
+        transitionProperty="default"
+        transitionTimingFunction="inOut"
+        type={type}
+        onClick={onClick}
         {...sizes[size]}
         {...variants[variant]}
         {...boxProps}
         {...ariaProps}
-        disabled={!clickable}
-        tabIndex={tabIndex}
-        transitionDuration={150}
-        transitionTimingFunction="inOut"
-        type={type}
-        onClick={onClick}
       >
         <Text color="inherit" lineHeight="none" weight="medium">
           {children}
         </Text>
+        {loading && <Spinner />}
       </Box>
     )
   },

@@ -16,12 +16,14 @@ import {
   transitionProperty,
   transitionTimingFunction,
 } from './tokens'
+import { getColor } from './utils'
 
-// Create base theme
+// --------------------------------------------------
+// Create base vars
+// --------------------------------------------------
 const base = {
   borderRadius,
   borderWidth,
-  color: color.base,
   fontFamily,
   fontSize,
   fontWeight,
@@ -37,7 +39,9 @@ const base = {
 export const baseVars = createThemeContract(base)
 export const theme = createTheme(baseVars, base)
 
-// Create color theme
+// --------------------------------------------------
+// Create themed vars
+// --------------------------------------------------
 const modeContract = {
   color: {
     ...color.light,
@@ -58,7 +62,75 @@ export const darkTheme = createTheme(modeVars, {
   shade: shade.dark,
 })
 
+// --------------------------------------------------
+// Create color vars
+// --------------------------------------------------
+const colorContract = {
+  ...color.base,
+  accent: getColor(modeVars.color.accent),
+  accentText: getColor(modeVars.color.accentText),
+  accentSecondary: getColor(
+    modeVars.color.accent,
+    modeVars.shade.accentSecondary,
+  ),
+  accentSecondaryHover: getColor(
+    modeVars.color.accent,
+    modeVars.shade.accentSecondaryHover,
+  ),
+  accentTertiary: getColor(
+    modeVars.color.accent,
+    `calc(${modeVars.shade.accentSecondary} * 0.5)`,
+  ),
+  background: getColor(modeVars.color.background),
+  backgroundSecondary: getColor(modeVars.color.backgroundSecondary),
+  backgroundTertiary: getColor(modeVars.color.backgroundTertiary),
+  foreground: getColor(modeVars.color.foreground),
+  foregroundSecondary: getColor(
+    modeVars.color.foreground,
+    modeVars.shade.foregroundSecondary,
+  ),
+  foregroundSecondaryHover: getColor(
+    modeVars.color.foreground,
+    modeVars.shade.foregroundSecondaryHover,
+  ),
+  foregroundTertiary: getColor(
+    modeVars.color.foreground,
+    `calc(${modeVars.shade.accentSecondary} * 0.15)`,
+  ),
+  groupBackground: getColor(modeVars.color.groupBackground),
+  groupBorder: getColor(modeVars.color.groupBorder, modeVars.shade.groupBorder),
+  text: getColor(modeVars.color.foreground, modeVars.shade.text),
+  textPrimary: getColor(
+    modeVars.color.foreground,
+    `calc(${modeVars.shade.text} + 0.1)`,
+  ),
+  textSecondary: getColor(
+    modeVars.color.foreground,
+    modeVars.shade.textSecondary,
+  ),
+  textTertiary: getColor(
+    modeVars.color.foreground,
+    `calc(${modeVars.shade.text} * 0.66)`,
+  ),
+  // accents
+  blue: getColor(modeVars.color.blue),
+  green: getColor(modeVars.color.green),
+  indigo: getColor(modeVars.color.indigo),
+  orange: getColor(modeVars.color.orange),
+  pink: getColor(modeVars.color.pink),
+  purple: getColor(modeVars.color.purple),
+  red: getColor(modeVars.color.red),
+  teal: getColor(modeVars.color.teal),
+  yellow: getColor(modeVars.color.yellow),
+}
+export const colorVars = createThemeContract(colorContract)
+export const colorTheme = createTheme(colorVars, colorContract)
+
+// --------------------------------------------------
+// Export CSS vars
+// --------------------------------------------------
 export const vars = {
   ...baseVars,
+  color: colorVars,
   theme: modeVars,
 }

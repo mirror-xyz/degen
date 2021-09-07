@@ -1,8 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 
 globalStyle('html', {
-  MozOsxFontSmoothing: 'grayscale',
-  WebkitFontSmoothing: 'antialiased',
   fontSize: '16px',
   textRendering: 'optimizeLegibility',
 })

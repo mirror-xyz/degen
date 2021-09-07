@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
+import clsx from 'clsx'
 
 import { Box } from '../box'
 
 import {
   theme as baseTheme,
+  colorTheme,
   darkTheme,
   lightTheme,
   vars,
@@ -49,17 +51,17 @@ export const ThemeProvider = ({
   })
 
   const themeClassName = React.useMemo(() => {
-    let colorTheme: string
+    let modeTheme: string
     const theme = forcedTheme ?? state.theme
     switch (theme) {
       case 'dark':
-        colorTheme = darkTheme
+        modeTheme = darkTheme
         break
       case 'light':
       default:
-        colorTheme = lightTheme
+        modeTheme = lightTheme
     }
-    return `${baseTheme} ${colorTheme}`
+    return clsx(baseTheme, modeTheme, colorTheme)
   }, [state.theme, forcedTheme])
 
   const setAccent = React.useCallback(

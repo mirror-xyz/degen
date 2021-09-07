@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Box, BoxProps, createVariants, useBoxProps } from '../box'
 import { VisuallyHidden } from '../visually-hidden'
-import { spinner } from './styles.css'
+import * as styles from './styles.css'
 
 const variants = createVariants({
   md: {
@@ -31,7 +31,12 @@ export const Spinner = React.forwardRef(
   ) => {
     const boxProps = useBoxProps({ color })
     return (
-      <Box className={spinner} ref={ref} {...variants[variant]} {...boxProps}>
+      <Box
+        className={styles.spinner}
+        ref={ref}
+        {...variants[variant]}
+        {...boxProps}
+      >
         {accessibilityLabel && (
           <VisuallyHidden>{accessibilityLabel}</VisuallyHidden>
         )}
