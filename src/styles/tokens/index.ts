@@ -1,6 +1,7 @@
 export * from './border'
 export * from './color'
 export * from './space'
+export * from './transition'
 export * from './typography'
 
 export const opacity = {

@@ -1,15 +1,11 @@
 import * as React from 'react'
 
-import { Atoms } from '~/styles/atoms.css'
-import { useBoxProps } from '~/hooks'
-import { createVariants } from '~/utils'
-import { Box } from '../box'
+import { Box, BoxProps, createVariants, useBoxProps } from '../box'
 
 const variants = createVariants({
   base: {
-    color: 'foreground',
+    color: 'text',
     fontFamily: 'sans',
-    fontSize: 'base',
   },
   description: {
     color: 'textTertiary',
@@ -32,40 +28,45 @@ const variants = createVariants({
 type Props = {
   as?: 'div' | 'span' | 'p' | 'label' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   children: React.ReactNode
-  color?: Atoms['color']
-  fontFamily?: Atoms['fontFamily']
-  fontSize?: Atoms['fontSize']
-  letterSpacing?: Atoms['letterSpacing']
-  lineHeight?: Atoms['lineHeight']
+  color?: BoxProps['color']
+  font?: BoxProps['fontFamily']
+  letterSpacing?: BoxProps['letterSpacing']
+  lineHeight?: BoxProps['lineHeight']
+  size?: BoxProps['fontSize']
   variant?: keyof typeof variants
-  weight?: Atoms['fontWeight']
-  whiteSpace?: Atoms['whiteSpace']
+  weight?: BoxProps['fontWeight']
+  whiteSpace?: BoxProps['whiteSpace']
 }
 
-export const Text = ({
-  as,
-  color,
-  children,
-  fontFamily,
-  fontSize,
-  letterSpacing,
-  lineHeight,
-  variant = 'base',
-  weight,
-  whiteSpace,
-}: Props) => {
-  const boxProps = useBoxProps({
-    color,
-    fontFamily,
-    fontSize,
-    fontWeight: weight,
-    letterSpacing,
-    lineHeight,
-    whiteSpace,
-  })
-  return (
-    <Box as={as} {...variants[variant]} {...boxProps}>
-      {children}
-    </Box>
-  )
-}
+export const Text = React.forwardRef(
+  (
+    {
+      as,
+      children,
+      color,
+      font,
+      letterSpacing,
+      lineHeight,
+      size,
+      variant = 'base',
+      weight,
+      whiteSpace,
+    }: Props,
+    ref: React.Ref<HTMLElement>,
+  ) => {
+    const boxProps = useBoxProps({
+      color,
+      fontFamily: font,
+      fontSize: size,
+      fontWeight: weight,
+      letterSpacing,
+      lineHeight,
+      whiteSpace,
+    })
+    return (
+      <Box as={as} ref={ref} {...variants[variant]} {...boxProps}>
+        {children}
+      </Box>
+    )
+  },
+)

@@ -12,4 +12,12 @@ export const snippets: Snippet[] = [
     name: 'Disabled',
     code: <Button disabled>Disabled</Button>,
   },
+  {
+    name: 'Size',
+    code: <Button size="sm">Size</Button>,
+  },
+  {
+    name: 'Variant',
+    code: <Button variant="highlight">Variant</Button>,
+  },
 ]

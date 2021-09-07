@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
 
+import { Box } from '../box'
+
 import {
   theme as baseTheme,
   darkTheme,
@@ -63,8 +65,13 @@ export const ThemeProvider = ({
   const setAccent = React.useCallback(
     (accent: Accent) => {
       if (!el.current) return
+      const accentText =
+        ['foreground', 'yellow'].includes(accent) && state.theme === 'dark'
+          ? color.light.foreground
+          : color.dark.foreground
       setElementVars(el.current, {
         [vars.theme.color.accent]: color[state.theme][accent],
+        [vars.theme.color.accentText]: accentText,
       })
       setState((x) => ({ ...x, accent }))
     },
@@ -87,9 +94,9 @@ export const ThemeProvider = ({
 
   return (
     <ThemeContext.Provider value={value}>
-      <div className={themeClassName} ref={el}>
+      <Box className={themeClassName} ref={el}>
         {children}
-      </div>
+      </Box>
     </ThemeContext.Provider>
   )
 }

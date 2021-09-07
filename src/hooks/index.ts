@@ -1,2 +1,1 @@
-export * from './use-box-props'
-export * from './use-theme'
+export { useTheme } from './use-theme'
