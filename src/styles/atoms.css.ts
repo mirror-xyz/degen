@@ -159,6 +159,7 @@ const styles = createAtomicStyles({
     fontFamily: vars.fontFamily,
     fontWeight: vars.fontWeight,
     strokeWidth: vars.borderWidth,
+    textOverflow: ['ellipsis'],
     transitionDuration: vars.transitionDuration,
     transitionProperty: vars.transitionProperty,
     transitionTimingFunction: vars.transitionTimingFunction,

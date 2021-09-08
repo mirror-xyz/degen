@@ -1,4 +1,5 @@
 import * as React from 'react'
+import clsx from 'clsx'
 
 type CreateBoxParams<AtomsFn> = {
   atoms: AtomsFn
@@ -10,7 +11,10 @@ type AtomsFnBase = {
   properties: Set<string>
 }
 
-type OmittedProperties = 'as' | 'color' | 'width' | 'height'
+type FilteredProperties = Omit<
+  React.AllHTMLAttributes<HTMLElement>,
+  'as' | 'color' | 'width' | 'height'
+>
 
 export const createBox = <AtomsFn extends AtomsFnBase>({
   atoms: atomsFn,
@@ -21,7 +25,7 @@ export const createBox = <AtomsFn extends AtomsFnBase>({
     children?: React.ReactNode
     className?: string
   } & Parameters<AtomsFn>[0] &
-    Omit<React.AllHTMLAttributes<HTMLElement>, OmittedProperties>
+    FilteredProperties
 
   const Box = React.forwardRef<HTMLElement, BoxProps>(
     ({ as: element = 'div', className, ...props }: BoxProps, ref) => {
@@ -41,47 +45,11 @@ export const createBox = <AtomsFn extends AtomsFnBase>({
       return React.createElement(element, {
         ref,
         ...otherProps,
-        className:
-          (hasAtomProps || className
-            ? `${className ?? ''}${hasAtomProps && className ? ' ' : ''}${
-                hasAtomProps ? atomsFn(atomProps) : ''
-              }`
-            : undefined) + (defaultClassName ? ` ${defaultClassName}` : ''),
-      })
-    },
-  )
-
-  const createVariants = <VariantKeys extends string>(
-    variants: Record<VariantKeys, Parameters<AtomsFn>[0]>,
-  ) => variants
-
-  return { Box, createVariants }
-}
-
-export const createBoxWithAtomsProp = <AtomsFn extends AtomsFnBase>({
-  atoms: atomsFn,
-  defaultClassName,
-}: CreateBoxParams<AtomsFn>) => {
-  type BoxProps = {
-    as?: React.ElementType
-    children?: React.ReactNode
-    className?: string
-    atoms?: Parameters<AtomsFn>[0]
-  } & Omit<React.AllHTMLAttributes<HTMLElement>, OmittedProperties>
-
-  const Box = React.forwardRef<HTMLElement, BoxProps>(
-    ({ as: element = 'div', className, atoms, ...props }, ref) => {
-      const hasAtomProps = typeof atoms !== 'undefined'
-
-      return React.createElement(element, {
-        ref,
-        ...props,
-        className:
-          (hasAtomProps || className
-            ? `${className ?? ''}${hasAtomProps && className ? ' ' : ''}${
-                hasAtomProps ? atomsFn(atoms) : ''
-              }`
-            : undefined) + (defaultClassName ? ` ${defaultClassName}` : ''),
+        className: clsx(
+          className,
+          hasAtomProps && atomsFn(atomProps),
+          defaultClassName && defaultClassName,
+        ),
       })
     },
   )

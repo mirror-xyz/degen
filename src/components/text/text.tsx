@@ -32,7 +32,9 @@ type Props = {
   font?: BoxProps['fontFamily']
   letterSpacing?: BoxProps['letterSpacing']
   lineHeight?: BoxProps['lineHeight']
+  overflow: BoxProps['overflow']
   size?: BoxProps['fontSize']
+  textOverflow?: BoxProps['textOverflow']
   variant?: keyof typeof variants
   weight?: BoxProps['fontWeight']
   whiteSpace?: BoxProps['whiteSpace']
@@ -47,7 +49,9 @@ export const Text = React.forwardRef(
       font,
       letterSpacing,
       lineHeight,
+      overflow,
       size,
+      textOverflow,
       variant = 'base',
       weight,
       whiteSpace,
@@ -61,6 +65,8 @@ export const Text = React.forwardRef(
       fontWeight: weight,
       letterSpacing,
       lineHeight,
+      overflow,
+      textOverflow,
       whiteSpace,
     })
     return (
