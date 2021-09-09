@@ -1,13 +1,6 @@
 import type { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
-  globals: {
-    'ts-jest': {
-      babelConfig: {
-        plugins: ['@vanilla-extract/babel-plugin'],
-      },
-    },
-  },
   moduleNameMapper: {
     '~/(.*)$': '<rootDir>/src/$1',
     '@/(.*)$': '<rootDir>/$1',

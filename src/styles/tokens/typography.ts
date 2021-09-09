@@ -1,8 +1,8 @@
-export const fontFamily = {
+export const fonts = {
   sans: `"Inter var", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`,
 }
 
-export const fontSize = {
+export const fontSizes = {
   xs: '0.75rem',
   sm: '0.875rem',
   base: '1rem',
@@ -19,7 +19,7 @@ export const fontSize = {
   '9xl': '8rem',
 }
 
-export const fontWeight = {
+export const fontWeights = {
   thin: '100',
   extralight: '200',
   light: '300',
@@ -32,7 +32,7 @@ export const fontWeight = {
   black: '900',
 }
 
-export const letterSpacing = {
+export const letterSpacings = {
   tightest: '-0.075em',
   tighter: '-0.05em',
   tight: '-0.025em',
@@ -43,7 +43,7 @@ export const letterSpacing = {
   widest: '0.1em',
 }
 
-export const lineHeight = {
+export const lineHeights = {
   none: '1',
   tight: '1.25',
   snug: '1.375',

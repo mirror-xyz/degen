@@ -1,26 +1,23 @@
 import * as React from 'react'
 
-import { Box } from '../box'
-import * as styles from './styles.css'
+import { css, theme } from '~/styles'
 
 type Props = {
   children: React.ReactNode
 }
 
+const styles = css({
+  borderWidth: theme.borderWidths['0'],
+  clip: 'rect(0, 0, 0, 0)',
+  height: theme.space.px,
+  margin: theme.space['-px'],
+  overflow: 'hiden',
+  padding: theme.space['0'],
+  position: 'absolute',
+  whiteSpace: 'nowrap',
+  width: theme.space.px,
+})
+
 export const VisuallyHidden = ({ children }: Props) => {
-  return (
-    <Box
-      borderWidth={0}
-      className={styles.visuallyHidden}
-      h="px"
-      m="-px"
-      overflow="hidden"
-      p={0}
-      position="absolute"
-      w="px"
-      whiteSpace="nowrap"
-    >
-      {children}
-    </Box>
-  )
+  return <div className={styles()}>{children}</div>
 }
