@@ -8,7 +8,7 @@ import {
 import { axe, toHaveNoViolations } from 'jest-axe'
 import { RunOptions } from 'axe-core'
 
-import { ThemeProps, ThemeProvider } from '~/components/theme-provider'
+import { ThemeProps, ThemeProvider } from '~/theme'
 
 import '@testing-library/jest-dom/extend-expect'
 import './__mocks__/match-media'

@@ -1,3 +1,2 @@
-export * from './components'
-export { useTheme } from './hooks'
-export { vars } from './styles/theme.css'
+export { Box } from './components'
+export { useTheme, ThemeContext, ThemeProvider } from './theme'

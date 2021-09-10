@@ -1,15 +1,12 @@
-import * as Exports from './index'
+import * as Exports from './'
 
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
-    'useTheme',
-    'vars',
+    // components
     'Box',
-    'Button',
-    'Spinner',
+    // theme
+    'useTheme',
     'ThemeContext',
     'ThemeProvider',
-    'Text',
-    'VisuallyHidden',
   ])
 })

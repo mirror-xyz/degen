@@ -1,10 +1,11 @@
-import { camelCase, flatten, upperFirst } from 'lodash'
+import flatten from 'lodash/flatten'
 import reactElementToJSXString from 'react-element-to-jsx-string'
 
 import { Snippet } from './types'
 
 const req = require.context('../components', true, /\.snippets\.tsx?$/)
-export default flatten(
+
+const snippets = flatten(
   req.keys().map((filename: string) => {
     const matches = filename.match(/([a-zA-Z-]+)\.snippets\.tsx?$/)
     if (!matches) return []
@@ -12,7 +13,7 @@ export default flatten(
     const snippets = req(filename).snippets as Snippet[]
 
     return snippets.map((snippet) => {
-      const displayName = upperFirst(camelCase(matches[1]))
+      const displayName = matches[1]
       return {
         ...snippet,
         group: snippet.group || displayName,
@@ -23,3 +24,5 @@ export default flatten(
     })
   }),
 )
+
+export default snippets
