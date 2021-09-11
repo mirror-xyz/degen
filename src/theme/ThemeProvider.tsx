@@ -2,7 +2,7 @@ import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
 
 import { Accent, Mode, tokens } from '~/tokens'
-import { modes, vars } from './vars.css'
+import { modes, vars } from '~/theme'
 
 type ThemeContextValue = {
   /** Active accent name */
@@ -15,7 +15,7 @@ type ThemeContextValue = {
   setMode(mode: Mode): void
 }
 
-export const ThemeContext = React.createContext<ThemeContextValue | undefined>(
+const ThemeContext = React.createContext<ThemeContextValue | undefined>(
   undefined,
 )
 

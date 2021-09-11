@@ -1,20 +1,20 @@
 import * as React from 'react'
 
-import { ThemeProps, ThemeProvider } from '~/theme'
+import { ThemeProvider, ThemeProviderProps } from '~/theme'
 import { Box } from '~/components'
 
 import './styles.css'
 
 type Props = {
   children: React.ReactNode
-  theme?: ThemeProps['defaultMode']
+  theme?: ThemeProviderProps['defaultMode']
 }
 
 const FrameComponent = ({ children, theme }: Props) => (
   <>
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
     <ThemeProvider defaultMode={theme}>
-      <Box bg="background" minHeight="viewHeight">
+      <Box backgroundColor="background" minHeight="viewHeight">
         {children}
       </Box>
     </ThemeProvider>

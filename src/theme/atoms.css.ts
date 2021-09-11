@@ -1,7 +1,11 @@
 import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
 import { calc } from '@vanilla-extract/css-utils'
 
-import { vars } from '~/theme'
+import { vars } from './vars.css'
+
+// Ensure reset has lowest specificity
+// DO NOT MOVE THIS LINE
+import './reset.css'
 
 const flexAlignment = ['flex-start', 'center', 'flex-end', 'stretch'] as const
 
@@ -131,14 +135,11 @@ const selectorStyles = createAtomicStyles({
     backgroundColor: vars.colors,
     color: vars.colors,
   },
-  shorthands: {
-    bg: ['backgroundColor'],
-  },
 })
 
-export const sprinkles = createAtomsFn(
+export const atoms = createAtomsFn(
   responsiveStyles,
   unresponsiveStyles,
   selectorStyles,
 )
-export type Sprinkles = Parameters<typeof sprinkles>[0]
+export type Atoms = Parameters<typeof atoms>[0]

@@ -1,7 +1,7 @@
 import { recipe } from '@vanilla-extract/recipes'
 import { style } from '@vanilla-extract/css'
 
-import { atoms } from '~/atoms'
+import { atoms } from '~/theme'
 
 const variant = {
   description: atoms({
