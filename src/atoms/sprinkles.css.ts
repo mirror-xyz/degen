@@ -1,27 +1,27 @@
 import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
+import { calc } from '@vanilla-extract/css-utils'
 
 import { vars } from '~/theme'
 
 const flexAlignment = ['flex-start', 'center', 'flex-end', 'stretch'] as const
 
-const unresponsiveStyles = createAtomicStyles({
-  properties: {
-    cursor: ['not-allowed', 'pointer'],
-    fontFamily: vars.fonts,
-    overflow: ['hidden'],
-    strokeWidth: vars.borderWidths,
-    whiteSpace: [
-      'normal',
-      'nowrap',
-      'pre',
-      'pre-line',
-      'pre-wrap',
-      'initial',
-      'inherit',
-    ],
-    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
-  },
-})
+const space = vars.space
+const negativeSpace = {
+  ['-px']: `${calc(space.px).negate()}`,
+  ['-0.5']: `${calc(space['0.5']).negate()}`,
+  ['-1']: `${calc(space['0.5']).negate()}`,
+  ['-1.5']: `${calc(space['1.5']).negate()}`,
+  ['-2']: `${calc(space['2']).negate()}`,
+  ['-2.5']: `${calc(space['2.5']).negate()}`,
+  ['-3']: `${calc(space['3']).negate()}`,
+  ['-3.5']: `${calc(space['3.5']).negate()}`,
+  ['-4']: `${calc(space['4']).negate()}`,
+}
+
+const margins = {
+  ...space,
+  ...negativeSpace,
+}
 
 const breakpoints = {
   sm: 640,
@@ -66,16 +66,14 @@ const responsiveStyles = createAtomicStyles({
     left: vars.space,
     letterSpacing: vars.letterSpacings,
     lineHeight: vars.lineHeights,
-    margin: vars.space,
-    marginBottom: vars.space,
-    marginLeft: vars.space,
-    marginRight: vars.space,
-    marginTop: vars.space,
+    marginBottom: margins,
+    marginLeft: margins,
+    marginRight: margins,
+    marginTop: margins,
     maxHeight: vars.space,
     maxWidth: vars.space,
     minHeight: vars.space,
     minWidth: vars.space,
-    padding: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
     paddingRight: vars.space,
@@ -89,24 +87,35 @@ const responsiveStyles = createAtomicStyles({
   shorthands: {
     insetX: ['left', 'right'],
     insetY: ['bottom', 'top'],
-    m: ['margin'],
-    mb: ['marginBottom'],
-    ml: ['marginLeft'],
-    mr: ['marginRight'],
-    mt: ['marginTop'],
-    mx: ['marginLeft', 'marginRight'],
-    my: ['marginTop', 'marginBottom'],
-    p: ['padding'],
-    pb: ['paddingBottom'],
-    pl: ['paddingLeft'],
-    pr: ['paddingRight'],
-    pt: ['paddingTop'],
-    px: ['paddingLeft', 'paddingRight'],
-    py: ['paddingTop', 'paddingBottom'],
+    margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    marginX: ['marginLeft', 'marginRight'],
+    marginY: ['marginTop', 'marginBottom'],
+    padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    paddingX: ['paddingLeft', 'paddingRight'],
+    paddingY: ['paddingTop', 'paddingBottom'],
     radiusLeft: ['borderBottomLeftRadius', 'borderTopLeftRadius'],
     radiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
     radiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
     radiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
+  },
+})
+
+const unresponsiveStyles = createAtomicStyles({
+  properties: {
+    cursor: ['not-allowed', 'pointer'],
+    fontFamily: vars.fonts,
+    overflow: ['hidden'],
+    strokeWidth: vars.borderWidths,
+    whiteSpace: [
+      'normal',
+      'nowrap',
+      'pre',
+      'pre-line',
+      'pre-wrap',
+      'initial',
+      'inherit',
+    ],
+    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
   },
 })
 
@@ -128,8 +137,8 @@ const selectorStyles = createAtomicStyles({
 })
 
 export const sprinkles = createAtomsFn(
-  unresponsiveStyles,
   responsiveStyles,
+  unresponsiveStyles,
   selectorStyles,
 )
 export type Sprinkles = Parameters<typeof sprinkles>[0]

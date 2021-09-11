@@ -47,6 +47,7 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
+    "@vanilla-extract/css-utils": "^0.1.1",
     "@vanilla-extract/dynamic": "^2.0.0",
     "@vanilla-extract/recipes": "^0.1.0",
     "@vanilla-extract/sprinkles": "^1.2.0",

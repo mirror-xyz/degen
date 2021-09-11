@@ -4,7 +4,7 @@ import { setElementVars } from '@vanilla-extract/dynamic'
 import { Accent, Mode, tokens } from '~/tokens'
 import { modes, vars } from './vars.css'
 
-type ThemeContextProps = {
+type ThemeContextValue = {
   /** Active accent name */
   accent: Accent
   /** Active mode name */
@@ -15,11 +15,11 @@ type ThemeContextProps = {
   setMode(mode: Mode): void
 }
 
-export const ThemeContext = React.createContext<ThemeContextProps | undefined>(
+export const ThemeContext = React.createContext<ThemeContextValue | undefined>(
   undefined,
 )
 
-export type ThemeProps = {
+export type ThemeProviderProps = {
   /** Default accent name. Defaults to blue */
   defaultAccent?: Accent
   /** Default mode name. Defaults to light */
@@ -33,7 +33,7 @@ export const ThemeProvider = ({
   defaultAccent = 'blue',
   defaultMode = 'light',
   forcedMode,
-}: React.PropsWithChildren<ThemeProps>) => {
+}: React.PropsWithChildren<ThemeProviderProps>) => {
   const el = React.useRef<HTMLDivElement>(null)
   const [state, setState] = React.useState<{ accent: Accent; mode: Mode }>({
     accent: defaultAccent,
@@ -86,4 +86,11 @@ export const ThemeProvider = ({
       </div>
     </ThemeContext.Provider>
   )
+}
+
+export const useTheme = () => {
+  const context = React.useContext(ThemeContext)
+  if (context === undefined)
+    throw Error('useTheme must be used within ThemeProvider')
+  return context
 }

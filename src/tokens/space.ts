@@ -1,6 +1,4 @@
-import { Subtract } from 'utility-types'
-
-const base = {
+export const space = {
   0: '0px',
   px: '1px',
   0.5: '0.125rem',
@@ -41,23 +39,4 @@ const base = {
   min: 'min-content',
   viewHeight: '100vh',
   viewWidth: '100vw',
-}
-
-type Base = typeof base
-type NamedSpace = Pick<
-  Base,
-  0 | 'full' | 'max' | 'min' | 'viewHeight' | 'viewWidth'
->
-type PositiveSpace = Subtract<Base, NamedSpace>
-type NegativeSpace = `-${keyof PositiveSpace}`
-
-export const space = {
-  ...base,
-  ...Object.entries(base).reduce(
-    (prev, [key, val]) => ({
-      ...prev,
-      [`-${key}`]: val,
-    }),
-    {} as Record<NegativeSpace, string>,
-  ),
 }
