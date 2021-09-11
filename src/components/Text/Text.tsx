@@ -16,7 +16,10 @@ type Props = {
   whiteSpace?: BoxProps['whiteSpace']
 }
 
-export const Text = React.forwardRef(
+export const Text = React.forwardRef<
+  HTMLElement,
+  React.PropsWithChildren<Props>
+>(
   (
     {
       as = 'div',
@@ -30,8 +33,8 @@ export const Text = React.forwardRef(
       variant,
       weight,
       whiteSpace,
-    }: React.PropsWithChildren<Props>,
-    ref: React.Ref<HTMLElement>,
+    },
+    ref,
   ) => {
     return (
       <Box

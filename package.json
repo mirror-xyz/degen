@@ -6,12 +6,18 @@
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": "./dist/index.es.js",
-    "require": "./dist/index.cjs.js"
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./styles": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
   },
   "sideEffects": [
+    "src/atoms/**/*",
     "src/theme/**/*",
-    "src/css/**/*",
     "*.css.ts"
   ],
   "files": [

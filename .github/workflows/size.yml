@@ -1,7 +1,9 @@
-name: Size
+name: Size limit
 
 on:
   pull_request:
+    branches:
+      - main
 
 jobs:
   size:
@@ -10,9 +12,7 @@ jobs:
     env:
       CI_JOB_NUMBER: 1
     steps:
-      - name: Check out
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - uses: andresz1/size-limit-action@v1.5.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

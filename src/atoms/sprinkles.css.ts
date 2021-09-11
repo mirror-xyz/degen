@@ -8,6 +8,7 @@ const unresponsiveStyles = createAtomicStyles({
   properties: {
     cursor: ['not-allowed', 'pointer'],
     fontFamily: vars.fonts,
+    overflow: ['hidden'],
     strokeWidth: vars.borderWidths,
     whiteSpace: [
       'normal',
@@ -42,10 +43,6 @@ const responsiveStyles = createAtomicStyles({
     alignItems: [...flexAlignment, 'baseline'],
     alignSelf: [...flexAlignment, 'baseline'],
     borderWidth: vars.borderWidths,
-    borderBottomWidth: vars.borderWidths,
-    borderLeftWidth: vars.borderWidths,
-    borderRightWidth: vars.borderWidths,
-    borderTopWidth: vars.borderWidths,
     borderRadius: vars.radii,
     borderBottomLeftRadius: vars.radii,
     borderBottomRightRadius: vars.radii,
@@ -78,7 +75,6 @@ const responsiveStyles = createAtomicStyles({
     maxWidth: vars.space,
     minHeight: vars.space,
     minWidth: vars.space,
-    overflow: ['hidden'],
     padding: vars.space,
     paddingBottom: vars.space,
     paddingLeft: vars.space,
@@ -88,23 +84,9 @@ const responsiveStyles = createAtomicStyles({
     right: vars.space,
     textAlign: ['center', 'left', 'right'],
     top: vars.space,
-    verticalAlign: ['middle'],
     width: vars.space,
   },
   shorthands: {
-    b: [
-      'borderBottomWidth',
-      'borderLeftWidth',
-      'borderRightWidth',
-      'borderTopWidth',
-    ],
-    bb: ['borderBottomWidth'],
-    bl: ['borderLeftWidth'],
-    br: ['borderRightWidth'],
-    bt: ['borderTopWidth'],
-    bx: ['borderLeftWidth', 'borderRightWidth'],
-    by: ['borderBottomWidth', 'borderTopWidth'],
-    h: ['height'],
     insetX: ['left', 'right'],
     insetY: ['bottom', 'top'],
     m: ['margin'],
@@ -125,7 +107,6 @@ const responsiveStyles = createAtomicStyles({
     radiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
     radiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
     radiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
-    w: ['width'],
   },
 })
 
