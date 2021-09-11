@@ -1922,7 +1922,7 @@
   resolved "https://registry.yarnpkg.com/@vanilla-extract/recipes/-/recipes-0.1.0.tgz#b1e169c4c4fcc75f0d5f3543df9811b1ccf5bc73"
   integrity sha512-PX2CxRdYkXiPiIcK2uxabBLbQlo6hZIlAVNGwxdy4ZI4OCOfPm6X2hNka+nFkpxXgZMdO/E6lXn2H6eFtxZ9BA==
 
-"@vanilla-extract/sprinkles@^1.1.1":
+"@vanilla-extract/sprinkles@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.2.0.tgz#1c9eabfe1c3a11456ec08f45df5f9b1c830e2430"
   integrity sha512-m7CgRpAYyOFj7SbuCmEk3S6JGL7+EtCgXly3yKTcIb1sSn3kDa7EirF6+WWk8QxUwmZuluu7ylRRMMHK1HC/Cw==
@@ -4972,6 +4972,11 @@ flush-write-stream@^1.0.0:
   dependencies:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
+
+focus-visible@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-5.2.0.tgz#3a9e41fccf587bd25dcc2ef045508284f0a4d6b3"
+  integrity sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==
 
 follow-redirects@^1.0.0:
   version "1.14.3"

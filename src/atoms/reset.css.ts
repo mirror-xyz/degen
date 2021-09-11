@@ -1,4 +1,6 @@
-import { composeStyles, style } from '@vanilla-extract/css'
+import { style } from '@vanilla-extract/css'
+
+import 'focus-visible'
 
 /**
  * Selector for `focus-visible` package
@@ -54,7 +56,7 @@ const appearance = style({
   appearance: 'none',
 })
 
-const field = composeStyles(block, appearance)
+const field = style([block, appearance])
 
 // Custom reset rules
 const mark = style({
@@ -62,7 +64,7 @@ const mark = style({
   color: 'inherit',
 })
 
-const select = composeStyles(
+const select = style([
   field,
   style({
     selectors: {
@@ -71,9 +73,9 @@ const select = composeStyles(
       },
     },
   }),
-)
+])
 
-const input = composeStyles(
+const input = style([
   field,
   style({
     selectors: {
@@ -85,13 +87,12 @@ const input = composeStyles(
       },
     },
   }),
-)
+])
 
 const button = style({
   background: 'none',
 })
 
-// eslint-disable-next-line id-length
 const a = style({
   textDecoration: 'none',
   color: 'inherit',
@@ -101,6 +102,7 @@ export const element = {
   article: block,
   aside: block,
   details: block,
+  div: block,
   figcaption: block,
   figure: block,
   footer: block,
@@ -112,10 +114,8 @@ export const element = {
   ul: list,
   ol: list,
   blockquote: quote,
-  // eslint-disable-next-line id-length
   q: quote,
   body,
-  // eslint-disable-next-line id-length
   a,
   table,
   mark,

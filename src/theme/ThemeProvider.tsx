@@ -20,7 +20,6 @@ export const ThemeContext = React.createContext<ThemeContextProps | undefined>(
 )
 
 export type ThemeProps = {
-  children: React.ReactNode
   /** Default accent name. Defaults to blue */
   defaultAccent?: Accent
   /** Default mode name. Defaults to light */
@@ -34,7 +33,7 @@ export const ThemeProvider = ({
   defaultAccent = 'blue',
   defaultMode = 'light',
   forcedMode,
-}: ThemeProps) => {
+}: React.PropsWithChildren<ThemeProps>) => {
   const el = React.useRef<HTMLDivElement>(null)
   const [state, setState] = React.useState<{ accent: Accent; mode: Mode }>({
     accent: defaultAccent,

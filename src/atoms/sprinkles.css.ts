@@ -2,12 +2,13 @@ import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
 
 import { vars } from '~/theme'
 
+const flexAlignment = ['flex-start', 'center', 'flex-end', 'stretch'] as const
+
 const unresponsiveStyles = createAtomicStyles({
   properties: {
     cursor: ['not-allowed', 'pointer'],
     fontFamily: vars.fonts,
     strokeWidth: vars.borderWidths,
-    textOverflow: ['ellipsis'],
     whiteSpace: [
       'normal',
       'nowrap',
@@ -38,15 +39,8 @@ const responsiveStyles = createAtomicStyles({
   },
   defaultCondition: 'xs',
   properties: {
-    alignItems: [
-      'baseline',
-      'center',
-      'flex-end',
-      'flex-start',
-      'inherit',
-      'initial',
-      'stretch',
-    ],
+    alignItems: [...flexAlignment, 'baseline'],
+    alignSelf: [...flexAlignment, 'baseline'],
     borderWidth: vars.borderWidths,
     borderBottomWidth: vars.borderWidths,
     borderLeftWidth: vars.borderWidths,
@@ -66,15 +60,12 @@ const responsiveStyles = createAtomicStyles({
     height: vars.space,
     inset: vars.space,
     justifyContent: [
-      'center',
-      'flex-end',
-      'flex-start',
-      'inherit',
-      'initial',
+      ...flexAlignment,
       'space-around',
       'space-between',
       'space-evenly',
     ],
+    justifySelf: flexAlignment,
     left: vars.space,
     letterSpacing: vars.letterSpacings,
     lineHeight: vars.lineHeights,

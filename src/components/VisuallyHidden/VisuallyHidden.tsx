@@ -5,10 +5,12 @@ import * as styles from './styles.css'
 
 type Props = {
   as?: 'div' | 'span'
-  children: React.ReactNode
 }
 
-export const VisuallyHidden = ({ as = 'div', children }: Props) => {
+export const VisuallyHidden = ({
+  as = 'div',
+  children,
+}: React.PropsWithChildren<Props>) => {
   return (
     <Box
       as={as}
