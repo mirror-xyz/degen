@@ -1917,6 +1917,11 @@
   resolved "https://registry.yarnpkg.com/@vanilla-extract/private/-/private-1.0.1.tgz#c9479cebea7e7fbb07a1fe5b5c988a8753ef04ed"
   integrity sha512-ABrFJGSmF7a1M+eDTsIeAErPhIeRyBY3ypyLQPc4bUVEK1mvF7F2gx4fTP81pm12bkS0GhjSJtM854lcPWhB+w==
 
+"@vanilla-extract/recipes@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@vanilla-extract/recipes/-/recipes-0.1.0.tgz#b1e169c4c4fcc75f0d5f3543df9811b1ccf5bc73"
+  integrity sha512-PX2CxRdYkXiPiIcK2uxabBLbQlo6hZIlAVNGwxdy4ZI4OCOfPm6X2hNka+nFkpxXgZMdO/E6lXn2H6eFtxZ9BA==
+
 "@vanilla-extract/sprinkles@^1.1.1":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@vanilla-extract/sprinkles/-/sprinkles-1.2.0.tgz#1c9eabfe1c3a11456ec08f45df5f9b1c830e2430"

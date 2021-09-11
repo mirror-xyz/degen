@@ -5,10 +5,6 @@ globalStyle('html', {
   textRendering: 'optimizeLegibility',
 })
 
-globalStyle('*, ::before, ::after', {
-  boxSizing: 'border-box',
-})
-
 globalStyle('body', {
   margin: 0,
 })

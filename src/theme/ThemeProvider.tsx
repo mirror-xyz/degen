@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
-import clsx from 'clsx'
 
 import { Accent, Mode, tokens } from '~/tokens'
-import { colorClassName, modeClassNames, vars } from './vars.css'
+import { modes, vars } from './vars.css'
 
 type ThemeContextProps = {
   /** Active accent name */
@@ -73,11 +72,6 @@ export const ThemeProvider = ({
     [state.accent, state.mode, setAccent, setMode],
   )
 
-  const className = React.useMemo(() => {
-    const mode = forcedMode ?? state.mode
-    return clsx(modeClassNames[mode], colorClassName)
-  }, [state.mode, forcedMode])
-
   // Set accent on load if default is provided
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
@@ -88,7 +82,7 @@ export const ThemeProvider = ({
 
   return (
     <ThemeContext.Provider value={value}>
-      <div className={className} ref={el}>
+      <div className={modes[forcedMode ?? state.mode]} ref={el}>
         {children}
       </div>
     </ThemeContext.Provider>

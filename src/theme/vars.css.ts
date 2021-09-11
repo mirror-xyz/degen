@@ -1,18 +1,24 @@
 import { createTheme, createThemeContract } from '@vanilla-extract/css'
 
 import { tokens } from '~/tokens'
-
-import { makeColorTokens, makeTokens, makeVars } from './utils'
+import { makeAccentTokens, makeTokens } from './utils'
 
 const baseTokens = makeTokens(tokens)
 const baseVars = createThemeContract(baseTokens)
-export const modeClassNames = {
-  light: createTheme(baseVars, baseTokens),
-  dark: createTheme(baseVars, makeTokens(tokens, 'dark')),
+
+const accentTokens = makeAccentTokens(baseVars.mode)
+const accentVars = createThemeContract(accentTokens)
+const accent = createTheme(accentVars, accentTokens)
+
+export const modes = {
+  light: `${createTheme(baseVars, baseTokens)} ${accent}`,
+  dark: `${createTheme(baseVars, makeTokens(tokens, 'dark'))} ${accent}`,
 }
 
-const colorTokens = makeColorTokens(baseVars.mode)
-const colorVars = createThemeContract(colorTokens)
-export const colorClassName = createTheme(colorVars, colorTokens)
-
-export const vars = makeVars(baseVars, colorVars)
+export const vars = {
+  ...baseVars,
+  colors: {
+    ...baseVars.colors,
+    ...accentVars,
+  },
+}

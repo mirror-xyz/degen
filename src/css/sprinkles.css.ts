@@ -1,6 +1,25 @@
 import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
 
-import { vars } from './vars.css'
+import { vars } from '~/theme'
+
+const unresponsiveStyles = createAtomicStyles({
+  properties: {
+    cursor: ['not-allowed', 'pointer'],
+    fontFamily: vars.fonts,
+    strokeWidth: vars.borderWidths,
+    textOverflow: ['ellipsis'],
+    whiteSpace: [
+      'normal',
+      'nowrap',
+      'pre',
+      'pre-line',
+      'pre-wrap',
+      'initial',
+      'inherit',
+    ],
+    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
+  },
+})
 
 const breakpoints = {
   sm: 640,
@@ -17,7 +36,7 @@ const responsiveStyles = createAtomicStyles({
     lg: { '@media': `(min-width: ${breakpoints.lg}px)` },
     xl: { '@media': `(min-width: ${breakpoints.xl}px)` },
   },
-  defaultCondition: 'sm',
+  defaultCondition: 'xs',
   properties: {
     alignItems: [
       'baseline',
@@ -42,8 +61,7 @@ const responsiveStyles = createAtomicStyles({
     display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
     flexDirection: ['column', 'row'],
     fontSize: vars.fontSizes,
-    // TODO: Fix
-    // fontWeight: vars.fontWeights,
+    fontWeight: vars.fontWeights,
     gap: vars.space,
     height: vars.space,
     inset: vars.space,
@@ -137,28 +155,9 @@ const selectorStyles = createAtomicStyles({
   },
 })
 
-const basicStyles = createAtomicStyles({
-  properties: {
-    cursor: ['not-allowed', 'pointer'],
-    fontFamily: vars.fonts,
-    strokeWidth: vars.borderWidths,
-    textOverflow: ['ellipsis'],
-    whiteSpace: [
-      'normal',
-      'nowrap',
-      'pre',
-      'pre-line',
-      'pre-wrap',
-      'initial',
-      'inherit',
-    ],
-    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
-  },
-})
-
-export const atoms = createAtomsFn(
+export const sprinkles = createAtomsFn(
+  unresponsiveStyles,
   responsiveStyles,
   selectorStyles,
-  basicStyles,
 )
-export type Atoms = Parameters<typeof atoms>[0]
+export type Sprinkles = Parameters<typeof sprinkles>[0]

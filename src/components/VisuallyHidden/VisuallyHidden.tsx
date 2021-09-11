@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { Box } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
@@ -7,6 +8,21 @@ type Props = {
   children: React.ReactNode
 }
 
-export const VisuallyHidden = ({ as: Comp = 'div', children }: Props) => {
-  return <Comp className={styles.visuallyHidden}>{children}</Comp>
+export const VisuallyHidden = ({ as = 'div', children }: Props) => {
+  return (
+    <Box
+      as={as}
+      borderWidth={0}
+      className={styles.root}
+      height="px"
+      margin="-px"
+      overflow="hidden"
+      padding={0}
+      position="absolute"
+      whiteSpace="nowrap"
+      width="px"
+    >
+      {children}
+    </Box>
+  )
 }

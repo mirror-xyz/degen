@@ -1,2 +1,2 @@
-export { Box, VisuallyHidden } from './components'
+export { Box, Spinner, VisuallyHidden } from './components'
 export { useTheme, ThemeContext, ThemeProvider } from './theme'
