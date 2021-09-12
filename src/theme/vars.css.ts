@@ -98,12 +98,15 @@ const makeColorScheme = (
   }
 }
 
-const defaultTokens: Theme = merge(tokens, makeColorScheme('light'))
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const { colors, shades, ...baseTokens } = tokens
+/* eslint-enable @typescript-eslint/no-unused-vars */
+const defaultTokens: Theme = merge(baseTokens, makeColorScheme('light'))
 const defaultVars = createThemeContract(defaultTokens)
 const lightTheme = createTheme(defaultVars, defaultTokens)
 const darkTheme = createTheme(
   defaultVars,
-  merge(tokens, makeColorScheme('dark')),
+  merge(baseTokens, makeColorScheme('dark')),
 )
 
 const accentTokens = {
@@ -130,4 +133,6 @@ export const modes = {
   dark: clsx(darkTheme, accentTheme),
 }
 
-export const vars: Theme = merge(defaultVars, accentVars)
+export const vars = merge(defaultVars, {
+  colors: accentVars,
+})
