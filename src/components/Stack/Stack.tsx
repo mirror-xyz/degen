@@ -2,8 +2,10 @@ import * as React from 'react'
 
 import { Box, BoxProps } from '../Box'
 
+export const validStackComponents = ['div', 'ol', 'ul'] as const
+
 type Props = {
-  as?: BoxProps['as']
+  as?: typeof validStackComponents[number]
   space?: BoxProps['gap']
 }
 
