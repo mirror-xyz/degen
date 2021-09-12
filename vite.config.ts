@@ -1,22 +1,9 @@
 import { defineConfig } from 'vite'
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import dts from 'vite-plugin-dts'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
-import { compilerOptions } from './tsconfig.json'
 import pkg from './package.json'
-import { resolve } from 'path'
-
-const alias = Object.entries(compilerOptions.paths).reduce(
-  (acc, [key, [value]]) => {
-    const aliasKey = key.substring(0, key.length - 2)
-    const path = value.substring(0, value.length - 2)
-    return {
-      ...acc,
-      [aliasKey]: resolve(__dirname, path),
-    }
-  },
-  {},
-)
 
 export default defineConfig({
   build: {
@@ -26,20 +13,17 @@ export default defineConfig({
       formats: ['cjs', 'es'],
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(pkg.dependencies ?? {}),
-        ...Object.keys(pkg.devDependencies ?? {}),
-      ],
+      external: Object.keys(pkg.peerDependencies),
     },
   },
   plugins: [
     vanillaExtractPlugin(),
+    tsconfigPaths(),
     dts({
       exclude: [
-        'src/**/*.test.ts*',
-        'src/**/*.snippets.tsx',
         'src/**/*.css.ts',
-        'src/theme/**/*',
+        'src/**/*.snippets.tsx',
+        'src/**/*.test.ts*',
         'src/playroom/**',
       ],
       beforeWriteFile: (filePath, content) => ({
@@ -54,7 +38,4 @@ export default defineConfig({
       outputDir: 'dist/types',
     }),
   ],
-  resolve: {
-    alias,
-  },
 })
