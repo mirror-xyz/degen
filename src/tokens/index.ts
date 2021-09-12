@@ -1,4 +1,5 @@
 import { borderStyles, borderWidths, radii } from './border'
+import { breakpoints } from './breakpoints'
 import { colors, shades } from './color'
 import { space } from './space'
 import {
@@ -12,10 +13,11 @@ import {
 export const tokens = {
   borderStyles,
   borderWidths,
+  breakpoints,
   colors,
+  fonts,
   fontSizes,
   fontWeights,
-  fonts,
   letterSpacings,
   lineHeights,
   radii,

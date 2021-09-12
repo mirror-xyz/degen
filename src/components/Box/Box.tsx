@@ -1,20 +1,18 @@
 import * as React from 'react'
 import clsx, { ClassValue } from 'clsx'
 
-import { Atoms, atoms } from '~/theme'
-import * as resetStyles from '~/theme/reset.css'
+import { Atoms, atoms, sprinkles } from '~/theme'
 
 type HTMLProperties = Omit<
   React.AllHTMLAttributes<HTMLElement>,
   'as' | 'color' | 'height' | 'width'
 >
 
-export type BoxProps = {
-  as?: React.ElementType
-  children?: React.ReactNode
-  className?: ClassValue
-} & Atoms &
-  HTMLProperties
+export type BoxProps = Omit<Atoms, 'reset'> &
+  HTMLProperties & {
+    as?: React.ElementType
+    className?: ClassValue
+  }
 
 export const Box = React.forwardRef<HTMLElement, BoxProps>(
   ({ as = 'div', className, ...props }: BoxProps, ref) => {
@@ -22,20 +20,20 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(
     const nativeProps: Record<string, unknown> = {}
 
     for (const key in props) {
-      if (atoms.properties.has(key as keyof Atoms)) {
+      if (sprinkles.properties.has(key as keyof Omit<Atoms, 'reset'>)) {
         atomProps[key] = props[key as keyof typeof props]
       } else {
         nativeProps[key] = props[key as keyof typeof props]
       }
     }
 
+    const atomicClasses = atoms({
+      reset: typeof as === 'string' ? as : 'div',
+      ...atomProps,
+    })
+
     return React.createElement(as, {
-      className: clsx(
-        resetStyles.base,
-        resetStyles.element[as as keyof typeof resetStyles.element],
-        atoms(atomProps),
-        className,
-      ),
+      className: clsx(atomicClasses, className),
       ...nativeProps,
       ref,
     })

@@ -39,6 +39,7 @@ export default defineConfig({
         'src/**/*.test.ts*',
         'src/**/*.snippets.tsx',
         'src/**/*.css.ts',
+        'src/theme/**/*',
         'src/playroom/**',
       ],
       beforeWriteFile: (filePath, content) => ({

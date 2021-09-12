@@ -137,9 +137,9 @@ const selectorStyles = createAtomicStyles({
   },
 })
 
-export const atoms = createAtomsFn(
+export const sprinkles = createAtomsFn(
   responsiveStyles,
   unresponsiveStyles,
   selectorStyles,
 )
-export type Atoms = Parameters<typeof atoms>[0]
+export type Sprinkles = Parameters<typeof sprinkles>[0]
