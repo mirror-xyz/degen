@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
 
-import { Accent, Mode, tokens } from '~/tokens'
-import { modes, vars } from '~/theme'
+import { Accent, Mode } from '~/tokens'
+import { getAccentText, modes, vars } from '~/theme'
+import { getModeColors } from './utils'
 
 type ThemeContextValue = {
   /** Active accent name */
@@ -43,11 +44,8 @@ export const ThemeProvider = ({
   const setAccent = React.useCallback(
     (accent: Accent) => {
       if (!el.current) return
-      const accentText =
-        ['foreground', 'yellow'].includes(accent) && state.mode === 'dark'
-          ? tokens.colors.light.foreground
-          : tokens.colors.dark.foreground
-      const mode = tokens.colors[state.mode]
+      const mode = getModeColors(state.mode)
+      const accentText = getAccentText(state.mode, accent)
       setElementVars(el.current, {
         [vars.mode.colors.accent]: mode[accent],
         [vars.mode.colors.accentText]: accentText,
@@ -71,10 +69,9 @@ export const ThemeProvider = ({
     [state.accent, state.mode, setAccent, setMode],
   )
 
-  // Set accent on load if default is provided
+  // Set accent on load
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
-    if (defaultMode === undefined || defaultAccent === 'blue') return
     setAccent(defaultAccent)
   }, [defaultAccent])
   /* eslint-enable react-hooks/exhaustive-deps */

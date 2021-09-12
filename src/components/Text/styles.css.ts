@@ -25,12 +25,6 @@ const variant = {
 export type Variant = keyof typeof variant
 
 export const root = recipe({
-  base: [
-    atoms({
-      color: 'text',
-      fontFamily: 'sans',
-    }),
-  ],
   variants: {
     variant,
     ellipsis: {

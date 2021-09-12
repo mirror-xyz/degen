@@ -6,7 +6,7 @@ import * as styles from './styles.css'
 type Props = {
   as?: 'div' | 'span' | 'p' | 'label' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   color?: BoxProps['color']
-  ellipsis?: boolean
+  ellipsis?: true
   font?: BoxProps['fontFamily']
   letterSpacing?: BoxProps['letterSpacing']
   lineHeight?: BoxProps['lineHeight']
@@ -24,9 +24,9 @@ export const Text = React.forwardRef<
     {
       as = 'div',
       children,
-      color,
+      color = 'text',
       ellipsis,
-      font,
+      font = 'sans',
       letterSpacing,
       lineHeight,
       size,

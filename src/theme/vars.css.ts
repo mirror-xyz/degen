@@ -1,9 +1,9 @@
 import merge from 'deepmerge'
 import { createTheme, createThemeContract } from '@vanilla-extract/css'
-import { CSSVarFunction } from '@vanilla-extract/private'
 import clsx from 'clsx'
 
 import { Accent, Mode, Tokens, tokens } from '~/tokens'
+import { rgb } from './utils'
 
 type ThemeColors = Tokens['colors']['base'] & { [key in Accent]: string } & {
   background: string
@@ -46,9 +46,6 @@ export type Theme = {
   radii: Tokens['radii']
   space: Tokens['space']
 }
-
-const rgb = (partial: string, alpha?: CSSVarFunction | string) =>
-  alpha ? `rgba(${partial}, ${alpha})` : `rgb(${partial})`
 
 const makeColorScheme = (
   mode: Mode = 'light',
