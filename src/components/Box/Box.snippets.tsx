@@ -8,8 +8,4 @@ export const snippets: Snippet[] = [
     name: 'Basic',
     code: <Box>Basic</Box>,
   },
-  {
-    name: 'Flex',
-    code: <Box display="flex">Flex</Box>,
-  },
 ]

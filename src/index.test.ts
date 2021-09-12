@@ -5,6 +5,7 @@ it('should expose correct exports', () => {
     'Box',
     'Button',
     'Spinner',
+    'Stack',
     'Text',
     'VisuallyHidden',
     'ThemeProvider',

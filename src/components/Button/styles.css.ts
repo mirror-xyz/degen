@@ -20,65 +20,78 @@ const size = {
 
 export type Size = keyof typeof size
 
-const accent = createVar()
+const toneAccentVar = createVar()
+
+const getTone = ({ accent }: { accent: string }) =>
+  style({
+    vars: {
+      [toneAccentVar]: accent,
+    },
+  })
 
 const tone = {
-  accent: style({
-    vars: {
-      [accent]: vars.mode.colors.accent,
-    },
-  }),
-  blue: style({
-    vars: {
-      [accent]: vars.mode.colors.blue,
-    },
-  }),
-  green: style({
-    vars: {
-      [accent]: vars.mode.colors.green,
-    },
-  }),
-  red: style({
-    vars: {
-      [accent]: vars.mode.colors.red,
-    },
-  }),
+  accent: getTone({ accent: vars.mode.colors.accent }),
+  blue: getTone({ accent: vars.mode.colors.blue }),
+  green: getTone({ accent: vars.mode.colors.green }),
+  red: getTone({ accent: vars.mode.colors.red }),
 }
 
 export type Tone = keyof typeof tone
 
-const textBase = createVar()
-const backgroundBase = createVar()
-const textHover = createVar()
-const backgroundHover = createVar()
+const variantTextVar = createVar()
+const variantBackgroundVar = createVar()
+const variantTextHoverVar = createVar()
+const variantBackgroundHoverVar = createVar()
+
+const getVariant = ({
+  background,
+  backgroundHover,
+  text,
+  textHover,
+}: {
+  background?: string
+  backgroundHover?: string
+  text: string
+  textHover?: string
+}) =>
+  style({
+    vars: {
+      [variantTextVar]: text,
+      ...(textHover ? { [variantTextHoverVar]: textHover } : {}),
+      ...(background ? { [variantBackgroundVar]: background } : {}),
+      ...(backgroundHover
+        ? { [variantBackgroundHoverVar]: backgroundHover }
+        : {}),
+    },
+  })
 
 const variant = {
-  highlight: style({
-    vars: {
-      [textBase]: rgb(vars.mode.colors.accentText),
-      [backgroundBase]: rgb(accent),
-    },
+  highlight: getVariant({
+    text: rgb(vars.mode.colors.accentText),
+    background: rgb(toneAccentVar),
   }),
-  primary: style({
-    vars: {
-      [textBase]: rgb(accent),
-      [backgroundBase]: rgb(accent, vars.mode.shades.accentSecondary),
-      [backgroundHover]: rgb(accent, vars.mode.shades.accentSecondaryHover),
-    },
+  primary: getVariant({
+    text: rgb(toneAccentVar),
+    background: rgb(toneAccentVar, vars.mode.shades.accentSecondary),
+    backgroundHover: rgb(toneAccentVar, vars.mode.shades.accentSecondaryHover),
   }),
-  secondary: style({
-    vars: {
-      [textBase]: vars.colors.text,
-      [backgroundBase]: vars.colors.foregroundSecondary,
-      [backgroundHover]: vars.colors.foregroundSecondaryHover,
-    },
+  secondary: getVariant({
+    text: vars.colors.text,
+    background: vars.colors.foregroundSecondary,
+    backgroundHover: vars.colors.foregroundSecondaryHover,
   }),
-  tertiary: style({
-    vars: {
-      [textBase]: vars.colors.textSecondary,
-      [backgroundBase]: vars.colors.foregroundTertiary,
-      [backgroundHover]: vars.colors.foregroundSecondary,
-    },
+  tertiary: getVariant({
+    text: vars.colors.textSecondary,
+    background: vars.colors.foregroundTertiary,
+    backgroundHover: vars.colors.foregroundSecondary,
+  }),
+  transparent: getVariant({
+    text: vars.colors.text,
+    backgroundHover: vars.colors.foregroundSecondaryHover,
+  }),
+  transparentSecondary: getVariant({
+    text: vars.colors.textSecondary,
+    backgroundHover: vars.colors.foregroundSecondary,
   }),
 }
 
@@ -97,34 +110,48 @@ export const root = recipe({
       transitionTimingFunction: 'inOut',
     }),
     style({
-      color: textBase,
-      background: backgroundBase,
-      boxShadow: `0 0 0 0 ${backgroundBase}`,
+      color: variantTextVar,
+      background: variantBackgroundVar,
+      boxShadow: `0 0 0 0 ${variantBackgroundVar}`,
       ':hover': {
-        color: fallbackVar(textHover, textBase),
-        background: fallbackVar(backgroundHover, backgroundBase),
+        color: fallbackVar(variantTextHoverVar, variantTextVar),
+        background: fallbackVar(
+          variantBackgroundHoverVar,
+          variantBackgroundVar,
+        ),
         boxShadow: `0 0 0 0.25rem ${fallbackVar(
-          backgroundHover,
-          backgroundBase,
+          variantBackgroundHoverVar,
+          variantBackgroundVar,
         )}`,
       },
       ':active': {
-        color: fallbackVar(textHover, textBase),
-        background: backgroundHover,
+        color: fallbackVar(variantTextHoverVar, variantTextVar),
+        background: fallbackVar(
+          variantBackgroundHoverVar,
+          variantBackgroundVar,
+        ),
         boxShadow: `0 0 0 0.125rem ${fallbackVar(
-          backgroundHover,
-          backgroundBase,
+          variantBackgroundHoverVar,
+          variantBackgroundVar,
         )}`,
+      },
+      ':disabled': {
+        background: variantBackgroundVar,
+        boxShadow: 'none',
       },
     }),
   ],
   variants: {
     disabled: {
-      true: atoms({
-        backgroundColor: 'foregroundSecondary',
-        color: 'textSecondary',
-        cursor: 'not-allowed',
-      }),
+      true: style([
+        getVariant({
+          text: vars.colors.textSecondary,
+          background: vars.colors.foregroundSecondary,
+        }),
+        atoms({
+          cursor: 'not-allowed',
+        }),
+      ]),
     },
     size,
     tone,

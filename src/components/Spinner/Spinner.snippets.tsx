@@ -8,8 +8,4 @@ export const snippets: Snippet[] = [
     name: 'Basic',
     code: <Spinner />,
   },
-  {
-    name: 'Size',
-    code: <Spinner size="lg" />,
-  },
 ]

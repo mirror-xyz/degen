@@ -106,7 +106,7 @@ const responsiveStyles = createAtomicStyles({
 
 const unresponsiveStyles = createAtomicStyles({
   properties: {
-    cursor: ['not-allowed', 'pointer'],
+    cursor: ['pointer', 'not-allowed'],
     fontFamily: vars.fonts,
     overflow: ['hidden'],
     strokeWidth: vars.borderWidths,

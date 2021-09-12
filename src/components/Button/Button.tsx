@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { Spinner } from '../Spinner'
 import { Text } from '../Text'
 import * as styles from './styles.css'
@@ -20,6 +20,7 @@ type BaseProps = AriaProps & {
   size?: styles.Size
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
+  width?: BoxProps['width']
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
@@ -41,6 +42,7 @@ export const Button = React.forwardRef(
       tabIndex,
       type,
       variant = 'highlight',
+      width,
       onClick,
       ...rest
     }: React.PropsWithChildren<Props>,
@@ -55,10 +57,11 @@ export const Button = React.forwardRef(
         ref={ref}
         tabIndex={tabIndex}
         type={type}
+        width={width}
         onClick={onClick}
         {...(ariaProps as AriaProps)}
       >
-        <Text color="inherit" ellipsis lineHeight="none" weight="medium">
+        <Text color="inherit" ellipsis lineHeight="snug" weight="medium">
           {children}
         </Text>
         {loading && <Spinner />}
