@@ -35,7 +35,6 @@ type ThemeMode = {
 export type Theme = {
   borderStyles: Tokens['borderStyles']
   borderWidths: Tokens['borderWidths']
-  breakpoints: Tokens['breakpoints']
   colors: ThemeColors
   fonts: Tokens['fonts']
   fontSizes: Tokens['fontSizes']

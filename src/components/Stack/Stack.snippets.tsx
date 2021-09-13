@@ -9,8 +9,15 @@ export const snippets: Snippet[] = [
     name: 'Basic',
     code: (
       <Stack>
-        <Box backgroundColor="backgroundSecondary">Foo</Box>
-        <Box backgroundColor="backgroundSecondary">Bar</Box>
+        <Box backgroundColor="backgroundSecondary" padding={4}>
+          Foo
+        </Box>
+        <Box backgroundColor="backgroundSecondary" padding={4}>
+          Foo
+        </Box>
+        <Box backgroundColor="backgroundSecondary" padding={4}>
+          Foo
+        </Box>
       </Stack>
     ),
   },

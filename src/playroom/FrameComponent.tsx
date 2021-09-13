@@ -15,7 +15,7 @@ const FrameComponent = ({ children, theme }: Props) => (
   <>
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
     <PlayroomStateProvider>
-      <ThemeProvider defaultMode={theme} disableTransitionOnChange>
+      <ThemeProvider defaultMode={theme}>
         <Box backgroundColor="background" minHeight="viewHeight">
           {children}
         </Box>

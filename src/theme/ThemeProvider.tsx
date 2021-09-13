@@ -25,8 +25,6 @@ export type ThemeProviderProps = {
   defaultAccent?: Accent
   /** Default mode name. Defaults to light */
   defaultMode?: Mode
-  /** Disable all CSS transitions when switching themes */
-  disableTransitionOnChange?: boolean
   /** Forced mode name for the current page */
   forcedMode?: Mode
 }
@@ -35,7 +33,6 @@ export const ThemeProvider = ({
   children,
   defaultAccent = 'blue',
   defaultMode = 'light',
-  disableTransitionOnChange,
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
   const el = React.useRef<HTMLDivElement>(null)
@@ -44,37 +41,27 @@ export const ThemeProvider = ({
     mode: defaultMode,
   })
 
-  const setAccent = React.useCallback(
-    (accent: Accent, updateDOM = true) => {
-      if (!el.current) return
-      const enable =
-        disableTransitionOnChange && updateDOM ? disableAnimation() : null
+  const setAccent = React.useCallback((accent: Accent) => {
+    setState((x) => {
+      if (!el.current) return x
       setElementVars(el.current, {
-        [vars.mode.colors.accent]: getModeColors(state.mode)[accent],
-        [vars.mode.colors.accentText]: getAccentText(state.mode, accent),
+        [vars.mode.colors.accent]: getModeColors(x.mode)[accent],
+        [vars.mode.colors.accentText]: getAccentText(x.mode, accent),
       })
-      setState((x) => ({ ...x, accent }))
-      enable?.()
-    },
-    [disableTransitionOnChange, state.mode],
-  )
+      return { ...x, accent }
+    })
+  }, [])
 
-  const setMode = React.useCallback(
-    (mode: Mode, updateDOM = true) => {
-      const enable =
-        disableTransitionOnChange && updateDOM ? disableAnimation() : null
-      setState((x) => ({ ...x, mode }))
-      enable?.()
-    },
-    [disableTransitionOnChange],
-  )
+  const setMode = React.useCallback((mode: Mode) => {
+    setState((x) => ({ ...x, mode }))
+  }, [])
 
   const value = React.useMemo(
     () => ({
       accent: state.accent,
       mode: state.mode,
       setAccent,
-      setMode: setMode,
+      setMode,
     }),
     [state.accent, state.mode, setAccent, setMode],
   )
@@ -86,7 +73,7 @@ export const ThemeProvider = ({
   }, [defaultAccent])
   /* eslint-enable react-hooks/exhaustive-deps */
 
-  // When mode changes, set accent
+  // When mode changes, update accent
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
     setAccent(state.accent)
@@ -106,24 +93,4 @@ export const useTheme = () => {
   const context = React.useContext(ThemeContext)
   if (!context) throw Error('Must be used within ThemeProvider')
   return context
-}
-
-const disableAnimation = () => {
-  const css = document.createElement('style')
-  css.appendChild(
-    document.createTextNode(
-      `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
-    ),
-  )
-  document.head.appendChild(css)
-
-  return () => {
-    // Force restyle
-    ;(() => window.getComputedStyle(document.body))()
-
-    // Wait for next tick before removing
-    setTimeout(() => {
-      document.head.removeChild(css)
-    }, 1)
-  }
 }

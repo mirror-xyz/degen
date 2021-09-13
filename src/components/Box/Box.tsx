@@ -39,3 +39,5 @@ export const Box = React.forwardRef<HTMLElement, BoxProps>(
     })
   },
 )
+
+Box.displayName = 'Box'

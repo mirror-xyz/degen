@@ -17,9 +17,7 @@ const snippets = flatten(
       return {
         ...snippet,
         group: snippet.group || displayName,
-        code: reactElementToJSXString(snippet.code, {
-          displayName: (_element) => displayName,
-        }),
+        code: reactElementToJSXString(snippet.code),
       }
     })
   }),

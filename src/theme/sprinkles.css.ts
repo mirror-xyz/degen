@@ -1,7 +1,15 @@
-import { createAtomicStyles, createAtomsFn } from '@vanilla-extract/sprinkles'
+import {
+  ConditionalValue,
+  RequiredConditionalValue,
+  createAtomicStyles,
+  createAtomsFn,
+  createMapValueFn,
+  createNormalizeValueFn,
+} from '@vanilla-extract/sprinkles'
 import { calc } from '@vanilla-extract/css-utils'
 
 import { vars } from './vars.css'
+import { Breakpoint, breakpointNames, breakpoints } from './breakpoints'
 
 // Ensure reset has lowest specificity
 // DO NOT MOVE THIS LINE
@@ -27,14 +35,8 @@ const margins = {
   ...negativeSpace,
 }
 
-const breakpoints = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-}
-
-const responsiveStyles = createAtomicStyles({
+const responsiveAtomicStyles = createAtomicStyles({
+  defaultCondition: 'xs',
   conditions: {
     xs: {},
     sm: { '@media': `(min-width: ${breakpoints.sm}px)` },
@@ -42,7 +44,6 @@ const responsiveStyles = createAtomicStyles({
     lg: { '@media': `(min-width: ${breakpoints.lg}px)` },
     xl: { '@media': `(min-width: ${breakpoints.xl}px)` },
   },
-  defaultCondition: 'xs',
   properties: {
     alignItems: [...flexAlignment, 'baseline'],
     alignSelf: [...flexAlignment, 'baseline'],
@@ -55,6 +56,7 @@ const responsiveStyles = createAtomicStyles({
     bottom: vars.space,
     display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
     flexDirection: ['column', 'row'],
+    flexWrap: ['wrap', 'nowrap'],
     fontSize: vars.fontSizes,
     fontWeight: vars.fontWeights,
     gap: vars.space,
@@ -104,7 +106,7 @@ const responsiveStyles = createAtomicStyles({
   },
 })
 
-const unresponsiveStyles = createAtomicStyles({
+const unresponsiveAtomicStyles = createAtomicStyles({
   properties: {
     cursor: ['pointer', 'not-allowed'],
     fontFamily: vars.fonts,
@@ -149,7 +151,7 @@ const unresponsiveStyles = createAtomicStyles({
   },
 })
 
-const selectorStyles = createAtomicStyles({
+const selectorAtomicStyles = createAtomicStyles({
   conditions: {
     base: {},
     active: { selector: '&:active' },
@@ -164,8 +166,24 @@ const selectorStyles = createAtomicStyles({
 })
 
 export const sprinkles = createAtomsFn(
-  responsiveStyles,
-  unresponsiveStyles,
-  selectorStyles,
+  responsiveAtomicStyles,
+  unresponsiveAtomicStyles,
+  selectorAtomicStyles,
 )
 export type Sprinkles = Parameters<typeof sprinkles>[0]
+
+export type OptionalResponsiveValue<Value extends string | number> =
+  ConditionalValue<typeof responsiveAtomicStyles, Value>
+export type RequiredResponsiveValue<Value extends string | number> =
+  RequiredConditionalValue<typeof responsiveAtomicStyles, Value>
+
+export type OptionalResponsiveObject<Value> = Partial<Record<Breakpoint, Value>>
+export type RequiredResponsiveObject<Value> = Partial<
+  Record<Breakpoint, Value>
+> &
+  Record<typeof breakpointNames[0], Value>
+
+export const normalizeResponsiveValue = createNormalizeValueFn(
+  responsiveAtomicStyles,
+)
+export const mapResponsiveValue = createMapValueFn(responsiveAtomicStyles)
