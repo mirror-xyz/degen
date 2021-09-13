@@ -11,7 +11,7 @@ import { RunOptions } from 'axe-core'
 import { ThemeProvider, ThemeProviderProps } from '~/theme'
 
 import '@testing-library/jest-dom/extend-expect'
-import './__mocks__/match-media'
+import './__mocks__/matchMedia'
 
 type ProvidersProps = {
   children:
