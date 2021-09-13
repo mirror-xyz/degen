@@ -21,9 +21,9 @@ type ThemeContextValue = {
 const ThemeContext = React.createContext<ThemeContextValue | null>(null)
 
 export type ThemeProviderProps = {
-  /** Default accent name. Defaults to blue */
+  /** Default accent name. @default blue */
   defaultAccent?: Accent
-  /** Default mode name. Defaults to light */
+  /** Default mode name. @default light */
   defaultMode?: Mode
   /** Forced mode name for the current page */
   forcedMode?: Mode

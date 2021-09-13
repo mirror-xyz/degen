@@ -4,6 +4,7 @@
 dist
 node_modules
 site
+src/components/Icons/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
