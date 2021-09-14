@@ -1,7 +1,7 @@
 export {
   Box,
   Button,
-  Icons,
+  IconBookOpen,
   Skeleton,
   SkeletonGroup,
   Spinner,

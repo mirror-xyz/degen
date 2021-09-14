@@ -10,7 +10,7 @@
     },
     "allowImportExportEverywhere": true
   },
-  "plugins": ["@typescript-eslint", "import", "react"],
+  "plugins": ["@typescript-eslint", "import", "react", "jest"],
   "extends": [
     "eslint:recommended",
     "plugin:eslint-comments/recommended",

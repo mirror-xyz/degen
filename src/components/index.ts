@@ -7,4 +7,4 @@ export { Text } from './Text'
 export { VisuallyHidden } from './VisuallyHidden'
 
 // Exports SVGR generated icons
-export * as Icons from './Icons'
+export * from './icons'

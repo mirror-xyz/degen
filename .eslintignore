@@ -1,5 +1,6 @@
 dist/
 node_modules/
 site
-src/components/Icons/
+src/components/icons/*
+!src/components/icons/icons.test.ts
 yarn.lock
