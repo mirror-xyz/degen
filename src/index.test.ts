@@ -4,6 +4,8 @@ it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
     'Box',
     'Button',
+    'Skeleton',
+    'SkeletonGroup',
     'Spinner',
     'Stack',
     'Text',
