@@ -34,6 +34,7 @@ export const space = {
   72: '18rem',
   80: '20rem',
   96: '24rem',
+  auto: 'auto',
   full: '100%',
   max: 'max-content',
   min: 'min-content',

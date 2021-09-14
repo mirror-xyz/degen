@@ -176,6 +176,12 @@ export const variants = recipe({
         }),
       ]),
     },
+    center: {
+      true: atoms({
+        position: 'relative',
+        paddingX: 14,
+      }),
+    },
     shape,
     size,
     tone,
