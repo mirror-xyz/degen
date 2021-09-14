@@ -6,10 +6,18 @@
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": "./dist/index.es.js",
-    "require": "./dist/index.cjs.js"
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    },
+    "./styles": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
+    }
   },
   "sideEffects": [
+    "src/atoms/**/*",
+    "src/theme/**/*",
     "*.css.ts"
   ],
   "files": [
@@ -19,19 +27,23 @@
   "license": "MIT",
   "scripts": {
     "build": "vite build",
-    "build:watch": "vite build --watch",
     "clean": "rimraf dist",
     "dev": "yarn playroom:start",
+    "gen:icons": "node scripts/generateIcons.js",
     "lint": "eslint . --cache",
     "lint:fix": "yarn lint --fix",
     "lint:format": "prettier --write .",
     "lint:types": "tsc --noEmit",
     "playroom:start": "playroom start",
     "playroom:build": "playroom build",
-    "prebuild": "yarn clean",
+    "prebuild": "yarn clean && yarn setup",
+    "predev": "yarn setup",
+    "prelint": "yarn setup",
+    "pretest": "yarn setup",
     "prepare": "husky install",
     "prepublishOnly": "yarn clean && yarn build",
     "size": "size-limit",
+    "setup": "yarn gen:icons",
     "test": "jest"
   },
   "peerDependencies": {
@@ -39,18 +51,24 @@
     "react-dom": "^17.0.2"
   },
   "dependencies": {
+    "@vanilla-extract/css-utils": "^0.1.1",
     "@vanilla-extract/dynamic": "^2.0.0",
-    "clsx": "^1.1.1"
+    "@vanilla-extract/recipes": "^0.1.0",
+    "@vanilla-extract/sprinkles": "^1.2.0",
+    "clsx": "^1.1.1",
+    "focus-visible": "^5.2.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.15.4",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
-    "@size-limit/preset-small-lib": "^5.0.3",
+    "@size-limit/preset-big-lib": "^5.0.3",
+    "@svgr/cli": "^5.5.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/react-hooks": "^7.0.1",
     "@testing-library/user-event": "^13.2.1",
+    "@types/fs-extra": "^9.0.12",
     "@types/jest": "^27.0.1",
     "@types/jest-axe": "^3.5.2",
     "@types/node": "^16.7.8",
@@ -62,20 +80,23 @@
     "@typescript-eslint/parser": "^4.30.0",
     "@vanilla-extract/babel-plugin": "^1.0.1",
     "@vanilla-extract/css": "^1.4.0",
-    "@vanilla-extract/sprinkles": "^1.1.1",
     "@vanilla-extract/vite-plugin": "^2.0.0",
     "@vanilla-extract/webpack-plugin": "^2.0.0",
     "autoprefixer": "^10.3.3",
     "babel-loader": "^8.2.2",
+    "change-case": "^4.1.2",
     "css-loader": "^6.2.0",
+    "dedent": "^0.7.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.25.1",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "fs-extra": "^10.0.0",
     "husky": "^7.0.2",
     "jest": "^27.1.0",
     "jest-axe": "^5.0.1",
@@ -95,7 +116,8 @@
     "typescript": "^4.4.2",
     "utility-types": "^3.10.0",
     "vite": "^2.5.1",
-    "vite-plugin-dts": "^0.7.0"
+    "vite-plugin-dts": "^0.7.0",
+    "vite-tsconfig-paths": "^3.3.14"
   },
   "browserslist": [
     ">0.3%",

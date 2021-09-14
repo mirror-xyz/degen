@@ -1,3 +1,2 @@
 export * from './components'
-export { useTheme } from './hooks'
-export { vars } from './styles/theme.css'
+export { ThemeProvider, useTheme } from './theme'

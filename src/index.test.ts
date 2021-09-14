@@ -1,15 +1,27 @@
-import * as Exports from './index'
+import * as Exports from './'
+
+const icons = [
+  'IconBookOpen',
+  'IconChevronDown',
+  'IconChevronRight',
+  'IconLockClosed',
+  'IconPlusSmall',
+]
 
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
+    // theme
+    'ThemeProvider',
     'useTheme',
-    'vars',
+    // components
     'Box',
     'Button',
+    'Skeleton',
+    'SkeletonGroup',
     'Spinner',
-    'ThemeContext',
-    'ThemeProvider',
+    'Stack',
     'Text',
     'VisuallyHidden',
+    ...icons,
   ])
 })

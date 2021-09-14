@@ -8,16 +8,16 @@ import {
 import { axe, toHaveNoViolations } from 'jest-axe'
 import { RunOptions } from 'axe-core'
 
-import { ThemeProps, ThemeProvider } from '~/components/theme-provider'
+import { ThemeProvider, ThemeProviderProps } from '~/theme'
 
 import '@testing-library/jest-dom/extend-expect'
-import './__mocks__/match-media'
+import './__mocks__/matchMedia'
 
 type ProvidersProps = {
   children:
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
     | React.ReactNode
-  themeProps?: Partial<Omit<ThemeProps, 'children'>>
+  themeProps?: Partial<Omit<ThemeProviderProps, 'children'>>
 }
 export const Providers = ({ children, themeProps }: ProvidersProps) => {
   return <ThemeProvider {...themeProps}>{children}</ThemeProvider>
