@@ -1,6 +1,7 @@
 export {
   Box,
   Button,
+  Icons,
   Skeleton,
   SkeletonGroup,
   Spinner,

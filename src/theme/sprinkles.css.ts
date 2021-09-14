@@ -55,6 +55,12 @@ const responsiveAtomicStyles = createAtomicStyles({
     borderTopRightRadius: vars.radii,
     bottom: vars.space,
     display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
+    flex: {
+      1: '1 1 0%',
+      auto: '1 1 auto',
+      initial: '0 1 auto',
+      none: 'none',
+    },
     flexDirection: ['column', 'row'],
     flexWrap: ['wrap', 'nowrap'],
     fontSize: vars.fontSizes,
@@ -103,6 +109,7 @@ const responsiveAtomicStyles = createAtomicStyles({
     radiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
     radiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
     radiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
+    size: ['height', 'width'],
   },
 })
 

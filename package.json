@@ -36,11 +36,14 @@
     "lint:types": "tsc --noEmit",
     "playroom:start": "playroom start",
     "playroom:build": "playroom build",
-    "prebuild": "yarn clean && yarn gen:icons",
-    "predev": "yarn gen:icons",
-    "prepare": "husky install && yarn gen:icons",
+    "prebuild": "yarn clean && yarn setup",
+    "predev": "yarn setup",
+    "prelint": "yarn setup",
+    "pretest": "yarn setup",
+    "prepare": "husky install",
     "prepublishOnly": "yarn clean && yarn build",
     "size": "size-limit",
+    "setup": "yarn gen:icons",
     "test": "jest"
   },
   "peerDependencies": {

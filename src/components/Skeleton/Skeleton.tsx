@@ -1,18 +1,17 @@
 import * as React from 'react'
 
+import { ReactNodeNoStrings } from '~/types'
 import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
 
 type SkeletonGroupProps = {
+  children: ReactNodeNoStrings
   loading?: boolean
 }
 
 const Context = React.createContext<boolean | undefined>(undefined)
 
-export const SkeletonGroup = ({
-  children,
-  loading,
-}: React.PropsWithChildren<SkeletonGroupProps>) => {
+export const SkeletonGroup = ({ children, loading }: SkeletonGroupProps) => {
   return <Context.Provider value={loading}>{children}</Context.Provider>
 }
 

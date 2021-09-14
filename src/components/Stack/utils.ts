@@ -31,10 +31,12 @@ export const wrapToFlexWrap = (
   wrap: OptionalResponsiveObject<true | false> | undefined,
 ) =>
   wrap
-    ? mapResponsiveValue(
-        <any>(typeof wrap == 'boolean' ? { xs: wrap } : wrap),
-        // Hack to convert boolean to number since Sprinkles does not support
-        // boolean responsive keys
-        (value) => wrapToFlexWrapLookup[+value as Wrap],
-      )
+    ? typeof wrap === 'boolean'
+      ? wrapToFlexWrapLookup[1]
+      : mapResponsiveValue(
+          <any>wrap,
+          // Hack to convert boolean to number since Sprinkles does not support
+          // boolean responsive keys
+          (value) => wrapToFlexWrapLookup[+value as Wrap],
+        )
     : undefined
