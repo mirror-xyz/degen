@@ -1,21 +1,27 @@
 import * as Exports from './'
 
-const icons = ['IconBookOpen']
+const icons = [
+  'IconBookOpen',
+  'IconChevronDown',
+  'IconChevronRight',
+  'IconLockClosed',
+  'IconPlusSmall',
+]
 
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
+    // theme
+    'ThemeProvider',
+    'useTheme',
     // components
     'Box',
     'Button',
-    ...icons,
     'Skeleton',
     'SkeletonGroup',
     'Spinner',
     'Stack',
     'Text',
     'VisuallyHidden',
-    // theme
-    'ThemeProvider',
-    'useTheme',
+    ...icons,
   ])
 })

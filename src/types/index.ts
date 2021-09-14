@@ -11,3 +11,5 @@ export type ReactNodeNoStrings =
   | boolean
   | null
   | undefined
+
+export type AllOrNone<T> = T | { [K in keyof T]?: never }

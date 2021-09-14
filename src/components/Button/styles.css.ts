@@ -3,6 +3,19 @@ import { recipe } from '@vanilla-extract/recipes'
 
 import { atoms, rgb, vars } from '~/theme'
 
+const shape = {
+  circle: atoms({
+    borderRadius: 'full',
+    padding: 'px',
+  }),
+  square: atoms({
+    borderRadius: 'md',
+    padding: 'px',
+  }),
+}
+
+export type Shape = keyof typeof shape
+
 const size = {
   md: atoms({
     borderRadius: 'md',
@@ -97,6 +110,16 @@ const variant = {
 
 export type Variant = keyof typeof variant
 
+const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
+  variants: {
+    shape,
+    size,
+  },
+  style: atoms({
+    width: size === 'md' ? 10 : 14,
+  }),
+})
+
 export const variants = recipe({
   base: [
     atoms({
@@ -153,10 +176,17 @@ export const variants = recipe({
         }),
       ]),
     },
+    shape,
     size,
     tone,
     variant,
   },
+  compoundVariants: [
+    getShapeSizeCompoundVariant('circle', 'md'),
+    getShapeSizeCompoundVariant('circle', 'lg'),
+    getShapeSizeCompoundVariant('square', 'md'),
+    getShapeSizeCompoundVariant('square', 'lg'),
+  ],
   defaultVariants: {
     size: 'lg',
     variant: 'highlight',

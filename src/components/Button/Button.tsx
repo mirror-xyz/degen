@@ -17,6 +17,7 @@ type BaseProps = AriaProps & {
   children: React.ReactNode
   disabled?: true
   loading?: boolean
+  shape?: styles.Shape
   size?: styles.Size
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
@@ -38,6 +39,7 @@ export const Button = React.forwardRef(
       disabled,
       loading,
       children,
+      shape,
       size = 'lg',
       tabIndex,
       type,
@@ -52,7 +54,7 @@ export const Button = React.forwardRef(
     return (
       <Box
         as="button"
-        className={styles.variants({ disabled, size, tone, variant })}
+        className={styles.variants({ disabled, shape, size, tone, variant })}
         disabled={disabled}
         ref={ref}
         tabIndex={tabIndex}

@@ -2,6 +2,7 @@ const fs = require('fs-extra')
 const glob = require('glob')
 const { default: svgr } = require('@svgr/core')
 const dedent = require('dedent')
+const { pascalCase } = require('change-case')
 
 const path = require('path')
 
@@ -9,7 +10,9 @@ const componentTemplate = ({ template }, opts, { componentName, jsx }) => {
   const code = `
     import * as React from 'react'
     NEWLINE
-    export const COMPONENT_NAME = (props: React.SVGProps<SVGSVGElement>) => COMPONENT_JSX
+    import { IconProps } from '../types'
+    NEWLINE
+    export const COMPONENT_NAME = ({ title, titleId, ...props }: IconProps) => COMPONENT_JSX
   `
 
   const reactTemplate = template.smart(code, {
@@ -35,6 +38,7 @@ const svgrConfig = {
     multipass: true,
   },
   template: componentTemplate,
+  titleProp: true,
 }
 
 const baseDir = path.join(__dirname, '..')
@@ -42,7 +46,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
 
 ;(async () => {
   // Clean old files
-  const svgComponentPaths = glob.sync('Icon*/*Svg.tsx', {
+  const svgComponentPaths = glob.sync('Icon*', {
     cwd: iconComponentsDir,
     absolute: true,
   })
@@ -59,7 +63,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
   for (const svgFilePath of svgFilePaths) {
     const rawSvg = await fs.readFile(svgFilePath, 'utf8')
     const svg = rawSvg.replace(/ data-name=".*?"/g, '')
-    const svgName = `Icon${path.basename(svgFilePath, '.svg')}`
+    const svgName = `Icon${pascalCase(path.basename(svgFilePath, '.svg'))}`
 
     // Create icon directory if it's missing
     const iconDir = path.join(iconComponentsDir, svgName)
@@ -81,14 +85,15 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
           import * as React from 'react'
 
           import { Box, BoxProps } from '../../Box'
+          import { OptionalTitle } from '../types'
           import { ${componentName} } from './${componentName}'
 
           type Props = Pick<BoxProps, "className" | "size"> & {
             tone?: BoxProps["color"]
-          }
+          } & OptionalTitle
 
-          export const ${svgName} = ({ size = 6, tone, ...rest }: Props) => {
-            return <Box as={${componentName}} color={tone} size={size} {...rest} />
+          export const ${svgName} = ({ size = 6, tone, ...props }: Props) => {
+            return <Box as={${componentName}} color={tone} size={size} {...props} />
           }
         `,
       'utf-8',
@@ -106,8 +111,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
 
   // Create icons/index.ts
   const iconComponentNames = (await fs.readdir(iconComponentsDir)).filter(
-    (fileOrDir) =>
-      !['index.ts', 'icons.test.ts', '__snapshots__'].includes(fileOrDir),
+    (fileOrDir) => !fileOrDir.includes('.') && fileOrDir.includes('Icon'),
   )
   const iconExports = iconComponentNames
     .map((componentFile) => path.basename(componentFile, '.tsx'))
@@ -115,5 +119,6 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
     .join('\n')
     .concat('\n')
   const iconsIndexPath = path.join(iconComponentsDir, 'index.ts')
+  await fs.remove(iconsIndexPath)
   await fs.writeFile(iconsIndexPath, iconExports, 'utf-8')
 })()
