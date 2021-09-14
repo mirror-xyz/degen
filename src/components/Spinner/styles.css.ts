@@ -7,23 +7,7 @@ const rotate = keyframes({
   '100%': { transform: 'rotate(1turn)' },
 })
 
-const size = {
-  md: atoms({
-    height: 6,
-    width: 6,
-    strokeWidth: 2,
-  }),
-  lg: atoms({
-    color: 'textSecondary',
-    height: 16,
-    width: 16,
-    strokeWidth: 1.5,
-  }),
-}
-
-export type Size = keyof typeof size
-
-export const root = recipe({
+export const variants = recipe({
   base: [
     style({
       animation: `1.4s linear infinite ${rotate}`,
@@ -31,9 +15,23 @@ export const root = recipe({
     }),
   ],
   variants: {
-    size,
+    size: {
+      md: atoms({
+        height: 6,
+        width: 6,
+        strokeWidth: 2,
+      }),
+      lg: atoms({
+        color: 'textSecondary',
+        height: 16,
+        width: 16,
+        strokeWidth: 1.5,
+      }),
+    },
   },
   defaultVariants: {
     size: 'md',
   },
 })
+
+export type Variants = Parameters<typeof variants>[0]

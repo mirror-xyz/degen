@@ -97,7 +97,7 @@ const variant = {
 
 export type Variant = keyof typeof variant
 
-export const root = recipe({
+export const variants = recipe({
   base: [
     atoms({
       alignItems: 'center',
@@ -162,3 +162,5 @@ export const root = recipe({
     variant: 'highlight',
   },
 })
+
+export type Variants = Parameters<typeof variants>[0]

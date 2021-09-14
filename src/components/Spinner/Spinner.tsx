@@ -7,8 +7,7 @@ import * as styles from './styles.css'
 type Props = {
   accessibilityLabel?: string
   tone?: BoxProps['color']
-  size?: styles.Size
-}
+} & styles.Variants
 
 export const Spinner = React.forwardRef(
   (
@@ -16,7 +15,7 @@ export const Spinner = React.forwardRef(
     ref: React.Ref<HTMLElement>,
   ) => {
     return (
-      <Box className={styles.root({ size })} color={tone} ref={ref}>
+      <Box className={styles.variants({ size })} color={tone} ref={ref}>
         {accessibilityLabel && (
           <VisuallyHidden>{accessibilityLabel}</VisuallyHidden>
         )}

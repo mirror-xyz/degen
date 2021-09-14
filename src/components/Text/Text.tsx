@@ -6,15 +6,13 @@ import * as styles from './styles.css'
 type Props = {
   as?: 'div' | 'span' | 'p' | 'label' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   color?: BoxProps['color']
-  ellipsis?: true
   font?: BoxProps['fontFamily']
   letterSpacing?: BoxProps['letterSpacing']
   lineHeight?: BoxProps['lineHeight']
   size?: BoxProps['fontSize']
-  variant?: styles.Variant
   weight?: BoxProps['fontWeight']
   whiteSpace?: BoxProps['whiteSpace']
-}
+} & styles.Variants
 
 export const Text = React.forwardRef<
   HTMLElement,
@@ -39,7 +37,10 @@ export const Text = React.forwardRef<
     return (
       <Box
         as={as}
-        className={styles.root({ variant, ...(ellipsis ? { ellipsis } : {}) })}
+        className={styles.variants({
+          variant,
+          ...(ellipsis ? { ellipsis } : {}),
+        })}
         color={color}
         fontFamily={font}
         fontSize={size}

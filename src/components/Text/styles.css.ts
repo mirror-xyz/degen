@@ -22,9 +22,7 @@ const variant = {
   }),
 }
 
-export type Variant = keyof typeof variant
-
-export const root = recipe({
+export const variants = recipe({
   variants: {
     variant,
     ellipsis: {
@@ -40,3 +38,5 @@ export const root = recipe({
     },
   },
 })
+
+export type Variants = Parameters<typeof variants>[0]

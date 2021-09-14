@@ -52,7 +52,7 @@ export const Button = React.forwardRef(
     return (
       <Box
         as="button"
-        className={styles.root({ disabled, size, tone, variant })}
+        className={styles.variants({ disabled, size, tone, variant })}
         disabled={disabled}
         ref={ref}
         tabIndex={tabIndex}
