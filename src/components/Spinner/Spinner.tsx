@@ -4,7 +4,7 @@ import { Box, BoxProps } from '../Box'
 import { VisuallyHidden } from '../VisuallyHidden'
 import * as styles from './styles.css'
 
-type Props = {
+export type Props = {
   accessibilityLabel?: string
   tone?: BoxProps['color']
 } & styles.Variants
