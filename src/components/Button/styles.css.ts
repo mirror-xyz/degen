@@ -110,15 +110,18 @@ const variant = {
 
 export type Variant = keyof typeof variant
 
-const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
-  variants: {
-    shape,
-    size,
-  },
-  style: atoms({
-    width: size === 'md' ? 10 : 14,
-  }),
-})
+const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => {
+  const width = size === 'md' ? 10 : 14
+  return {
+    variants: {
+      shape,
+      size,
+    },
+    style: atoms({
+      minWidth: width,
+    }),
+  }
+}
 
 export const variants = recipe({
   base: [
@@ -210,10 +213,6 @@ export const variants = recipe({
       }),
     },
   ],
-  defaultVariants: {
-    size: 'lg',
-    variant: 'highlight',
-  },
 })
 
 export type Variants = Parameters<typeof variants>[0]

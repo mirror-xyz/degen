@@ -7,6 +7,7 @@ export const variants = recipe({
     atoms({
       backgroundColor: 'accentSecondary',
       borderRadius: 'full',
+      overflow: 'hidden',
     }),
   ],
   variants: {
@@ -18,9 +19,6 @@ export const variants = recipe({
         height: 8,
       }),
     },
-  },
-  defaultVariants: {
-    size: 'md',
   },
 })
 

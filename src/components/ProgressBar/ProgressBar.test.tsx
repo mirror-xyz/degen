@@ -8,7 +8,7 @@ describe('<ProgressBar />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<ProgressBar loading />)
-    expect(screen.getByText(/loading/i)).toBeInTheDocument()
+    render(<ProgressBar goal={15} label="Crowdfund progress" value={10} />)
+    expect(screen.getByRole('progressbar')).toBeInTheDocument()
   })
 })

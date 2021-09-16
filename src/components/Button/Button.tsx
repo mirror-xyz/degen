@@ -6,42 +6,40 @@ import { Spinner } from '../Spinner'
 import { Text } from '../Text'
 import { getCenterProps } from './utils'
 import * as styles from './styles.css'
+import { isOfType } from '~/utils'
 
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
 type BaseProps = {
-  children?: React.ReactNode
   center?: true
+  children?: React.ReactNode
   disabled?: true
-  loading?: boolean
   icon?: ReactNodeNoStrings
+  loading?: true
   shape?: styles.Shape
   size?: styles.Size
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
+  variant?: styles.Variant
   width?: BoxProps['width']
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
-export type PropsWithTone = {
-  variant?: 'highlight' | 'primary'
+type PropsWithTone = Omit<BaseProps, 'variant'> & {
   tone?: styles.Tone
+  variant?: 'highlight' | 'primary'
 }
 
-export type PropsWithoutTone = {
-  variant?: styles.Variant
-}
-
-type Props = BaseProps & (PropsWithTone | PropsWithoutTone)
+type Props = BaseProps | PropsWithTone
 
 export const Button = React.forwardRef(
   (
     {
-      disabled,
-      loading,
       center,
       children,
+      disabled,
       icon,
+      loading,
       shape,
       size = 'lg',
       tabIndex,
@@ -53,9 +51,33 @@ export const Button = React.forwardRef(
     }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
-    let tone: styles.Tone | undefined
-    if ('tone' in props) tone = props.tone
-    else tone = 'accent'
+    let tone: PropsWithTone['tone']
+    if (isOfType<PropsWithTone>(props, 'tone')) tone = props.tone
+    // Default tone to `accent` if none provided and variant is `highlight` or `primary`
+    else if (variant === 'highlight' || variant === 'primary') tone = 'accent'
+
+    const labelContent = (
+      <Text color="inherit" ellipsis lineHeight="snug" weight="medium">
+        {children}
+      </Text>
+    )
+
+    let childContent: ReactNodeNoStrings
+    if (shape) {
+      childContent = loading ? <Spinner tone="current" /> : labelContent
+    } else {
+      childContent = (
+        <>
+          {icon && <Box {...getCenterProps(center, size, 'left')}>{icon}</Box>}
+          {labelContent}
+          {loading && (
+            <Box {...getCenterProps(center, size, 'right')}>
+              <Spinner tone="current" />
+            </Box>
+          )}
+        </>
+      )
+    }
 
     return (
       <Box
@@ -72,20 +94,10 @@ export const Button = React.forwardRef(
         ref={ref}
         tabIndex={tabIndex}
         type={type}
-        width={width}
+        width={width ?? 'max'}
         onClick={onClick}
       >
-        {icon && <Box {...getCenterProps(center, size, 'left')}>{icon}</Box>}
-
-        <Text color="inherit" ellipsis lineHeight="snug" weight="medium">
-          {children}
-        </Text>
-
-        {loading && (
-          <Box {...getCenterProps(center, size, 'right')}>
-            <Spinner tone="current" />
-          </Box>
-        )}
+        {childContent}
       </Box>
     )
   },

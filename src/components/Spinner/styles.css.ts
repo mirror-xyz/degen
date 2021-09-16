@@ -28,9 +28,6 @@ export const variants = recipe({
       }),
     },
   },
-  defaultVariants: {
-    size: 'md',
-  },
 })
 
 export type Variants = Parameters<typeof variants>[0]
