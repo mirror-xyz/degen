@@ -21,6 +21,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
+    "strictNullChecks": true,
     "target": "ESNext",
     "types": ["jest", "node", "@testing-library/jest-dom", "@types/webpack-env"]
   },

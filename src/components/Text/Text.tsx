@@ -5,6 +5,7 @@ import * as styles from './styles.css'
 
 type Props = {
   as?: 'div' | 'span' | 'p' | 'label' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  children?: React.ReactNode
   color?: BoxProps['color']
   font?: BoxProps['fontFamily']
   letterSpacing?: BoxProps['letterSpacing']
@@ -14,10 +15,7 @@ type Props = {
   whiteSpace?: BoxProps['whiteSpace']
 } & styles.Variants
 
-export const Text = React.forwardRef<
-  HTMLElement,
-  React.PropsWithChildren<Props>
->(
+export const Text = React.forwardRef(
   (
     {
       as = 'div',
@@ -31,8 +29,8 @@ export const Text = React.forwardRef<
       variant,
       weight,
       whiteSpace,
-    },
-    ref,
+    }: Props,
+    ref: React.Ref<HTMLElement>,
   ) => {
     return (
       <Box

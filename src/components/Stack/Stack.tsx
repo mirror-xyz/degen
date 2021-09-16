@@ -39,7 +39,7 @@ export const Stack = ({
   direction = 'horizontal',
   space = 4,
   wrap,
-}: Props) => {
+}: React.PropsWithChildren<Props>) => {
   const flexDirection = directionToFlexDirection(direction)
   const flexWrap = wrapToFlexWrap(wrap)
   return (

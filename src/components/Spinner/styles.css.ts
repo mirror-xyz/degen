@@ -22,15 +22,11 @@ export const variants = recipe({
         strokeWidth: 2,
       }),
       lg: atoms({
-        color: 'textSecondary',
         height: 16,
         width: 16,
         strokeWidth: 1.5,
       }),
     },
-  },
-  defaultVariants: {
-    size: 'md',
   },
 })
 
