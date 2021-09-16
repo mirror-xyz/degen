@@ -7,11 +7,13 @@ import { PlayroomStateProvider } from './PlayroomState'
 import './styles.css'
 
 type Props = {
-  children: React.ReactNode
   theme?: ThemeProviderProps['defaultMode']
 }
 
-const FrameComponent = ({ children, theme }: Props) => (
+const FrameComponent = ({
+  children,
+  theme,
+}: React.PropsWithChildren<Props>) => (
   <>
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
     <PlayroomStateProvider>

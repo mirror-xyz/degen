@@ -1,27 +1,31 @@
+import { sync } from 'glob'
+
+import path from 'path'
+
 import * as Exports from './'
 
-const icons = [
-  'IconBookOpen',
-  'IconChevronDown',
-  'IconChevronRight',
-  'IconLockClosed',
-  'IconPlusSmall',
-]
+const svgComponentPaths = sync('components/icons/Icon*', {
+  cwd: __dirname,
+  absolute: true,
+})
+
+const icons = svgComponentPaths.map((x) => path.basename(x))
 
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
-    // theme
-    'ThemeProvider',
-    'useTheme',
     // components
     'Box',
     'Button',
+    ...icons,
+    'ProgressBar',
     'Skeleton',
     'SkeletonGroup',
     'Spinner',
     'Stack',
     'Text',
     'VisuallyHidden',
-    ...icons,
+    // theme
+    'ThemeProvider',
+    'useTheme',
   ])
 })

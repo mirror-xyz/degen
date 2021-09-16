@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { ReactNodeNoStrings } from '~/types'
-
 import { Box, BoxProps } from '../Box'
 import { Spinner } from '../Spinner'
 import { Text } from '../Text'
@@ -10,14 +9,9 @@ import * as styles from './styles.css'
 
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
-type AriaProps = {
-  'aria-controls'?: NativeButtonProps['aria-controls']
-  'aria-expanded'?: NativeButtonProps['aria-expanded']
-  'aria-describedby'?: NativeButtonProps['aria-describedby']
-}
-
-type BaseProps = AriaProps & {
-  children: React.ReactNode
+type BaseProps = {
+  children?: React.ReactNode
+  center?: true
   disabled?: true
   loading?: boolean
   icon?: ReactNodeNoStrings
@@ -29,17 +23,16 @@ type BaseProps = AriaProps & {
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
-type PropsWithTone = BaseProps & {
+export type PropsWithTone = {
   variant?: 'highlight' | 'primary'
   tone?: styles.Tone
 }
-type PropsWithoutTone = BaseProps & { variant?: styles.Variant }
-type PropsWithCenter = BaseProps & {
-  center?: true
-  size?: 'lg'
+
+export type PropsWithoutTone = {
+  variant?: styles.Variant
 }
 
-type Props = (PropsWithTone | PropsWithoutTone) & PropsWithCenter
+type Props = BaseProps & (PropsWithTone | PropsWithoutTone)
 
 export const Button = React.forwardRef(
   (
@@ -56,11 +49,14 @@ export const Button = React.forwardRef(
       variant = 'highlight',
       width,
       onClick,
-      ...rest
-    }: React.PropsWithChildren<Props>,
+      ...props
+    }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
-    const { tone = 'accent', ...ariaProps } = rest as PropsWithTone
+    let tone: styles.Tone | undefined
+    if ('tone' in props) tone = props.tone
+    else tone = 'accent'
+
     return (
       <Box
         as="button"
@@ -78,17 +74,16 @@ export const Button = React.forwardRef(
         type={type}
         width={width}
         onClick={onClick}
-        {...(ariaProps as AriaProps)}
       >
-        {icon && <Box {...getCenterProps(center, 'left')}>{icon}</Box>}
+        {icon && <Box {...getCenterProps(center, size, 'left')}>{icon}</Box>}
 
         <Text color="inherit" ellipsis lineHeight="snug" weight="medium">
           {children}
         </Text>
 
         {loading && (
-          <Box {...getCenterProps(center, 'right')}>
-            <Spinner />
+          <Box {...getCenterProps(center, size, 'right')}>
+            <Spinner tone="current" />
           </Box>
         )}
       </Box>

@@ -1,6 +1,15 @@
 import { BoxProps } from '../Box'
+import * as styles from './styles.css'
 
 export const getCenterProps = (
   center: boolean | undefined,
+  size: styles.Size,
   side: 'left' | 'right',
-): BoxProps => (center ? { position: 'absolute', [side]: 4 } : {})
+): Pick<BoxProps, 'position'> => {
+  if (!center) return {}
+  const props: BoxProps = {
+    position: 'absolute',
+    [side]: size === 'md' ? 4 : 5,
+  }
+  return props
+}

@@ -179,7 +179,6 @@ export const variants = recipe({
     center: {
       true: atoms({
         position: 'relative',
-        paddingX: 14,
       }),
     },
     shape,
@@ -192,6 +191,24 @@ export const variants = recipe({
     getShapeSizeCompoundVariant('circle', 'lg'),
     getShapeSizeCompoundVariant('square', 'md'),
     getShapeSizeCompoundVariant('square', 'lg'),
+    {
+      variants: {
+        center: true,
+        size: 'md',
+      },
+      style: atoms({
+        paddingX: 14,
+      }),
+    },
+    {
+      variants: {
+        center: true,
+        size: 'lg',
+      },
+      style: atoms({
+        paddingX: 15,
+      }),
+    },
   ],
   defaultVariants: {
     size: 'lg',
