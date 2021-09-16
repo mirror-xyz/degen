@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { isOfType } from '~/utils'
 import { Box } from '../Box'
 import * as styles from './styles.css'
 
@@ -17,9 +18,9 @@ type Props = BaseProps & (PropsWithFunded | PropsWithLoading | PropsWithValues)
 
 export const ProgressBar = ({ size = 'md', ...props }: Props) => {
   let percentage: number
-  if (withFunded(props)) {
+  if (isOfType<PropsWithFunded>(props, 'funded')) {
     percentage = 1
-  } else if (withLoading(props)) {
+  } else if (isOfType<PropsWithLoading>(props, 'loading')) {
     percentage = 0
   } else {
     const { value, goal, stretchGoal } = props
@@ -33,11 +34,3 @@ export const ProgressBar = ({ size = 'md', ...props }: Props) => {
 }
 
 ProgressBar.displayName = 'ProgressBar'
-
-const withFunded = (props: Props): props is PropsWithFunded => {
-  return (props as PropsWithFunded).funded !== undefined
-}
-
-const withLoading = (props: Props): props is PropsWithLoading => {
-  return (props as PropsWithLoading).loading !== undefined
-}
