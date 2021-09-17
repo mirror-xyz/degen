@@ -3,7 +3,7 @@
 .eslintcache
 dist
 node_modules
-site
+site/
 src/components/icons/index.ts
 src/components/icons/Icon*
 npm-debug.log*

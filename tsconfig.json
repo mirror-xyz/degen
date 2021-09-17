@@ -25,6 +25,6 @@
     "target": "ESNext",
     "types": ["jest", "node", "@testing-library/jest-dom", "@types/webpack-env"]
   },
-  "include": ["./src"],
+  "include": ["./src/"],
   "exclude": ["node_modules"]
 }

@@ -24,7 +24,27 @@ Add [Inter var](https://rsms.me/inter/#variable) font family:
 <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 ```
 
-## Local Development
+Import and use components:
+
+```tsx
+import { Button, IconWallet, Stack } from 'degen'
+
+const Page = () => {
+  return (
+    <Stack direction={{ xs: "horizontal", md: "vertical" }}>
+      <Button
+        icon={<IconWallet />}
+        tone="blue"
+        variant="highlight"
+      >
+        Connect Wallet
+      </Button>
+    <Stack>
+  )
+}
+```
+
+## Development
 
 ```
 yarn

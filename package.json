@@ -1,7 +1,7 @@
 {
-  "name": "mirror-xyz",
+  "name": "degen",
   "version": "0.1.1",
-  "description": "Mirror.xyz design system",
+  "description": "Design system for mirror.xyz",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
   "types": "./dist/types/index.d.ts",
@@ -23,7 +23,7 @@
   "files": [
     "dist/**"
   ],
-  "repository": "mirror-xyz/mirror-xyz",
+  "repository": "mirror-xyz/degen",
   "license": "MIT",
   "scripts": {
     "build": "vite build",

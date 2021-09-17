@@ -1,5 +1,9 @@
 import type { Config } from '@jest/types'
 
+import { pathsToModuleNameMapper } from 'ts-jest/utils'
+
+import { compilerOptions } from './tsconfig.json'
+
 const config: Config.InitialOptions = {
   globals: {
     'ts-jest': {
@@ -9,8 +13,7 @@ const config: Config.InitialOptions = {
     },
   },
   moduleNameMapper: {
-    '~/(.*)$': '<rootDir>/src/$1',
-    '@/(.*)$': '<rootDir>/$1',
+    ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
     '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/file.js',
   },
   preset: 'ts-jest',
