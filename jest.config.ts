@@ -2,7 +2,7 @@ import type { Config } from '@jest/types'
 
 import { pathsToModuleNameMapper } from 'ts-jest/utils'
 
-import { compilerOptions } from './tsconfig.json'
+import { compilerOptions } from './tsconfig.base.json'
 
 const config: Config.InitialOptions = {
   globals: {

@@ -31,7 +31,7 @@ export const Skeleton = ({
   children,
   height,
   loading,
-  width = 'max',
+  width = 'fit',
 }: React.PropsWithChildren<SkeletonProps>) => {
   const contextValue = React.useContext(Context)
   const active = loading ?? contextValue

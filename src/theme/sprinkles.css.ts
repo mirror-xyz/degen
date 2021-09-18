@@ -1,10 +1,10 @@
 import {
   ConditionalValue,
   RequiredConditionalValue,
-  createAtomicStyles,
-  createAtomsFn,
   createMapValueFn,
   createNormalizeValueFn,
+  createSprinkles,
+  defineProperties,
 } from '@vanilla-extract/sprinkles'
 import { calc } from '@vanilla-extract/css-utils'
 
@@ -35,7 +35,7 @@ const margins = {
   ...negativeSpace,
 }
 
-const responsiveAtomicStyles = createAtomicStyles({
+const responsiveAtomicStyles = defineProperties({
   defaultCondition: 'xs',
   conditions: {
     xs: {},
@@ -113,7 +113,7 @@ const responsiveAtomicStyles = createAtomicStyles({
   },
 })
 
-const unresponsiveAtomicStyles = createAtomicStyles({
+const unresponsiveAtomicStyles = defineProperties({
   properties: {
     cursor: ['pointer', 'not-allowed'],
     fontFamily: vars.fonts,
@@ -158,7 +158,7 @@ const unresponsiveAtomicStyles = createAtomicStyles({
   },
 })
 
-const selectorAtomicStyles = createAtomicStyles({
+const selectorAtomicStyles = defineProperties({
   conditions: {
     base: {},
     active: { selector: '&:active' },
@@ -172,7 +172,7 @@ const selectorAtomicStyles = createAtomicStyles({
   },
 })
 
-export const sprinkles = createAtomsFn(
+export const sprinkles = createSprinkles(
   responsiveAtomicStyles,
   unresponsiveAtomicStyles,
   selectorAtomicStyles,

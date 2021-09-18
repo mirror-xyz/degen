@@ -38,6 +38,7 @@ export const space = {
   96: '24rem',
   auto: 'auto',
   full: '100%',
+  fit: 'fit-content',
   max: 'max-content',
   min: 'min-content',
   viewHeight: '100vh',

@@ -6,6 +6,10 @@ import { Box } from './Box'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <Box>Basic</Box>,
+    code: (
+      <Box>
+        <></>
+      </Box>
+    ),
   },
 ]
