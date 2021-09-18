@@ -4,6 +4,7 @@ export {
   IconBookOpen,
   IconChevronDown,
   IconChevronRight,
+  IconCode,
   IconLockClosed,
   IconPlusSmall,
   ProgressBar,

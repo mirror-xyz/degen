@@ -1,29 +1,10 @@
 import * as React from 'react'
-import { createTheme, defaultSideNavs } from 'vite-pages-theme-doc'
+
+import { Box } from '../src'
+import { createTheme, defaultSideNavs } from './theme'
 
 export default createTheme({
-  logo: <div style={{ marginLeft: 40, fontWeight: 'bold' }}>Vite Pages</div>,
-  topNavs: [
-    {
-      label: 'Index',
-      path: '/',
-      activeIfMatch: {
-        // match all first-level paths
-        path: '/:foo',
-        exact: true,
-      },
-    },
-    {
-      label: 'Components',
-      path: '/components/Button',
-      activeIfMatch: '/components',
-    },
-    { label: 'Vite', href: 'https://github.com/vitejs/vite' },
-    {
-      label: 'Vite Pages',
-      href: 'https://github.com/vitejs/vite-plugin-react-pages',
-    },
-  ],
+  logo: <Box>hi</Box>,
   sideNavs: (ctx) => {
     return defaultSideNavs(ctx, {
       groupConfig: {

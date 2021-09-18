@@ -19,7 +19,7 @@ export default defineConfig({
     pages({
       pagesDir: path.join(__dirname, 'docs'),
       pageStrategy: new DefaultPageStrategy({
-        extraFindPages: async (pagesDir, helpers) => {
+        extraFindPages: async (_pagesDir, helpers) => {
           const srcPath = path.join(__dirname, 'src')
 
           if (process.env.NODE_ENV) {
@@ -28,7 +28,7 @@ export default defineConfig({
             helpers.watchFiles(
               srcPath,
               '**/demos/**/*.{[tj]sx,md?(x)}',
-              async function fileHandler(file, api) {
+              async (file, api) => {
                 const { relative, path: absolute } = file
                 const match = relative.match(
                   /(.*)\/demos\/(.*)\.([tj]sx|mdx?)$/,
@@ -45,23 +45,19 @@ export default defineConfig({
           }
 
           // find all component README
-          helpers.watchFiles(
-            srcPath,
-            '**/README.md?(x)',
-            async function fileHandler(file, api) {
-              const { relative, path: absolute } = file
-              const match = relative.match(/(.*)\/README\.mdx?$/)
-              if (!match) throw new Error('unexpected file: ' + absolute)
-              const [, componentName] = match
-              const pageId = `/${componentName}`
-              // set page data
-              const runtimeDataPaths = api.getRuntimeData(pageId)
-              runtimeDataPaths.main = absolute
-              // set page staticData
-              const staticData = api.getStaticData(pageId)
-              staticData.main = await helpers.extractStaticData(file)
-            },
-          )
+          helpers.watchFiles(srcPath, '**/README.md?(x)', async (file, api) => {
+            const { relative, path: absolute } = file
+            const match = relative.match(/(.*)\/README\.mdx?$/)
+            if (!match) throw new Error('unexpected file: ' + absolute)
+            const [, componentName] = match
+            const pageId = `/${componentName}`
+            // set page data
+            const runtimeDataPaths = api.getRuntimeData(pageId)
+            runtimeDataPaths.main = absolute
+            // set page staticData
+            const staticData = api.getStaticData(pageId)
+            staticData.main = await helpers.extractStaticData(file)
+          })
         },
       }),
     }),
