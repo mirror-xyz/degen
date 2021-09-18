@@ -1,0 +1,12 @@
+diff --git a/node_modules/playroom/lib/getStaticTypes.js b/node_modules/playroom/lib/getStaticTypes.js
+index efc1f89..777c99f 100644
+--- a/node_modules/playroom/lib/getStaticTypes.js
++++ b/node_modules/playroom/lib/getStaticTypes.js
+@@ -45,6 +45,7 @@ module.exports = async (playroomConfig) => {
+         {
+           ...config.compilerOptions,
+           noErrorTruncation: true,
++          moduleResolution: undefined,
+         },
+         {
+           propFilter: {
