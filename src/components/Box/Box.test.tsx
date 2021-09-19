@@ -1,15 +1,11 @@
 import * as React from 'react'
 
-import { cleanup, render, screen, testA11y } from '@/test'
+import { cleanup, render, screen } from '@/test'
 
 import { Box } from './Box'
 
 describe('<Box />', () => {
   afterEach(cleanup)
-
-  it('passes a11y', async () => {
-    await testA11y(<Box>foo bar baz</Box>)
-  })
 
   it('renders', () => {
     render(<Box>foo bar baz</Box>)

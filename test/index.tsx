@@ -5,8 +5,6 @@ import {
   WrapperComponent,
   renderHook as defaultRenderHook,
 } from '@testing-library/react-hooks'
-import { axe, toHaveNoViolations } from 'jest-axe'
-import { RunOptions } from 'axe-core'
 
 import { ThemeProvider, ThemeProviderProps } from '~/theme'
 
@@ -47,23 +45,6 @@ export const renderHook = <TProps, TResult>(
 ) => {
   if (!wrapper) wrapper = Providers as WrapperComponent<TProps>
   return defaultRenderHook<TProps, TResult>(hook, { wrapper, ...options })
-}
-
-// --------------------------------------------------
-// Basic checker for a11y violations
-// --------------------------------------------------
-expect.extend(toHaveNoViolations)
-
-type TestA11YOptions = RenderOptions & { axeOptions?: RunOptions }
-export const testA11y = async (
-  ui: React.ReactElement,
-  { axeOptions, ...options }: TestA11YOptions = {},
-) => {
-  const container = React.isValidElement(ui)
-    ? render(ui, options).container
-    : ui
-  const results = await axe(container, axeOptions)
-  expect(results).toHaveNoViolations()
 }
 
 // --------------------------------------------------

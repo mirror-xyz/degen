@@ -23,7 +23,13 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "ESNext",
-    "types": ["jest", "node", "@testing-library/jest-dom", "@types/webpack-env"]
+    "types": [
+      "jest",
+      "node",
+      "vite/client",
+      "@testing-library/jest-dom",
+      "@types/webpack-env"
+    ]
   },
   "include": ["./src/"],
   "exclude": ["node_modules"]

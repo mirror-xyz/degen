@@ -1,11 +1,8 @@
 import * as React from 'react'
-import { MDXProvider } from '@mdx-js/react'
+import { MDXProvider as ReactMDXProvider } from '@mdx-js/react'
 import GithubSlugger from 'github-slugger'
 
 import { CodeBlock } from './CodeBlock'
-import { ThemePropsContext } from '../context'
-import { Demo } from './Demo'
-import { TsInfo } from './TsInfo'
 import { AnchorLink } from './AnchorLink'
 
 const components = {
@@ -16,17 +13,13 @@ const components = {
     >,
   ) => <div {...props} />,
   code: CodeBlock,
-  Demo,
-  TsInfo,
 }
 
 type Props = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
-export const Mdx = ({ children }: Props) => {
-  const themeProps = React.useContext(ThemePropsContext)
-
+export const MDXProvider = ({ children }: Props) => {
   const mdxComponents = React.useMemo(() => {
     // reset slugger state for each page
     const slugger = new GithubSlugger()
@@ -48,7 +41,7 @@ export const Mdx = ({ children }: Props) => {
         const [idCache] = React.useState<Record<string, string>>({})
         const title = props.children
         if (typeof title === 'string') {
-          if (!idCache[title]) idCache[title] = slugger.slug(title)
+          if (!idCache[title]) idCache[title] = slugger.slug(title, false)
           const id = idCache[title]
           return (
             <Tag {...props}>
@@ -62,11 +55,9 @@ export const Mdx = ({ children }: Props) => {
         return <Tag {...props} />
       }
     }
-  }, [themeProps.loadState.routePath])
+  }, [])
 
   return (
-    <MDXProvider components={mdxComponents}>
-      <div className="markdown-body">{children}</div>
-    </MDXProvider>
+    <ReactMDXProvider components={mdxComponents}>{children}</ReactMDXProvider>
   )
 }
