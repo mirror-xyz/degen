@@ -7,12 +7,12 @@ export {
   IconCode,
   IconLockClosed,
   IconPlusSmall,
-  ProgressBar,
   Skeleton,
   SkeletonGroup,
   Spinner,
   Stack,
   Text,
+  ThemeProvider,
+  useTheme,
   VisuallyHidden,
 } from './components'
-export { ThemeProvider, useTheme } from './theme'

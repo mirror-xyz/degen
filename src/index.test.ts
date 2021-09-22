@@ -17,15 +17,13 @@ it('should expose correct exports', () => {
     'Box',
     'Button',
     ...icons,
-    'ProgressBar',
     'Skeleton',
     'SkeletonGroup',
     'Spinner',
     'Stack',
     'Text',
-    'VisuallyHidden',
-    // theme
     'ThemeProvider',
     'useTheme',
+    'VisuallyHidden',
   ])
 })

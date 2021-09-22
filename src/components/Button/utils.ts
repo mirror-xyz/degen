@@ -1,13 +1,13 @@
-import { BoxProps } from '../Box'
-import * as styles from './styles.css'
+import { Atoms } from '~/theme'
+import { Size } from './styles.css'
 
 export const getCenterProps = (
   center: boolean | undefined,
-  size: styles.Size,
+  size: Size,
   side: 'left' | 'right',
-): Pick<BoxProps, 'position'> => {
+): Pick<Atoms, 'position'> => {
   if (!center) return {}
-  const props: BoxProps = {
+  const props: Atoms = {
     position: 'absolute',
     [side]: size === 'md' ? 4 : 5,
   }

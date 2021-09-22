@@ -2,8 +2,7 @@ import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
 
 import { Mode, Accent as TokenAccent } from '~/tokens'
-import { getAccentText, modes, vars } from '~/theme'
-import { getModeColors } from './utils'
+import { getAccentText, getModeColors, modes, vars } from '~/theme'
 
 type Accent = TokenAccent | 'foreground'
 

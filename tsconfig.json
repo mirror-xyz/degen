@@ -9,14 +9,22 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": false,
     "outDir": "./dist/types",
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./*"]
+      "~/*": [
+        "./src/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -26,7 +34,6 @@
     "types": [
       "jest",
       "node",
-      "vite/client",
       "@testing-library/jest-dom",
       "@types/webpack-env"
     ]

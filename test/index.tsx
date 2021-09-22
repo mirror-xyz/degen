@@ -6,7 +6,7 @@ import {
   renderHook as defaultRenderHook,
 } from '@testing-library/react-hooks'
 
-import { ThemeProvider, ThemeProviderProps } from '~/theme'
+import { ThemeProvider, ThemeProviderProps } from '~/components'
 
 import '@testing-library/jest-dom/extend-expect'
 import './__mocks__/matchMedia'

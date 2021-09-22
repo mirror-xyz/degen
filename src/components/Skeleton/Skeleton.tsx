@@ -1,7 +1,8 @@
 import * as React from 'react'
 
+import { Atoms } from '~/theme'
 import { ReactNodeNoStrings } from '~/types'
-import { Box, BoxProps } from '../Box'
+import { Box } from '../Box'
 import * as styles from './styles.css'
 
 type SkeletonGroupProps = {
@@ -18,11 +19,11 @@ export const SkeletonGroup = ({ children, loading }: SkeletonGroupProps) => {
 SkeletonGroup.displayName = 'SkeletonGroup'
 
 type SkeletonProps = {
-  backgroundColor?: BoxProps['backgroundColor']
-  radius?: BoxProps['borderRadius']
-  height?: BoxProps['height']
+  backgroundColor?: Atoms['backgroundColor']
+  radius?: Atoms['borderRadius']
+  height?: Atoms['height']
   loading?: boolean
-  width?: BoxProps['width']
+  width?: Atoms['width']
 }
 
 export const Skeleton = ({

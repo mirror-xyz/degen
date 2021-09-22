@@ -8,14 +8,14 @@ type HTMLProperties = Omit<
   'as' | 'color' | 'height' | 'width'
 >
 
-export type BoxProps = Omit<Atoms, 'reset'> &
+type Props = Atoms &
   HTMLProperties & {
     as?: React.ElementType
     className?: ClassValue
   }
 
-export const Box = React.forwardRef<HTMLElement, BoxProps>(
-  ({ as = 'div', className, ...props }: BoxProps, ref) => {
+export const Box = React.forwardRef<HTMLElement, Props>(
+  ({ as = 'div', className, ...props }: Props, ref) => {
     const atomProps: Record<string, unknown> = {}
     const nativeProps: Record<string, unknown> = {}
 

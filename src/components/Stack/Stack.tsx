@@ -1,9 +1,13 @@
 import * as React from 'react'
 
-import { OptionalResponsiveObject, OptionalResponsiveValue } from '~/theme'
+import {
+  Atoms,
+  OptionalResponsiveObject,
+  OptionalResponsiveValue,
+} from '~/theme'
 import { ReactNodeNoStrings } from '~/types'
 
-import { Box, BoxProps } from '../Box'
+import { Box } from '../Box'
 import { Direction, directionToFlexDirection, wrapToFlexWrap } from './utils'
 
 export const validStackComponents = [
@@ -21,12 +25,12 @@ export const validStackComponents = [
 
 type Props = {
   as?: typeof validStackComponents[number]
-  align?: BoxProps['alignItems']
+  align?: Atoms['alignItems']
   children: ReactNodeNoStrings
   direction?: OptionalResponsiveValue<Direction>
-  flex?: BoxProps['flex']
-  justify?: BoxProps['justifyContent']
-  space?: BoxProps['gap']
+  flex?: Atoms['flex']
+  justify?: Atoms['justifyContent']
+  space?: Atoms['gap']
   wrap?: OptionalResponsiveObject<true | false>
 }
 

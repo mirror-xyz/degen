@@ -1,10 +1,11 @@
 import * as React from 'react'
 
-import { ThemeProvider, ThemeProviderProps } from '~/theme'
-import { Box } from '~/components'
+import { Box, ThemeProvider } from '~/components'
 import { PlayroomStateProvider } from './PlayroomState'
 
 import './styles.css'
+
+type ThemeProviderProps = Parameters<typeof ThemeProvider>[0]
 
 type Props = {
   theme?: ThemeProviderProps['defaultMode']

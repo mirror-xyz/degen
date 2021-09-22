@@ -1,12 +1,13 @@
 import * as React from 'react'
 
-import { Box, BoxProps } from '../Box'
+import { Atoms } from '~/theme'
+import { Box } from '../Box'
 import { VisuallyHidden } from '../VisuallyHidden'
 import * as styles from './styles.css'
 
 type Props = {
   accessibilityLabel?: string
-  tone?: BoxProps['color']
+  tone?: Atoms['color']
 } & styles.Variants
 
 export const Spinner = React.forwardRef(

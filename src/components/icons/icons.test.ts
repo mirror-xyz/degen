@@ -1,9 +1,9 @@
-import { sync } from 'glob'
+import { glob } from 'glob'
 import { readFile } from 'fs-extra'
 
 import path from 'path'
 
-const svgComponentPaths = sync('Icon*/*Svg.tsx', {
+const svgComponentPaths = glob.sync('Icon*/*Svg.tsx', {
   cwd: __dirname,
   absolute: true,
 })

@@ -1,40 +1,37 @@
-import * as React from 'react'
-import {
-  default as Highlight,
-  Language,
-  defaultProps,
-} from 'prism-react-renderer'
+import React from 'react'
+import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { mdx } from '@mdx-js/react'
 
-import * as Components from '../../src/components'
-
 type Props = {
-  className?: string
-  children?: string
-  live?: boolean
-  render?: boolean
+  children: string
+  className: string
+  live: boolean
+  render: boolean
 }
 
-export const CodeBlock = ({
-  children = '',
-  className = '',
-  live,
-  render,
-}: Props) => {
+export const CodeBlock = ({ children, className, live, render }: Props) => {
   const language = className.replace(/language-/, '') as Language
-  console.log({ live, render, children })
+
+  console.log({
+    children,
+    live,
+    render,
+  })
+
   if (live) {
     return (
-      <LiveProvider
-        code={children.trim()}
-        scope={{ mdx, ...Components }}
-        transformCode={(code) => '/** @jsx mdx */' + code}
-      >
-        <LivePreview />
-        <LiveEditor />
-        <LiveError />
-      </LiveProvider>
+      <div style={{ marginTop: '40px', backgroundColor: 'black' }}>
+        <LiveProvider
+          code={children.trim()}
+          scope={{ mdx }}
+          transformCode={(code) => '/** @jsx mdx */' + code}
+        >
+          <LivePreview />
+          <LiveEditor />
+          <LiveError />
+        </LiveProvider>
+      </div>
     )
   }
 

@@ -1,12 +1,13 @@
 import * as React from 'react'
 
 import { ReactNodeNoStrings } from '~/types'
-import { Box, BoxProps } from '../Box'
+import { Atoms } from '~/theme'
+import { isOfType } from '~/utils'
+import { Box } from '../Box'
 import { Spinner } from '../Spinner'
 import { Text } from '../Text'
 import { getCenterProps } from './utils'
 import * as styles from './styles.css'
-import { isOfType } from '~/utils'
 
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
@@ -21,7 +22,7 @@ type BaseProps = {
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
   variant?: styles.Variant
-  width?: BoxProps['width']
+  width?: Atoms['width']
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 

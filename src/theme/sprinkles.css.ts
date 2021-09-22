@@ -9,11 +9,21 @@ import {
 import { calc } from '@vanilla-extract/css-utils'
 
 import { vars } from './vars.css'
-import { Breakpoint, breakpointNames, breakpoints } from './breakpoints'
 
 // Ensure reset has lowest specificity
 // DO NOT MOVE THIS LINE
 import './reset.css'
+
+export const breakpoints = {
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+} as const
+
+export type Breakpoint = keyof typeof breakpoints
+
+export const breakpointNames = Object.keys(breakpoints) as Breakpoint[]
 
 const flexAlignment = ['flex-start', 'center', 'flex-end', 'stretch'] as const
 

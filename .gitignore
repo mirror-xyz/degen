@@ -1,6 +1,7 @@
 *.local
 .DS_Store
 .eslintcache
+.next/
 dist
 node_modules
 site/

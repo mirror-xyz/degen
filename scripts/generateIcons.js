@@ -84,12 +84,15 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
       dedent`
           import * as React from 'react'
 
-          import { Box, BoxProps } from '../../Box'
+          import { Atoms } from '~/theme'
+          import { Box } from '../../Box'
           import { OptionalTitle } from '../types'
           import { ${componentName} } from './${componentName}'
 
+          type BoxProps = Parameters<typeof Box>[0]
+
           type Props = Pick<BoxProps, "className" | "size"> & {
-            tone?: BoxProps["color"]
+            tone?: Atoms["color"]
           } & OptionalTitle
 
           export const ${svgName} = ({ size = 6, tone, ...props }: Props) => {
