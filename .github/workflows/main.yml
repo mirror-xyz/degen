@@ -24,7 +24,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
       - name: Build
-        run: yarn build
+        run: yarn setup && yarn workspace degen build
 
   lint:
     name: Lint

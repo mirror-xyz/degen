@@ -4,8 +4,9 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "dev": "playroom start",
     "build": "playroom build",
+    "clean": "rimraf dist",
+    "dev": "playroom start",
     "lint:types": "tsc --noEmit"
   },
   "devDependencies": {

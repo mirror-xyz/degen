@@ -27,6 +27,7 @@
   "license": "MIT",
   "scripts": {
     "build": "vite build",
+    "clean": "rimraf dist src/components/icons/index.ts src/components/icons/Icon**",
     "gen:icons": "node scripts/generateIcons.js",
     "lint:types": "tsc --noEmit",
     "test": "jest"

@@ -8,20 +8,19 @@
     "playroom"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach run build",
-    "clean": "rimraf dist",
-    "dev": "concurrently \"yarn workspace docs dev\" \"yarn workspace playroom dev\"",
-    "lint": "eslint . --cache",
+    "build": "yarn setup && yarn workspaces foreach -p run build",
+    "build:site": "yarn setup && yarn workspace playroom build && yarn workspace docs build",
+    "clean": "yarn workspaces foreach -p run clean",
+    "dev": "yarn setup && concurrently \"yarn workspace docs dev\" \"yarn workspace playroom dev\"",
+    "lint": "yarn setup && eslint . --cache",
     "lint:fix": "yarn lint --fix",
     "lint:format": "prettier --write .",
-    "lint:types": "yarn workspaces foreach run lint:types",
-    "prebuild": "yarn clean && yarn setup",
-    "prepare": "husky install",
-    "prepublishOnly": "yarn clean && yarn build",
-    "pretest": "yarn setup",
-    "setup": "yarn workspace components gen:icons",
-    "size": "size-limit",
-    "test": "yarn workspaces foreach run test"
+    "lint:types": "yarn setup && yarn workspaces foreach -p run lint:types",
+    "postinstall": "husky install",
+    "prepublish": "yarn clean && yarn build",
+    "setup": "yarn workspace degen gen:icons",
+    "size": "yarn workspace degen build && yarn size-limit",
+    "test": "yarn setup && yarn workspaces foreach -p run test"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [

@@ -8,6 +8,17 @@ const config = {
   experimental: {
     externalDir: true,
   },
+  async redirects() {
+    return process.env.NODE_ENV === 'development'
+      ? [
+          {
+            source: '/playroom',
+            destination: 'http://localhost:8082',
+            permanent: true,
+          },
+        ]
+      : []
+  },
   pageExtensions: ['md', 'mdx', 'tsx'],
   reactStrictMode: true,
 }

@@ -1,7 +1,11 @@
-.next/
-dist/
-node_modules/
-site/
-system/src/components/icons/index.ts
-system/src/components/icons/Icon*
+docs/.next/
+docs/public/playroom/
+
+components/dist/
+components/src/components/icons/index.ts
+components/src/components/icons/Icon*
+
+playroom/dist/
+
+.yarn/*
 yarn.lock
