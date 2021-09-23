@@ -1,13 +1,12 @@
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
-import { glob } from 'glob'
 import fs from 'fs-extra'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
 import Head from 'next/head'
 
-import path from 'path'
-import { CodeBlock } from '../../components'
+import { getComponentName, getComponentPaths } from 'utils'
+import { CodeBlock } from 'components'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({
@@ -64,14 +63,3 @@ const Page = ({ frontMatter, source }: Props) => {
 }
 
 export default Page
-
-const getComponentPaths = () =>
-  glob.sync('../../../src/components/**/*.docs.ts', {
-    cwd: process.cwd(),
-    absolute: true,
-  })
-
-const getComponentName = (pathname: string) => {
-  const componentName = path.basename(pathname, '.mdx')
-  return componentName.replace(path.extname(componentName), '')
-}

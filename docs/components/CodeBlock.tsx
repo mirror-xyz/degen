@@ -2,6 +2,9 @@ import React from 'react'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { mdx } from '@mdx-js/react'
+import { createUrl } from 'playroom/utils'
+
+import * as Components from '~/components'
 
 type Props = {
   children: string
@@ -12,19 +15,16 @@ type Props = {
 
 export const CodeBlock = ({ children, className, live, render }: Props) => {
   const language = className.replace(/language-/, '') as Language
-
-  console.log({
-    children,
-    live,
-    render,
-  })
+  const code = children.trim()
+  const playroomUrl = createUrl({ baseUrl: 'localhost:8082', code })
+  console.log(playroomUrl)
 
   if (live) {
     return (
       <div style={{ marginTop: '40px', backgroundColor: 'black' }}>
         <LiveProvider
-          code={children.trim()}
-          scope={{ mdx }}
+          code={code}
+          scope={{ mdx, ...Components }}
           transformCode={(code) => '/** @jsx mdx */' + code}
         >
           <LivePreview />
@@ -38,7 +38,7 @@ export const CodeBlock = ({ children, className, live, render }: Props) => {
   if (render) {
     return (
       <div style={{ marginTop: '40px' }}>
-        <LiveProvider code={children}>
+        <LiveProvider code={code}>
           <LivePreview />
         </LiveProvider>
       </div>
@@ -46,7 +46,7 @@ export const CodeBlock = ({ children, className, live, render }: Props) => {
   }
 
   return (
-    <Highlight {...defaultProps} code={children.trim()} language={language}>
+    <Highlight {...defaultProps} code={code} language={language}>
       {/* eslint-disable react/no-array-index-key */}
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={{ ...style, padding: '20px' }}>

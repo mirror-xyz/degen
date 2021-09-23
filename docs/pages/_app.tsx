@@ -1,9 +1,15 @@
 import { AppProps } from 'next/app'
 
-import '../styles/styles.css'
+import { ThemeProvider } from '~/components'
+
+import 'styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return <Component {...pageProps} />
+  return (
+    <ThemeProvider>
+      <Component {...pageProps} />
+    </ThemeProvider>
+  )
 }
 
 export default App

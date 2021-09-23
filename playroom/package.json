@@ -1,0 +1,33 @@
+{
+  "name": "playroom",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "playroom start",
+    "build": "playroom build",
+    "lint:types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "@types/webpack-env": "^1.16.2",
+    "@vanilla-extract/babel-plugin": "^1.1.0",
+    "@vanilla-extract/css": "^1.6.0",
+    "@vanilla-extract/webpack-plugin": "^2.1.0",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.3.0",
+    "lodash": "^4.17.21",
+    "mini-css-extract-plugin": "^2.3.0",
+    "playroom": "0.27.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-element-to-jsx-string": "^14.3.2",
+    "utility-types": "^3.10.0",
+    "webpack": "^5.53.0"
+  }
+}

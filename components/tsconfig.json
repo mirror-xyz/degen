@@ -1,0 +1,15 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "declaration": true,
+    "jsx": "react",
+    "outDir": "./dist/types",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./*"],
+      "!/*": ["../*"]
+    }
+  },
+  "include": ["@testing-library/jest-dom", "jest", "src"]
+}

@@ -3,41 +3,20 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
-    "baseUrl": "./",
-    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "noEmit": false,
-    "outDir": "./dist/types",
-    "paths": {
-      "~/*": [
-        "./src/*"
-      ],
-      "@/*": [
-        "./*"
-      ]
-    },
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "ESNext",
-    "types": [
-      "jest",
-      "node",
-      "@testing-library/jest-dom",
-      "@types/webpack-env"
-    ]
+    "target": "esnext",
+    "types": ["node"]
   },
-  "include": ["./src/"],
+  "include": ["components/**/*", "docs/**/*", "playroom/**/*"],
   "exclude": ["node_modules"]
 }
