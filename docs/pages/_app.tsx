@@ -1,13 +1,15 @@
 import { AppProps } from 'next/app'
 
-import { ThemeProvider } from '~/components'
+import { Box, ThemeProvider } from '~/components'
 
 import 'styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider>
-      <Component {...pageProps} />
+      <Box backgroundColor="background" minHeight="viewHeight">
+        <Component {...pageProps} />
+      </Box>
     </ThemeProvider>
   )
 }

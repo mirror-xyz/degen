@@ -1,5 +1,5 @@
 import { createVar, fallbackVar, style } from '@vanilla-extract/css'
-import { recipe } from '@vanilla-extract/recipes'
+import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
 import { atoms, rgb, vars } from '~/theme'
 
@@ -215,4 +215,4 @@ export const variants = recipe({
   ],
 })
 
-export type Variants = Parameters<typeof variants>[0]
+export type Variants = RecipeVariants<typeof variants>

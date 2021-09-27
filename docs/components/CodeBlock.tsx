@@ -1,10 +1,12 @@
-import React from 'react'
+import * as React from 'react'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
-import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
-import { mdx } from '@mdx-js/react'
-import { createUrl } from 'playroom/utils'
+import dynamic from 'next/dynamic'
 
-import * as Components from '~/components'
+import type { Props as CodePreviewProps } from './CodePreview'
+
+const CodePreview = dynamic<CodePreviewProps>(() =>
+  import('./CodePreview').then((mod) => mod.CodePreview),
+)
 
 type Props = {
   children: string
@@ -14,37 +16,10 @@ type Props = {
 }
 
 export const CodeBlock = ({ children, className, live, render }: Props) => {
-  const language = className.replace(/language-/, '') as Language
   const code = children.trim()
-  const playroomUrl = createUrl({ baseUrl: 'localhost:8082', code })
-  console.log(playroomUrl)
+  if (live || render) return <CodePreview code={code} live={live} />
 
-  if (live) {
-    return (
-      <div style={{ marginTop: '40px', backgroundColor: 'black' }}>
-        <LiveProvider
-          code={code}
-          scope={{ mdx, ...Components }}
-          transformCode={(code) => '/** @jsx mdx */' + code}
-        >
-          <LivePreview />
-          <LiveEditor />
-          <LiveError />
-        </LiveProvider>
-      </div>
-    )
-  }
-
-  if (render) {
-    return (
-      <div style={{ marginTop: '40px' }}>
-        <LiveProvider code={code}>
-          <LivePreview />
-        </LiveProvider>
-      </div>
-    )
-  }
-
+  const language = className.replace(/language-/, '') as Language
   return (
     <Highlight {...defaultProps} code={code} language={language}>
       {/* eslint-disable react/no-array-index-key */}

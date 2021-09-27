@@ -8,17 +8,16 @@
     "playroom"
   ],
   "scripts": {
-    "build": "yarn setup && yarn workspaces foreach -p run build",
-    "build:site": "yarn setup && yarn workspace playroom build && yarn workspace docs build",
+    "build": "yarn setup && yarn workspaces foreach -pi run build",
     "clean": "yarn workspaces foreach -p run clean",
-    "dev": "yarn setup && concurrently \"yarn workspace docs dev\" \"yarn workspace playroom dev\"",
+    "dev": "yarn workspaces foreach -pi run dev",
     "lint": "yarn setup && eslint . --cache",
     "lint:fix": "yarn lint --fix",
     "lint:format": "prettier --write .",
     "lint:types": "yarn setup && yarn workspaces foreach -p run lint:types",
     "postinstall": "husky install",
     "prepublish": "yarn clean && yarn build",
-    "setup": "yarn workspace degen gen:icons",
+    "setup": "yarn gen:icons",
     "size": "yarn workspace degen build && yarn size-limit",
     "test": "yarn setup && yarn workspaces foreach -p run test"
   },
@@ -34,7 +33,6 @@
     "@size-limit/preset-big-lib": "^5.0.4",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
-    "concurrently": "^6.2.1",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",

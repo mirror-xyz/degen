@@ -33,7 +33,7 @@ const render = (
   ui: RenderUI,
   { wrapper, ...options }: RenderOptions = {},
 ): RenderResult => {
-  if (!wrapper) wrapper = Providers as React.ComponentType
+  if (!wrapper) wrapper = Providers as any
   return defaultRender(ui, { wrapper, ...options })
 }
 

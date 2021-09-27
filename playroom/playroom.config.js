@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = {
   components: './src/components.ts',
   baseUrl: '/playroom',
-  outputPath: '../docs/public/playroom',
+  outputPath: './dist',
   title: 'Mirror',
   snippets: './src/snippets.ts',
   themes: './src/themes.ts',
@@ -16,6 +16,7 @@ module.exports = {
   widths: [320, 640, 768, 1024, 1280],
   openBrowser: false,
   port: 8082,
+  iframeSandbox: 'allow-scripts',
 
   webpackConfig: () => ({
     plugins: [
