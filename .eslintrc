@@ -70,10 +70,8 @@
   },
   "overrides": [
     {
-      "files": ["pages/**/*.ts?(x)"],
-      "rules": {
-        "react/react-in-jsx-scope": "off"
-      }
+      "files": ["docs/**/*"],
+      "extends": "next/core-web-vitals"
     }
   ],
   "settings": {
@@ -82,7 +80,12 @@
     },
     "import/resolver": {
       "typescript": {
-        "alwaysTryTypes": true
+        "alwaysTryTypes": true,
+        "project": [
+          "components/tsconfig.json",
+          "docs/tsconfig.json",
+          "playroom/tsconfig.json"
+        ]
       }
     },
     "react": {

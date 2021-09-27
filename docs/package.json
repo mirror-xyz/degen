@@ -1,0 +1,38 @@
+{
+  "name": "docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "yarn gen:icons && next build",
+    "clean": "rimraf .next public/playroom",
+    "dev": "next dev",
+    "lint": "next lint",
+    "lint:types": "tsc --noEmit",
+    "start": "next start"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "11.1.2",
+    "next-mdx-remote": "^3.0.4",
+    "playroom": "0.27.7",
+    "prism-react-renderer": "^1.2.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-live": "^2.3.0"
+  },
+  "devDependencies": {
+    "@mdx-js/loader": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "@next/mdx": "^11.1.2",
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^7.1.4",
+    "@types/mdx-js__react": "^1.5.4",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "@vanilla-extract/babel-plugin": "^1.1.0",
+    "@vanilla-extract/css": "^1.6.1",
+    "@vanilla-extract/next-plugin": "^1.0.0",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.2.0"
+  }
+}

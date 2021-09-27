@@ -22,9 +22,9 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Build
-        run: yarn build
+        run: yarn setup && yarn workspace degen build
 
   lint:
     name: Lint
@@ -42,7 +42,7 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Lint
         run: yarn lint
       - name: Check types
@@ -64,6 +64,6 @@ jobs:
           cache: 'yarn'
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+        run: yarn install
       - name: Test
         run: yarn test
