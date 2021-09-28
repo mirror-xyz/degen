@@ -8,6 +8,14 @@ import { Mode, tokens } from '~/tokens'
 import { Theme } from './types'
 import { getVarName, rgb } from './utils'
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const { colors, shades, ...restTokens } = tokens
+/* eslint-enable @typescript-eslint/no-unused-vars */
+
+const baseTokens: Omit<Theme, 'colors' | 'mode'> = restTokens
+const baseVars = createGlobalThemeContract(baseTokens, getVarName)
+createGlobalTheme(':root', baseVars, baseTokens)
+
 const makeColorScheme = (
   mode: Mode = 'light',
 ): { colors: Theme['colors']; mode: Theme['mode'] } => {
@@ -56,37 +64,30 @@ const makeColorScheme = (
   }
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-const { colors, shades, ...restTokens } = tokens
-/* eslint-enable @typescript-eslint/no-unused-vars */
-const baseTokens: Theme = merge(restTokens, makeColorScheme('light'))
-const baseVars = createGlobalThemeContract(baseTokens, getVarName)
-createGlobalTheme('[data-theme="light"]', baseVars, baseTokens)
-createGlobalTheme(
-  '[data-theme="dark"]',
-  baseVars,
-  merge(restTokens, makeColorScheme('dark')),
-)
+const modeTokens = makeColorScheme('light')
+const modeVars = createGlobalThemeContract(modeTokens, getVarName)
+createGlobalTheme('[data-theme="light"]', modeVars, modeTokens)
+createGlobalTheme('[data-theme="dark"]', modeVars, makeColorScheme('dark'))
 
+const mode = modeVars.mode
 const accentTokens = {
-  accent: rgb(baseVars.mode.colors.accent),
-  accentText: rgb(baseVars.mode.colors.accentText),
-  accentSecondary: rgb(
-    baseVars.mode.colors.accent,
-    baseVars.mode.shades.accentSecondary,
-  ),
+  accent: rgb(mode.colors.accent),
+  accentText: rgb(mode.colors.accentText),
+  accentSecondary: rgb(mode.colors.accent, mode.shades.accentSecondary),
   accentSecondaryHover: rgb(
-    baseVars.mode.colors.accent,
-    baseVars.mode.shades.accentSecondaryHover,
+    mode.colors.accent,
+    mode.shades.accentSecondaryHover,
   ),
   accentTertiary: rgb(
-    baseVars.mode.colors.accent,
-    `calc(${baseVars.mode.shades.accentSecondary} * 0.5)`,
+    mode.colors.accent,
+    `calc(${mode.shades.accentSecondary} * 0.5)`,
   ),
 }
 const accentVars = createGlobalThemeContract(accentTokens, getVarName)
 createGlobalTheme(':root', accentVars, accentTokens)
 
-export const vars = merge(baseVars, {
+const colorVars = merge(modeVars, {
   colors: accentVars,
 })
+
+export const vars = merge(baseVars, colorVars)

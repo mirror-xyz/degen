@@ -20,11 +20,6 @@ type ThemeContextValue = {
 const ThemeContext = React.createContext<ThemeContextValue | null>(null)
 
 const attribute = 'data-theme'
-const storageKey = 'theme'
-const modes = {
-  light: 'light',
-  dark: 'dark',
-}
 
 export type ThemeProviderProps = {
   /** Default accent name. @default blue */
@@ -41,7 +36,6 @@ export const ThemeProvider = ({
   defaultMode = 'light',
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
-  const el = React.useRef<HTMLDivElement>(null)
   const [state, setState] = React.useState<{
     accent: Accent
     mode: Mode
@@ -52,19 +46,25 @@ export const ThemeProvider = ({
 
   const setAccent = React.useCallback((accent: Accent) => {
     setState((x) => {
-      if (!el.current) return x
-      setElementVars(el.current, {
-        [vars.mode.colors.accent]: getModeColors(x.mode)[accent],
-        [vars.mode.colors.accentText]: getAccentText(x.mode, accent),
-      })
+      const root = document.querySelector(':root')
+      if (root) {
+        const enable = disableAnimation()
+        setElementVars(root as HTMLElement, {
+          [vars.mode.colors.accent]: getModeColors(x.mode)[accent],
+          [vars.mode.colors.accentText]: getAccentText(x.mode, accent),
+        })
+        enable()
+      }
       return { ...x, accent }
     })
   }, [])
 
   const setMode = React.useCallback((mode: Mode) => {
     setState((x) => ({ ...x, mode }))
+    const enable = disableAnimation()
     const d = document.documentElement
     d.setAttribute(attribute, mode)
+    enable()
   }, [])
 
   const value = React.useMemo(
@@ -76,6 +76,14 @@ export const ThemeProvider = ({
     }),
     [state.accent, state.mode, setAccent, setMode],
   )
+
+  // Set mode on load
+  /* eslint-disable react-hooks/exhaustive-deps */
+  React.useEffect(() => {
+    const d = document.documentElement
+    d.setAttribute(attribute, forcedMode ?? defaultMode)
+  }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
 
   // Set accent on load
   /* eslint-disable react-hooks/exhaustive-deps */
@@ -91,20 +99,7 @@ export const ThemeProvider = ({
   }, [state.mode])
   /* eslint-enable react-hooks/exhaustive-deps */
 
-  return (
-    <ThemeContext.Provider value={value}>
-      <ThemeScript
-        {...{
-          attribute,
-          defaultMode,
-          forcedMode,
-          modes,
-          storageKey,
-        }}
-      />
-      <div ref={el}>{children}</div>
-    </ThemeContext.Provider>
-  )
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 export const useTheme = () => {
@@ -113,60 +108,22 @@ export const useTheme = () => {
   return context
 }
 
-type ThemeScriptProps = {
-  attribute?: string
-  defaultMode: Mode
-  forcedMode?: Mode
-  modes?: Record<Mode, string>
-  storageKey: string
+const disableAnimation = () => {
+  const css = document.createElement('style')
+  css.appendChild(
+    document.createTextNode(
+      `*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}`,
+    ),
+  )
+  document.head.appendChild(css)
+
+  return () => {
+    // Force restyle
+    ;(() => window.getComputedStyle(document.body))()
+
+    // Wait for next tick before removing
+    setTimeout(() => {
+      document.head.removeChild(css)
+    }, 1)
+  }
 }
-
-const ThemeScript = React.memo(
-  ({
-    attribute,
-    defaultMode,
-    forcedMode,
-    modes,
-    storageKey,
-  }: ThemeScriptProps) => {
-    // Code-golfing the amount of characters in the script
-    const optimization = (() => {
-      return `var d=document.documentElement;`
-    })()
-
-    const updateDOM = (name: string, literal?: boolean) => {
-      const mName = modes?.[name as Mode] || name
-      const val = literal ? mName : `'${mName}'`
-      return `d.setAttribute('${attribute}', ${val})`
-    }
-
-    return (
-      <>
-        {forcedMode ? (
-          <script
-            dangerouslySetInnerHTML={{
-              // These are minified via Terser and then updated by hand, don't recommend
-              // prettier-ignore
-              __html: `!function(){${optimization}${updateDOM(forcedMode)}}()`,
-            }}
-            key="theme-script"
-          />
-        ) : (
-          <script
-            dangerouslySetInnerHTML={{
-              // prettier-ignore
-              __html: `!function(){try{${optimization}var e=localStorage.getItem("${storageKey}");if(e){${modes ? `var x=${JSON.stringify(modes)};` : ''}${updateDOM(modes ? 'x[e]' : 'e', true)}}else{${updateDOM(defaultMode)};}}catch(t){}}();`,
-            }}
-            key="theme-script"
-          />
-        )}
-      </>
-    )
-  },
-  (prevProps, nextProps) => {
-    // Only re-render when forcedTheme changes
-    // the rest of the props should be completely stable
-    if (prevProps.forcedMode !== nextProps.forcedMode) return false
-    return true
-  },
-)

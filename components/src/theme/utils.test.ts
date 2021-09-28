@@ -1,5 +1,5 @@
 import { tokens } from '~/tokens'
-import { getAccentText, getModeColors, rgb } from './utils'
+import { getAccentText, getModeColors, getVarName, rgb } from './utils'
 
 describe.each`
   partial            | alpha        | expected
@@ -31,5 +31,17 @@ describe.each`
 `('getModeColors($mode)', ({ mode, expected }) => {
   it(`returns ${expected}`, () => {
     expect(getModeColors(mode)).toStrictEqual(expected)
+  })
+})
+
+describe.each`
+  value     | path                        | expected
+  ${0}      | ${['space', 0]}             | ${'space-0'}
+  ${1.5}    | ${['space', 1.5]}           | ${'space-1_5'}
+  ${'px'}   | ${['space', 'px']}          | ${'space-px'}
+  ${'none'} | ${['borderStyles', 'none']} | ${'borderStyles-none'}
+`('getVarName($value, $path)', ({ value, path, expected }) => {
+  it(`returns ${expected}`, () => {
+    expect(getVarName(value, path)).toStrictEqual(expected)
   })
 })
