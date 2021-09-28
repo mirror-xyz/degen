@@ -18,10 +18,9 @@ jobs:
         uses: actions/setup-node@v2
         id: cache
         with:
-          node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
       - name: Build
         run: yarn setup && yarn workspace degen build
@@ -38,10 +37,9 @@ jobs:
         uses: actions/setup-node@v2
         id: cache
         with:
-          node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
       - name: Lint
         run: yarn lint
@@ -60,10 +58,9 @@ jobs:
         uses: actions/setup-node@v2
         id: cache
         with:
-          node-version: ${{ matrix.node-version }}
           cache: 'yarn'
+          node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install
       - name: Test
         run: yarn test

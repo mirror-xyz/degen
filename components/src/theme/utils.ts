@@ -11,3 +11,6 @@ export const getAccentText = (mode: Mode, accent: Accent | 'foreground') =>
     : tokens.colors.dark.foreground
 
 export const getModeColors = (mode: Mode) => tokens.colors[mode]
+
+export const getVarName = (_value: string | null, path: string[]) =>
+  path.join('-').replace('.', '_')

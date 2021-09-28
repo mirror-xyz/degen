@@ -14,6 +14,6 @@ export type {
   Sprinkles,
 } from './sprinkles.css'
 
-export { modes, vars } from './vars.css'
+export { vars } from './vars.css'
 
 export { rgb, getAccentText, getModeColors } from './utils'
