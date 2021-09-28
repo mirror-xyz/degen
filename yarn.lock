@@ -2524,7 +2524,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/glob@npm:^7.1.4":
+"@types/glob@npm:*, @types/glob@npm:^7.1.4":
   version: 7.1.4
   resolution: "@types/glob@npm:7.1.4"
   dependencies:
@@ -2752,6 +2752,16 @@ __metadata:
   version: 0.12.1
   resolution: "@types/retry@npm:0.12.1"
   checksum: 5f46b2556053655f78262bb33040dc58417c900457cc63ff37d6c35349814471453ef511af0cec76a540c601296cd2b22f64bab1ab649c0dacc0223765ba876c
+  languageName: node
+  linkType: hard
+
+"@types/rimraf@npm:^3":
+  version: 3.0.2
+  resolution: "@types/rimraf@npm:3.0.2"
+  dependencies:
+    "@types/glob": "*"
+    "@types/node": "*"
+  checksum: b47fa302f46434cba704d20465861ad250df79467d3d289f9d6490d3aeeb41e8cb32dd80bd1a8fd833d1e185ac719fbf9be12e05ad9ce9be094d8ee8f1405347
   languageName: node
   linkType: hard
 
@@ -6022,6 +6032,7 @@ __metadata:
     "@types/node": ^16.10.1
     "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
+    "@types/rimraf": ^3
     "@types/testing-library__jest-dom": ^5.14.1
     "@vanilla-extract/css": ^1.6.1
     "@vanilla-extract/css-utils": ^0.1.1
@@ -6041,6 +6052,7 @@ __metadata:
     jest-watch-typeahead: ^0.6.4
     react: ^17.0.2
     react-dom: ^17.0.2
+    rimraf: ^3.0.2
     ts-jest: ^27.0.5
     ts-node: ^10.2.1
     vite: ^2.5.10
@@ -6208,6 +6220,7 @@ __metadata:
     "@types/mdx-js__react": ^1.5.4
     "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
+    "@types/rimraf": ^3
     "@vanilla-extract/babel-plugin": ^1.1.0
     "@vanilla-extract/css": ^1.6.1
     "@vanilla-extract/next-plugin": ^1.0.0
@@ -6221,6 +6234,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-live: ^2.4.0
+    rimraf: ^3.0.2
   languageName: unknown
   linkType: soft
 
@@ -10947,7 +10961,6 @@ fsevents@^1.2.7:
     husky: ^7.0.2
     lint-staged: ^11.1.2
     prettier: ^2.4.1
-    rimraf: ^3.0.2
     size-limit: ^5.0.4
     typescript: 4.4.3
   languageName: unknown
@@ -12286,6 +12299,7 @@ fsevents@^1.2.7:
     "@babel/preset-typescript": ^7.15.0
     "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
+    "@types/rimraf": ^3
     "@types/webpack-env": ^1.16.2
     "@vanilla-extract/babel-plugin": ^1.1.0
     "@vanilla-extract/css": ^1.6.1
@@ -12298,6 +12312,7 @@ fsevents@^1.2.7:
     react: ^17.0.2
     react-dom: ^17.0.2
     react-element-to-jsx-string: ^14.3.2
+    rimraf: ^3.0.2
     utility-types: ^3.10.0
     webpack: ^5.54.0
   languageName: unknown
