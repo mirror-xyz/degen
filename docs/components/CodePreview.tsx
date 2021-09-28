@@ -19,7 +19,7 @@ export type Props = {
 }
 
 export const CodePreview = ({ code, live }: Props) => {
-  const { mode } = useTheme()
+  const { mode, setMode } = useTheme()
   const playroomUrl = createUrl({ baseUrl: 'localhost:8082', code })
   const theme = mode === 'light' ? vsLight : vsDark
   console.log(playroomUrl, mode)
@@ -33,6 +33,9 @@ export const CodePreview = ({ code, live }: Props) => {
 
   return (
     <LiveProvider code={code} theme={theme} {...providerProps}>
+      <button onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}>
+        toggle theme
+      </button>
       <Box backgroundColor="backgroundSecondary" borderRadius="lg" padding={4}>
         <LivePreview />
       </Box>

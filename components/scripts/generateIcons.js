@@ -50,6 +50,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
     cwd: iconComponentsDir,
     absolute: true,
   })
+  console.log('Cleaning old icons...')
   for (const svgComponentPath of svgComponentPaths) {
     await fs.remove(svgComponentPath)
   }
@@ -60,6 +61,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
     absolute: true,
   })
 
+  console.log('Generating icons...')
   for (const svgFilePath of svgFilePaths) {
     const rawSvg = await fs.readFile(svgFilePath, 'utf8')
     const svg = rawSvg.replace(/ data-name=".*?"/g, '')
@@ -123,5 +125,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
     .concat('\n')
   const iconsIndexPath = path.join(iconComponentsDir, 'index.ts')
   await fs.remove(iconsIndexPath)
+  console.log('Generating icon index...')
   await fs.writeFile(iconsIndexPath, iconExports, 'utf-8')
+  console.log('Done.')
 })()

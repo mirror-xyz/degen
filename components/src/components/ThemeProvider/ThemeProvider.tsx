@@ -2,7 +2,7 @@ import * as React from 'react'
 import { setElementVars } from '@vanilla-extract/dynamic'
 
 import { Mode, Accent as TokenAccent } from '~/tokens'
-import { getAccentText, getModeColors, modes, vars } from '~/theme'
+import { getAccentText, getModeColors, vars } from '~/theme'
 
 type Accent = TokenAccent | 'foreground'
 
@@ -18,6 +18,13 @@ type ThemeContextValue = {
 }
 
 const ThemeContext = React.createContext<ThemeContextValue | null>(null)
+
+const attribute = 'data-theme'
+const storageKey = 'theme'
+const modes = {
+  light: 'light',
+  dark: 'dark',
+}
 
 export type ThemeProviderProps = {
   /** Default accent name. @default blue */
@@ -35,7 +42,10 @@ export const ThemeProvider = ({
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
   const el = React.useRef<HTMLDivElement>(null)
-  const [state, setState] = React.useState<{ accent: Accent; mode: Mode }>({
+  const [state, setState] = React.useState<{
+    accent: Accent
+    mode: Mode
+  }>({
     accent: defaultAccent,
     mode: defaultMode,
   })
@@ -53,6 +63,8 @@ export const ThemeProvider = ({
 
   const setMode = React.useCallback((mode: Mode) => {
     setState((x) => ({ ...x, mode }))
+    const d = document.documentElement
+    d.setAttribute(attribute, mode)
   }, [])
 
   const value = React.useMemo(
@@ -81,9 +93,16 @@ export const ThemeProvider = ({
 
   return (
     <ThemeContext.Provider value={value}>
-      <div className={modes[forcedMode ?? state.mode]} ref={el}>
-        {children}
-      </div>
+      <ThemeScript
+        {...{
+          attribute,
+          defaultMode,
+          forcedMode,
+          modes,
+          storageKey,
+        }}
+      />
+      <div ref={el}>{children}</div>
     </ThemeContext.Provider>
   )
 }
@@ -93,3 +112,61 @@ export const useTheme = () => {
   if (!context) throw Error('Must be used within ThemeProvider')
   return context
 }
+
+type ThemeScriptProps = {
+  attribute?: string
+  defaultMode: Mode
+  forcedMode?: Mode
+  modes?: Record<Mode, string>
+  storageKey: string
+}
+
+const ThemeScript = React.memo(
+  ({
+    attribute,
+    defaultMode,
+    forcedMode,
+    modes,
+    storageKey,
+  }: ThemeScriptProps) => {
+    // Code-golfing the amount of characters in the script
+    const optimization = (() => {
+      return `var d=document.documentElement;`
+    })()
+
+    const updateDOM = (name: string, literal?: boolean) => {
+      const mName = modes?.[name as Mode] || name
+      const val = literal ? mName : `'${mName}'`
+      return `d.setAttribute('${attribute}', ${val})`
+    }
+
+    return (
+      <>
+        {forcedMode ? (
+          <script
+            dangerouslySetInnerHTML={{
+              // These are minified via Terser and then updated by hand, don't recommend
+              // prettier-ignore
+              __html: `!function(){${optimization}${updateDOM(forcedMode)}}()`,
+            }}
+            key="theme-script"
+          />
+        ) : (
+          <script
+            dangerouslySetInnerHTML={{
+              // prettier-ignore
+              __html: `!function(){try{${optimization}var e=localStorage.getItem("${storageKey}");if(e){${modes ? `var x=${JSON.stringify(modes)};` : ''}${updateDOM(modes ? 'x[e]' : 'e', true)}}else{${updateDOM(defaultMode)};}}catch(t){}}();`,
+            }}
+            key="theme-script"
+          />
+        )}
+      </>
+    )
+  },
+  (prevProps, nextProps) => {
+    // Only re-render when forcedTheme changes
+    // the rest of the props should be completely stable
+    if (prevProps.forcedMode !== nextProps.forcedMode) return false
+    return true
+  },
+)

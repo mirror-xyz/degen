@@ -10,7 +10,7 @@
   "scripts": {
     "build": "yarn setup && yarn workspaces foreach -pi run build",
     "clean": "yarn workspaces foreach -p run clean",
-    "dev": "yarn workspaces foreach -pi run dev",
+    "dev": "yarn setup && yarn workspaces foreach -pi run dev",
     "lint": "yarn setup && eslint . --cache",
     "lint:fix": "yarn lint --fix",
     "lint:format": "prettier --write .",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@size-limit/preset-big-lib": "^5.0.4",
-    "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "11.1.2",
     "eslint-config-prettier": "^8.3.0",

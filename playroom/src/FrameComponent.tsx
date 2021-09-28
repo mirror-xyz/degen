@@ -18,7 +18,7 @@ const FrameComponent = ({
   <>
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
     <PlayroomStateProvider>
-      <ThemeProvider defaultMode={theme}>
+      <ThemeProvider forcedMode={theme}>
         <Box backgroundColor="background" minHeight="viewHeight">
           {children}
         </Box>
