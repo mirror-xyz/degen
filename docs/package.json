@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "lodash": "^4.17.21",
     "next": "11.1.2",
     "next-mdx-remote": "^3.0.4",
     "playroom": "0.27.7",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
+    "react-docgen-typescript": "^2.1.0",
     "react-dom": "^17.0.2",
     "react-live": "^2.4.0"
   },
@@ -26,6 +28,7 @@
     "@next/mdx": "^11.1.2",
     "@types/fs-extra": "^9.0.13",
     "@types/glob": "^7.1.4",
+    "@types/lodash": "^4",
     "@types/mdx-js__react": "^1.5.4",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",

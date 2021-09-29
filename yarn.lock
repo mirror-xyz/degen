@@ -2631,7 +2631,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.168":
+"@types/lodash@npm:^4, @types/lodash@npm:^4.14.168":
   version: 4.14.175
   resolution: "@types/lodash@npm:4.14.175"
   checksum: 50721f33faa542f1b9f62f2ba769ed353c6036711e92bd89ce569f2ed247e38fb2a2899f6fd46466b1690fea7ae0239471e6a6093c54e8f2b0613e43e8eac19c
@@ -6224,6 +6224,7 @@ __metadata:
     "@next/mdx": ^11.1.2
     "@types/fs-extra": ^9.0.13
     "@types/glob": ^7.1.4
+    "@types/lodash": ^4
     "@types/mdx-js__react": ^1.5.4
     "@types/react": ^17.0.24
     "@types/react-dom": ^17.0.9
@@ -6234,11 +6235,13 @@ __metadata:
     fs-extra: ^10.0.0
     glob: ^7.2.0
     gray-matter: ^4.0.3
+    lodash: ^4.17.21
     next: 11.1.2
     next-mdx-remote: ^3.0.4
     playroom: 0.27.7
     prism-react-renderer: ^1.2.1
     react: ^17.0.2
+    react-docgen-typescript: ^2.1.0
     react-dom: ^17.0.2
     react-live: ^2.4.0
     rimraf: ^3.0.2

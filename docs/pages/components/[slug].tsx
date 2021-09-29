@@ -12,7 +12,7 @@ import Head from 'next/head'
 
 import { CodeBlock } from 'components'
 import { getLayout } from 'layouts/docs'
-import { getComponentName, getComponentPaths } from 'utils'
+import { getComponentName, getComponentPaths, getStaticTypes } from 'utils'
 
 import { Box } from '~/components'
 
@@ -27,8 +27,10 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug
-  const pathname = getComponentPaths().find((x) => getComponentName(x) === slug)
-  const source = fs.readFileSync(pathname as string)
+  const pathname = getComponentPaths().find(
+    (x) => getComponentName(x) === slug,
+  ) as string
+  const source = fs.readFileSync(pathname)
   const { content, data } = matter(source)
 
   const mdxSource = await serialize(content, {
@@ -39,10 +41,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     scope: data,
   })
 
+  const componentPathname = pathname.replace('docs.mdx', 'tsx')
+  const staticTypes = getStaticTypes(componentPathname)
+
   return {
     props: {
-      source: mdxSource,
       frontMatter: data,
+      source: mdxSource,
+      staticTypes,
     },
   }
 }
@@ -55,7 +61,8 @@ const components = {
   pre: Box,
 }
 
-const Page: NextPageWithLayout<Props> = ({ source }: Props) => {
+const Page: NextPageWithLayout<Props> = ({ source, staticTypes }: Props) => {
+  console.log(staticTypes)
   return <MDXRemote {...source} components={components} />
 }
 
