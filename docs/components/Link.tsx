@@ -1,12 +1,14 @@
 import * as React from 'react'
 import NextLink from 'next/link'
 
+import { Box } from '~/components'
+
 type NextLinkProps = Parameters<typeof NextLink>[0]
 
 type Props = {
   as?: NextLinkProps['as']
   className?: string
-  external: true
+  external?: true
   href: string
   passHref?: NextLinkProps['passHref']
 }
@@ -40,7 +42,13 @@ export const Link = ({
         passHref={passHref}
         prefetch={canPrefetch(href) ? undefined : false}
       >
-        {passHref ? children : <a className={className}>{children}</a>}
+        {passHref ? (
+          children
+        ) : (
+          <Box as="a" className={className}>
+            {children}
+          </Box>
+        )}
       </NextLink>
     </>
   )

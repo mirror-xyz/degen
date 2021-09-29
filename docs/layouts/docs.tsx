@@ -3,7 +3,7 @@ import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
 
 import { getLayout as getBaseLayout } from './site'
-import { Box } from '~/components'
+import { Box, Text } from '~/components'
 
 type Props = {
   meta: {
@@ -26,9 +26,16 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
         )}
       </Head>
 
-      <Box as="article">
-        <Box as="header">
-          <h1>{meta.title}</h1>
+      <Box
+        as="article"
+        marginX="auto"
+        maxWidth="224"
+        paddingBottom="10"
+        paddingTop="14"
+        paddingX="8"
+      >
+        <Box as="header" marginBottom="10">
+          <Text variant="headingOne">{meta.title}</Text>
         </Box>
 
         {children}

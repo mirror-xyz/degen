@@ -17,14 +17,14 @@ export const variants = recipe({
   variants: {
     size: {
       md: atoms({
-        height: 6,
-        width: 6,
-        strokeWidth: 2,
+        height: '6',
+        width: '6',
+        strokeWidth: '2',
       }),
       lg: atoms({
-        height: 16,
-        width: 16,
-        strokeWidth: 1.5,
+        height: '16',
+        width: '16',
+        strokeWidth: '1.5',
       }),
     },
   },

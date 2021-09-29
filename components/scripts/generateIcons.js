@@ -97,7 +97,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
             tone?: Atoms["color"]
           } & OptionalTitle
 
-          export const ${svgName} = ({ size = 6, tone, ...props }: Props) => {
+          export const ${svgName} = ({ size = "6", tone, ...props }: Props) => {
             return <Box as={${componentName}} color={tone} size={size} {...props} />
           }
         `,

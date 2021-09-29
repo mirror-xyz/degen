@@ -19,15 +19,15 @@ export type Shape = keyof typeof shape
 const size = {
   md: atoms({
     borderRadius: 'md',
-    fontSize: 'base',
-    height: 10,
-    paddingX: 4,
+    fontSize: 'small',
+    height: '10',
+    paddingX: '4',
   }),
   lg: atoms({
     borderRadius: 'xl',
-    fontSize: 'lg',
-    height: 14,
-    paddingX: 5,
+    fontSize: 'base',
+    height: '14',
+    paddingX: '5',
   }),
 }
 
@@ -111,14 +111,13 @@ const variant = {
 export type Variant = keyof typeof variant
 
 const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => {
-  const width = size === 'md' ? 10 : 14
   return {
     variants: {
       shape,
       size,
     },
     style: atoms({
-      minWidth: width,
+      minWidth: size === 'md' ? '10' : '14',
     }),
   }
 }
@@ -129,7 +128,7 @@ export const variants = recipe({
       alignItems: 'center',
       cursor: 'pointer',
       display: 'flex',
-      gap: 4,
+      gap: '4',
       justifyContent: 'center',
       transitionDuration: 150,
       transitionProperty: 'default',
@@ -200,7 +199,7 @@ export const variants = recipe({
         size: 'md',
       },
       style: atoms({
-        paddingX: 14,
+        paddingX: '14',
       }),
     },
     {
@@ -209,7 +208,7 @@ export const variants = recipe({
         size: 'lg',
       },
       style: atoms({
-        paddingX: 15,
+        paddingX: '15',
       }),
     },
   ],

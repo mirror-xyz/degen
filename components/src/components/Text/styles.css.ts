@@ -4,21 +4,42 @@ import { style } from '@vanilla-extract/css'
 import { atoms } from '~/theme'
 
 const variant = {
-  description: atoms({
-    color: 'textTertiary',
-    fontFamily: 'sans',
-    fontSize: { sm: 'lg', md: 'xl' },
-    fontWeight: 550,
-    letterSpacing: { sm: 'normal', md: 'snug' },
-    wordWrap: 'break-word',
+  headingOne: atoms({
+    fontSize: 'headingOne',
+    fontWeight: 'semiBold',
+    letterSpacing: '-0.02',
   }),
-  title: atoms({
-    color: 'text',
-    fontFamily: 'sans',
-    fontSize: { sm: '3xl', md: '4xl', lg: '5xl' },
-    fontWeight: 'semibold',
-    letterSpacing: { sm: 'snug', md: 'tight' },
-    lineHeight: { sm: 'snug', md: 'tight' },
+  headingTwo: atoms({
+    fontSize: 'headingTwo',
+    fontWeight: 'semiBold',
+    letterSpacing: '-0.02',
+  }),
+  extraLarge: atoms({
+    fontSize: 'extraLarge',
+    fontWeight: 'medium',
+    letterSpacing: '-0.02',
+  }),
+  large: atoms({
+    fontSize: 'large',
+    fontWeight: 'normal',
+    letterSpacing: '-0.02',
+  }),
+  base: atoms({
+    fontSize: 'base',
+    fontWeight: 'normal',
+    letterSpacing: '-0.015',
+  }),
+  small: atoms({
+    fontSize: 'small',
+    fontWeight: 'normal',
+    letterSpacing: '-0.01',
+  }),
+  label: atoms({
+    color: 'textSecondary',
+    fontSize: 'label',
+    fontWeight: 'semiBold',
+    letterSpacing: '0.03',
+    textTransform: 'uppercase',
   }),
 }
 

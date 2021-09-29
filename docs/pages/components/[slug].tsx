@@ -8,13 +8,10 @@ import fs from 'fs-extra'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
-import Head from 'next/head'
 
-import { CodeBlock } from 'components'
+import { MDX } from 'components'
 import { getLayout } from 'layouts/docs'
 import { getComponentName, getComponentPaths, getStaticTypes } from 'utils'
-
-import { Box } from '~/components'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({
@@ -55,15 +52,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const components = {
-  Head,
-  code: CodeBlock,
-  pre: Box,
-}
-
 const Page: NextPageWithLayout<Props> = ({ source, staticTypes }: Props) => {
   console.log(staticTypes)
-  return <MDXRemote {...source} components={components} />
+  return <MDXRemote {...source} components={MDX} />
 }
 
 Page.getLayout = (page) =>

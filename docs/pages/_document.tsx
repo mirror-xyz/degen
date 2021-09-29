@@ -25,7 +25,7 @@ class Document extends NextDocument {
           <link
             as="font"
             crossOrigin="anonymous"
-            href="https://github.com/iaolo/iA-Fonts/blob/master/iA%20Writer%20Mono/Webfonts/iAWriterMonoS-Regular.woff2?raw=true"
+            href="/fonts/mono/iAWriterMonoS-Regular.woff2"
             rel="preload"
             type="font/woff2"
           />

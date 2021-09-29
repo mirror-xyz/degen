@@ -45,6 +45,18 @@ const margins = {
   ...negativeSpace,
 }
 
+const extendedSpace = {
+  '112': '28rem',
+  '128': '32rem',
+  '144': '36rem',
+  '168': '42rem',
+  '192': '48rem',
+  '224': '56rem',
+  '256': '64rem',
+  '288': '72rem',
+  '320': '80rem',
+}
+
 const responsiveAtomicStyles = defineProperties({
   defaultCondition: 'xs',
   conditions: {
@@ -93,7 +105,11 @@ const responsiveAtomicStyles = defineProperties({
     marginRight: margins,
     marginTop: margins,
     maxHeight: vars.space,
-    maxWidth: vars.space,
+    maxWidth: {
+      ...vars.space,
+      ...extendedSpace,
+      none: 'none',
+    },
     minHeight: vars.space,
     minWidth: vars.space,
     paddingBottom: vars.space,
@@ -129,16 +145,7 @@ const unresponsiveAtomicStyles = defineProperties({
     fontFamily: vars.fonts,
     overflow: ['hidden'],
     strokeWidth: vars.borderWidths,
-    whiteSpace: [
-      'normal',
-      'nowrap',
-      'pre',
-      'pre-line',
-      'pre-wrap',
-      'initial',
-      'inherit',
-    ],
-    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
+    textTransform: ['capitalize', 'lowercase', 'uppercase'],
     transitionDuration: {
       75: '75ms',
       100: '100ms',
@@ -165,6 +172,16 @@ const unresponsiveAtomicStyles = defineProperties({
       out: 'cubic-bezier(0, 0, 0.2, 1)',
       inOut: 'cubic-bezier(0.42, 0, 0.58, 1)',
     },
+    whiteSpace: [
+      'normal',
+      'nowrap',
+      'pre',
+      'pre-line',
+      'pre-wrap',
+      'initial',
+      'inherit',
+    ],
+    wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
   },
 })
 
@@ -178,6 +195,7 @@ const selectorAtomicStyles = defineProperties({
   defaultCondition: 'base',
   properties: {
     backgroundColor: vars.colors,
+    borderColor: vars.colors,
     color: vars.colors,
   },
 })
