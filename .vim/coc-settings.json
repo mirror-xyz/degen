@@ -1,8 +1,5 @@
 {
-  "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
+  "eslint.autoFixOnSave": true,
   "eslint.options": {
     "extensions": [".js", ".json", ".mdx", ".ts", ".tsx"]
   },

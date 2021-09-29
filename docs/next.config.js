@@ -19,7 +19,7 @@ const config = {
         ]
       : []
   },
-  pageExtensions: ['md', 'mdx', 'tsx'],
+  pageExtensions: ['mdx', 'tsx'],
   reactStrictMode: true,
 }
 
