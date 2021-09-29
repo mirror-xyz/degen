@@ -1,15 +1,20 @@
-import { AppProps } from 'next/app'
+import { AppProps } from 'next'
+import { MDXProvider } from '@mdx-js/react'
 
-import { Box, ThemeProvider } from '~/components'
+import { getLayout as getSiteLayout } from 'layouts/site'
+
+import { ThemeProvider } from '~/components'
 
 import 'styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
+  const getLayout = Component.getLayout || getSiteLayout
+
   return (
     <ThemeProvider>
-      <Box backgroundColor="background" minHeight="viewHeight">
-        <Component {...pageProps} />
-      </Box>
+      <MDXProvider components={{}}>
+        {getLayout(<Component {...pageProps} />)}
+      </MDXProvider>
     </ThemeProvider>
   )
 }

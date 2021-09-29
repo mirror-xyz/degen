@@ -1,7 +1,10 @@
 import * as React from 'react'
 import Highlight, { Language, defaultProps } from 'prism-react-renderer'
 import dynamic from 'next/dynamic'
+import vsLight from 'prism-react-renderer/themes/vsLight'
+import vsDark from 'prism-react-renderer/themes/vsDark'
 
+import { useTheme } from '~/components'
 import type { Props as CodePreviewProps } from './CodePreview'
 
 const CodePreview = dynamic<CodePreviewProps>(() =>
@@ -16,12 +19,16 @@ type Props = {
 }
 
 export const CodeBlock = ({ children, className, live, render }: Props) => {
+  const { mode } = useTheme()
+  const theme = mode === 'light' ? vsLight : vsDark
+
   const code = children.trim()
-  if (live || render) return <CodePreview code={code} live={live} />
+  if (live || render)
+    return <CodePreview code={code} live={live} theme={theme} />
 
   const language = className.replace(/language-/, '') as Language
   return (
-    <Highlight {...defaultProps} code={code} language={language}>
+    <Highlight {...defaultProps} code={code} language={language} theme={theme}>
       {/* eslint-disable react/no-array-index-key */}
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <pre className={className} style={{ ...style, padding: '20px' }}>

@@ -1,12 +1,20 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPageWithLayout,
+} from 'next'
 import fs from 'fs-extra'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
 import Head from 'next/head'
 
-import { getComponentName, getComponentPaths } from 'utils'
 import { CodeBlock } from 'components'
+import { getLayout } from 'layouts/docs'
+import { getComponentName, getComponentPaths } from 'utils'
+
+import { Box } from '~/components'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({
@@ -44,22 +52,20 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 const components = {
   Head,
   code: CodeBlock,
+  pre: Box,
 }
 
-const Page = ({ frontMatter, source }: Props) => {
-  return (
-    <div>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
-      </div>
-      <main>
-        <MDXRemote {...source} components={components} />
-      </main>
-    </div>
-  )
+const Page: NextPageWithLayout<Props> = ({ source }: Props) => {
+  return <MDXRemote {...source} components={components} />
 }
+
+Page.getLayout = (page) =>
+  getLayout({
+    ...page,
+    props: {
+      ...page.props,
+      meta: page.props.frontMatter,
+    },
+  })
 
 export default Page
