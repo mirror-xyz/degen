@@ -6,7 +6,7 @@
     "jsx": "preserve",
     "paths": {
       "src/*": ["./src/*"],
-      "~/*": ["../components/src"]
+      "~/*": ["../components/src/*"]
     },
     "target": "es5"
   },

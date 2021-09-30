@@ -3,7 +3,7 @@ import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { mdx } from '@mdx-js/react'
 import { PrismTheme } from 'prism-react-renderer'
 
-import { createPlayroomLink } from 'src/utils/playroom'
+import { createPlayroomLink } from 'utils/playroom'
 
 import * as Components from '~/components'
 import { Box, Button, Stack, Text } from '~/components'

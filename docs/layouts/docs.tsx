@@ -3,7 +3,9 @@ import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-import { Box, Nav, NavProps, Text } from 'src/components'
+import { Nav, NavProps } from 'components'
+
+import { Box, Heading } from '~/components'
 
 import { getLayout as getBaseLayout } from './site'
 
@@ -62,9 +64,9 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
             paddingX="8"
           >
             <Box as="header" marginBottom="10">
-              <Text color="textPrimary" variant="headingOne">
+              <Heading color="textPrimary" level="1">
                 {meta.title}
-              </Text>
+              </Heading>
             </Box>
 
             {children}

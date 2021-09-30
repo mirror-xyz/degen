@@ -1,6 +1,7 @@
 export {
   Box,
   Button,
+  Heading,
   IconBookOpen,
   IconCheck,
   IconChevronDown,
@@ -9,6 +10,7 @@ export {
   IconDuplicate,
   IconLockClosed,
   IconPlusSmall,
+  IconSearch,
   Skeleton,
   SkeletonGroup,
   Spinner,

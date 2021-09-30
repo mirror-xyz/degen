@@ -1,24 +1,11 @@
 import * as React from 'react'
 
 import { Atoms } from '~/theme'
-import { ReactNodeNoStrings } from '~/types'
 import { Box } from '../Box'
+import { Context } from '../SkeletonGroup'
 import * as styles from './styles.css'
 
-type SkeletonGroupProps = {
-  children: ReactNodeNoStrings
-  loading?: boolean
-}
-
-const Context = React.createContext<boolean | undefined>(undefined)
-
-export const SkeletonGroup = ({ children, loading }: SkeletonGroupProps) => {
-  return <Context.Provider value={loading}>{children}</Context.Provider>
-}
-
-SkeletonGroup.displayName = 'SkeletonGroup'
-
-type SkeletonProps = {
+type Props = {
   backgroundColor?: Atoms['backgroundColor']
   radius?: Atoms['borderRadius']
   height?: Atoms['height']
@@ -33,7 +20,7 @@ export const Skeleton = ({
   height,
   loading,
   width = 'fit',
-}: React.PropsWithChildren<SkeletonProps>) => {
+}: React.PropsWithChildren<Props>) => {
   const contextValue = React.useContext(Context)
   const active = loading ?? contextValue
   const containerProps = active

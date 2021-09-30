@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router'
 import * as React from 'react'
 
-import { createPlayroomLink } from 'src/utils/playroom'
+import { createPlayroomLink } from 'utils/playroom'
 
 import { Box, Stack, Text } from '~/components'
 import { Link } from './Link'
@@ -59,6 +59,7 @@ const NavLink = ({
     <Link href={href}>
       <Text
         color={active ? 'accent' : 'text'}
+        transform="capitalize"
         weight={active ? 'medium' : 'normal'}
       >
         {children}

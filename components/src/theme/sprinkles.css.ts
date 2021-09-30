@@ -212,7 +212,9 @@ export type OptionalResponsiveValue<Value extends string | number> =
 export type RequiredResponsiveValue<Value extends string | number> =
   RequiredConditionalValue<typeof responsiveAtomicStyles, Value>
 
-export type OptionalResponsiveObject<Value> = Partial<Record<Breakpoint, Value>>
+export type OptionalResponsiveObject<Value> =
+  | Value
+  | Partial<Record<Breakpoint, Value>>
 export type RequiredResponsiveObject<Value> = Partial<
   Record<Breakpoint, Value>
 > &

@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css'
 
 import 'focus-visible'
+import { vars } from './vars.css'
 
 /**
  * Selector for `focus-visible` package
@@ -12,14 +13,14 @@ const hideFocusRingsDataAttribute =
 export const base = style({
   margin: 0,
   padding: 0,
-  borderColor: 'currentColor',
-  borderStyle: 'solid',
+  borderColor: vars.colors.current,
+  borderStyle: vars.borderStyles.solid,
   borderWidth: 0,
   boxSizing: 'border-box',
   fontSize: '100%',
-  font: 'inherit',
+  fontFamily: vars.fonts.sans,
   verticalAlign: 'baseline',
-  WebkitTapHighlightColor: 'transparent',
+  WebkitTapHighlightColor: vars.colors.transparent,
   selectors: {
     [`${hideFocusRingsDataAttribute}`]: {
       outline: 'none',
@@ -33,7 +34,7 @@ const block = style({
 })
 
 const body = style({
-  lineHeight: 1,
+  lineHeight: vars.lineHeights.none,
 })
 
 const list = style({
@@ -62,8 +63,8 @@ const field = style([block, appearance])
 
 // Custom reset rules
 const mark = style({
-  backgroundColor: 'transparent',
-  color: 'inherit',
+  backgroundColor: vars.colors.transparent,
+  color: vars.colors.inherit,
 })
 
 const select = style([
@@ -97,7 +98,7 @@ const button = style({
 
 const a = style({
   textDecoration: 'none',
-  color: 'inherit',
+  color: vars.colors.inherit,
 })
 
 export const element = {

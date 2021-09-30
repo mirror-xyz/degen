@@ -8,8 +8,8 @@ import dynamic from 'next/dynamic'
 import vsLight from 'prism-react-renderer/themes/vsLight'
 import vsDark from 'prism-react-renderer/themes/vsDark'
 
-import { vars } from '../../../components/src/theme'
-import { Box, useTheme } from '../../../components/src'
+import { vars } from '~/theme'
+import { Box, useTheme } from '~/components'
 
 import { CopyButton } from './CopyButton'
 import type { Props as CodePreviewProps } from './CodePreview'

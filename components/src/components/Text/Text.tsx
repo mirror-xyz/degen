@@ -5,6 +5,7 @@ import { Box } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
+  align?: Atoms['textAlign']
   as?:
     | 'code'
     | 'div'
@@ -23,6 +24,7 @@ type Props = {
   letterSpacing?: Atoms['letterSpacing']
   lineHeight?: Atoms['lineHeight']
   size?: Atoms['fontSize']
+  transform?: Atoms['textTransform']
   weight?: Atoms['fontWeight']
   whiteSpace?: Atoms['whiteSpace']
 } & styles.Variants
@@ -30,6 +32,7 @@ type Props = {
 export const Text = React.forwardRef(
   (
     {
+      align,
       as = 'div',
       children,
       color = 'foreground',
@@ -38,6 +41,7 @@ export const Text = React.forwardRef(
       letterSpacing,
       lineHeight,
       size = 'base',
+      transform,
       variant,
       weight,
       whiteSpace,
@@ -58,6 +62,8 @@ export const Text = React.forwardRef(
         letterSpacing={letterSpacing}
         lineHeight={lineHeight}
         ref={ref}
+        textAlign={align}
+        textTransform={transform}
         whiteSpace={whiteSpace}
       >
         {children}

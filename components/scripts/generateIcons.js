@@ -113,9 +113,28 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
       'utf-8',
     )
 
+    // Write docs file
+    await fs.writeFile(
+      path.join(iconDir, `${svgName}.docs.mdx`),
+      dedent`
+          ---
+          title: ${svgName}
+          ---
+
+          \`\`\`tsx
+          import { ${svgName} } from 'degen'
+          \`\`\`
+
+          \`\`\`tsx live=true
+          <${svgName} color="foreground" />
+          \`\`\`
+        `,
+      'utf-8',
+    )
+
     // Write index file
     await fs.writeFile(
-      path.join(iconDir, `index.ts`),
+      path.join(iconDir, 'index.ts'),
       dedent`
           export { ${svgName} } from './${svgName}'
         `,

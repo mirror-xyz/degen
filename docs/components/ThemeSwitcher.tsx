@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { setThemeAccent, setThemeMode } from 'src/utils/cookies'
+import { setThemeAccent, setThemeMode } from 'utils/cookies'
 
 import { Accent } from '~/tokens'
 import { Box, Button, Stack, useTheme } from '~/components'

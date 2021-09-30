@@ -2,13 +2,13 @@ import * as React from 'react'
 
 import { cleanup, render, screen } from '@/test'
 
-import { Skeleton } from './Skeleton'
+import { Heading } from './Heading'
 
-describe('<Skeleton />', () => {
+describe('<Heading />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<Skeleton>foo bar baz</Skeleton>)
+    render(<Heading>foo bar baz</Heading>)
     expect(screen.getByText(/foo/i)).toBeInTheDocument()
   })
 })

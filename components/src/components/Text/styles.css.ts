@@ -4,16 +4,6 @@ import { style } from '@vanilla-extract/css'
 import { atoms } from '~/theme'
 
 const variant = {
-  headingOne: atoms({
-    fontSize: 'headingOne',
-    fontWeight: 'semiBold',
-    letterSpacing: '-0.02',
-  }),
-  headingTwo: atoms({
-    fontSize: 'headingTwo',
-    fontWeight: 'semiBold',
-    letterSpacing: '-0.02',
-  }),
   extraLarge: atoms({
     fontSize: 'extraLarge',
     fontWeight: 'medium',

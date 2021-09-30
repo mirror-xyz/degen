@@ -8,8 +8,28 @@ const { glob } = require('glob')
 
 const path = require('path')
 
+const pagePaths = glob
+  .sync('./pages/!(components)/*.mdx', {
+    cwd: process.cwd(),
+    absolute: true,
+  })
+  .map((x) => {
+    const name = path.basename(x, '.mdx')
+    const dir = path.dirname(x).split('/pages')[1]
+    const group = dir.split('/')[1]
+    const route = `${dir}/${name}`
+    return { name, route, group }
+  })
+
+const groupedPagePaths = {}
+for (const pagePath of pagePaths) {
+  const { group, ...rest } = pagePath
+  if (group in groupedPagePaths) groupedPagePaths[group].push(rest)
+  else groupedPagePaths[group] = [rest]
+}
+
 const componentPaths = glob
-  .sync('../components/src/components/**/*.docs.mdx', {
+  .sync('../components/src/components/!(icons)**/*.docs.mdx', {
     cwd: process.cwd(),
     absolute: true,
   })
@@ -19,14 +39,20 @@ const componentPaths = glob
     return { name, route }
   })
 
+const navLinks = [
+  ...Object.entries(groupedPagePaths).map(([k, v]) => ({
+    name: k,
+    links: v,
+  })),
+  {
+    name: 'components',
+    links: componentPaths,
+  },
+]
+
 const config = {
   env: {
-    navLinks: [
-      {
-        name: 'Components',
-        links: componentPaths,
-      },
-    ],
+    navLinks,
   },
   experimental: {
     externalDir: true,
