@@ -71,7 +71,34 @@
   "overrides": [
     {
       "files": ["docs/**/*"],
-      "extends": "next/core-web-vitals"
+      "extends": ["plugin:@next/next/recommended", "next/core-web-vitals"],
+      "settings": {
+        "next": {
+          "rootDir": "docs/"
+        }
+      }
+    },
+    {
+      "files": ["*.mdx"],
+      "extends": ["plugin:mdx/recommended"],
+      "rules": {
+        "import/no-anonymous-default-export": "off",
+        "react/display-name": "off"
+      },
+      "settings": {
+        "mdx/code-blocks": true
+      }
+    },
+    {
+      "files": "**/*.{md,mdx}/**",
+      "extends": "plugin:mdx/code-blocks",
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "prettier/prettier": "off",
+        "import/no-unresolved": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/jsx-no-undef": "off"
+      }
     }
   ],
   "settings": {

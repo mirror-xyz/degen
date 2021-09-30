@@ -56,7 +56,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
   }
 
   // Get SVGs to generate
-  const svgFilePaths = glob.sync('icons/*.svg', {
+  const svgFilePaths = glob.sync('../icons/*.svg', {
     cwd: baseDir,
     absolute: true,
   })
@@ -93,20 +93,48 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
 
           type BoxProps = Parameters<typeof Box>[0]
 
-          type Props = Pick<BoxProps, "className" | "size"> & {
-            tone?: Atoms["color"]
+          type Props = Pick<BoxProps, 'className'> & {
+            size?: Atoms['size']
+            tone?: Atoms['color']
           } & OptionalTitle
 
-          export const ${svgName} = ({ size = 6, tone, ...props }: Props) => {
-            return <Box as={${componentName}} color={tone} size={size} {...props} />
+          export const ${svgName} = ({ size = '6', tone, ...props }: Props) => {
+            return (
+              <Box
+                as={${componentName}}
+                color={tone}
+                height={size}
+                width={size}
+                {...props}
+              />
+            )
           }
+        `,
+      'utf-8',
+    )
+
+    // Write docs file
+    await fs.writeFile(
+      path.join(iconDir, `${svgName}.docs.mdx`),
+      dedent`
+          ---
+          title: ${svgName}
+          ---
+
+          \`\`\`tsx
+          import { ${svgName} } from 'degen'
+          \`\`\`
+
+          \`\`\`tsx live=true
+          <${svgName} color="foreground" />
+          \`\`\`
         `,
       'utf-8',
     )
 
     // Write index file
     await fs.writeFile(
-      path.join(iconDir, `index.ts`),
+      path.join(iconDir, 'index.ts'),
       dedent`
           export { ${svgName} } from './${svgName}'
         `,

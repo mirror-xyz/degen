@@ -4,7 +4,14 @@
     "source.fixAll.eslint": true
   },
   "eslint.options": {
-    "extensions": [".js", ".json", ".ts", ".tsx"]
+    "extensions": [".js", ".json", ".mdx", ".ts", ".tsx"]
   },
+  "eslint.validate": [
+    "javascript",
+    "json",
+    "mdx",
+    "typescript",
+    "typescriptreact"
+  ],
   "eslint.packageManager": "yarn"
 }

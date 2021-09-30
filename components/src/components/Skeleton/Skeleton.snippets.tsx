@@ -1,23 +1,11 @@
 import * as React from 'react'
 
 import { Snippet } from '!/playroom/src/types'
-import { Skeleton, SkeletonGroup } from './Skeleton'
+import { Skeleton } from './Skeleton'
 
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: (
-      <Skeleton loading>
-        <></>
-      </Skeleton>
-    ),
-  },
-  {
-    name: 'Group',
-    code: (
-      <SkeletonGroup loading>
-        <></>
-      </SkeletonGroup>
-    ),
+    code: <Skeleton loading>__</Skeleton>,
   },
 ]

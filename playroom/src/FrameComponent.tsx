@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, ThemeProvider } from '~/components'
+import { ThemeProvider } from '~/components'
 import { PlayroomStateProvider } from './PlayroomState'
 
 import './styles.css'
@@ -18,11 +18,7 @@ const FrameComponent = ({
   <>
     <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
     <PlayroomStateProvider>
-      <ThemeProvider defaultMode={theme}>
-        <Box backgroundColor="background" minHeight="viewHeight">
-          {children}
-        </Box>
-      </ThemeProvider>
+      <ThemeProvider defaultMode={theme}>{children}</ThemeProvider>
     </PlayroomStateProvider>
   </>
 )

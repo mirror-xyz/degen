@@ -1,12 +1,17 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
+import {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+  NextPageWithLayout,
+} from 'next'
 import fs from 'fs-extra'
 import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
-import Head from 'next/head'
 
-import { getComponentName, getComponentPaths } from 'utils'
-import { CodeBlock } from 'components'
+import { MDX } from 'components'
+import { getLayout } from 'layouts/docs'
+import { getComponentName, getComponentPaths, getStaticTypes } from 'utils/fs'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({
@@ -19,8 +24,10 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params?.slug
-  const pathname = getComponentPaths().find((x) => getComponentName(x) === slug)
-  const source = fs.readFileSync(pathname as string)
+  const pathname = getComponentPaths().find(
+    (x) => getComponentName(x) === slug,
+  ) as string
+  const source = fs.readFileSync(pathname)
   const { content, data } = matter(source)
 
   const mdxSource = await serialize(content, {
@@ -31,35 +38,32 @@ export const getStaticProps: GetStaticProps = async (context) => {
     scope: data,
   })
 
+  const componentPathname = pathname.replace('docs.mdx', 'tsx')
+  const staticTypes = getStaticTypes(componentPathname)
+
   return {
     props: {
-      source: mdxSource,
       frontMatter: data,
+      source: mdxSource,
+      staticTypes,
     },
   }
 }
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const components = {
-  Head,
-  code: CodeBlock,
+const Page: NextPageWithLayout<Props> = ({ source, staticTypes }: Props) => {
+  console.log(staticTypes)
+  return <MDXRemote {...source} components={MDX} />
 }
 
-const Page = ({ frontMatter, source }: Props) => {
-  return (
-    <div>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
-      </div>
-      <main>
-        <MDXRemote {...source} components={components} />
-      </main>
-    </div>
-  )
-}
+Page.getLayout = (page) =>
+  getLayout({
+    ...page,
+    props: {
+      ...page.props,
+      meta: page.props.frontMatter,
+    },
+  })
 
 export default Page

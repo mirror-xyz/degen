@@ -5,13 +5,26 @@ import { Box } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
-  as?: 'div' | 'span' | 'p' | 'label' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  align?: Atoms['textAlign']
+  as?:
+    | 'code'
+    | 'div'
+    | 'h1'
+    | 'h2'
+    | 'h3'
+    | 'h4'
+    | 'h5'
+    | 'h6'
+    | 'label'
+    | 'p'
+    | 'span'
   children?: React.ReactNode
   color?: Atoms['color']
   font?: Atoms['fontFamily']
   letterSpacing?: Atoms['letterSpacing']
   lineHeight?: Atoms['lineHeight']
   size?: Atoms['fontSize']
+  transform?: Atoms['textTransform']
   weight?: Atoms['fontWeight']
   whiteSpace?: Atoms['whiteSpace']
 } & styles.Variants
@@ -19,14 +32,16 @@ type Props = {
 export const Text = React.forwardRef(
   (
     {
+      align,
       as = 'div',
       children,
-      color = 'text',
+      color = 'foreground',
       ellipsis,
       font = 'sans',
       letterSpacing,
       lineHeight,
-      size,
+      size = 'base',
+      transform,
       variant,
       weight,
       whiteSpace,
@@ -47,6 +62,8 @@ export const Text = React.forwardRef(
         letterSpacing={letterSpacing}
         lineHeight={lineHeight}
         ref={ref}
+        textAlign={align}
+        textTransform={transform}
         whiteSpace={whiteSpace}
       >
         {children}

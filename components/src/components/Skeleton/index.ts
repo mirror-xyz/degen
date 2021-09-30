@@ -1,1 +1,1 @@
-export { Skeleton, SkeletonGroup } from './Skeleton'
+export { Skeleton } from './Skeleton'

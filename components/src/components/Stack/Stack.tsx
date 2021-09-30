@@ -41,7 +41,7 @@ export const Stack = ({
   justify,
   flex,
   direction = 'horizontal',
-  space = 4,
+  space = '4',
   wrap,
 }: React.PropsWithChildren<Props>) => {
   const flexDirection = directionToFlexDirection(direction)

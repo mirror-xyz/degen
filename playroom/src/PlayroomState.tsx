@@ -96,12 +96,12 @@ type Callback = (...args: any[]) => void
 const noop = () => {}
 /* eslint-enable @typescript-eslint/no-empty-function */
 
-export function useFallbackState<Value, Handler extends Callback>(
+export const useFallbackState = <Value, Handler extends Callback>(
   stateKey: string | undefined,
   value: Value,
   onChange: Handler | undefined,
   defaultValue?: Value,
-): [NonNullable<Value>, (...args: Parameters<Handler>) => void] {
+): [NonNullable<Value>, (...args: Parameters<Handler>) => void] => {
   const playroomState = usePlayroomStore()
   const [internalStateValue, setInternalStateValue] =
     React.useState(defaultValue)

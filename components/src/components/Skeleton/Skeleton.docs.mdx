@@ -1,0 +1,40 @@
+---
+title: Skeleton
+---
+
+Loading placeholder.
+
+```tsx
+import { Skeleton } from 'degen'
+```
+
+```tsx live=true
+<Skeleton loading>Hello World</Skeleton>
+```
+
+## Wrap Content
+
+Can wrap content and the container will automatically resize.
+
+```tsx live=true
+<Stack direction="vertical">
+  <Skeleton loading>
+    <Heading level="1">Foo Bar Baz</Heading>
+  </Skeleton>
+  <Skeleton loading>
+    <Text>The quick brown fox jumped over the lazy dogs.</Text>
+  </Skeleton>
+</Stack>
+```
+
+## Custom
+
+```tsx live=true
+<Skeleton
+  backgroundColor="accentSecondary"
+  height="16"
+  loading
+  radius="lg"
+  width="16"
+/>
+```

@@ -1,0 +1,81 @@
+---
+title: Stack
+---
+
+Layout for elements.
+
+```tsx
+import { Stack } from 'degen'
+```
+
+```tsx live=true
+<Stack>
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+</Stack>
+```
+
+## Space
+
+```tsx live=true
+<Stack space="8">
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+</Stack>
+```
+
+## Direction
+
+```tsx live=true
+<Stack direction="vertical">
+  <Stack direction="vertical">
+    <Text variant="label">Horizontal</Text>
+    <Stack direction="horizontal">
+      <Box backgroundColor="foregroundSecondary" size="16" />
+      <Box backgroundColor="foregroundSecondary" size="16" />
+    </Stack>
+    <Stack direction="vertical">
+      <Text variant="label">Vertical</Text>
+      <Stack direction="vertical">
+        <Box backgroundColor="foregroundSecondary" size="16" />
+        <Box backgroundColor="foregroundSecondary" size="16" />
+      </Stack>
+    </Stack>
+  </Stack>
+</Stack>
+```
+
+## Align
+
+```tsx live=true
+<Stack align="center">
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" size="32" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+</Stack>
+```
+
+## Justify
+
+```tsx live=true
+<Stack justify="space-between">
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+</Stack>
+```
+
+## Wrap
+
+```tsx live=true
+<Stack wrap>
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" height="16" width="64" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" height="16" width="64" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+  <Box backgroundColor="foregroundSecondary" height="16" width="64" />
+  <Box backgroundColor="foregroundSecondary" size="16" />
+</Stack>
+```

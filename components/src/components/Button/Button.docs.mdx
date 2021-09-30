@@ -2,21 +2,141 @@
 title: Button
 ---
 
-Used to trigger an operation.
+Trigger for operations.
 
-## Size
+```tsx
+import { Button } from 'degen'
+```
 
 ```tsx live=true
-<Stack align="center">
+<Button>Connect Wallet</Button>
+```
+
+## Variants
+
+```tsx live=true
+<Stack wrap>
+  <Button variant="highlight">Highlight</Button>
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="tertiary">Tertiary</Button>
+  <Button variant="transparent">Transparent</Button>
+  <Button variant="transparentSecondary">Transparent Secondary</Button>
+</Stack>
+```
+
+## States
+
+```tsx live=true
+<Stack wrap>
+  <Button loading>Loading</Button>
+  <Button disabled>Disabled</Button>
+</Stack>
+```
+
+## Sizes
+
+```tsx live=true
+<Stack align="center" wrap>
   <Button size="lg">Connect Wallet</Button>
   <Button size="md">Connect Wallet</Button>
+</Stack>
+```
+
+## Tones
+
+When `variant` is set to `highlight` or `primary`, you can pass a `tone`.
+
+```tsx live=true
+<Stack direction="vertical" space="8">
+  <Stack direction="vertical">
+    <Text variant="label">Highlight</Text>
+    <Stack wrap>
+      <Button tone="accent" variant="highlight">
+        Accent
+      </Button>
+      <Button tone="blue" variant="highlight">
+        Blue
+      </Button>
+      <Button tone="green" variant="highlight">
+        Green
+      </Button>
+      <Button tone="red" variant="highlight">
+        Red
+      </Button>
+    </Stack>
+  </Stack>
+
+  <Stack direction="vertical">
+    <Text variant="label">Primary</Text>
+    <Stack>
+      <Button tone="accent" variant="primary">
+        Accent
+      </Button>
+      <Button tone="blue" variant="primary">
+        Blue
+      </Button>
+      <Button tone="green" variant="primary">
+        Green
+      </Button>
+      <Button tone="red" variant="primary">
+        Red
+      </Button>
+    </Stack>
+  </Stack>
+</Stack>
+```
+
+## Icons
+
+Optional `center` prop reserves space for icon and loading spinner.
+
+```tsx live=true
+<Stack direction="vertical" space="8">
+  <Stack direction="vertical">
+    <Text variant="label">Default</Text>
+    <Stack wrap>
+      <Button icon={<IconPlusSmall />}>Add Entry</Button>
+      <Button icon={<IconPlusSmall />} loading>
+        Add Entry
+      </Button>
+    </Stack>
+  </Stack>
+
+  <Stack direction="vertical">
+    <Text variant="label">Center</Text>
+    <Stack wrap>
+      <Button center icon={<IconPlusSmall />}>
+        Add Entry
+      </Button>
+      <Button center icon={<IconPlusSmall />} loading>
+        Add Entry
+      </Button>
+    </Stack>
+  </Stack>
+</Stack>
+```
+
+## Width
+
+```tsx live=true
+<Stack direction="vertical">
+  <Button width="64">Fixed Width</Button>
+  <Button width="full">Full Width</Button>
+  <Button width={{ xs: 'full', md: 'max' }}>Responsive Width</Button>
+  <Button icon={<IconPlusSmall />} loading width="full">
+    With Icon & Loading
+  </Button>
+  <Button center icon={<IconPlusSmall />} loading width="full">
+    Centered With Icon & Loading
+  </Button>
 </Stack>
 ```
 
 ## Shapes
 
 ```tsx live=true
-<Stack align="center">
+<Stack wrap>
   <Button shape="square">
     <IconPlusSmall />
   </Button>
