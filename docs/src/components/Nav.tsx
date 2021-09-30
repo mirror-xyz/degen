@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router'
 import * as React from 'react'
 
-import { createPlayroomLink } from 'utils/playroom'
+import { createPlayroomLink } from 'src/utils/playroom'
 
 import { Box, Stack, Text } from '~/components'
 import { Link } from './Link'

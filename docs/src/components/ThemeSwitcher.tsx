@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { setThemeAccent, setThemeMode } from 'utils/cookies'
+import { setThemeAccent, setThemeMode } from 'src/utils/cookies'
 
-import { Box, Button, Stack, useTheme } from '~/components'
 import { Accent } from '~/tokens'
+import { Box, Button, Stack, useTheme } from '~/components'
 
 export const ThemeSwitcher = () => {
   const { accent, mode, setMode, setAccent } = useTheme()

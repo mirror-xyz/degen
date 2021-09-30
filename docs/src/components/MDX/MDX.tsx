@@ -1,9 +1,9 @@
 import { MDXProviderProps } from '@mdx-js/react'
 
-import { CodeBlock, Link } from 'components'
-
 import { Box, Text } from '~/components'
 
+import { CodeBlock } from '../CodeBlock'
+import { Link } from '../Link'
 import * as styles from './styles.css'
 
 export const MDX: MDXProviderProps['components'] = {

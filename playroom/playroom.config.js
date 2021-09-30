@@ -16,7 +16,7 @@ module.exports = {
   widths: [320, 640, 768, 1024, 1280],
   openBrowser: false,
   port: 8082,
-  iframeSandbox: 'allow-scripts',
+  iframeSandbox: 'allow-scripts allow-same-origin',
 
   webpackConfig: () => ({
     plugins: [

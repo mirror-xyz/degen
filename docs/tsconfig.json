@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "jsx": "preserve",
     "paths": {
-      "~/*": ["../components/src/*"]
+      "src/*": ["./src/*"],
+      "~/*": ["../components/src"]
     },
     "target": "es5"
   },

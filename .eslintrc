@@ -71,7 +71,7 @@
   "overrides": [
     {
       "files": ["docs/**/*"],
-      "extends": "next/core-web-vitals",
+      "extends": ["plugin:@next/next/recommended", "next/core-web-vitals"],
       "settings": {
         "next": {
           "rootDir": "docs/"

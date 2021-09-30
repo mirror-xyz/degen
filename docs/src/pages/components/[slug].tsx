@@ -9,9 +9,14 @@ import { MDXRemote } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
 
-import { MDX } from 'components'
-import { getLayout } from 'layouts/docs'
-import { getComponentName, getComponentPaths, getStaticTypes } from 'utils/fs'
+import { MDX } from 'src/components'
+
+import { getLayout } from 'src/layouts/docs'
+import {
+  getComponentName,
+  getComponentPaths,
+  getStaticTypes,
+} from 'src/utils/fs'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({

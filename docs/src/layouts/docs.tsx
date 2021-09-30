@@ -3,13 +3,11 @@ import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 
-import { Nav, NavProps } from 'components'
+import { Box, Nav, NavProps, Text } from 'src/components'
 
 import { getLayout as getBaseLayout } from './site'
-import { Box, Text } from '~/components'
-import { EmptyObject } from '~/types'
 
-const ThemeSwitcher = dynamic<EmptyObject>(
+const ThemeSwitcher = dynamic<Record<string, any>>(
   () => import('../components/ThemeSwitcher').then((x) => x.ThemeSwitcher),
   {
     ssr: false,
