@@ -1,19 +1,26 @@
 import { MDXProviderProps } from '@mdx-js/react'
 
-import { CodeBlock } from 'components'
+import { CodeBlock, Link } from 'components'
 
 import { Box, Text } from '~/components'
 
+import * as styles from './styles.css'
+
 export const MDX: MDXProviderProps['components'] = {
+  a: (props) => <Link className={styles.link} {...props} />,
   code: (props) => <CodeBlock {...props} />,
   h1: ({ children }) => (
     <Box marginBottom="6" marginTop="9">
-      <Text variant="headingOne">{children}</Text>
+      <Text color="textPrimary" variant="headingOne">
+        {children}
+      </Text>
     </Box>
   ),
   h2: ({ children }) => (
     <Box marginBottom="6" marginTop="9">
-      <Text variant="headingTwo">{children}</Text>
+      <Text color="textPrimary" variant="headingTwo">
+        {children}
+      </Text>
     </Box>
   ),
   inlineCode: ({ children }) => (
@@ -31,7 +38,7 @@ export const MDX: MDXProviderProps['components'] = {
   ),
   p: ({ children }) => (
     <Box as="p" marginY="6">
-      <Text as="span" variant="base">
+      <Text as="span" color="text" variant="base">
         {children}
       </Text>
     </Box>

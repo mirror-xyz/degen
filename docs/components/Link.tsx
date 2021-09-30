@@ -8,19 +8,16 @@ type NextLinkProps = Parameters<typeof NextLink>[0]
 type Props = {
   as?: NextLinkProps['as']
   className?: string
-  external?: true
   href: string
-  passHref?: NextLinkProps['passHref']
 }
 
 export const Link = ({
   as,
   children,
   className,
-  external,
   href,
-  passHref,
 }: React.PropsWithChildren<Props>) => {
+  const external = !href.startsWith('/')
   if (external) {
     return (
       <a
@@ -39,16 +36,12 @@ export const Link = ({
       <NextLink
         as={as}
         href={href}
-        passHref={passHref}
+        passHref
         prefetch={canPrefetch(href) ? undefined : false}
       >
-        {passHref ? (
-          children
-        ) : (
-          <Box as="a" className={className}>
-            {children}
-          </Box>
-        )}
+        <Box as="a" className={className}>
+          {children}
+        </Box>
       </NextLink>
     </>
   )

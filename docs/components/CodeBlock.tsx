@@ -13,8 +13,18 @@ import { CopyButton } from './CopyButton'
 import type { Props as CodePreviewProps } from './CodePreview'
 import { vars } from '~/theme'
 
-const CodePreview = dynamic<CodePreviewProps>(() =>
-  import('./CodePreview').then((mod) => mod.CodePreview),
+const CodePreview = dynamic<CodePreviewProps>(
+  () => import('./CodePreview').then((mod) => mod.CodePreview),
+  {
+    loading: () => (
+      <Box
+        backgroundColor="backgroundSecondary"
+        borderRadius="lg"
+        height="48"
+        width="full"
+      />
+    ),
+  },
 )
 
 type Props = {

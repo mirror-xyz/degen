@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { mdx } from '@mdx-js/react'
-import { createUrl } from 'playroom/utils'
 import { PrismTheme } from 'prism-react-renderer'
+
+import { createPlayroomLink } from 'utils/playroom'
 
 import * as Components from '~/components'
 import { Box, Button, Stack, Text } from '~/components'
@@ -69,14 +70,7 @@ export const CodePreview = ({ code, theme }: Props) => {
             {state.expanded ? 'Hide Code' : 'View Code'}
           </Button>
 
-          <Link
-            external
-            href={createUrl({
-              baseUrl: 'http://localhost:8082',
-              code,
-              widths: [640],
-            })}
-          >
+          <Link href={createPlayroomLink({ code })}>
             <Button size="md" variant="transparentSecondary">
               Open in Playroom
             </Button>

@@ -37,7 +37,7 @@ export const Text = React.forwardRef(
       font = 'sans',
       letterSpacing,
       lineHeight,
-      size,
+      size = 'base',
       variant,
       weight,
       whiteSpace,

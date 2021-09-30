@@ -16,6 +16,7 @@
     "lodash": "^4.17.21",
     "next": "11.1.2",
     "next-mdx-remote": "^3.0.4",
+    "nookies": "^2.5.2",
     "playroom": "0.27.7",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",

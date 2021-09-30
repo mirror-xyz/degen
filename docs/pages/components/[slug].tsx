@@ -11,7 +11,7 @@ import matter from 'gray-matter'
 
 import { MDX } from 'components'
 import { getLayout } from 'layouts/docs'
-import { getComponentName, getComponentPaths, getStaticTypes } from 'utils'
+import { getComponentName, getComponentPaths, getStaticTypes } from 'utils/fs'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({

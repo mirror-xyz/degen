@@ -1,0 +1,22 @@
+---
+title: SkeletonGroup
+---
+
+Groups and manages loading state for multiple [`<Skeleton />`](/components/Skeleton) components.
+
+```tsx
+import { SkeletonGroup } from 'degen'
+```
+
+```tsx live=true
+<SkeletonGroup loading>
+  <Stack direction="vertical">
+    <Skeleton>
+      <Text variant="headingOne">Foo Bar Baz</Text>
+    </Skeleton>
+    <Skeleton>
+      <Text>The quick brown fox jumped over the lazy dogs.</Text>
+    </Skeleton>
+  </Stack>
+</SkeletonGroup>
+```

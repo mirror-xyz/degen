@@ -1,6 +1,6 @@
 import { GetLayout, NextLayout } from 'next'
 
-const Layout: NextLayout = ({ children }) => <main>{children}</main>
+const Layout: NextLayout = ({ children }) => <>{children}</>
 
 export const getLayout: GetLayout = (page) => <Layout>{page}</Layout>
 
