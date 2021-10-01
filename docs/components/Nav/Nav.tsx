@@ -87,7 +87,7 @@ export const Nav = ({ links }: Props) => {
       >
         <Stack direction="vertical" space="10">
           <Stack direction="vertical" space="3">
-            <NavLink href="https://github.com/mirror-xyz">GitHub</NavLink>
+            <NavLink href="https://github.com/mirror-xyz/degen">GitHub</NavLink>
             <NavLink href={createPlayroomLink()}>Playroom</NavLink>
           </Stack>
 

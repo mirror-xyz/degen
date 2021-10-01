@@ -15,6 +15,7 @@ type Props = {
   children?: React.ReactNode
   color?: Atoms['color']
   id?: string
+  transform?: Atoms['textTransform']
 } & styles.Variants
 
 export const Heading = ({
@@ -24,6 +25,7 @@ export const Heading = ({
   color = 'foreground',
   id,
   level = '2',
+  transform,
 }: Props) => {
   return (
     <Box
@@ -35,6 +37,7 @@ export const Heading = ({
       fontFamily="sans"
       id={id}
       textAlign={align}
+      textTransform={transform}
     >
       {children}
     </Box>

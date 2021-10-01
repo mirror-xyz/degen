@@ -50,8 +50,8 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
           <Box
             as="article"
             maxWidth="224"
-            paddingBottom="10"
-            paddingTop="12"
+            paddingBottom="20"
+            paddingTop="20"
             paddingX={{ lg: '10' }}
           >
             <Box as="header" marginBottom={meta.description ? '16' : '10'}>
