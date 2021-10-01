@@ -6,9 +6,14 @@ export const accentKey = 'accent'
 export const modeKey = 'mode'
 
 export const setThemeAccent = (accent: string) =>
-  setCookie({}, accentKey, accent)
+  setCookie({}, accentKey, accent, {
+    path: '/',
+  })
 
-export const setThemeMode = (mode: string) => setCookie({}, modeKey, mode)
+export const setThemeMode = (mode: string) =>
+  setCookie({}, modeKey, mode, {
+    path: '/',
+  })
 
 export const getThemeAccent = (): Accent | 'foreground' | undefined =>
   parseCookies({})?.[accentKey] as Accent | 'foreground' | undefined

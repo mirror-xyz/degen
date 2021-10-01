@@ -21,9 +21,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `!function(){try{var d=document.documentElement;var e=document.cookie.split(";").find(x=>x.includes("mode")).replace(" mode=","");if(e){d.setAttribute('data-theme',e)}else{d.setAttribute('data-theme','light');}}catch(t){}}();`,
+            __html: `!function(){try{var d=document.documentElement;var e=document.cookie.split(";").find(x=>x.includes("mode")).replace("mode=","");if(e){d.setAttribute('data-theme',e)}else{d.setAttribute('data-theme','light');}}catch(t){}}();`,
           }}
-          key="next-themes-script"
+          key="theme-script"
         />
       </Head>
 
