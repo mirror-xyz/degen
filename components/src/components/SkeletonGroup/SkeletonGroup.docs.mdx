@@ -1,14 +1,13 @@
 ---
 title: SkeletonGroup
+description: Groups and manages loading state for multiple skeletons.
 ---
-
-Groups and manages loading state for multiple [`<Skeleton />`](/components/Skeleton) components.
 
 ```tsx
 import { SkeletonGroup } from 'degen'
 ```
 
-```tsx expanded=true live=true
+```tsx expand=true live=true
 <SkeletonGroup loading>
   <Skeleton>Hello World</Skeleton>
 </SkeletonGroup>
@@ -29,7 +28,7 @@ import { SkeletonGroup } from 'degen'
     <Button
       disabled={getState('loading')}
       loading={getState('loading')}
-      size="md"
+      size="medium"
       onClick={() => {
         toggleState('loading')
         setTimeout(() => toggleState('loading'), 1000)

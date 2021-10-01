@@ -23,7 +23,7 @@ const CodePreview = dynamic<CodePreviewProps>(
     loading: () => (
       <Box
         backgroundColor="backgroundSecondary"
-        borderRadius="lg"
+        borderRadius="2"
         height="48"
         width="full"
       />
@@ -35,10 +35,10 @@ type Props = {
   children: string
   className: string
   live?: boolean
-  expanded?: boolean
+  expand?: boolean
 }
 
-export const CodeBlock = ({ children, className, live, expanded }: Props) => {
+export const CodeBlock = ({ children, className, live, expand }: Props) => {
   const isMounted = useIsMounted()
   const { mode } = useTheme()
   const theme = mode === 'light' ? vsLight : vsDark
@@ -57,7 +57,7 @@ export const CodeBlock = ({ children, className, live, expanded }: Props) => {
   if (live)
     return (
       <PlayroomStateProvider>
-        <CodePreview code={code} expanded={expanded} theme={modifiedTheme} />
+        <CodePreview code={code} expand={expand} theme={modifiedTheme} />
       </PlayroomStateProvider>
     )
 
@@ -73,7 +73,7 @@ export const CodeBlock = ({ children, className, live, expanded }: Props) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Box
           as="pre"
-          borderRadius="lg"
+          borderRadius="2"
           className={className}
           padding="6"
           position="relative"
@@ -96,7 +96,7 @@ export const CodeBlock = ({ children, className, live, expanded }: Props) => {
                   fontFamily="mono"
                   fontSize="base"
                   key={key}
-                  lineHeight="normal"
+                  lineHeight="1.5"
                   {...getTokenProps({ token, key })}
                 />
               ))}

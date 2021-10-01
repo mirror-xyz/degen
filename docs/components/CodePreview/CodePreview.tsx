@@ -15,22 +15,22 @@ import './styles.css'
 
 export type Props = {
   code: string
-  expanded?: boolean
+  expand?: boolean
   theme?: PrismTheme
 }
 
 type State = {
-  expanded: boolean
+  expand: boolean
 }
 
 const initialState = {
-  expanded: false,
+  expand: false,
 }
 
-export const CodePreview = ({ code, expanded = false, theme }: Props) => {
+export const CodePreview = ({ code, expand = false, theme }: Props) => {
   const [state, setState] = React.useState<State>({
     ...initialState,
-    expanded,
+    expand,
   })
   const store = usePlayroomStore()
 
@@ -44,8 +44,8 @@ export const CodePreview = ({ code, expanded = false, theme }: Props) => {
     >
       <Box
         borderColor="foregroundSecondary"
-        borderRadius="lg"
-        borderWidth="2"
+        borderRadius="2"
+        borderWidth="0.5"
         overflow="hidden"
       >
         <Box padding="6">
@@ -55,7 +55,7 @@ export const CodePreview = ({ code, expanded = false, theme }: Props) => {
             <LiveError style={{ margin: 0 }} />
           </Text>
         </Box>
-        {state.expanded && (
+        {state.expand && (
           <Box position="relative">
             <LiveEditor />
 
@@ -69,15 +69,15 @@ export const CodePreview = ({ code, expanded = false, theme }: Props) => {
       <Box marginY="2">
         <Stack justify="flex-end" space="2">
           <Button
-            size="md"
+            size="medium"
             variant="transparentSecondary"
-            onClick={() => setState((x) => ({ ...x, expanded: !x.expanded }))}
+            onClick={() => setState((x) => ({ ...x, expand: !x.expand }))}
           >
-            {state.expanded ? 'Hide Code' : 'View Code'}
+            {state.expand ? 'Hide Code' : 'View Code'}
           </Button>
 
           <Link href={createPlayroomLink({ code })}>
-            <Button size="md" variant="transparentSecondary">
+            <Button size="medium" variant="transparentSecondary">
               Open in Playroom
             </Button>
           </Link>

@@ -9,7 +9,7 @@ const shape = {
     padding: 'px',
   }),
   square: atoms({
-    borderRadius: 'md',
+    borderRadius: '1.5',
     padding: 'px',
   }),
 }
@@ -17,14 +17,14 @@ const shape = {
 export type Shape = keyof typeof shape
 
 const size = {
-  md: atoms({
-    borderRadius: 'md',
+  medium: atoms({
+    borderRadius: '1.5',
     fontSize: 'small',
     height: '10',
     paddingX: '4',
   }),
-  lg: atoms({
-    borderRadius: 'xl',
+  large: atoms({
+    borderRadius: '3',
     fontSize: 'base',
     height: '14',
     paddingX: '5',
@@ -118,7 +118,7 @@ const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => {
       size,
     },
     style: atoms({
-      minWidth: size === 'md' ? '10' : '14',
+      minWidth: size === 'medium' ? '10' : '14',
     }),
   }
 }
@@ -190,14 +190,14 @@ export const variants = recipe({
     variant,
   },
   compoundVariants: [
-    getShapeSizeCompoundVariant('circle', 'md'),
-    getShapeSizeCompoundVariant('circle', 'lg'),
-    getShapeSizeCompoundVariant('square', 'md'),
-    getShapeSizeCompoundVariant('square', 'lg'),
+    getShapeSizeCompoundVariant('circle', 'medium'),
+    getShapeSizeCompoundVariant('circle', 'large'),
+    getShapeSizeCompoundVariant('square', 'medium'),
+    getShapeSizeCompoundVariant('square', 'large'),
     {
       variants: {
         center: true,
-        size: 'md',
+        size: 'medium',
       },
       style: atoms({
         paddingX: '14',
@@ -206,7 +206,7 @@ export const variants = recipe({
     {
       variants: {
         center: true,
-        size: 'lg',
+        size: 'large',
       },
       style: atoms({
         paddingX: '15',

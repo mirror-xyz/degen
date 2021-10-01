@@ -31,21 +31,13 @@ export const letterSpacings = {
   '-0.01': '-0.01em',
   normal: '0',
   '0.03': '0.03em',
-
-  tightest: '-0.075em',
-  tighter: '-0.05em',
-  tight: '-0.025em',
-  snug: '-0.015em',
-  wide: '0.025em',
-  wider: '0.05em',
-  widest: '0.1em',
 }
 
 export const lineHeights = {
   none: '1',
-  tight: '1.25',
-  snug: '1.375',
-  normal: '1.5',
-  relaxed: '1.625',
-  loose: '2',
+  '1.25': '1.25', // tight
+  '1.375': '1.375', // snug
+  '1.5': '1.5', // normal
+  '1.625': '1.625', // relaxed
+  '2': '2', // loose
 }

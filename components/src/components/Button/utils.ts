@@ -9,7 +9,7 @@ export const getCenterProps = (
   if (!center) return {}
   const props: Atoms = {
     position: 'absolute',
-    [side]: size === 'md' ? 4 : 5,
+    [side]: size === 'medium' ? 4 : 5,
   }
   return props
 }

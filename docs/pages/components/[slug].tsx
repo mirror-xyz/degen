@@ -54,7 +54,11 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 const Page: NextPageWithLayout<Props> = ({ source, staticTypes }: Props) => {
   console.log(staticTypes)
-  return <MDXRemote {...source} components={MDX} />
+  return (
+    <div>
+      <MDXRemote {...source} components={MDX} />
+    </div>
+  )
 }
 
 Page.getLayout = (page) =>

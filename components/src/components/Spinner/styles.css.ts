@@ -16,15 +16,13 @@ export const variants = recipe({
   ],
   variants: {
     size: {
-      md: atoms({
-        height: '6',
-        width: '6',
-        strokeWidth: '2',
+      medium: atoms({
+        size: '6',
+        strokeWidth: '0.5',
       }),
-      lg: atoms({
-        height: '16',
-        width: '16',
-        strokeWidth: '1.5',
+      large: atoms({
+        size: '16',
+        strokeWidth: '0.375',
       }),
     },
   },

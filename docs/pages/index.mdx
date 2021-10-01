@@ -1,13 +1,63 @@
 import Layout from 'layouts/docs'
+import { Link } from 'components'
+
+import * as styles from '../components/MDX/styles.css'
 
 export const meta = {
   title: 'Mirror Design System',
+  description: (
+    <>
+      Design System for{' '}
+      <Link className={styles.link} href="https://mirror.xyz">
+        Mirror.xyz
+      </Link>{' '}
+      built with{' '}
+      <Link className={styles.link} href="https://reactjs.org/">
+        React
+      </Link>{' '}
+      and{' '}
+      <Link className={styles.link} href="https://vanilla-extract.style/">
+        vanilla-extract
+      </Link>
+      .
+    </>
+  ),
 }
 
-The [quick brown](https://mirror.xyz) fox jumped over [the](/components/Button) **lazy** _dogs_.
+## Install
 
-## Test
+```bash
+yarn add degen
+```
 
-Hello World
+## Wrap root app and import stylesheet
+
+```tsx
+import { ThemeProvider } from 'degen'
+import 'degen/dist/style.css'
+
+const App = () => {
+  return <ThemeProvider>{children}</ThemeProvider>
+}
+```
+
+## Import and use components
+
+```tsx
+import { Button, Heading, IconLockClosed, Stack } from 'degen'
+```
+
+```tsx live=true expand=true
+<Stack
+  align="center"
+  direction={{ xs: 'vertical', md: 'horizontal' }}
+  justify={{ md: 'space-between' }}
+>
+  <Heading>GM! Fren.</Heading>
+  <Button icon={<IconLockClosed />} tone="blue" variant="highlight">
+    Connect Wallet
+  </Button>
+</Stack>
+```
 
 export default ({ children }) => <Layout meta={meta}>{children}</Layout>

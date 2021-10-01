@@ -1,14 +1,13 @@
 ---
 title: Skeleton
+description: Loading placeholder.
 ---
-
-Loading placeholder.
 
 ```tsx
 import { Skeleton } from 'degen'
 ```
 
-```tsx expanded=true live=true
+```tsx expand=true live=true
 <Skeleton loading>Hello World</Skeleton>
 ```
 
@@ -28,7 +27,7 @@ Can wrap content and the container will automatically resize. Check out [`<Skele
   <Button
     disabled={getState('loading')}
     loading={getState('loading')}
-    size="md"
+    size="medium"
     onClick={() => {
       toggleState('loading')
       setTimeout(() => toggleState('loading'), 1000)
@@ -46,7 +45,7 @@ Can wrap content and the container will automatically resize. Check out [`<Skele
   backgroundColor="accentSecondary"
   height="16"
   loading
-  radius="lg"
+  radius="2"
   width="16"
 />
 ```

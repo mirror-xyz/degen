@@ -41,7 +41,7 @@ export const IconSearch = () => {
               <Stack align="center" direction="vertical" space="2">
                 <Box
                   backgroundColor="foregroundSecondary"
-                  borderRadius="lg"
+                  borderRadius="2"
                   color="foreground"
                   padding="4"
                   width="max"

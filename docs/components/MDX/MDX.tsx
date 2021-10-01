@@ -11,7 +11,7 @@ export const MDX: MDXProviderProps['components'] = {
   a: (props) => <Link className={styles.link} {...props} />,
   code: (props) => <CodeBlock {...props} />,
   h1: ({ children }) => (
-    <Box marginBottom="6" marginTop="9">
+    <Box marginBottom="6" marginTop="8">
       <Heading color="textPrimary" level="1">
         {children}
       </Heading>
@@ -23,9 +23,10 @@ export const MDX: MDXProviderProps['components'] = {
       <Box
         as="a"
         className={styles.anchorParent}
+        display="block"
         href={`#${id}`}
         marginBottom="6"
-        marginTop="9"
+        marginTop="8"
       >
         <Stack align="center" space="3">
           <Heading color="textPrimary" id={id}>
@@ -42,7 +43,7 @@ export const MDX: MDXProviderProps['components'] = {
     <Box
       as="code"
       backgroundColor="backgroundSecondary"
-      borderRadius="md"
+      borderRadius="1.5"
       paddingX="1.5"
       paddingY="0.5"
     >
@@ -53,7 +54,7 @@ export const MDX: MDXProviderProps['components'] = {
   ),
   p: ({ children }) => (
     <Box marginY="6">
-      <Text as="p" color="text" lineHeight="relaxed" variant="base">
+      <Text as="p" color="text" lineHeight="1.625" variant="base">
         {children}
       </Text>
     </Box>

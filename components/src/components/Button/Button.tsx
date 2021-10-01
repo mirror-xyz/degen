@@ -42,7 +42,7 @@ export const Button = React.forwardRef(
       icon,
       loading,
       shape,
-      size = 'lg',
+      size = 'large',
       tabIndex,
       type,
       variant = 'highlight',

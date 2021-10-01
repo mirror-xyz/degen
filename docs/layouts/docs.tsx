@@ -4,8 +4,7 @@ import Head from 'next/head'
 
 import { Nav, NavProps, SkipNavContent, SkipNavLink } from 'components'
 
-import { Box, Heading } from '~/components'
-
+import { Box, Heading, Stack, Text } from '~/components'
 import { getLayout as getBaseLayout } from './site'
 
 type Props = {
@@ -55,10 +54,18 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
             paddingTop="12"
             paddingX={{ lg: '10' }}
           >
-            <Box as="header" marginBottom="10">
-              <Heading color="textPrimary" level="1">
-                {meta.title}
-              </Heading>
+            <Box as="header" marginBottom={meta.description ? '16' : '10'}>
+              <Stack direction="vertical" space="10">
+                <Heading color="foreground" level="1">
+                  {meta.title}
+                </Heading>
+
+                {meta.description && (
+                  <Text color="text" lineHeight="1.375" size="extraLarge">
+                    {meta.description}
+                  </Text>
+                )}
+              </Stack>
             </Box>
 
             {children}
