@@ -16,9 +16,30 @@ export type Props = {
   links: { name: string; links: Link[] }[]
 }
 
+type State = {
+  open: boolean
+}
+
+const initialState = {
+  open: false,
+}
+
 export const Nav = ({ links }: Props) => {
   const isMounted = useIsMounted()
   const router = useRouter()
+  const [state, setState] = React.useState<State>(initialState)
+
+  // Close menu on route change
+  /* eslint-disable react-hooks/exhaustive-deps */
+  React.useEffect(() => {
+    const handleRouteChange = () => setState((x) => ({ ...x, open: false }))
+    router.events.on('routeChangeComplete', handleRouteChange)
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [])
+  /* eslint-enable react-hooks/exhaustive-deps */
+
   return (
     <Box flexDirection="column" height="full">
       <Box paddingBottom={{ md: '5' }}>
@@ -28,13 +49,30 @@ export const Nav = ({ links }: Props) => {
           justify={{ xs: 'space-between', md: 'flex-start' }}
           space="5"
         >
-          <NavLink active={router.asPath === '/'} href="/">
-            <Button shape="circle" variant="secondary">
-              <Stack align="center">
-                <NextImage height={32} src="/logo.svg" width={32} />
-              </Stack>
-            </Button>
-          </NavLink>
+          <Stack align="center">
+            <NavLink active={router.asPath === '/'} href="/">
+              <Button shape="circle" variant="secondary">
+                <Stack align="center">
+                  <NextImage height={32} src="/logo.svg" width={32} />
+                </Stack>
+              </Button>
+            </NavLink>
+
+            <Box display={{ md: 'none' }}>
+              <Button
+                size="md"
+                variant="tertiary"
+                onClick={() => setState((x) => ({ ...x, open: !x.open }))}
+              >
+                <Box
+                  aria-label={state.open ? 'Close menu' : 'Open menu'}
+                  textTransform="capitalize"
+                >
+                  Menu
+                </Box>
+              </Button>
+            </Box>
+          </Stack>
 
           <ThemeSwitcher />
         </Stack>
@@ -42,10 +80,10 @@ export const Nav = ({ links }: Props) => {
 
       <Box
         className={styles.list}
-        display={{ xs: 'none', md: 'block' }}
+        display={{ xs: state.open ? 'block' : 'none', md: 'block' }}
         height="full"
-        paddingBottom="48"
-        paddingTop="5"
+        paddingBottom={{ md: '48' }}
+        paddingTop={{ xs: '10', md: '5' }}
       >
         <Stack direction="vertical" space="10">
           <Stack direction="vertical" space="3">

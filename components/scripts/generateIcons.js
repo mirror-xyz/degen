@@ -126,7 +126,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
           \`\`\`
 
           \`\`\`tsx live=true
-          <${svgName} color="foreground" />
+          <${svgName} />
           \`\`\`
         `,
       'utf-8',

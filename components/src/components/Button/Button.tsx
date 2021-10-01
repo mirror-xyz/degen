@@ -58,7 +58,7 @@ export const Button = React.forwardRef(
     else if (variant === 'highlight' || variant === 'primary') tone = 'accent'
 
     const labelContent = (
-      <Text color="inherit" ellipsis lineHeight="normal" weight="medium">
+      <Text color="inherit" ellipsis weight="medium">
         {children}
       </Text>
     )
