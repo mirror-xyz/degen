@@ -2027,6 +2027,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@reach/skip-nav@npm:^0.16.0":
+  version: 0.16.0
+  resolution: "@reach/skip-nav@npm:0.16.0"
+  dependencies:
+    "@reach/utils": 0.16.0
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: 8b8278dbdb8d3702ef14874c040a9289c11f718e68cdbe1e3ecd02eb515cfcf3105ab000097fa7d8633066894ab68a712f0eb87917bd08322e126b28c4bf7f50
+  languageName: node
+  linkType: hard
+
+"@reach/utils@npm:0.16.0":
+  version: 0.16.0
+  resolution: "@reach/utils@npm:0.16.0"
+  dependencies:
+    tiny-warning: ^1.0.3
+    tslib: ^2.3.0
+  peerDependencies:
+    react: ^16.8.0 || 17.x
+    react-dom: ^16.8.0 || 17.x
+  checksum: 36bc0eb41a71798eb6186b23de265ba709e51dae5bf214fb8505c66bb3f2e6a41bb2401457350436ba89ca9e3a50f93a04fe7c33d15648ce11e568a85622d770
+  languageName: node
+  linkType: hard
+
 "@rushstack/eslint-patch@npm:^1.0.6":
   version: 1.0.7
   resolution: "@rushstack/eslint-patch@npm:1.0.7"
@@ -6249,6 +6275,7 @@ __metadata:
     "@mdx-js/loader": ^1.6.22
     "@mdx-js/react": ^1.6.22
     "@next/mdx": ^11.1.2
+    "@reach/skip-nav": ^0.16.0
     "@sindresorhus/slugify": ^2.1.0
     "@types/fs-extra": ^9.0.13
     "@types/glob": ^7.1.4
@@ -15611,6 +15638,13 @@ resolve@^2.0.0-next.3:
   version: 0.3.0
   resolution: "timsort@npm:0.3.0"
   checksum: 1a66cb897dacabd7dd7c91b7e2301498ca9e224de2edb9e42d19f5b17c4b6dc62a8d4cbc64f28be82aaf1541cb5a78ab49aa818f42a2989ebe049a64af731e2a
+  languageName: node
+  linkType: hard
+
+"tiny-warning@npm:^1.0.3":
+  version: 1.0.3
+  resolution: "tiny-warning@npm:1.0.3"
+  checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
   languageName: node
   linkType: hard
 

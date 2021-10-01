@@ -8,6 +8,7 @@ export {
   IconChevronRight,
   IconCode,
   IconDuplicate,
+  IconLink,
   IconLockClosed,
   IconPlusSmall,
   IconSearch,

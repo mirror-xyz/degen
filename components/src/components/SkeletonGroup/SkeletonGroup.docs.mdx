@@ -8,8 +8,16 @@ Groups and manages loading state for multiple [`<Skeleton />`](/components/Skele
 import { SkeletonGroup } from 'degen'
 ```
 
-```tsx live=true
+```tsx expanded=true live=true
 <SkeletonGroup loading>
+  <Skeleton>Hello World</Skeleton>
+</SkeletonGroup>
+```
+
+## Wrap Content
+
+```tsx live=true
+<SkeletonGroup loading={getState('loading')}>
   <Stack direction="vertical">
     <Skeleton>
       <Heading level="1">Foo Bar Baz</Heading>
@@ -17,6 +25,18 @@ import { SkeletonGroup } from 'degen'
     <Skeleton>
       <Text>The quick brown fox jumped over the lazy dogs.</Text>
     </Skeleton>
+
+    <Button
+      disabled={getState('loading')}
+      loading={getState('loading')}
+      size="md"
+      onClick={() => {
+        toggleState('loading')
+        setTimeout(() => toggleState('loading'), 1000)
+      }}
+    >
+      Toggle Loading
+    </Button>
   </Stack>
 </SkeletonGroup>
 ```

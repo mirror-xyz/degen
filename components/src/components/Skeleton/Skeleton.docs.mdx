@@ -8,22 +8,34 @@ Loading placeholder.
 import { Skeleton } from 'degen'
 ```
 
-```tsx live=true
+```tsx expanded=true live=true
 <Skeleton loading>Hello World</Skeleton>
 ```
 
 ## Wrap Content
 
-Can wrap content and the container will automatically resize.
+Can wrap content and the container will automatically resize. Check out [`<SkeletonGroup />`](/components/SkeletonGroup) if you want to manage multiple skeletons.
 
 ```tsx live=true
 <Stack direction="vertical">
-  <Skeleton loading>
+  <Skeleton loading={getState('loading')}>
     <Heading level="1">Foo Bar Baz</Heading>
   </Skeleton>
-  <Skeleton loading>
+  <Skeleton loading={getState('loading')}>
     <Text>The quick brown fox jumped over the lazy dogs.</Text>
   </Skeleton>
+
+  <Button
+    disabled={getState('loading')}
+    loading={getState('loading')}
+    size="md"
+    onClick={() => {
+      toggleState('loading')
+      setTimeout(() => toggleState('loading'), 1000)
+    }}
+  >
+    Toggle Loading
+  </Button>
 </Stack>
 ```
 

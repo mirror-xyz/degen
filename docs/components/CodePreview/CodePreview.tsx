@@ -7,6 +7,7 @@ import { createPlayroomLink } from 'utils/playroom'
 
 import * as Components from '~/components'
 import { Box, Button, Stack, Text } from '~/components'
+import { usePlayroomStore } from '../../../playroom/src/PlayroomState'
 import { CopyButton } from '../CopyButton'
 import { Link } from '../Link'
 
@@ -14,7 +15,8 @@ import './styles.css'
 
 export type Props = {
   code: string
-  theme: PrismTheme
+  expanded?: boolean
+  theme?: PrismTheme
 }
 
 type State = {
@@ -25,14 +27,18 @@ const initialState = {
   expanded: false,
 }
 
-export const CodePreview = ({ code, theme }: Props) => {
-  const [state, setState] = React.useState<State>(initialState)
+export const CodePreview = ({ code, expanded = false, theme }: Props) => {
+  const [state, setState] = React.useState<State>({
+    ...initialState,
+    expanded,
+  })
+  const store = usePlayroomStore()
 
   return (
     <LiveProvider
       as="div"
       code={code}
-      scope={{ mdx, ...Components }}
+      scope={{ mdx, ...Components, ...store }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}
     >
