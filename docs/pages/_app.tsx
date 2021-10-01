@@ -21,8 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <script
           dangerouslySetInnerHTML={{
-            // prettier-ignore
-            __html: `!function(){try{var d=document.documentElement;var e=document.cookie.split(";").find(x=>x.includes("mode")).replace(" mode=","");if(e){${updateDOM('e')}}else{${updateDOM('light')};}}catch(t){}}();`,
+            __html: `!function(){try{var d=document.documentElement;var e=document.cookie.split(";").find(x=>x.includes("mode")).replace(" mode=","");if(e){d.setAttribute('data-theme',e)}else{d.setAttribute('data-theme','light');}}catch(t){}}();`,
           }}
           key="next-themes-script"
         />
@@ -33,10 +32,6 @@ const App = ({ Component, pageProps }: AppProps) => {
       </MDXProvider>
     </ThemeProvider>
   )
-}
-
-const updateDOM = (value: string) => {
-  return `d.setAttribute('data-theme', ${value})`
 }
 
 export default App

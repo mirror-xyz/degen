@@ -8,7 +8,7 @@ Trigger for operations.
 import { Button } from 'degen'
 ```
 
-```tsx live=true
+```tsx expanded=true live=true
 <Button>Connect Wallet</Button>
 ```
 
@@ -31,6 +31,16 @@ import { Button } from 'degen'
 <Stack wrap>
   <Button loading>Loading</Button>
   <Button disabled>Disabled</Button>
+  <Button
+    disabled={getState('loading')}
+    loading={getState('loading')}
+    onClick={() => {
+      toggleState('loading')
+      setTimeout(() => toggleState('loading'), 1000)
+    }}
+  >
+    Click Me
+  </Button>
 </Stack>
 ```
 
@@ -64,6 +74,9 @@ When `variant` is set to `highlight` or `primary`, you can pass a `tone`.
       <Button tone="red" variant="highlight">
         Red
       </Button>
+      <Button tone="indigo" variant="highlight">
+        Indigo
+      </Button>
     </Stack>
   </Stack>
 
@@ -81,6 +94,9 @@ When `variant` is set to `highlight` or `primary`, you can pass a `tone`.
       </Button>
       <Button tone="red" variant="primary">
         Red
+      </Button>
+      <Button tone="indigo" variant="primary">
+        Indigo
       </Button>
     </Stack>
   </Stack>

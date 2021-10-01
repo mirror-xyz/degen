@@ -3,6 +3,7 @@ import * as React from 'react'
 import NextImage from 'next/image'
 
 import { createPlayroomLink } from 'utils/playroom'
+import { useIsMounted } from 'utils/isMounted'
 
 import { Box, Button, Stack, Text } from '~/components'
 import { Link } from '../Link'
@@ -16,6 +17,7 @@ export type Props = {
 }
 
 export const Nav = ({ links }: Props) => {
+  const isMounted = useIsMounted()
   const router = useRouter()
   return (
     <Box flexDirection="column" height="full">
@@ -42,7 +44,7 @@ export const Nav = ({ links }: Props) => {
         className={styles.list}
         display={{ xs: 'none', md: 'block' }}
         height="full"
-        paddingBottom="36"
+        paddingBottom="48"
         paddingTop="5"
       >
         <Stack direction="vertical" space="10">
@@ -58,7 +60,7 @@ export const Nav = ({ links }: Props) => {
               <Stack direction="vertical" space="3">
                 {x.links.map((y) => (
                   <NavLink
-                    active={router.asPath === y.route}
+                    active={isMounted && router.asPath === y.route}
                     href={y.route}
                     key={y.route}
                   >

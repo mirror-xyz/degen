@@ -8,7 +8,7 @@ Layout for elements.
 import { Stack } from 'degen'
 ```
 
-```tsx live=true
+```tsx expanded=true live=true
 <Stack>
   <Box backgroundColor="foregroundSecondary" size="16" />
   <Box backgroundColor="foregroundSecondary" size="16" />
@@ -28,19 +28,19 @@ import { Stack } from 'degen'
 ## Direction
 
 ```tsx live=true
-<Stack direction="vertical">
+<Stack direction="vertical" space="8">
   <Stack direction="vertical">
     <Text variant="label">Horizontal</Text>
     <Stack direction="horizontal">
       <Box backgroundColor="foregroundSecondary" size="16" />
       <Box backgroundColor="foregroundSecondary" size="16" />
     </Stack>
+  </Stack>
+  <Stack direction="vertical">
+    <Text variant="label">Vertical</Text>
     <Stack direction="vertical">
-      <Text variant="label">Vertical</Text>
-      <Stack direction="vertical">
-        <Box backgroundColor="foregroundSecondary" size="16" />
-        <Box backgroundColor="foregroundSecondary" size="16" />
-      </Stack>
+      <Box backgroundColor="foregroundSecondary" size="16" />
+      <Box backgroundColor="foregroundSecondary" size="16" />
     </Stack>
   </Stack>
 </Stack>

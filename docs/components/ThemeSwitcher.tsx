@@ -2,10 +2,22 @@ import * as React from 'react'
 
 import { setThemeAccent, setThemeMode } from 'utils/cookies'
 
+import { useIsMounted } from 'utils/isMounted'
+
 import { Accent } from '~/tokens'
-import { Box, Button, Stack, useTheme } from '~/components'
+import {
+  Box,
+  Button,
+  Skeleton,
+  SkeletonGroup,
+  Stack,
+  useTheme,
+} from '~/components'
 
 export const ThemeSwitcher = () => {
+  // Theme doesn't resolve from localStorage until mounted
+  // Show skeletons to avoid hydration mismatch error
+  const isMounted = useIsMounted()
   const { accent, mode, setMode, setAccent } = useTheme()
 
   const toggleMode = React.useCallback(() => {
@@ -21,14 +33,21 @@ export const ThemeSwitcher = () => {
   }, [accent, setAccent])
 
   return (
-    <Stack space="3">
-      <Button size="md" variant="tertiary" onClick={toggleMode}>
-        <Box textTransform="capitalize">{mode}</Box>
-      </Button>
-      <Button size="md" variant="tertiary" onClick={toggleAccent}>
-        <Box textTransform="capitalize">{accent}</Box>
-      </Button>
-    </Stack>
+    <SkeletonGroup loading={!isMounted}>
+      <Stack space="3">
+        <Skeleton backgroundColor="foregroundTertiary">
+          <Button size="md" variant="tertiary" onClick={toggleMode}>
+            <Box textTransform="capitalize">{isMounted ? mode : 'light'}</Box>
+          </Button>
+        </Skeleton>
+
+        <Skeleton backgroundColor="foregroundTertiary">
+          <Button size="md" variant="tertiary" onClick={toggleAccent}>
+            <Box textTransform="capitalize">{isMounted ? accent : 'blue'}</Box>
+          </Button>
+        </Skeleton>
+      </Stack>
+    </SkeletonGroup>
   )
 }
 

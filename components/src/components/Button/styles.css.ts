@@ -47,6 +47,7 @@ const tone = {
   blue: getTone({ accent: vars.mode.colors.blue }),
   green: getTone({ accent: vars.mode.colors.green }),
   red: getTone({ accent: vars.mode.colors.red }),
+  indigo: getTone({ accent: vars.mode.colors.indigo }),
 }
 
 export type Tone = keyof typeof tone

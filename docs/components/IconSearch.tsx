@@ -38,7 +38,7 @@ export const IconSearch = () => {
         {filteredIcons.map((x) => (
           <Link href={`/components/${x.name}`} key={x.name}>
             <Box width={{ xs: '20', md: '24' }}>
-              <Stack align="center" direction="vertical">
+              <Stack align="center" direction="vertical" space="2">
                 <Box
                   backgroundColor="foregroundSecondary"
                   borderRadius="lg"

@@ -2,9 +2,10 @@ import * as React from 'react'
 import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
 
-import { Nav, NavProps } from 'components'
+import { Nav, NavProps, SkipNavContent, SkipNavLink } from 'components'
 
 import { Box, Heading } from '~/components'
+
 import { getLayout as getBaseLayout } from './site'
 
 type Props = {
@@ -31,6 +32,8 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
         )}
       </Head>
 
+      <SkipNavLink>Skip to content</SkipNavLink>
+
       <Box marginX="auto" maxWidth="320" minHeight="viewHeight" paddingX="6">
         <Box
           as="aside"
@@ -44,12 +47,13 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
         </Box>
 
         <Box as="main" marginLeft={{ md: '64' }}>
+          <SkipNavContent />
           <Box
             as="article"
             maxWidth="224"
             paddingBottom="10"
-            paddingRight={{ lg: '10' }}
             paddingTop="12"
+            paddingX={{ lg: '10' }}
           >
             <Box as="header" marginBottom="10">
               <Heading color="textPrimary" level="1">

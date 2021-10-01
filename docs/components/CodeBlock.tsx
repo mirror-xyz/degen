@@ -8,8 +8,11 @@ import dynamic from 'next/dynamic'
 import vsLight from 'prism-react-renderer/themes/vsLight'
 import vsDark from 'prism-react-renderer/themes/vsDark'
 
+import { useIsMounted } from 'utils/isMounted'
+
 import { vars } from '~/theme'
 import { Box, useTheme } from '~/components'
+import { PlayroomStateProvider } from '../../playroom/src/PlayroomState'
 
 import { CopyButton } from './CopyButton'
 import type { Props as CodePreviewProps } from './CodePreview'
@@ -31,23 +34,32 @@ const CodePreview = dynamic<CodePreviewProps>(
 type Props = {
   children: string
   className: string
-  live: boolean
+  live?: boolean
+  expanded?: boolean
 }
 
-export const CodeBlock = ({ children, className, live }: Props) => {
+export const CodeBlock = ({ children, className, live, expanded }: Props) => {
+  const isMounted = useIsMounted()
   const { mode } = useTheme()
   const theme = mode === 'light' ? vsLight : vsDark
-  const modifiedTheme: PrismTheme = {
-    ...theme,
-    plain: {
-      ...theme.plain,
-      color: vars.colors.foreground,
-      backgroundColor: vars.colors.backgroundSecondary,
-    },
-  }
+  const modifiedTheme: PrismTheme | undefined = isMounted
+    ? {
+        ...theme,
+        plain: {
+          ...theme.plain,
+          color: vars.colors.foreground,
+          backgroundColor: vars.colors.backgroundSecondary,
+        },
+      }
+    : undefined
 
   const code = children.trim()
-  if (live) return <CodePreview code={code} theme={modifiedTheme} />
+  if (live)
+    return (
+      <PlayroomStateProvider>
+        <CodePreview code={code} expanded={expanded} theme={modifiedTheme} />
+      </PlayroomStateProvider>
+    )
 
   const language = className?.replace(/language-/, '') as Language
   return (

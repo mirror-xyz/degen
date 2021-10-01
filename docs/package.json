@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@reach/skip-nav": "^0.16.0",
     "@sindresorhus/slugify": "^2.1.0",
     "@vanilla-extract/css-utils": "^0.1.1",
     "copy-to-clipboard": "^3.3.1",
