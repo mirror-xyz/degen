@@ -1,6 +1,7 @@
 import { MDXProviderProps } from '@mdx-js/react'
+import slugify from '@sindresorhus/slugify'
 
-import { Box, Heading, Text } from '~/components'
+import { Box, Heading, IconLink, Stack, Text } from '~/components'
 
 import { CodeBlock } from '../CodeBlock'
 import { Link } from '../Link'
@@ -16,11 +17,27 @@ export const MDX: MDXProviderProps['components'] = {
       </Heading>
     </Box>
   ),
-  h2: ({ children }) => (
-    <Box marginBottom="6" marginTop="9">
-      <Heading color="textPrimary">{children}</Heading>
-    </Box>
-  ),
+  h2: ({ children }) => {
+    const id = slugify(children)
+    return (
+      <Box
+        as="a"
+        className={styles.anchorParent}
+        href={`#${id}`}
+        marginBottom="6"
+        marginTop="9"
+      >
+        <Stack align="center" space="3">
+          <Heading color="textPrimary" id={id}>
+            {children}
+          </Heading>
+          <Box className={styles.anchor}>
+            <IconLink tone="textSecondary" />
+          </Box>
+        </Stack>
+      </Box>
+    )
+  },
   inlineCode: ({ children }) => (
     <Box
       as="code"

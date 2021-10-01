@@ -72,13 +72,19 @@ export const CodeBlock = ({ children, className, live }: Props) => {
           </Box>
 
           {tokens.map((line, i) => (
-            <Box key={i} {...getLineProps({ line, key: i })}>
+            <Box
+              key={i}
+              paddingRight="8"
+              whiteSpace="pre-wrap"
+              {...getLineProps({ line, key: i })}
+            >
               {line.map((token, key) => (
                 <Box
                   as="span"
                   fontFamily="mono"
                   fontSize="base"
                   key={key}
+                  lineHeight="normal"
                   {...getTokenProps({ token, key })}
                 />
               ))}

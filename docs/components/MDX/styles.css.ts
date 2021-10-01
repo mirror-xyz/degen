@@ -13,3 +13,14 @@ export const link = style([
     textUnderlineOffset: '0.2em',
   }),
 ])
+
+export const anchorParent = style({})
+
+export const anchor = style({
+  visibility: 'hidden',
+  selectors: {
+    [`${anchorParent}:hover &`]: {
+      visibility: 'visible',
+    },
+  },
+})

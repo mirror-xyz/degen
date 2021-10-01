@@ -8,6 +8,7 @@ const { glob } = require('glob')
 
 const path = require('path')
 
+console.log('Generating paths...')
 const pagePaths = glob
   .sync('./pages/!(components)/*.mdx', {
     cwd: process.cwd(),
@@ -49,6 +50,7 @@ const navLinks = [
     links: componentPaths,
   },
 ]
+console.log('Done.')
 
 const config = {
   env: {

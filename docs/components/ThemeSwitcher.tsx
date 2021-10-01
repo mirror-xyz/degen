@@ -21,11 +21,11 @@ export const ThemeSwitcher = () => {
   }, [accent, setAccent])
 
   return (
-    <Stack space="2">
-      <Button size="md" variant="transparentSecondary" onClick={toggleMode}>
+    <Stack space="3">
+      <Button size="md" variant="tertiary" onClick={toggleMode}>
         <Box textTransform="capitalize">{mode}</Box>
       </Button>
-      <Button size="md" variant="transparentSecondary" onClick={toggleAccent}>
+      <Button size="md" variant="tertiary" onClick={toggleAccent}>
         <Box textTransform="capitalize">{accent}</Box>
       </Button>
     </Stack>

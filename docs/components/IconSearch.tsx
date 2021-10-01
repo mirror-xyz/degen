@@ -34,10 +34,10 @@ export const IconSearch = () => {
         }
       />
 
-      <Stack space="6" wrap>
+      <Stack space={{ xs: '4', md: '6' }} wrap>
         {filteredIcons.map((x) => (
           <Link href={`/components/${x.name}`} key={x.name}>
-            <Box width="24">
+            <Box width={{ xs: '20', md: '24' }}>
               <Stack align="center" direction="vertical">
                 <Box
                   backgroundColor="foregroundSecondary"
@@ -46,7 +46,9 @@ export const IconSearch = () => {
                   padding="4"
                   width="max"
                 >
-                  {React.createElement(x.Component as any, { size: '12' })}
+                  {React.createElement(x.Component as any, {
+                    size: { xs: '10', md: '12' },
+                  })}
                 </Box>
                 <Text align="center" color="text" ellipsis size="label">
                   {x.name.replace('Icon', '')}

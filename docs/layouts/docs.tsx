@@ -1,20 +1,11 @@
 import * as React from 'react'
 import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
 
 import { Nav, NavProps } from 'components'
 
 import { Box, Heading } from '~/components'
-
 import { getLayout as getBaseLayout } from './site'
-
-const ThemeSwitcher = dynamic<Record<string, any>>(
-  () => import('../components/ThemeSwitcher').then((x) => x.ThemeSwitcher),
-  {
-    ssr: false,
-  },
-)
 
 type Props = {
   meta: {
@@ -40,28 +31,25 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
         )}
       </Head>
 
-      <Box>
+      <Box marginX="auto" maxWidth="320" minHeight="viewHeight" paddingX="6">
         <Box
-          display={{ xs: 'none', xl: 'block' }}
-          inset="0"
-          position="fixed"
-          width="56"
+          as="aside"
+          height={{ md: 'viewHeight' }}
+          paddingRight={{ md: '12' }}
+          paddingTop="12"
+          position={{ md: 'fixed' }}
+          width={{ md: '64' }}
         >
           <Nav links={links} />
-
-          <Box bottom="5" left="5" position="absolute">
-            <ThemeSwitcher />
-          </Box>
         </Box>
 
-        <Box as="main">
+        <Box as="main" marginLeft={{ md: '64' }}>
           <Box
             as="article"
-            marginX="auto"
             maxWidth="224"
             paddingBottom="10"
-            paddingTop="14"
-            paddingX="8"
+            paddingRight={{ lg: '10' }}
+            paddingTop="12"
           >
             <Box as="header" marginBottom="10">
               <Heading color="textPrimary" level="1">

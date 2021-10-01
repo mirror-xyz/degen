@@ -14,6 +14,7 @@ type Props = {
   as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   children?: React.ReactNode
   color?: Atoms['color']
+  id?: string
 } & styles.Variants
 
 export const Heading = ({
@@ -21,6 +22,7 @@ export const Heading = ({
   as,
   children,
   color = 'foreground',
+  id,
   level = '2',
 }: Props) => {
   return (
@@ -31,6 +33,7 @@ export const Heading = ({
       })}
       color={color}
       fontFamily="sans"
+      id={id}
       textAlign={align}
     >
       {children}
