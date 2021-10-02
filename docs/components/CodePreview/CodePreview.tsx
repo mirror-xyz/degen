@@ -55,6 +55,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
             <LiveError style={{ margin: 0 }} />
           </Text>
         </Box>
+
         {state.expand && (
           <Box position="relative">
             <LiveEditor />
