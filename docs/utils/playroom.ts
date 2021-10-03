@@ -2,7 +2,10 @@ import { CreateUrlOptions, createUrl } from 'playroom'
 
 export const createPlayroomLink = (options: CreateUrlOptions = {}) => {
   return createUrl({
-    baseUrl: process.env.NEXT_PUBLIC_PLAYROOM_URL,
+    baseUrl:
+      process.env.NODE_ENV === 'development'
+        ? 'http://localhost:8082'
+        : '/playroom',
     widths: [640],
     ...options,
   })
