@@ -59,16 +59,33 @@ const config = {
   experimental: {
     externalDir: true,
   },
+  async rewrites() {
+    if (process.env.NODE_ENV === 'production')
+      return [
+        {
+          source: '/playroom/preview',
+          destination: '/playroom/preview/index.html',
+        },
+        {
+          source: '/playroomframe.html',
+          destination: '/playroom/frame.html',
+        },
+        {
+          source: '/playroom',
+          destination: '/playroom/index.html',
+        },
+      ]
+    return []
+  },
   async redirects() {
-    return process.env.NODE_ENV === 'development'
-      ? [
-          {
-            source: '/playroom',
-            destination: 'http://localhost:8082',
-            permanent: true,
-          },
-        ]
-      : []
+    if (process.env.NODE_ENV === 'production') return []
+    return [
+      {
+        source: '/playroom',
+        destination: 'http://localhost:8082',
+        permanent: false,
+      },
+    ]
   },
   pageExtensions: ['mdx', 'tsx'],
   reactStrictMode: true,

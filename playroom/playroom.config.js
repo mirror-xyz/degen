@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = {
   components: './src/components.ts',
   baseUrl: '/playroom',
-  outputPath: './dist',
+  outputPath: '../docs/public/playroom',
   title: 'Mirror',
   snippets: './src/snippets.ts',
   themes: './src/themes.ts',

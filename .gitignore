@@ -7,12 +7,11 @@ yarn-debug.log*
 yarn-error.log*
 
 docs/.next/
+docs/public/playroom/
 
 components/dist/
 components/src/components/icons/index.ts
 components/src/components/icons/Icon*
-
-playroom/dist/
 
 .yarn/*
 !.yarn/patches
