@@ -125,7 +125,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
           import { ${svgName} } from 'degen'
           \`\`\`
 
-          \`\`\`tsx live=true
+          \`\`\`tsx live=true expand=true
           <${svgName} />
           \`\`\`
         `,

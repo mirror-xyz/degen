@@ -38,5 +38,6 @@ export type Theme = {
   lineHeights: Tokens['lineHeights']
   mode: ThemeMode
   radii: Tokens['radii']
+  shadows: Tokens['shadows']
   space: Tokens['space']
 }

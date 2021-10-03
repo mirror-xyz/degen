@@ -11,7 +11,8 @@ import matter from 'gray-matter'
 
 import { MDX } from 'components'
 import { getLayout } from 'layouts/docs'
-import { getComponentName, getComponentPaths, getStaticTypes } from 'utils/fs'
+import { getComponentName, getComponentPaths } from 'utils/getComponent'
+import { getStaticTypes } from 'utils/getStaticTypes'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({
@@ -52,13 +53,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const Page: NextPageWithLayout<Props> = ({ source, staticTypes }: Props) => {
-  console.log(staticTypes)
-  return (
-    <div>
-      <MDXRemote {...source} components={MDX} />
-    </div>
-  )
+const Page: NextPageWithLayout<Props> = ({ source }: Props) => {
+  return <MDXRemote {...source} components={MDX} />
 }
 
 Page.getLayout = (page) =>

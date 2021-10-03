@@ -37,7 +37,7 @@ export const CopyButton = ({ content }: Props) => {
   }, [content])
 
   return (
-    <Button shape="square" size="medium" variant="tertiary" onClick={onClick}>
+    <Button shape="square" size="medium" variant="secondary" onClick={onClick}>
       {state.copied ? (
         <IconCheck title="Copied" titleId="copied" />
       ) : (

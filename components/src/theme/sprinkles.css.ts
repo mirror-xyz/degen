@@ -7,6 +7,7 @@ import {
   defineProperties,
 } from '@vanilla-extract/sprinkles'
 import { calc } from '@vanilla-extract/css-utils'
+import { createVar } from '@vanilla-extract/css'
 
 import { vars } from './vars.css'
 
@@ -185,6 +186,8 @@ const unresponsiveAtomicStyles = defineProperties({
   },
 })
 
+const boxShadowColorVar = createVar()
+
 const selectorAtomicStyles = defineProperties({
   conditions: {
     base: {},
@@ -196,6 +199,25 @@ const selectorAtomicStyles = defineProperties({
   properties: {
     backgroundColor: vars.colors,
     borderColor: vars.colors,
+    boxShadow: {
+      '1': {
+        vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
+        boxShadow: `${vars.shadows['1']} ${boxShadowColorVar}`,
+      },
+      '0.5': {
+        vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
+        boxShadow: `${vars.shadows['0.5']} ${boxShadowColorVar}`,
+      },
+      '0': {
+        vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
+        boxShadow: `${vars.shadows['0']} ${boxShadowColorVar}`,
+      },
+    },
+    boxShadowColor: {
+      foregroundSecondary: {
+        vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
+      },
+    },
     color: vars.colors,
   },
 })

@@ -1,4 +1,5 @@
 import { borderStyles, borderWidths, radii } from './border'
+import { shadows } from './shadows'
 import { colors, shades } from './color'
 import { space } from './space'
 import {
@@ -20,6 +21,7 @@ export const tokens = {
   lineHeights,
   radii,
   shades,
+  shadows,
   space,
 }
 

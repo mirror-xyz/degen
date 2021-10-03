@@ -17,7 +17,7 @@ const initialState: State = {
   query: '',
 }
 
-export const IconSearch = () => {
+export const SearchIcons = () => {
   const [state, setState] = React.useState<State>(initialState)
 
   const filteredIcons = React.useMemo(() => {
@@ -40,10 +40,14 @@ export const IconSearch = () => {
             <Box width={{ xs: '20', md: '24' }}>
               <Stack align="center" direction="vertical" space="2">
                 <Box
-                  backgroundColor="foregroundSecondary"
+                  backgroundColor="foregroundTertiary"
                   borderRadius="2"
+                  boxShadow={{ base: '0', hover: '1', active: '0.5' }}
+                  boxShadowColor="foregroundSecondary"
                   color="foreground"
                   padding="4"
+                  transitionDuration={150}
+                  transitionProperty="shadow"
                   width="max"
                 >
                   {React.createElement(x.Component as any, {

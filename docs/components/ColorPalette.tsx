@@ -59,12 +59,12 @@ export const ColorPalette = ({ type }: Props) => {
                 />
               </Box>
 
-              <Box>
+              <Stack direction="vertical" space="1.5">
                 <Text weight="medium">{y.name}</Text>
                 <Text font="mono" size="small">
                   {y.value}
                 </Text>
-              </Box>
+              </Stack>
             </Stack>
           </Box>
         ))}
