@@ -1,6 +1,6 @@
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
-import { atoms } from '~/theme'
+import { atoms } from '~/css'
 
 const level = {
   '1': atoms({

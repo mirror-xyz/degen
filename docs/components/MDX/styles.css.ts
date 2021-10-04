@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { atoms, vars } from '~/theme'
+import { atoms, vars } from '~/css'
 
 export const link = style([
   atoms({

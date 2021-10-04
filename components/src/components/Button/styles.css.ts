@@ -1,7 +1,7 @@
 import { createVar, fallbackVar, style } from '@vanilla-extract/css'
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
-import { atoms, rgb, vars } from '~/theme'
+import { atoms, rgb, vars } from '~/css'
 
 const shape = {
   circle: atoms({
@@ -34,16 +34,27 @@ const size = {
 export type Size = keyof typeof size
 
 const toneAccentVar = createVar()
+const toneAccentTextVar = createVar()
 
-const getTone = ({ accent }: { accent: string }) =>
+const getTone = ({
+  accent,
+  accentText = vars.mode.colors.white,
+}: {
+  accent: string
+  accentText?: string
+}) =>
   style({
     vars: {
       [toneAccentVar]: accent,
+      [toneAccentTextVar]: accentText,
     },
   })
 
 const tone = {
-  accent: getTone({ accent: vars.mode.colors.accent }),
+  accent: getTone({
+    accent: vars.mode.colors.accent,
+    accentText: vars.mode.colors.accentText,
+  }),
   blue: getTone({ accent: vars.mode.colors.blue }),
   green: getTone({ accent: vars.mode.colors.green }),
   red: getTone({ accent: vars.mode.colors.red }),
@@ -81,7 +92,7 @@ const getVariant = ({
 
 const variant = {
   highlight: getVariant({
-    text: rgb(vars.mode.colors.accentText),
+    text: rgb(toneAccentTextVar),
     background: rgb(toneAccentVar),
   }),
   primary: getVariant({

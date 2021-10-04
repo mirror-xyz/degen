@@ -1,7 +1,7 @@
 import * as React from 'react'
 import clsx, { ClassValue } from 'clsx'
 
-import { Atoms, atoms, sprinkles } from '~/theme'
+import { Atoms, atoms, sprinkles } from '~/css'
 
 type HTMLProperties = Omit<
   React.AllHTMLAttributes<HTMLElement>,

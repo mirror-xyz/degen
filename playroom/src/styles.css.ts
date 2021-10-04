@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css'
 
-import { vars } from '~/theme'
+import { vars } from '~/css'
 
 globalStyle('*, ::before, ::after', {
   boxSizing: 'border-box',

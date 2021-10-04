@@ -10,7 +10,7 @@ import vsDark from 'prism-react-renderer/themes/vsDark'
 
 import { useIsMounted } from 'utils/isMounted'
 
-import { vars } from '~/theme'
+import { vars } from '~/css'
 import { Box, useTheme } from '~/components'
 import { PlayroomStateProvider } from '../../playroom/src/PlayroomState'
 

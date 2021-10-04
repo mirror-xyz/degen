@@ -5,7 +5,7 @@ import {
 } from '@reach/skip-nav'
 import '@reach/skip-nav/styles.css'
 
-import { vars } from '~/theme'
+import { vars } from '~/css'
 
 export const SkipNavLink = ({ children, ...rest }: SkipNavLinkProps) => {
   return (

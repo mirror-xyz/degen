@@ -1,7 +1,7 @@
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 import { style } from '@vanilla-extract/css'
 
-import { atoms } from '~/theme'
+import { atoms } from '~/css'
 
 const variant = {
   extraLarge: atoms({
