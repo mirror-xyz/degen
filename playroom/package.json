@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "build": "playroom build",
-    "clean": "rimraf dist",
+    "clean": "rimraf ../docs/public/playroom",
     "dev": "playroom start",
     "lint:types": "tsc --noEmit"
   },
@@ -25,7 +25,7 @@
     "css-loader": "^6.3.0",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.3.0",
-    "playroom": "0.27.7",
+    "playroom": "patch:playroom@0.27.7#../.yarn/patches/playroom.patch",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-element-to-jsx-string": "^14.3.2",

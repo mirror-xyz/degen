@@ -12415,7 +12415,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"playroom@npm:0.27.7":
+playroom@0.27.7:
   version: 0.27.7
   resolution: "playroom@npm:0.27.7"
   dependencies:
@@ -12486,6 +12486,77 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"playroom@patch:playroom@0.27.7#../.yarn/patches/playroom.patch::locator=playroom%40workspace%3Aplayroom":
+  version: 0.27.7
+  resolution: "playroom@patch:playroom@npm%3A0.27.7#../.yarn/patches/playroom.patch::version=0.27.7&hash=9dc6e8&locator=playroom%40workspace%3Aplayroom"
+  dependencies:
+    "@babel/cli": ^7.13.10
+    "@babel/core": ^7.13.10
+    "@babel/preset-env": ^7.13.10
+    "@babel/preset-react": ^7.12.13
+    "@babel/preset-typescript": ^7.13.0
+    "@babel/standalone": ^7.13.11
+    "@soda/friendly-errors-webpack-plugin": ^1.8.0
+    "@types/base64-url": ^2.2.0
+    "@types/codemirror": ^0.0.108
+    "@types/dedent": ^0.7.0
+    "@types/history": ^4.7.8
+    "@types/lodash": ^4.14.168
+    "@types/lz-string": ^1.3.34
+    "@types/prettier": ^2.2.3
+    "@types/react": ^17.0.3
+    "@types/react-dom": ^17.0.2
+    autoprefixer: ^10.2.5
+    babel-loader: ^8.2.2
+    classnames: ^2.3.1
+    codemirror: ^5.59.4
+    command-line-args: ^5.1.1
+    command-line-usage: ^6.1.1
+    copy-to-clipboard: ^3.3.1
+    css-loader: ^5.1.3
+    current-git-branch: ^1.1.0
+    dedent: ^0.7.0
+    fast-glob: ^3.2.5
+    find-up: ^5.0.0
+    fuzzy: ^0.1.3
+    history: ^5.0.0
+    html-webpack-plugin: ^5.3.1
+    intersection-observer: ^0.12.0
+    less: ^4.1.1
+    less-loader: ^8.0.0
+    less-vars-loader: ^1.1.0
+    localforage: ^1.9.0
+    locate-path: ^6.0.0
+    lodash: ^4.17.21
+    lz-string: ^1.4.4
+    parse-prop-types: ^0.3.0
+    portfinder: ^1.0.28
+    postcss-loader: ^5.2.0
+    prettier: ^2.2.1
+    prop-types: ^15.7.2
+    query-string: ^6.14.1
+    re-resizable: ^6.9.0
+    react-codemirror2: ^7.2.1
+    react-docgen-typescript: ^2.1.0
+    react-use: ^17.2.1
+    read-pkg-up: ^7.0.1
+    scope-eval: ^1.0.0
+    style-loader: ^3.2.1
+    typescript: ^4.3.2
+    url-join: ^4.0.1
+    use-debounce: ^3.3.0
+    webpack: ^5.26.0
+    webpack-dev-server: ^4.2.0
+    webpack-merge: ^5.7.3
+  peerDependencies:
+    react: ^16.8 || ^17.0
+    react-dom: ^16.8 || ^17.0
+  bin:
+    playroom: bin/cli.js
+  checksum: a167bc9a2757c1788d54ee2889d8bc499ab1e9cf18146e844b1b19bb1d83568368cad302463da4458c967059c269e72fc864e8fa0026c91b7a9ab360be0c0764
+  languageName: node
+  linkType: hard
+
 "playroom@workspace:playroom":
   version: 0.0.0-use.local
   resolution: "playroom@workspace:playroom"
@@ -12505,7 +12576,7 @@ fsevents@^1.2.7:
     css-loader: ^6.3.0
     lodash: ^4.17.21
     mini-css-extract-plugin: ^2.3.0
-    playroom: 0.27.7
+    playroom: "patch:playroom@0.27.7#../.yarn/patches/playroom.patch"
     react: ^17.0.2
     react-dom: ^17.0.2
     react-element-to-jsx-string: ^14.3.2

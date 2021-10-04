@@ -60,6 +60,7 @@ const config = {
     externalDir: true,
   },
   async rewrites() {
+    // Rewrite playroom urls for production
     if (process.env.NODE_ENV === 'production')
       return [
         {
@@ -67,7 +68,7 @@ const config = {
           destination: '/playroom/preview/index.html',
         },
         {
-          source: '/playroomframe.html',
+          source: '/playroom/frame.html',
           destination: '/playroom/frame.html',
         },
         {
@@ -79,6 +80,7 @@ const config = {
   },
   async redirects() {
     if (process.env.NODE_ENV === 'production') return []
+    // Redirect playroom to local dev server in development
     return [
       {
         source: '/playroom',
