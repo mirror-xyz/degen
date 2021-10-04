@@ -24,16 +24,8 @@ Can wrap content and the container will automatically resize. Check out [`Skelet
     <Text>The quick brown fox jumped over the lazy dogs.</Text>
   </Skeleton>
 
-  <Button
-    disabled={getState('loading')}
-    loading={getState('loading')}
-    size="medium"
-    onClick={() => {
-      toggleState('loading')
-      setTimeout(() => toggleState('loading'), 1000)
-    }}
-  >
-    Toggle Loading
+  <Button size="medium" onClick={() => toggleState('loading')}>
+    Toggle Skeleton
   </Button>
 </Stack>
 ```

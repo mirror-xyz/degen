@@ -19,26 +19,26 @@ const App = ({ Component, pageProps }: AppProps) => {
   // Disable smooth scroll for route changes
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
-    const css = document.createElement('style')
-
-    const hashChangeStart = () => {
-      css.appendChild(
-        document.createTextNode(`*{scroll-behavior:auto!important}`),
+    const routeChangeStart = () => {
+      document.documentElement.style.setProperty(
+        'scroll-behavior',
+        'auto',
+        'important',
       )
-      document.head.appendChild(css)
     }
-    const hashChangeComplete = () => {
-      ;(() => window.getComputedStyle(document.body))()
-      // Wait for next tick before removing
-      setTimeout(() => document.head.removeChild(css), 1)
+    const routeChangeComplete = () => {
+      setTimeout(
+        () => document.documentElement.style.removeProperty('scroll-behavior'),
+        1,
+      )
     }
 
-    router.events.on('routeChangeStart', hashChangeStart)
-    router.events.on('routeChangeComplete', hashChangeComplete)
+    router.events.on('routeChangeStart', routeChangeStart)
+    router.events.on('routeChangeComplete', routeChangeComplete)
 
     return () => {
-      router.events.off('routeChangeStart', hashChangeStart)
-      router.events.off('routeChangeComplete', hashChangeComplete)
+      router.events.off('routeChangeStart', routeChangeStart)
+      router.events.off('routeChangeComplete', routeChangeComplete)
     }
   }, [])
   /* eslint-enable react-hooks/exhaustive-deps */
