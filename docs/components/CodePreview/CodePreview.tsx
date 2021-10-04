@@ -6,7 +6,7 @@ import { PrismTheme } from 'prism-react-renderer'
 import { createPlayroomLink } from 'utils/playroom'
 
 import * as Components from '~/components'
-import { Box, Button, Stack, Text } from '~/components'
+import { Box, Button, Stack, Text, useTheme } from '~/components'
 import { usePlayroomStore } from '../../../playroom/src/PlayroomState'
 import { CopyButton } from '../CopyButton'
 import { Link } from '../Link'
@@ -33,12 +33,13 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
     expand,
   })
   const store = usePlayroomStore()
+  const themeValue = useTheme()
 
   return (
     <LiveProvider
       as="div"
       code={code}
-      scope={{ mdx, ...Components, ...store }}
+      scope={{ mdx, ...Components, ...store, ...themeValue }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}
     >
