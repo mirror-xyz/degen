@@ -22,7 +22,9 @@ export const SearchIcons = () => {
 
   const filteredIcons = React.useMemo(() => {
     if (!state.query?.length) return icons
-    return icons.filter((x) => x.name.toLowerCase().includes(state.query))
+    return icons.filter((x) =>
+      x.name.toLowerCase().includes(state.query.toLowerCase()),
+    )
   }, [state.query])
 
   return (

@@ -26,5 +26,8 @@ it('should expose correct exports', () => {
     'ThemeProvider',
     'useTheme',
     'VisuallyHidden',
+    // css
+    'atoms',
+    'vars',
   ])
 })

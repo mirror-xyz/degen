@@ -12,8 +12,9 @@ import { createVar } from '@vanilla-extract/css'
 import { vars } from './vars.css'
 
 // Ensure reset has lowest specificity
-// DO NOT MOVE THIS LINE
+/* DO NOT MOVE THIS LINE */
 import './reset.css'
+/* DO NOT MOVE THIS LINE */
 
 export const breakpoints = {
   sm: 640,
@@ -77,7 +78,7 @@ const responsiveAtomicStyles = defineProperties({
     borderTopLeftRadius: vars.radii,
     borderTopRightRadius: vars.radii,
     bottom: vars.space,
-    display: ['block', 'flex', 'grid', 'inline-block', 'inline-flex', 'none'],
+    display: ['block', 'flex', 'grid', 'inline-block', 'none'],
     flex: {
       1: '1 1 0%',
       auto: '1 1 auto',
@@ -91,12 +92,7 @@ const responsiveAtomicStyles = defineProperties({
     gap: vars.space,
     height: vars.space,
     inset: vars.space,
-    justifyContent: [
-      ...flexAlignment,
-      'space-around',
-      'space-between',
-      'space-evenly',
-    ],
+    justifyContent: [...flexAlignment, 'space-around', 'space-between'],
     justifySelf: flexAlignment,
     left: vars.space,
     letterSpacing: vars.letterSpacings,

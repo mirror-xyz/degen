@@ -21,10 +21,10 @@ export default defineConfig({
     tsconfigPaths(),
     dts({
       exclude: [
+        'src/**/*.docs.mdx',
         'src/**/*.css.ts',
         'src/**/*.snippets.tsx',
         'src/**/*.test.ts*',
-        'src/playroom/**',
       ],
       beforeWriteFile: (filePath, content) => ({
         content,

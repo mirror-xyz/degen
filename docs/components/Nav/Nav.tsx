@@ -98,7 +98,9 @@ export const Nav = ({ links }: Props) => {
               <Stack direction="vertical" space="3">
                 {x.links.map((y) => (
                   <NavLink
-                    active={isMounted && router.asPath === y.route}
+                    active={
+                      isMounted && router.asPath.split('#')[0] === y.route
+                    }
                     href={y.route}
                     key={y.route}
                   >

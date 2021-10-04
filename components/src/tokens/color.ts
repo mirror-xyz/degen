@@ -50,6 +50,7 @@ export const colors = {
     foreground: '0, 0, 0',
     groupBackground: '255, 255, 255',
     groupBorder: '0, 0, 0',
+    white: '255, 255, 255',
     ...accents.light,
   },
   dark: {
@@ -59,6 +60,7 @@ export const colors = {
     foreground: '255, 255, 255',
     groupBackground: '10, 10, 10',
     groupBorder: '255, 255, 255',
+    white: '255, 255, 255',
     ...accents.dark,
   },
 }

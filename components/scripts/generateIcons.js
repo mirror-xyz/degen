@@ -86,7 +86,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
       dedent`
           import * as React from 'react'
 
-          import { Atoms } from '~/theme'
+          import { Atoms } from '~/css'
           import { Box } from '../../Box'
           import { OptionalTitle } from '../types'
           import { ${componentName} } from './${componentName}'

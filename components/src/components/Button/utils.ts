@@ -1,4 +1,4 @@
-import { Atoms } from '~/theme'
+import { Atoms } from '~/css'
 import { Size } from './styles.css'
 
 export const getCenterProps = (

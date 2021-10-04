@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Box, Stack, Text } from '~/components'
-import { vars } from '~/theme'
+import { vars } from '~/css'
 
 type Props = {
   type: 'accent' | 'functional'

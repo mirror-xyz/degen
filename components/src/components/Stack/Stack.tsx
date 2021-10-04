@@ -1,10 +1,6 @@
 import * as React from 'react'
 
-import {
-  Atoms,
-  OptionalResponsiveObject,
-  OptionalResponsiveValue,
-} from '~/theme'
+import { Atoms, OptionalResponsiveObject, OptionalResponsiveValue } from '~/css'
 import { ReactNodeNoStrings } from '~/types'
 
 import { Box } from '../Box'
