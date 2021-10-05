@@ -44,12 +44,13 @@ export const SearchIcons = () => {
                 <Box
                   backgroundColor="foregroundTertiary"
                   borderRadius="2"
-                  boxShadow={{ base: '0', hover: '1', active: '0.5' }}
-                  boxShadowColor="foregroundSecondary"
+                  boxShadow={{ base: '1', hover: '1', active: '0.5' }}
+                  boxShadowColor={{ base: 'background' }}
                   color="foreground"
                   padding="4"
                   transitionDuration={150}
                   transitionProperty="shadow"
+                  transitionTimingFunction="inOut"
                   width="max"
                 >
                   {React.createElement(x.Component as any, {

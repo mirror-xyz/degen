@@ -87,7 +87,10 @@ const responsiveAtomicStyles = defineProperties({
     },
     flexDirection: ['column', 'row'],
     flexWrap: ['wrap', 'nowrap'],
-    fontSize: vars.fontSizes,
+    fontSize: {
+      ...vars.fontSizes,
+      inherit: 'inherit',
+    },
     fontWeight: vars.fontWeights,
     gap: vars.space,
     height: vars.space,
@@ -210,6 +213,9 @@ const selectorAtomicStyles = defineProperties({
       },
     },
     boxShadowColor: {
+      background: {
+        vars: { [boxShadowColorVar]: vars.colors.background },
+      },
       foregroundSecondary: {
         vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
       },
