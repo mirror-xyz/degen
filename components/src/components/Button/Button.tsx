@@ -58,7 +58,7 @@ export const Button = React.forwardRef(
     else if (variant === 'highlight' || variant === 'primary') tone = 'accent'
 
     const labelContent = (
-      <Text color="inherit" ellipsis weight="medium">
+      <Text color="inherit" ellipsis size="inherit" weight="medium">
         {children}
       </Text>
     )
@@ -84,8 +84,8 @@ export const Button = React.forwardRef(
       <Box
         as="button"
         className={styles.variants({
-          disabled,
           center,
+          disabled,
           shape,
           size,
           tone,

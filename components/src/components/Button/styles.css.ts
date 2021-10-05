@@ -58,31 +58,26 @@ const tone = {
   blue: getTone({ accent: vars.mode.colors.blue }),
   green: getTone({ accent: vars.mode.colors.green }),
   red: getTone({ accent: vars.mode.colors.red }),
-  indigo: getTone({ accent: vars.mode.colors.indigo }),
 }
 
 export type Tone = keyof typeof tone
 
 const variantTextVar = createVar()
 const variantBackgroundVar = createVar()
-const variantTextHoverVar = createVar()
 const variantBackgroundHoverVar = createVar()
 
 const getVariant = ({
   background,
   backgroundHover,
   text,
-  textHover,
 }: {
   background?: string
   backgroundHover?: string
   text: string
-  textHover?: string
 }) =>
   style({
     vars: {
       [variantTextVar]: text,
-      ...(textHover ? { [variantTextHoverVar]: textHover } : {}),
       ...(background ? { [variantBackgroundVar]: background } : {}),
       ...(backgroundHover
         ? { [variantBackgroundHoverVar]: backgroundHover }
@@ -149,31 +144,28 @@ export const variants = recipe({
     style({
       color: variantTextVar,
       background: variantBackgroundVar,
-      boxShadow: `0 0 0 0 ${variantBackgroundVar}`,
+      boxShadow: `${vars.shadows['0']} ${variantBackgroundVar}`,
       ':hover': {
-        color: fallbackVar(variantTextHoverVar, variantTextVar),
         background: fallbackVar(
           variantBackgroundHoverVar,
           variantBackgroundVar,
         ),
-        boxShadow: `0 0 0 0.25rem ${fallbackVar(
+        boxShadow: `${vars.shadows['1']} ${fallbackVar(
           variantBackgroundHoverVar,
           variantBackgroundVar,
         )}`,
       },
       ':active': {
-        color: fallbackVar(variantTextHoverVar, variantTextVar),
         background: fallbackVar(
           variantBackgroundHoverVar,
           variantBackgroundVar,
         ),
-        boxShadow: `0 0 0 0.125rem ${fallbackVar(
+        boxShadow: `${vars.shadows['0.5']} ${fallbackVar(
           variantBackgroundHoverVar,
           variantBackgroundVar,
         )}`,
       },
       ':disabled': {
-        background: variantBackgroundVar,
         boxShadow: 'none',
       },
     }),
