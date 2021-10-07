@@ -55,7 +55,7 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
             paddingX={{ lg: '10' }}
           >
             <Box as="header" marginBottom={meta.description ? '16' : '10'}>
-              <Stack direction="vertical" space="10">
+              <Stack space="10">
                 <Heading color="foreground" level="1">
                   {meta.title}
                 </Heading>

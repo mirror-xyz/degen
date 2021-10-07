@@ -5,7 +5,7 @@ const prompt = require('prompt')
 const path = require('path')
 
 const baseDir = path.join(__dirname, '..')
-const componentsDir = path.join(baseDir, 'src/components')
+const componentsDir = path.join(baseDir, 'components/src/components')
 
 ;(async () => {
   try {
@@ -20,7 +20,7 @@ const componentsDir = path.join(baseDir, 'src/components')
     const { componentName } = input
 
     const componentDir = path.join(componentsDir, componentName)
-    const exists = await fs.exists(componentDir)
+    const exists = fs.existsSync(componentDir)
     if (exists) {
       console.log('Component already exists.')
       return

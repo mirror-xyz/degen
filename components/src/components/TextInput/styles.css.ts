@@ -11,6 +11,9 @@ export const root = recipe({
       borderRadius: '4',
       color: 'text',
       display: 'flex',
+      transitionDuration: '150',
+      transitionProperty: 'colors',
+      transitionTimingFunction: 'inOut',
       width: 'full',
     }),
     style({
@@ -56,9 +59,7 @@ export const prefix = style([container, text, atoms({ paddingLeft: '4' })])
 export const input = atoms({
   backgroundColor: 'transparent',
   position: 'relative',
-  transitionDuration: '150',
-  transitionProperty: 'colors',
-  transitionTimingFunction: 'inOut',
+
   width: 'full',
 })
 

@@ -13,6 +13,7 @@ type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
 type BaseProps = {
   center?: true
+  children: NativeButtonProps['children']
   disabled?: true
   icon?: ReactNodeNoStrings
   loading?: true
@@ -48,7 +49,7 @@ export const Button = React.forwardRef(
       width,
       onClick,
       ...props
-    }: React.PropsWithChildren<Props>,
+    }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
     let tone: PropsWithTone['tone']

@@ -42,7 +42,7 @@ const svgrConfig = {
 }
 
 const baseDir = path.join(__dirname, '..')
-const iconComponentsDir = path.join(baseDir, 'src/components/icons')
+const iconComponentsDir = path.join(baseDir, 'components/src/components/icons')
 
 ;(async () => {
   // Clean old files
@@ -56,7 +56,7 @@ const iconComponentsDir = path.join(baseDir, 'src/components/icons')
   }
 
   // Get SVGs to generate
-  const svgFilePaths = glob.sync('../icons/*.svg', {
+  const svgFilePaths = glob.sync('./icons/*.svg', {
     cwd: baseDir,
     absolute: true,
   })

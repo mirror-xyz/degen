@@ -137,7 +137,7 @@ export const variants = recipe({
       display: 'flex',
       gap: '4',
       justifyContent: 'center',
-      transitionDuration: 150,
+      transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
     }),

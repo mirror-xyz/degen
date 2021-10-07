@@ -7,9 +7,8 @@ import { Stack } from '../Stack'
 import { VisuallyHidden } from '../VisuallyHidden'
 import { useFieldIds } from './utils'
 
-export const Context = React.createContext<
-  ReturnType<typeof useFieldIds> | undefined
->(undefined)
+type State = ReturnType<typeof useFieldIds> | undefined
+const Context = React.createContext<State>(undefined)
 
 type NativeFormProps = React.AllHTMLAttributes<HTMLFormElement>
 
@@ -22,8 +21,8 @@ export type FieldBaseProps = {
 }
 
 type Props = FieldBaseProps & {
-  children: ReactNodeNoStrings
-  id: NativeFormProps['id']
+  children: React.ReactElement | ((context: State) => ReactNodeNoStrings)
+  id?: NativeFormProps['id']
 }
 
 export const Field = ({
@@ -53,29 +52,38 @@ export const Field = ({
     </Box>
   )
 
+  // Allow children to consume ids or try to clone ids onto it
+  let content: React.ReactNode | null
+  if (typeof children === 'function')
+    content = (
+      <Context.Provider value={ids}>
+        <Context.Consumer>{(context) => children(context)}</Context.Consumer>
+      </Context.Provider>
+    )
+  else if (children) content = React.cloneElement(children, ids.content)
+  else content = children
+
   return (
-    <Context.Provider value={ids}>
-      <Stack direction="vertical" space="2">
-        {hideLabel ? (
-          <VisuallyHidden>{labelContent}</VisuallyHidden>
-        ) : (
-          labelContent
-        )}
+    <Stack space="2">
+      {hideLabel ? (
+        <VisuallyHidden>{labelContent}</VisuallyHidden>
+      ) : (
+        labelContent
+      )}
 
-        {children}
+      {content}
 
-        {description && (
-          <Box color="textSecondary" paddingX="4" {...ids.description}>
-            {description}
-          </Box>
-        )}
+      {description && (
+        <Box color="textSecondary" paddingX="4" {...ids.description}>
+          {description}
+        </Box>
+      )}
 
-        {error && (
-          <Box color="red" paddingX="4" {...ids.error}>
-            {error}
-          </Box>
-        )}
-      </Stack>
-    </Context.Provider>
+      {error && (
+        <Box color="red" paddingX="4" {...ids.error}>
+          {error}
+        </Box>
+      )}
+    </Stack>
   )
 }

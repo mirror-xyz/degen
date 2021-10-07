@@ -28,7 +28,7 @@ export const SearchIcons = () => {
   }, [state.query])
 
   return (
-    <Stack direction="vertical" space="8">
+    <Stack space="8">
       <TextInput
         hideLabel
         icon={<IconSearch />}
@@ -40,11 +40,11 @@ export const SearchIcons = () => {
         }
       />
 
-      <Stack space={{ xs: '4', md: '6' }} wrap>
+      <Stack direction="horizontal" space={{ xs: '4', md: '6' }} wrap>
         {filteredIcons.map((x) => (
           <Link href={`/components/${x.name}`} key={x.name}>
             <Box width={{ xs: '20', md: '24' }}>
-              <Stack align="center" direction="vertical" space="2">
+              <Stack align="center" space="2">
                 <Box
                   backgroundColor="foregroundTertiary"
                   borderRadius="2"

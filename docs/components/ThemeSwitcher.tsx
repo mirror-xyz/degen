@@ -34,7 +34,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <SkeletonGroup loading={!isMounted}>
-      <Stack space="3">
+      <Stack direction="horizontal" space="3">
         <Skeleton backgroundColor="foregroundTertiary">
           <Button size="medium" variant="tertiary" onClick={toggleMode}>
             <Box textTransform="capitalize">{isMounted ? mode : 'light'}</Box>

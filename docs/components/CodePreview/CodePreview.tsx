@@ -69,7 +69,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
       </Box>
 
       <Box marginY="2">
-        <Stack justify="flex-end" space="2">
+        <Stack direction="horizontal" justify="flex-end" space="2">
           <Button
             size="medium"
             variant="transparentSecondary"

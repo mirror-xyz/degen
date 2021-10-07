@@ -8,6 +8,11 @@ describe('<Field />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<Field />)
+    render(
+      <Field label="Foo bar baz">
+        <div />
+      </Field>,
+    )
+    expect(screen.getByText(/foo/i)).toBeInTheDocument()
   })
 })

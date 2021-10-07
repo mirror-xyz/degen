@@ -12,6 +12,8 @@
     "build:components": "yarn setup && yarn workspace degen build",
     "clean": "yarn workspaces foreach -p run clean",
     "dev": "yarn setup && yarn workspaces foreach -pi run dev",
+    "gen:icons": "yarn node scripts/generateIcons.js",
+    "gen:component": "yarn node scripts/generateComponent.js",
     "lint": "yarn setup && eslint . --cache",
     "lint:fix": "yarn lint --fix",
     "lint:format": "prettier --write .",

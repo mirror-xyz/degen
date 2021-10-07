@@ -37,7 +37,7 @@ export const ColorPalette = ({ type }: Props) => {
 
   return (
     <Box marginBottom="14">
-      <Stack direction="vertical">
+      <Stack>
         {colors.map((y) => (
           <Box
             backgroundColor="foregroundTertiary"
@@ -59,7 +59,7 @@ export const ColorPalette = ({ type }: Props) => {
                 />
               </Box>
 
-              <Stack direction="vertical" space="1.5">
+              <Stack space="1.5">
                 <Text weight="medium">{y.name}</Text>
                 <Text font="mono" size="small">
                   {y.value}

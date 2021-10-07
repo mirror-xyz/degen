@@ -36,7 +36,7 @@ export const Stack = ({
   children,
   justify,
   flex,
-  direction = 'horizontal',
+  direction = 'vertical',
   space = '4',
   wrap,
 }: React.PropsWithChildren<Props>) => {

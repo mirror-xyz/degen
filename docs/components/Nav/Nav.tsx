@@ -49,10 +49,10 @@ export const Nav = ({ links }: Props) => {
           justify={{ xs: 'space-between', md: 'flex-start' }}
           space="5"
         >
-          <Stack align="center">
+          <Stack align="center" direction="horizontal">
             <NavLink active={router.asPath === '/'} href="/">
               <Button shape="circle" variant="secondary">
-                <Stack align="center">
+                <Stack align="center" direction="horizontal">
                   <NextImage height={32} src="/logo.svg" width={32} />
                 </Stack>
               </Button>
@@ -85,17 +85,17 @@ export const Nav = ({ links }: Props) => {
         paddingBottom={{ md: '48' }}
         paddingTop={{ xs: '10', md: '5' }}
       >
-        <Stack direction="vertical" space="10">
-          <Stack direction="vertical" space="3">
+        <Stack space="10">
+          <Stack space="3">
             <NavLink href="https://github.com/mirror-xyz/degen">GitHub</NavLink>
             <NavLink href={createPlayroomLink()}>Playroom</NavLink>
           </Stack>
 
           {links.map((x) => (
-            <Stack direction="vertical" key={x.name}>
+            <Stack key={x.name}>
               <Text variant="label">{x.name}</Text>
 
-              <Stack direction="vertical" space="3">
+              <Stack space="3">
                 {x.links.map((y) => (
                   <NavLink
                     active={

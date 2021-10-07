@@ -20,9 +20,9 @@ export const MDX: MDXProviderProps['components'] = {
         marginBottom="6"
         marginTop="12"
       >
-        <NextLink href={`#${id}`} passHref>
-          <Box as="a" width="max">
-            <Heading color="textPrimary" id={id}>
+        <Heading color="textPrimary" id={id}>
+          <NextLink href={`#${id}`} passHref>
+            <Box as="a" width="max">
               {children}
               <Box
                 className={styles.anchor}
@@ -32,9 +32,9 @@ export const MDX: MDXProviderProps['components'] = {
               >
                 #
               </Box>
-            </Heading>
-          </Box>
-        </NextLink>
+            </Box>
+          </NextLink>
+        </Heading>
       </Box>
     )
   },

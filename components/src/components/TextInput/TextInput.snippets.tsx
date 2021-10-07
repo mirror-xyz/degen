@@ -9,4 +9,3 @@ export const snippets: Snippet[] = [
     code: <TextInput label="Name" name="name" />,
   },
 ]
-

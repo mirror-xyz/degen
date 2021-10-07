@@ -7,10 +7,9 @@ export const snippets: Snippet[] = [
   {
     name: 'Basic',
     code: (
-      <Field>
+      <Field label="Label">
         <div />
       </Field>
     ),
   },
 ]
-

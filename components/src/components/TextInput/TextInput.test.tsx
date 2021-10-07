@@ -8,6 +8,7 @@ describe('<TextInput />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<TextInput />)
+    render(<TextInput label="Foo bar baz" />)
+    expect(screen.getByRole(/textbox/i)).toBeInTheDocument()
   })
 })
