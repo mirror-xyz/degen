@@ -10,12 +10,24 @@ describe('isOfType', () => {
     expect(isOfType<PropsWithFunded>({ funded: true }, 'funded')).toBe(true)
     expect(isOfType<PropsWithLoading>({ loading: true }, 'loading')).toBe(true)
     expect(isOfType<PropsWithValue>({ value: 10 }, 'value')).toBe(true)
+    expect(isOfType<PropsWithValue>({ value: 10 }, ['value'])).toBe(true)
+    expect(isOfType<PropsWithValue>({ loading: true }, ['loading'])).toBe(true)
+    expect(
+      isOfType<PropsWithValue>({ loading: false, value: 10 }, [
+        'loading',
+        'value',
+      ]),
+    ).toBe(true)
   })
 
   it('returns false', () => {
     expect(isOfType<PropsWithFunded>({ loading: true }, 'funded')).toBe(false)
     expect(isOfType<PropsWithLoading>({ funded: true }, 'loading')).toBe(false)
     expect(isOfType<PropsWithValue>({ funded: true }, 'value')).toBe(false)
+    expect(isOfType<PropsWithValue>({ funded: true }, ['value'])).toBe(false)
+    expect(
+      isOfType<PropsWithValue>({ funded: true }, ['loading', 'value']),
+    ).toBe(false)
   })
 
   it('should fail type check', () => {
@@ -25,5 +37,11 @@ describe('isOfType', () => {
     expect(isOfType<PropsWithLoading>({ loading: true }, 'funded')).toBe(false)
     // @ts-expect-error property does not exist in type
     expect(isOfType<Props>({ funded: true }, 'funded')).toBe(true)
+    // @ts-expect-error property does not exist in type
+    expect(isOfType<Props>({ funded: true }, ['funded'])).toBe(true)
+    // @ts-expect-error property does not exist in type
+    expect(isOfType<Props>({ funded: true }, ['loading'])).toBe(false)
+    // @ts-expect-error property does not exist in type
+    expect(isOfType<Props>({ funded: true }, ['funded', 'loading'])).toBe(true)
   })
 })

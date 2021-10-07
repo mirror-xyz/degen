@@ -80,7 +80,7 @@ export const Field = ({
       )}
 
       {error && (
-        <Box color="red" paddingX="4" {...ids.error}>
+        <Box aria-live="polite" color="red" paddingX="4" {...ids.error}>
           {error}
         </Box>
       )}

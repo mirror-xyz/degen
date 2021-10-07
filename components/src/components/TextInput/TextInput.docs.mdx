@@ -59,6 +59,20 @@ import { TextInput } from 'degen'
 <TextInput label="Funding Goal" placeholder="10" type="number" units="ETH" />
 ```
 
+## Types
+
+```tsx live=true
+<Stack>
+  <TextInput
+    label="Text"
+    maxLength={140}
+    placeholder="Foo bar baz"
+    type="text"
+  />
+  <TextInput label="Number" max={100} min={0} placeholder="10" type="number" />
+</Stack>
+```
+
 ## Hide Label
 
 ```tsx live=true

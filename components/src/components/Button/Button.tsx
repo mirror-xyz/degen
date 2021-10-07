@@ -26,12 +26,16 @@ type BaseProps = {
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
-type PropsWithTone = Omit<BaseProps, 'variant'> & {
+type WithoutTone = {
+  variant?: styles.Variant
+}
+
+type WithTone = {
   tone?: styles.Tone
   variant?: 'highlight' | 'primary'
 }
 
-type Props = BaseProps | PropsWithTone
+type Props = BaseProps & (WithTone | WithoutTone)
 
 export const Button = React.forwardRef(
   (
@@ -52,8 +56,8 @@ export const Button = React.forwardRef(
     }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
-    let tone: PropsWithTone['tone']
-    if (isOfType<PropsWithTone>(props, 'tone')) tone = props.tone
+    let tone: WithTone['tone']
+    if (isOfType<WithTone>(props, 'tone')) tone = props.tone
     // Default tone to `accent` if none provided and variant is `highlight` or `primary`
     else if (variant === 'highlight' || variant === 'primary') tone = 'accent'
 

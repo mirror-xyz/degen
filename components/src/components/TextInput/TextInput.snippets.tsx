@@ -6,6 +6,6 @@ import { TextInput } from './TextInput'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <TextInput label="Name" name="name" />,
+    code: <TextInput label="Name" max={100} name="name" type="number" />,
   },
 ]

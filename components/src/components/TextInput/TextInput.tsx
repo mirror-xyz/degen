@@ -3,13 +3,14 @@ import * as React from 'react'
 import { Atoms } from '~/css'
 
 import { ReactNodeNoStrings } from '~/types'
+import { isOfType } from '~/utils'
 import { Box } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
 import * as styles from './styles.css'
 
 type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
 
-type Props = FieldBaseProps & {
+type BaseProps = FieldBaseProps & {
   autoFocus?: NativeInputProps['autoFocus']
   defaultValue?: string | number
   disabled?: true
@@ -29,6 +30,19 @@ type Props = FieldBaseProps & {
   onBlur?: NativeInputProps['onBlur']
   onFocus?: NativeInputProps['onFocus']
 }
+
+type WithTypeText = {
+  type?: 'text'
+  maxLength?: NativeInputProps['maxLength']
+}
+
+type WithTypeNumber = {
+  type?: 'number'
+  max?: NativeInputProps['max']
+  min?: NativeInputProps['min']
+}
+
+type Props = BaseProps & (WithTypeText | WithTypeNumber)
 
 export const TextInput = React.forwardRef(
   (
@@ -56,9 +70,13 @@ export const TextInput = React.forwardRef(
       onChange,
       onBlur,
       onFocus,
+      ...props
     }: Props,
     ref: React.Ref<HTMLInputElement>,
   ) => {
+    const defaultRef = React.useRef<HTMLInputElement>(null)
+    const inputRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef
+
     const [state, setState] = React.useState<{ ghostValue: Props['value'] }>({
       ghostValue: value || defaultValue,
     })
@@ -68,6 +86,18 @@ export const TextInput = React.forwardRef(
       icon: icon ? true : undefined,
       prefix: prefix ? true : undefined,
     })
+
+    const inputProps = React.useMemo(() => {
+      let inputProps = {}
+      if (isOfType<WithTypeText>(props, 'maxLength')) {
+        const { maxLength } = props
+        inputProps = { maxLength }
+      } else if (isOfType<WithTypeNumber>(props, ['max', 'min'])) {
+        const { max, min } = props
+        inputProps = { max, min }
+      }
+      return inputProps
+    }, [props])
 
     const handleChange = React.useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +110,12 @@ export const TextInput = React.forwardRef(
       },
       [units, onChange],
     )
+
+    const max = (props as WithTypeNumber).max
+    const handleMax = React.useCallback(() => {
+      if (!inputRef.current) return
+      inputRef.current.value = max as string
+    }, [max, inputRef])
 
     return (
       <Field
@@ -130,7 +166,7 @@ export const TextInput = React.forwardRef(
                 name={name}
                 placeholder={placeholder}
                 readOnly={readOnly}
-                ref={ref}
+                ref={inputRef}
                 tabIndex={tabIndex}
                 textTransform={textTransform}
                 type={type}
@@ -138,6 +174,7 @@ export const TextInput = React.forwardRef(
                 onBlur={onBlur}
                 onChange={handleChange}
                 onFocus={onFocus}
+                {...inputProps}
                 {...ids?.content}
               />
 
@@ -160,6 +197,14 @@ export const TextInput = React.forwardRef(
                 </Box>
               )}
             </Box>
+
+            {max && (
+              <Box alignItems="center" display="flex" paddingRight="4">
+                <Box as="button" className={styles.max} onClick={handleMax}>
+                  Max
+                </Box>
+              </Box>
+            )}
           </Box>
         )}
       </Field>

@@ -53,7 +53,6 @@ const text = atoms({
 })
 
 export const icon = style([container, atoms({ paddingLeft: '4' })])
-
 export const prefix = style([container, text, atoms({ paddingLeft: '4' })])
 
 export const input = atoms({
@@ -86,3 +85,29 @@ export const variants = recipe({
     },
   },
 })
+
+export const max = style([
+  atoms({
+    backgroundColor: 'foregroundSecondary',
+    borderRadius: '1.5',
+    color: { base: 'textSecondary', hover: 'text' },
+    cursor: 'pointer',
+    fontSize: 'label',
+    fontWeight: 'semiBold',
+    height: 'max',
+    lineHeight: 'none',
+    padding: '2',
+    textTransform: 'uppercase',
+    transitionDuration: '150',
+    transitionProperty: 'colors',
+    transitionTimingFunction: 'inOut',
+    visibility: 'hidden',
+  }),
+  style({
+    selectors: {
+      [`${root({})}:hover &`]: {
+        visibility: 'visible',
+      },
+    },
+  }),
+])
