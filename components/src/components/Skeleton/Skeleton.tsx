@@ -21,8 +21,8 @@ export const Skeleton = ({
   loading,
   width = 'fit',
 }: React.PropsWithChildren<Props>) => {
-  const contextValue = React.useContext(Context)
-  const active = loading ?? contextValue
+  const groupLoading = React.useContext(Context)
+  const active = loading ?? groupLoading
   const containerProps = active
     ? {
         backgroundColor,

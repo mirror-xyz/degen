@@ -14,27 +14,28 @@ export const MDX: MDXProviderProps['components'] = {
   h2: ({ children }) => {
     const id = slugify(children)
     return (
-      <Heading color="textPrimary" id={id}>
+      <Box
+        className={styles.anchorParent}
+        display="block"
+        marginBottom="6"
+        marginTop="12"
+      >
         <NextLink href={`#${id}`} passHref>
-          <Box
-            as="a"
-            className={styles.anchorParent}
-            display="block"
-            marginBottom="6"
-            marginTop="12"
-          >
-            {children}
-            <Box
-              className={styles.anchor}
-              color="textSecondary"
-              display="inline-block"
-              marginLeft="2"
-            >
-              #
-            </Box>
+          <Box as="a" width="max">
+            <Heading color="textPrimary" id={id}>
+              {children}
+              <Box
+                className={styles.anchor}
+                color="textSecondary"
+                display="inline-block"
+                marginLeft="2"
+              >
+                #
+              </Box>
+            </Heading>
           </Box>
         </NextLink>
-      </Heading>
+      </Box>
     )
   },
   inlineCode: ({ children }) => (

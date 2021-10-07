@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Link } from 'components'
 
-import { Box, Stack, Text } from '~/components'
+import { Box, IconSearch, Stack, Text, TextInput } from '~/components'
 import * as Components from '~/components'
 
 const icons = Object.entries(Components)
@@ -29,7 +29,11 @@ export const SearchIcons = () => {
 
   return (
     <Stack direction="vertical" space="8">
-      <input
+      <TextInput
+        hideLabel
+        icon={<IconSearch />}
+        label="Search icons"
+        placeholder="Search icons"
         value={state.query}
         onChange={(event) =>
           setState((x) => ({ ...x, query: event.target.value }))
@@ -48,7 +52,7 @@ export const SearchIcons = () => {
                   boxShadowColor={{ base: 'background' }}
                   color="foreground"
                   padding="4"
-                  transitionDuration={150}
+                  transitionDuration="150"
                   transitionProperty="shadow"
                   transitionTimingFunction="inOut"
                   width="max"

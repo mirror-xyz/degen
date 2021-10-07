@@ -1,6 +1,7 @@
 export {
   Box,
   Button,
+  Field,
   Heading,
   IconBookOpen,
   IconCheck,
@@ -16,6 +17,7 @@ export {
   Spinner,
   Stack,
   Text,
+  TextInput,
   ThemeProvider,
   useTheme,
   VisuallyHidden,

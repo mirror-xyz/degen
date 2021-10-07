@@ -1,5 +1,7 @@
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin')
-const withVanillaExtract = createVanillaExtractPlugin()
+const withVanillaExtract = createVanillaExtractPlugin({
+  identifiers: 'short',
+})
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
 })
