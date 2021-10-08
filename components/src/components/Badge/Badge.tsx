@@ -4,7 +4,6 @@ import { Box } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
-  children: string
   label?: string
 } & styles.Variants
 
@@ -14,7 +13,7 @@ export const Badge = ({
   label,
   size = 'medium',
   variant = 'secondary',
-}: Props) => {
+}: React.PropsWithChildren<Props>) => {
   return (
     <Box className={styles.variants({ hover, size, variant })}>
       {label && (

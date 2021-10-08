@@ -4,8 +4,10 @@ import { Atoms } from '~/css'
 
 import { ReactNodeNoStrings } from '~/types'
 import { isOfType } from '~/utils'
+import { Badge } from '../Badge'
 import { Box } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
+import { Stack } from '../Stack'
 import * as styles from './styles.css'
 
 type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
@@ -112,13 +114,34 @@ export const TextInput = React.forwardRef(
     )
 
     const max = (props as WithTypeNumber).max
+    const min = (props as WithTypeNumber).min
+
     const handleMax = React.useCallback(() => {
       if (!inputRef.current) return
       inputRef.current.value = max as string
     }, [max, inputRef])
 
+    let accessoryContent: React.ReactNode | undefined
+    if (min !== undefined || max !== undefined) {
+      accessoryContent = (
+        <Stack direction="horizontal" space="2">
+          {!!min && (
+            <Badge>
+              {min} {units} min
+            </Badge>
+          )}
+          {!!max && (
+            <Badge>
+              {max} {units} max
+            </Badge>
+          )}
+        </Stack>
+      )
+    }
+
     return (
       <Field
+        accessory={accessoryContent}
         description={description}
         error={error}
         hideLabel={hideLabel}

@@ -46,13 +46,15 @@ const navLinks = [
   ...Object.entries(groupedPagePaths).map(([k, v]) => ({
     name: k,
     links: v,
+    order: k === 'css' ? 1 : -1,
   })),
   {
     name: 'components',
     links: componentPaths,
+    order: 0,
   },
-]
-console.log('Done.')
+].sort((a, b) => (a.order > b.order ? 1 : -1))
+console.log('Done.', navLinks)
 
 const config = {
   env: {

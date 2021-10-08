@@ -51,8 +51,10 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
         <Box padding="6">
           <LivePreview />
 
-          <Text color="red">
-            <LiveError style={{ margin: 0 }} />
+          <Text color="red" font="mono">
+            <LiveError
+              style={{ fontFamily: 'inherit', margin: 0, whiteSpace: 'normal' }}
+            />
           </Text>
         </Box>
 

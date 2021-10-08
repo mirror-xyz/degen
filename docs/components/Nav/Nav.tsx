@@ -64,10 +64,7 @@ export const Nav = ({ links }: Props) => {
                 variant="tertiary"
                 onClick={() => setState((x) => ({ ...x, open: !x.open }))}
               >
-                <Box
-                  aria-label={state.open ? 'Close menu' : 'Open menu'}
-                  textTransform="capitalize"
-                >
+                <Box aria-label={state.open ? 'Close menu' : 'Open menu'}>
                   Menu
                 </Box>
               </Button>
@@ -129,7 +126,6 @@ const NavLink = ({
       <Link href={href}>
         <Text
           color={active ? 'accent' : 'text'}
-          transform="capitalize"
           weight={active ? 'medium' : 'normal'}
         >
           {children}
