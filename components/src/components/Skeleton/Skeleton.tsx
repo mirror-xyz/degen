@@ -37,5 +37,3 @@ export const Skeleton = ({
     </Box>
   )
 }
-
-Skeleton.displayName = 'Skeleton'

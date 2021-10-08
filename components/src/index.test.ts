@@ -1,10 +1,10 @@
-import { sync } from 'glob'
+import { glob } from 'glob'
 
 import path from 'path'
 
 import * as Exports from './'
 
-const svgComponentPaths = sync('components/icons/Icon*', {
+const svgComponentPaths = glob.sync('components/icons/Icon*', {
   cwd: __dirname,
   absolute: true,
 })

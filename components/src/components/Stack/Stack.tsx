@@ -57,5 +57,3 @@ export const Stack = ({
     </Box>
   )
 }
-
-Stack.displayName = 'Stack'

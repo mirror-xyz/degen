@@ -10,14 +10,23 @@ const componentsDir = path.join(baseDir, 'components/src/components')
 ;(async () => {
   try {
     prompt.start()
-    const input = await prompt.get({
-      name: 'componentName',
-      description: 'Component name',
-      pattern: /^[A-Z][a-z]+[A-Z]?[a-z]*$/,
-      message: 'Component Name must be only letters and pascal case',
-      required: true,
-    })
-    const { componentName } = input
+    const input = await prompt.get([
+      {
+        name: 'componentName',
+        description: 'Component name',
+        type: 'string',
+        pattern: /^[A-Z][a-z]+[A-Z]?[a-z]*$/,
+        message: 'Component Name must be only letters and pascal case',
+        required: true,
+      },
+      {
+        name: 'forwardRef',
+        description: 'forwardRef',
+        type: 'boolean',
+        default: false,
+      },
+    ])
+    const { componentName, forwardRef } = input
 
     const componentDir = path.join(componentsDir, componentName)
     const exists = fs.existsSync(componentDir)
@@ -31,19 +40,34 @@ const componentsDir = path.join(baseDir, 'components/src/components')
     await fs.mkdirp(componentDir)
 
     console.log('Creating component...')
+    const componentImports = dedent`
+      import * as React from 'react'
+
+      import { Box } from '../Box'
+
+      type Props = {}
+    `
+    const componentBasic = dedent`
+      ${componentImports}
+
+      export const ${componentName} = ({ ...props }: Props) => {
+        return <Box />
+      }
+    `
+    const componentForwardRef = dedent`
+      ${componentImports}
+
+      export const ${componentName} = React.forwardRef(
+        ({ ...props }: Props, ref: React.Ref<HTMLElement>) => {
+          return <Box ref={ref} />
+        }
+      )
+
+      ${componentName}.displayName = '${componentName}'
+    `
     await fs.writeFile(
       path.join(componentDir, `${componentName}.tsx`),
-      dedent`
-          import * as React from 'react'
-
-          import { Box } from '../Box'
-
-          type Props = {}
-
-          export const ${componentName} = ({ ...props }: Props) => {
-            return <Box />
-          }
-        `,
+      forwardRef ? componentForwardRef : componentBasic,
       'utf-8',
     )
 
