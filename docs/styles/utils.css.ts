@@ -24,3 +24,7 @@ export const link = style([
     textUnderlineOffset: '0.2em',
   }),
 ])
+
+export const list = style({
+  overflow: 'scroll',
+})

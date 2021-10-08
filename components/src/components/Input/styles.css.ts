@@ -52,13 +52,19 @@ const text = atoms({
   fontWeight: 'medium',
 })
 
-export const icon = style([container, atoms({ paddingLeft: '4' })])
-export const prefix = style([container, text, atoms({ paddingLeft: '4' })])
+export const icon = style([
+  container,
+  atoms({ paddingLeft: '4', paddingRight: '2' }),
+])
+export const prefix = style([
+  container,
+  text,
+  atoms({ paddingLeft: '4', paddingRight: '1.5' }),
+])
 
 export const input = atoms({
   backgroundColor: 'transparent',
   position: 'relative',
-
   width: 'full',
 })
 
@@ -75,12 +81,12 @@ export const variants = recipe({
   variants: {
     icon: {
       true: atoms({
-        paddingLeft: '0',
+        paddingLeft: 'none',
       }),
     },
     prefix: {
       true: atoms({
-        paddingLeft: '0',
+        paddingLeft: 'none',
       }),
     },
   },

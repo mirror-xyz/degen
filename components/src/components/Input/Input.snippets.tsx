@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 import { Snippet } from '!/playroom/src/types'
-import { TextInput } from './TextInput'
+import { Input } from './Input'
 
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <TextInput label="Label" />,
+    code: <Input label="Label" />,
   },
 ]

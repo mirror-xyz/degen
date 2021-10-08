@@ -1,13 +1,9 @@
 import * as React from 'react'
 
 import { Atoms } from '~/css'
-
 import { ReactNodeNoStrings } from '~/types'
-import { isOfType } from '~/utils'
-import { Badge } from '../Badge'
 import { Box } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
-import { Stack } from '../Stack'
 import * as styles from './styles.css'
 
 type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
@@ -46,7 +42,7 @@ type WithTypeNumber = {
 
 type Props = BaseProps & (WithTypeText | WithTypeNumber)
 
-export const TextInput = React.forwardRef(
+export const Input = React.forwardRef(
   (
     {
       autoFocus,
@@ -59,6 +55,7 @@ export const TextInput = React.forwardRef(
       id,
       inputMode,
       label,
+      labelSecondary,
       name,
       placeholder,
       prefix,
@@ -79,74 +76,54 @@ export const TextInput = React.forwardRef(
     const defaultRef = React.useRef<HTMLInputElement>(null)
     const inputRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef
 
-    const [state, setState] = React.useState<{ ghostValue: Props['value'] }>({
-      ghostValue: value || defaultValue,
-    })
+    const [state, setState] = React.useState<{
+      ghostValue?: Props['value']
+    }>({ ghostValue: value || defaultValue })
 
     const hasError = error ? true : undefined
     const className = styles.variants({
       icon: icon ? true : undefined,
       prefix: prefix ? true : undefined,
     })
+    const max = (props as WithTypeNumber).max
 
-    const inputProps = React.useMemo(() => {
-      let inputProps = {}
-      if (isOfType<WithTypeText>(props, 'maxLength')) {
-        const { maxLength } = props
-        inputProps = { maxLength }
-      } else if (isOfType<WithTypeNumber>(props, ['max', 'min'])) {
-        const { max, min } = props
-        inputProps = { max, min }
-      }
-      return inputProps
-    }, [props])
-
-    const handleChange = React.useCallback(
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (units) {
-          console.log(event.target)
-          const value = event.target.value
-          setState((x) => ({ ...x, ghostValue: value }))
-        }
-        onChange && onChange(event)
+    const handleInput = React.useCallback(
+      (event: React.FormEvent<HTMLInputElement>) => {
+        const value = (event.target as HTMLInputElement).value
+        setState((x) => ({ ...x, ghostValue: value }))
       },
-      [units, onChange],
+      [],
     )
 
-    const max = (props as WithTypeNumber).max
-    const min = (props as WithTypeNumber).min
+    const handleKeyDown = React.useCallback(
+      (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (type === 'number' && units) {
+          const key = event.key
+          const filteredKeys = ['E', 'e', '+']
+          if (filteredKeys.includes(key)) event.preventDefault()
+        }
+      },
+      [type, units],
+    )
 
     const handleMax = React.useCallback(() => {
-      if (!inputRef.current) return
-      inputRef.current.value = max as string
-    }, [max, inputRef])
-
-    let accessoryContent: React.ReactNode | undefined
-    if (min !== undefined || max !== undefined) {
-      accessoryContent = (
-        <Stack direction="horizontal" space="2">
-          {!!min && (
-            <Badge>
-              {min} {units} min
-            </Badge>
-          )}
-          {!!max && (
-            <Badge>
-              {max} {units} max
-            </Badge>
-          )}
-        </Stack>
-      )
-    }
+      if (onChange)
+        onChange({
+          target: { value: max },
+        } as React.ChangeEvent<HTMLInputElement>)
+      else if (inputRef.current) inputRef.current.value = max as string
+      if (!units) return
+      setState((x) => ({ ...x, ghostValue: max }))
+    }, [inputRef, max, units, onChange])
 
     return (
       <Field
-        accessory={accessoryContent}
         description={description}
         error={error}
         hideLabel={hideLabel}
         id={id}
         label={label}
+        labelSecondary={labelSecondary}
         required={required}
       >
         {(ids) => (
@@ -184,37 +161,33 @@ export const TextInput = React.forwardRef(
                 autoFocus={autoFocus}
                 className={[className, styles.input]}
                 defaultValue={defaultValue}
-                disabled={disabled}
                 inputMode={inputMode}
                 name={name}
-                placeholder={placeholder}
+                placeholder={`${placeholder}${units ? ` ${units}` : ''}`}
                 readOnly={readOnly}
                 ref={inputRef}
                 tabIndex={tabIndex}
-                textTransform={textTransform}
                 type={type}
                 value={value}
                 onBlur={onBlur}
-                onChange={handleChange}
+                onChange={onChange}
                 onFocus={onFocus}
-                {...inputProps}
+                onInput={handleInput}
+                onKeyDown={units ? handleKeyDown : undefined}
+                {...props}
                 {...ids?.content}
               />
 
-              {units && (
+              {units && state.ghostValue && (
                 <Box aria-hidden="true" className={[className, styles.ghost]}>
                   <Box
                     as="span"
                     textTransform={textTransform}
                     visibility="hidden"
                   >
-                    {state.ghostValue || placeholder}
+                    {state.ghostValue}{' '}
                   </Box>
-                  <Box
-                    as="span"
-                    color={state.ghostValue ? 'text' : 'textSecondary'}
-                  >
-                    {' '}
+                  <Box as="span" color="text">
                     {units}
                   </Box>
                 </Box>
@@ -235,4 +208,4 @@ export const TextInput = React.forwardRef(
   },
 )
 
-TextInput.displayName = 'TextInput'
+Input.displayName = 'Input'

@@ -25,7 +25,7 @@ it('should expose correct exports', () => {
     'Spinner',
     'Stack',
     'Text',
-    'TextInput',
+    'Input',
     'ThemeProvider',
     'useTheme',
     'VisuallyHidden',

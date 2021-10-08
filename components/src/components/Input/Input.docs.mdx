@@ -1,26 +1,26 @@
 ---
-title: TextInput
-description: Basic input.
+title: Input
+description: Form input
 ---
 
 ```tsx
-import { TextInput } from 'degen'
+import { Input } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<TextInput label="Wallet Address" placeholder="0xA0Cf…251e" />
+<Input label="Wallet Address" placeholder="0xA0Cf…251e" />
 ```
 
 ## Disabled
 
 ```tsx live=true
-<TextInput disabled label="Wallet Address" placeholder="0xA0Cf…251e" />
+<Input disabled label="Wallet Address" placeholder="0xA0Cf…251e" />
 ```
 
 ## Description
 
 ```tsx live=true
-<TextInput
+<Input
   description="The Ethereum address where raised funds will be sent from the crowdfund."
   label="Wallet Address"
   placeholder="0xA0Cf…251e"
@@ -30,7 +30,7 @@ import { TextInput } from 'degen'
 ## Error
 
 ```tsx live=true
-<TextInput
+<Input
   error="Wallet address is required"
   label="Wallet Address"
   placeholder="0xA0Cf…251e"
@@ -40,7 +40,7 @@ import { TextInput } from 'degen'
 ## Icon
 
 ```tsx live=true
-<TextInput
+<Input
   icon={<IconSearch />}
   label="Search"
   placeholder="Name or wallet address"
@@ -50,28 +50,24 @@ import { TextInput } from 'degen'
 ## Prefix
 
 ```tsx live=true
-<TextInput label="Funding Goal" placeholder="10" prefix="Ξ" type="number" />
+<Input label="Funding Goal" placeholder="10" prefix="Ξ" type="number" />
 ```
 
 ## Units
 
 ```tsx live=true
-<TextInput label="Funding Goal" placeholder="10" type="number" units="ETH" />
+<Input label="Funding Goal" placeholder="10" type="number" units="ETH" />
 ```
 
 ## Types
 
 ```tsx live=true
 <Stack>
-  <TextInput
-    label="Text"
-    maxLength={140}
-    placeholder="Foo bar baz"
-    type="text"
-  />
+  <Input label="Text" maxLength={140} placeholder="Foo bar baz" type="text" />
 
-  <TextInput
+  <Input
     label="Number"
+    labelSecondary={<Badge>100 ETH max</Badge>}
     max={100}
     min={0}
     placeholder="10"
@@ -84,5 +80,5 @@ import { TextInput } from 'degen'
 ## Hide Label
 
 ```tsx live=true
-<TextInput hideLabel label="Wallet Address" placeholder="Wallet Address" />
+<Input hideLabel label="Wallet Address" placeholder="Wallet Address" />
 ```

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Link } from 'components'
 
-import { Box, IconSearch, Stack, Text, TextInput } from '~/components'
+import { Box, IconSearch, Input, Stack, Text } from '~/components'
 import * as Components from '~/components'
 
 const icons = Object.entries(Components)
@@ -29,7 +29,7 @@ export const SearchIcons = () => {
 
   return (
     <Stack space="8">
-      <TextInput
+      <Input
         hideLabel
         icon={<IconSearch />}
         label="Search icons"
