@@ -60,7 +60,7 @@ export const Nav = ({ links }: Props) => {
 
             <Box display={{ md: 'none' }}>
               <Button
-                size="medium"
+                size="small"
                 variant="tertiary"
                 onClick={() => setState((x) => ({ ...x, open: !x.open }))}
               >

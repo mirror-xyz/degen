@@ -10,7 +10,6 @@ import { Box, Button, Stack, Text, useTheme } from '~/components'
 import { usePlayroomStore } from '../../../playroom/src/PlayroomState'
 import { CopyButton } from '../CopyButton'
 import { Link } from '../Link'
-
 import './styles.css'
 
 export type Props = {
@@ -71,7 +70,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
       <Box marginY="2">
         <Stack direction="horizontal" justify="flex-end" space="2">
           <Button
-            size="medium"
+            size="small"
             variant="transparentSecondary"
             onClick={() => setState((x) => ({ ...x, expand: !x.expand }))}
           >
@@ -79,7 +78,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
           </Button>
 
           <Link href={createPlayroomLink({ code })}>
-            <Button size="medium" variant="transparentSecondary">
+            <Button size="small" variant="transparentSecondary">
               Open in Playroom
             </Button>
           </Link>

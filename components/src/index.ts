@@ -1,4 +1,5 @@
 export {
+  Badge,
   Box,
   Button,
   Field,

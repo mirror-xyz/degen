@@ -1,4 +1,5 @@
 export * from './icons'
+export { Badge } from './Badge'
 export { Box } from './Box'
 export { Button } from './Button'
 export { Field } from './Field'

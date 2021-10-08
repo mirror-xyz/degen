@@ -13,7 +13,6 @@ import { useIsMounted } from 'utils/isMounted'
 import { vars } from '~/css'
 import { Box, useTheme } from '~/components'
 import { PlayroomStateProvider } from '../../playroom/src/PlayroomState'
-
 import { CopyButton } from './CopyButton'
 import type { Props as CodePreviewProps } from './CodePreview'
 
@@ -48,7 +47,7 @@ export const CodeBlock = ({ children, className, live, expand }: Props) => {
         plain: {
           ...theme.plain,
           color: vars.colors.foreground,
-          backgroundColor: vars.colors.backgroundSecondary,
+          backgroundColor: vars.colors.foregroundTertiary,
         },
       }
     : undefined
