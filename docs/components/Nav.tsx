@@ -4,11 +4,11 @@ import NextImage from 'next/image'
 
 import { createPlayroomLink } from 'utils/playroom'
 import { useIsMounted } from 'utils/isMounted'
+import * as styles from 'styles/utils.css'
 
 import { Box, Button, Stack, Text } from '~/components'
-import { Link } from '../Link'
-import { ThemeSwitcher } from '../ThemeSwitcher'
-import * as styles from './styles.css'
+import { Link } from './Link'
+import { ThemeSwitcher } from './ThemeSwitcher'
 
 type Link = { name: string; route: string }
 

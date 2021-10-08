@@ -30,7 +30,7 @@ export const meta = {
 yarn add degen
 ```
 
-## Set up
+## Set Up
 
 Wrap the root of your app in a [`ThemeProvider`](/components/ThemeProvider) and import the external stylesheet. You'll also want to add [Inter](https://rsms.me/inter/) and [iA Writer Mono](https://github.com/iaolo/iA-Fonts/tree/master/iA%20Writer%20Mono) to your font stack.
 
@@ -43,20 +43,20 @@ const App = () => {
 }
 ```
 
-## Import and use components
+## Use Components
 
 ```tsx
-import { Button, Heading, IconLockClosed, Stack } from 'degen'
+import { Button, IconLockClosed, Stack } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<Stack
-  align="center"
-  direction={{ xs: 'vertical', md: 'horizontal' }}
-  justify={{ md: 'space-between' }}
->
-  <Heading>GM! Fren.</Heading>
-  <Button icon={<IconLockClosed />} tone="blue" variant="highlight">
+<Stack align="center">
+  <Button
+    icon={<IconLockClosed />}
+    tone="blue"
+    variant="highlight"
+    width={{ xs: 'full', md: 'max' }}
+  >
     Connect Wallet
   </Button>
 </Stack>

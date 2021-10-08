@@ -28,5 +28,3 @@ export const VisuallyHidden = ({
     </Box>
   )
 }
-
-VisuallyHidden.displayName = 'VisuallyHidden'

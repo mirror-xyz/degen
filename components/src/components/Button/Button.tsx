@@ -54,7 +54,7 @@ export const Button = React.forwardRef(
       onClick,
       ...props
     }: Props,
-    ref: React.Ref<HTMLElement>,
+    ref: React.Ref<HTMLButtonElement>,
   ) => {
     let tone: WithTone['tone']
     if (isOfType<WithTone>(props, 'tone')) tone = props.tone

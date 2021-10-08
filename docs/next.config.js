@@ -54,7 +54,7 @@ const navLinks = [
     order: 0,
   },
 ].sort((a, b) => (a.order > b.order ? 1 : -1))
-console.log('Done.', navLinks)
+console.log('Done.')
 
 const config = {
   env: {

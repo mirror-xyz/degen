@@ -43,5 +43,3 @@ export const Heading = ({
     </Box>
   )
 }
-
-Heading.displayName = 'Heading'

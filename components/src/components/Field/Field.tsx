@@ -13,11 +13,11 @@ const Context = React.createContext<State>(undefined)
 type NativeFormProps = React.AllHTMLAttributes<HTMLFormElement>
 
 export type FieldBaseProps = {
-  accessory?: React.ReactNode
   description?: React.ReactNode
   error?: React.ReactNode
   hideLabel?: boolean
   label: React.ReactNode
+  labelSecondary?: React.ReactNode
   required?: NativeFormProps['required']
 }
 
@@ -27,13 +27,13 @@ type Props = FieldBaseProps & {
 }
 
 export const Field = ({
-  accessory,
   children,
   description,
   error,
   hideLabel,
   id,
   label,
+  labelSecondary,
   required,
 }: Props) => {
   const ids = useFieldIds({
@@ -52,7 +52,7 @@ export const Field = ({
       <Box as="label" color="text" fontWeight="medium" {...ids.label}>
         {label} {required && <VisuallyHidden>(required)</VisuallyHidden>}
       </Box>
-      {accessory && accessory}
+      {labelSecondary && labelSecondary}
     </Box>
   )
 
