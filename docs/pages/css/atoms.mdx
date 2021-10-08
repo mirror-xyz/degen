@@ -1,0 +1,24 @@
+import Layout from 'layouts/docs'
+
+export const meta = {
+  title: 'atoms',
+  description: 'Reusable atomic classes.',
+}
+
+```tsx
+import { atoms } from 'degen'
+```
+
+```tsx
+export const styles = atoms({
+  backgroundColor: 'background',
+  fontSize: 'small',
+  padding: '4',
+})
+```
+
+## Usage
+
+You can use `atoms` within [vanilla-extract](https://vanilla-extract.style/) stylesheets (see above). These utilities are recommended where possible to reduce the amount of custom CSS in your application.
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>

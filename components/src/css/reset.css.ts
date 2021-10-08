@@ -60,7 +60,17 @@ const appearance = style({
   appearance: 'none',
 })
 
-const field = style([block, appearance])
+const field = style([
+  block,
+  appearance,
+  style({
+    outline: 'none',
+    '::placeholder': {
+      color: vars.colors.textSecondary,
+      opacity: 1,
+    },
+  }),
+])
 
 // Custom reset rules
 const mark = style({
@@ -83,6 +93,12 @@ const input = style([
   field,
   style({
     selectors: {
+      '&::-webkit-outer-spin-button': {
+        WebkitAppearance: 'none',
+      },
+      '&::-webkit-inner-spin-button': {
+        WebkitAppearance: 'none',
+      },
       '&::-ms-clear': {
         display: 'none',
       },

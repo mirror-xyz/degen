@@ -141,20 +141,21 @@ const responsiveAtomicStyles = defineProperties({
 
 const unresponsiveAtomicStyles = defineProperties({
   properties: {
-    cursor: ['pointer', 'not-allowed'],
+    cursor: ['default', 'pointer', 'not-allowed'],
     fontFamily: vars.fonts,
     overflow: ['hidden'],
+    pointerEvents: ['none'],
     strokeWidth: vars.borderWidths,
     textTransform: ['capitalize', 'lowercase', 'uppercase'],
     transitionDuration: {
-      75: '75ms',
-      100: '100ms',
-      150: '150ms',
-      200: '200ms',
-      300: '300ms',
-      500: '500ms',
-      700: '700ms',
-      1000: '1000ms',
+      '75': '75ms',
+      '100': '100ms',
+      '150': '150ms',
+      '200': '200ms',
+      '300': '300ms',
+      '500': '500ms',
+      '700': '700ms',
+      '1000': '1000ms',
     },
     transitionProperty: {
       none: 'none',
@@ -172,6 +173,7 @@ const unresponsiveAtomicStyles = defineProperties({
       out: 'cubic-bezier(0, 0, 0.2, 1)',
       inOut: 'cubic-bezier(0.42, 0, 0.58, 1)',
     },
+    visibility: ['hidden', 'visible'],
     whiteSpace: [
       'normal',
       'nowrap',
@@ -192,6 +194,7 @@ const selectorAtomicStyles = defineProperties({
     base: {},
     active: { selector: '&:active' },
     focus: { selector: '&:focus' },
+    focusWithin: { selector: '&:focus-within' },
     hover: { selector: '&:hover' },
   },
   defaultCondition: 'base',

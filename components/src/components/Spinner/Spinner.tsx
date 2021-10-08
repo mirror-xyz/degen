@@ -12,7 +12,7 @@ type Props = {
 
 export const Spinner = React.forwardRef(
   (
-    { accessibilityLabel, tone = 'textSecondary', size = 'medium' }: Props,
+    { accessibilityLabel, tone = 'textSecondary', size = 'small' }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
     return (

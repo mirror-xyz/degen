@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Link } from 'components'
 
-import { Box, Stack, Text } from '~/components'
+import { Box, IconSearch, Stack, Text, TextInput } from '~/components'
 import * as Components from '~/components'
 
 const icons = Object.entries(Components)
@@ -28,19 +28,23 @@ export const SearchIcons = () => {
   }, [state.query])
 
   return (
-    <Stack direction="vertical" space="8">
-      <input
+    <Stack space="8">
+      <TextInput
+        hideLabel
+        icon={<IconSearch />}
+        label="Search icons"
+        placeholder="Search icons"
         value={state.query}
         onChange={(event) =>
           setState((x) => ({ ...x, query: event.target.value }))
         }
       />
 
-      <Stack space={{ xs: '4', md: '6' }} wrap>
+      <Stack direction="horizontal" space={{ xs: '4', md: '6' }} wrap>
         {filteredIcons.map((x) => (
           <Link href={`/components/${x.name}`} key={x.name}>
             <Box width={{ xs: '20', md: '24' }}>
-              <Stack align="center" direction="vertical" space="2">
+              <Stack align="center" space="2">
                 <Box
                   backgroundColor="foregroundTertiary"
                   borderRadius="2"
@@ -48,7 +52,7 @@ export const SearchIcons = () => {
                   boxShadowColor={{ base: 'background' }}
                   color="foreground"
                   padding="4"
-                  transitionDuration={150}
+                  transitionDuration="150"
                   transitionProperty="shadow"
                   transitionTimingFunction="inOut"
                   width="max"

@@ -16,7 +16,7 @@ import { Heading } from 'degen'
 By default, the semantic heading level matches the visual heading level, e.g. `<Heading level="2">` will render an `h2` element. If you need the semantics to be different from the visuals, you can provide the desired HTML tag via the `as` prop.
 
 ```tsx live=true
-<Stack direction="vertical">
+<Stack>
   <Heading level="1">Level 1</Heading>
   <Heading level="2">Level 2</Heading>
   <Heading as="h3" level="2">
@@ -28,7 +28,7 @@ By default, the semantic heading level matches the visual heading level, e.g. `<
 ## Align
 
 ```tsx live=true
-<Stack direction="vertical">
+<Stack>
   <Heading align="left">Left</Heading>
   <Heading align="center">Center</Heading>
   <Heading align="right">Right</Heading>
@@ -38,7 +38,7 @@ By default, the semantic heading level matches the visual heading level, e.g. `<
 ## Color
 
 ```tsx live=true
-<Stack direction="vertical">
+<Stack>
   <Heading color="foreground">Foreground</Heading>
   <Heading color="text">Text</Heading>
   <Heading color="textSecondary">Text Secondary</Heading>

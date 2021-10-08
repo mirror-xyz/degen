@@ -14,7 +14,6 @@ const config: Config.InitialOptions = {
   },
   moduleNameMapper: {
     ...pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>/' }),
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/test/__mocks__/file.js',
   },
   preset: 'ts-jest',
   roots: ['<rootDir>'],

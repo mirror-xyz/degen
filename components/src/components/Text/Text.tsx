@@ -53,7 +53,7 @@ export const Text = React.forwardRef(
         as={as}
         className={styles.variants({
           variant,
-          ...(ellipsis ? { ellipsis } : {}),
+          ellipsis: ellipsis ? true : undefined,
         })}
         color={color}
         fontFamily={font}

@@ -17,13 +17,13 @@ const shape = {
 export type Shape = keyof typeof shape
 
 const size = {
-  medium: atoms({
+  small: atoms({
     borderRadius: '1.5',
     fontSize: 'small',
     height: '10',
     paddingX: '4',
   }),
-  large: atoms({
+  medium: atoms({
     borderRadius: '3',
     fontSize: 'base',
     height: '14',
@@ -124,7 +124,7 @@ const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => {
       size,
     },
     style: atoms({
-      minWidth: size === 'medium' ? '10' : '14',
+      minWidth: size === 'small' ? '10' : '14',
     }),
   }
 }
@@ -137,7 +137,7 @@ export const variants = recipe({
       display: 'flex',
       gap: '4',
       justifyContent: 'center',
-      transitionDuration: 150,
+      transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
     }),
@@ -194,9 +194,9 @@ export const variants = recipe({
   },
   compoundVariants: [
     getShapeSizeCompoundVariant('circle', 'medium'),
-    getShapeSizeCompoundVariant('circle', 'large'),
+    getShapeSizeCompoundVariant('circle', 'small'),
     getShapeSizeCompoundVariant('square', 'medium'),
-    getShapeSizeCompoundVariant('square', 'large'),
+    getShapeSizeCompoundVariant('square', 'small'),
     {
       variants: {
         center: true,
@@ -209,7 +209,7 @@ export const variants = recipe({
     {
       variants: {
         center: true,
-        size: 'large',
+        size: 'medium',
       },
       style: atoms({
         paddingX: '15',

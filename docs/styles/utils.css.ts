@@ -2,6 +2,17 @@ import { style } from '@vanilla-extract/css'
 
 import { atoms, vars } from '~/css'
 
+export const hoverParent = style({})
+
+export const hoverChild = style({
+  visibility: 'hidden',
+  selectors: {
+    [`${hoverParent}:hover &`]: {
+      visibility: 'visible',
+    },
+  },
+})
+
 export const link = style([
   atoms({
     color: 'accent',
@@ -13,14 +24,3 @@ export const link = style([
     textUnderlineOffset: '0.2em',
   }),
 ])
-
-export const anchorParent = style({})
-
-export const anchor = style({
-  visibility: 'hidden',
-  selectors: {
-    [`${anchorParent}:hover &`]: {
-      visibility: 'visible',
-    },
-  },
-})

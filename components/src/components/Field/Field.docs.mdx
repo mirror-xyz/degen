@@ -1,0 +1,69 @@
+---
+title: Field
+description: Wrapper for form content.
+---
+
+```tsx
+import { Field } from 'degen'
+```
+
+```tsx live=true expand=true
+<Field label="Label">
+  <Box backgroundColor="foregroundSecondary" height="8" width="full" />
+</Field>
+```
+
+## Description
+
+```tsx live=true
+<Field description="Description or help text" label="Label">
+  <Box backgroundColor="foregroundSecondary" height="8" width="full" />
+</Field>
+```
+
+## Error
+
+```tsx live=true
+<Field error="Error message" label="Label">
+  <Box backgroundColor="foregroundSecondary" height="8" width="full" />
+</Field>
+```
+
+## Hide Label
+
+```tsx live=true
+<Field hideLabel label="Label">
+  <Box backgroundColor="foregroundSecondary" height="8" width="full" />
+</Field>
+```
+
+## Accessory
+
+```tsx live=true
+<Field accessory={<Badge>Accessory</Badge>} label="Label">
+  <Box backgroundColor="foregroundSecondary" height="8" width="full" />
+</Field>
+```
+
+## Consume ID
+
+The content wrapped by field sets an `id` automatically for accessibility. You can customize the behavior by using the render prop.
+
+```tsx live=true
+<Stack>
+  <Field label="Automatically injected">
+    <Box backgroundColor="foregroundSecondary" height="8" width="full" />
+  </Field>
+
+  <Field label="Render prop">
+    {(ids) => (
+      <Box
+        backgroundColor="foregroundSecondary"
+        height="8"
+        width="full"
+        {...ids.content}
+      />
+    )}
+  </Field>
+</Stack>
+```

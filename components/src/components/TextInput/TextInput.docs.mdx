@@ -1,0 +1,88 @@
+---
+title: TextInput
+description: Basic input.
+---
+
+```tsx
+import { TextInput } from 'degen'
+```
+
+```tsx live=true expand=true
+<TextInput label="Wallet Address" placeholder="0xA0Cf…251e" />
+```
+
+## Disabled
+
+```tsx live=true
+<TextInput disabled label="Wallet Address" placeholder="0xA0Cf…251e" />
+```
+
+## Description
+
+```tsx live=true
+<TextInput
+  description="The Ethereum address where raised funds will be sent from the crowdfund."
+  label="Wallet Address"
+  placeholder="0xA0Cf…251e"
+/>
+```
+
+## Error
+
+```tsx live=true
+<TextInput
+  error="Wallet address is required"
+  label="Wallet Address"
+  placeholder="0xA0Cf…251e"
+/>
+```
+
+## Icon
+
+```tsx live=true
+<TextInput
+  icon={<IconSearch />}
+  label="Search"
+  placeholder="Name or wallet address"
+/>
+```
+
+## Prefix
+
+```tsx live=true
+<TextInput label="Funding Goal" placeholder="10" prefix="Ξ" type="number" />
+```
+
+## Units
+
+```tsx live=true
+<TextInput label="Funding Goal" placeholder="10" type="number" units="ETH" />
+```
+
+## Types
+
+```tsx live=true
+<Stack>
+  <TextInput
+    label="Text"
+    maxLength={140}
+    placeholder="Foo bar baz"
+    type="text"
+  />
+
+  <TextInput
+    label="Number"
+    max={100}
+    min={0}
+    placeholder="10"
+    type="number"
+    units="ETH"
+  />
+</Stack>
+```
+
+## Hide Label
+
+```tsx live=true
+<TextInput hideLabel label="Wallet Address" placeholder="Wallet Address" />
+```

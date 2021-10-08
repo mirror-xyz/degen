@@ -16,7 +16,7 @@ export const variants = recipe({
   ],
   variants: {
     size: {
-      medium: atoms({
+      small: atoms({
         size: '6',
         strokeWidth: '0.5',
       }),

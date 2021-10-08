@@ -17,7 +17,7 @@ import { SkeletonGroup } from 'degen'
 
 ```tsx live=true
 <SkeletonGroup loading={getState('loading')}>
-  <Stack direction="vertical">
+  <Stack>
     <Skeleton>
       <Heading level="1">Foo Bar Baz</Heading>
     </Skeleton>
@@ -25,7 +25,7 @@ import { SkeletonGroup } from 'degen'
       <Text>The quick brown fox jumped over the lazy dogs.</Text>
     </Skeleton>
 
-    <Button size="medium" onClick={() => toggleState('loading')}>
+    <Button size="small" onClick={() => toggleState('loading')}>
       Toggle Skeletom
     </Button>
   </Stack>

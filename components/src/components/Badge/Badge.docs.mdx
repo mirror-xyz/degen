@@ -1,0 +1,42 @@
+---
+title: Badge
+description: Indicator with optional label.
+---
+
+```tsx
+import { Badge } from 'degen'
+```
+
+```tsx live=true expand=true
+<Badge>100 $ELEKTRA</Badge>
+```
+
+## Variants
+
+```tsx live=true
+<Stack direction="horizontal" wrap>
+  <Badge variant="primary">Primary</Badge>
+  <Badge variant="secondary">Secondary</Badge>
+</Stack>
+```
+
+## Sizes
+
+```tsx live=true
+<Stack align="center" direction="horizontal">
+  <Badge size="medium">Medium</Badge>
+  <Badge size="small">Small</Badge>
+</Stack>
+```
+
+## Label
+
+```tsx live=true
+<Badge label="Sold Out">100/100</Badge>
+```
+
+## Hover
+
+```tsx live=true
+<Badge hover>Hover Me</Badge>
+```

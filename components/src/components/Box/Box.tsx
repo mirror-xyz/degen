@@ -5,7 +5,7 @@ import { Atoms, atoms, sprinkles } from '~/css'
 
 type HTMLProperties = Omit<
   React.AllHTMLAttributes<HTMLElement>,
-  'as' | 'color' | 'height' | 'width'
+  'as' | 'className' | 'color' | 'height' | 'width'
 >
 
 type Props = Atoms &

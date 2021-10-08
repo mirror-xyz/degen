@@ -17,7 +17,9 @@ export default defineConfig({
     },
   },
   plugins: [
-    vanillaExtractPlugin(),
+    vanillaExtractPlugin({
+      identifiers: 'short',
+    }),
     tsconfigPaths(),
     dts({
       exclude: [

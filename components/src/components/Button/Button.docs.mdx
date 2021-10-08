@@ -14,7 +14,7 @@ import { Button } from 'degen'
 ## Variants
 
 ```tsx live=true
-<Stack wrap>
+<Stack direction="horizontal" wrap>
   <Button variant="highlight">Highlight</Button>
   <Button variant="primary">Primary</Button>
   <Button variant="secondary">Secondary</Button>
@@ -27,7 +27,7 @@ import { Button } from 'degen'
 ## States
 
 ```tsx live=true
-<Stack wrap>
+<Stack direction="horizontal" wrap>
   <Button loading>Loading</Button>
   <Button disabled>Disabled</Button>
   <Button
@@ -46,9 +46,9 @@ import { Button } from 'degen'
 ## Sizes
 
 ```tsx live=true
-<Stack align="center" wrap>
-  <Button size="large">Connect Wallet</Button>
+<Stack align="center" direction="horizontal" wrap>
   <Button size="medium">Connect Wallet</Button>
+  <Button size="small">Connect Wallet</Button>
 </Stack>
 ```
 
@@ -57,10 +57,10 @@ import { Button } from 'degen'
 When `variant` is set to `highlight` or `primary`, you can `tone` to change the button accent color.
 
 ```tsx live=true
-<Stack direction="vertical" space="8">
-  <Stack direction="vertical">
+<Stack space="8">
+  <Stack>
     <Text variant="label">Highlight</Text>
-    <Stack wrap>
+    <Stack direction="horizontal" wrap>
       <Button tone="accent" variant="highlight">
         Accent
       </Button>
@@ -76,9 +76,9 @@ When `variant` is set to `highlight` or `primary`, you can `tone` to change the 
     </Stack>
   </Stack>
 
-  <Stack direction="vertical">
+  <Stack>
     <Text variant="label">Primary</Text>
-    <Stack wrap>
+    <Stack direction="horizontal" wrap>
       <Button tone="accent" variant="primary">
         Accent
       </Button>
@@ -101,10 +101,10 @@ When `variant` is set to `highlight` or `primary`, you can `tone` to change the 
 Optional `center` prop reserves space for icon and loading spinner.
 
 ```tsx live=true
-<Stack direction="vertical" space="8">
-  <Stack direction="vertical">
+<Stack space="8">
+  <Stack>
     <Text variant="label">Default</Text>
-    <Stack wrap>
+    <Stack direction="horizontal" wrap>
       <Button icon={<IconPlusSmall />}>Add Entry</Button>
       <Button icon={<IconPlusSmall />} loading>
         Add Entry
@@ -112,9 +112,9 @@ Optional `center` prop reserves space for icon and loading spinner.
     </Stack>
   </Stack>
 
-  <Stack direction="vertical">
+  <Stack>
     <Text variant="label">Center</Text>
-    <Stack wrap>
+    <Stack direction="horizontal" wrap>
       <Button center icon={<IconPlusSmall />}>
         Add Entry
       </Button>
@@ -129,7 +129,7 @@ Optional `center` prop reserves space for icon and loading spinner.
 ## Width
 
 ```tsx live=true
-<Stack direction="vertical">
+<Stack>
   <Button width="64">Fixed Width</Button>
   <Button width="full">Full Width</Button>
   <Button width={{ xs: 'full', md: 'max' }}>Responsive Width</Button>
@@ -145,7 +145,7 @@ Optional `center` prop reserves space for icon and loading spinner.
 ## Shapes
 
 ```tsx live=true
-<Stack wrap>
+<Stack direction="horizontal" wrap>
   <Button shape="square">
     <IconPlusSmall />
   </Button>
