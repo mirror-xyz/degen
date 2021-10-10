@@ -7,7 +7,7 @@ type Props = {
   label?: string
 } & styles.Variants
 
-export const Badge = ({
+export const Tag = ({
   children,
   hover,
   label,

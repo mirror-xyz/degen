@@ -8,7 +8,7 @@ export const snippets: Snippet[] = [
     name: 'Basic',
     code: (
       <Stack>
-        <></>
+        <div />
       </Stack>
     ),
   },

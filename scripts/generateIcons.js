@@ -132,6 +132,25 @@ const iconComponentsDir = path.join(baseDir, 'components/src/components/icons')
       'utf-8',
     )
 
+    // Write snippets file
+    await fs.writeFile(
+      path.join(iconDir, `${svgName}.snippets.tsx`),
+      dedent`
+          import * as React from 'react'
+
+          import { Snippet } from '!/playroom/src/types'
+          import { ${svgName} } from './${svgName}'
+
+          export const snippets: Snippet[] = [
+            {
+              name: 'Basic',
+              code: <${svgName} />,
+            },
+          ] 
+        `,
+      'utf-8',
+    )
+
     // Write index file
     await fs.writeFile(
       path.join(iconDir, 'index.ts'),

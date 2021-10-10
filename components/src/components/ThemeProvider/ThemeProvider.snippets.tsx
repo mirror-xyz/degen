@@ -1,11 +1,15 @@
 import * as React from 'react'
 
 import { Snippet } from '!/playroom/src/types'
-import { Badge } from './Badge'
+import { ThemeProvider } from './ThemeProvider'
 
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <Badge>Badge</Badge>,
+    code: (
+      <ThemeProvider>
+        <div />
+      </ThemeProvider>
+    ),
   },
 ]

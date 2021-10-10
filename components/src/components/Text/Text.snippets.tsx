@@ -6,6 +6,6 @@ import { Text } from './Text'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <Text>Basic</Text>,
+    code: <Text>Text</Text>,
   },
 ]

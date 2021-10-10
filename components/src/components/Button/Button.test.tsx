@@ -4,11 +4,11 @@ import { cleanup, render, screen } from '@/test'
 
 import { Button } from './Button'
 
-describe('<Text />', () => {
+describe('<Button />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<Button>foo bar baz</Button>)
-    expect(screen.getByText(/foo/i)).toBeInTheDocument()
+    render(<Button>Connect Wallet</Button>)
+    expect(screen.getByText(/connect/i)).toBeInTheDocument()
   })
 })

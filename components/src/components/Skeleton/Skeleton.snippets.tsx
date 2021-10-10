@@ -6,6 +6,6 @@ import { Skeleton } from './Skeleton'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <Skeleton loading>__</Skeleton>,
+    code: <Skeleton loading>_</Skeleton>,
   },
 ]

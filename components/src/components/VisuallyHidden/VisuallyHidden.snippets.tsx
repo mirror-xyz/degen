@@ -6,6 +6,6 @@ import { VisuallyHidden } from './VisuallyHidden'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <VisuallyHidden>Basic</VisuallyHidden>,
+    code: <VisuallyHidden>_</VisuallyHidden>,
   },
 ]

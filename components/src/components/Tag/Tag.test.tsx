@@ -2,13 +2,13 @@ import * as React from 'react'
 
 import { cleanup, render, screen } from '@/test'
 
-import { Badge } from './Badge'
+import { Tag } from './Tag'
 
-describe('<Badge />', () => {
+describe('<Tag />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<Badge>foo bar baz</Badge>)
+    render(<Tag>10 ETH</Tag>)
     expect(screen.getByText(/foo/i)).toBeInTheDocument()
   })
 })

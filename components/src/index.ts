@@ -1,5 +1,4 @@
 export {
-  Badge,
   Box,
   Button,
   Field,
@@ -17,6 +16,7 @@ export {
   SkeletonGroup,
   Spinner,
   Stack,
+  Tag,
   Text,
   Input,
   ThemeProvider,

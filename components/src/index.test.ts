@@ -14,7 +14,6 @@ const icons = svgComponentPaths.map((x) => path.basename(x))
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
     // components
-    'Badge',
     'Box',
     'Button',
     'Field',
@@ -24,6 +23,7 @@ it('should expose correct exports', () => {
     'SkeletonGroup',
     'Spinner',
     'Stack',
+    'Tag',
     'Text',
     'Input',
     'ThemeProvider',

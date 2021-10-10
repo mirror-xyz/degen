@@ -1,22 +1,22 @@
 ---
-title: Badge
+title: Tag
 description: Indicator with optional label.
 ---
 
 ```tsx
-import { Badge } from 'degen'
+import { Tag } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<Badge>100 $ELEKTRA</Badge>
+<Tag>100 $ELEKTRA</Tag>
 ```
 
 ## Variants
 
 ```tsx live=true
 <Stack direction="horizontal" wrap>
-  <Badge variant="primary">Primary</Badge>
-  <Badge variant="secondary">Secondary</Badge>
+  <Tag variant="primary">Primary</Tag>
+  <Tag variant="secondary">Secondary</Tag>
 </Stack>
 ```
 
@@ -24,19 +24,19 @@ import { Badge } from 'degen'
 
 ```tsx live=true
 <Stack align="center" direction="horizontal">
-  <Badge size="medium">Medium</Badge>
-  <Badge size="small">Small</Badge>
+  <Tag size="medium">Medium</Tag>
+  <Tag size="small">Small</Tag>
 </Stack>
 ```
 
 ## Label
 
 ```tsx live=true
-<Badge label="Sold Out">100/100</Badge>
+<Tag label="Sold Out">100/100</Tag>
 ```
 
 ## Hover
 
 ```tsx live=true
-<Badge hover>Hover Me</Badge>
+<Tag hover>Hover Me</Tag>
 ```

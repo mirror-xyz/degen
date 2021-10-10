@@ -9,7 +9,7 @@ export const snippets: Snippet[] = [
     name: 'Basic',
     code: (
       <SkeletonGroup loading>
-        <Skeleton>__</Skeleton>
+        <Skeleton>_</Skeleton>
       </SkeletonGroup>
     ),
   },
