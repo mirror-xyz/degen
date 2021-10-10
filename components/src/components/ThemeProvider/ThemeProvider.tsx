@@ -19,7 +19,7 @@ type ThemeContextValue = {
 
 const ThemeContext = React.createContext<ThemeContextValue | null>(null)
 
-const attribute = 'data-theme'
+export const attribute = 'data-theme'
 
 export type ThemeProviderProps = {
   /** Default accent name. @default blue */
@@ -90,7 +90,8 @@ export const ThemeProvider = ({
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
     const root = getElement(element)
-    root?.setAttribute(attribute, forcedMode ?? defaultMode)
+    const mode = forcedMode ?? defaultMode
+    root?.setAttribute(attribute, mode)
   }, [])
   /* eslint-enable react-hooks/exhaustive-deps */
 

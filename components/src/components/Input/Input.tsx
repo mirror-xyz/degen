@@ -80,6 +80,9 @@ export const Input = React.forwardRef(
       ghostValue?: Props['value']
     }>({ ghostValue: value || defaultValue })
 
+    const placeholderText = placeholder
+      ? `${placeholder ?? ''}${units ? ` ${units}` : ''}`
+      : undefined
     const hasError = error ? true : undefined
     const className = styles.variants({
       icon: icon ? true : undefined,
@@ -163,7 +166,7 @@ export const Input = React.forwardRef(
                 defaultValue={defaultValue}
                 inputMode={inputMode}
                 name={name}
-                placeholder={`${placeholder}${units ? ` ${units}` : ''}`}
+                placeholder={placeholderText}
                 readOnly={readOnly}
                 ref={inputRef}
                 tabIndex={tabIndex}
@@ -179,7 +182,11 @@ export const Input = React.forwardRef(
               />
 
               {units && state.ghostValue && (
-                <Box aria-hidden="true" className={[className, styles.ghost]}>
+                <Box
+                  aria-hidden="true"
+                  className={[className, styles.ghost]}
+                  data-testid="ghost"
+                >
                   <Box
                     as="span"
                     textTransform={textTransform}

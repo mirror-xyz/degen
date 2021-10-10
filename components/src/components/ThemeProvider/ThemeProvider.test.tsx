@@ -1,8 +1,9 @@
 import * as React from 'react'
+import { render } from '@testing-library/react'
 
-import { Providers, actHook, cleanup, render, renderHook, screen } from '@/test'
+import { Providers, actHook, cleanup, renderHook, screen } from '@/test'
 
-import { ThemeProvider, useTheme } from './ThemeProvider'
+import { ThemeProvider, attribute, useTheme } from './ThemeProvider'
 
 describe('<ThemeProvider />', () => {
   afterEach(cleanup)
@@ -10,6 +11,13 @@ describe('<ThemeProvider />', () => {
   it('renders', () => {
     render(<ThemeProvider>foo bar baz</ThemeProvider>)
     expect(screen.getByText(/foo/i)).toBeInTheDocument()
+  })
+
+  it('forcedMode', () => {
+    render(<ThemeProvider forcedMode="dark">foo bar baz</ThemeProvider>)
+    expect(
+      document.querySelector(`[${attribute}]`)?.getAttribute(attribute),
+    ).toStrictEqual('dark')
   })
 })
 
@@ -29,7 +37,6 @@ describe('useTheme', () => {
 
   it('sets accent', () => {
     const { result } = renderHook(() => useTheme())
-
     expect(result.current.accent).toStrictEqual('blue')
 
     actHook(() => {
@@ -39,9 +46,8 @@ describe('useTheme', () => {
     expect(result.current.accent).toStrictEqual('green')
   })
 
-  it('sets theme', () => {
+  it('sets mode', () => {
     const { result } = renderHook(() => useTheme())
-
     expect(result.current.mode).toStrictEqual('light')
 
     actHook(() => {
@@ -62,5 +68,17 @@ describe('useTheme', () => {
 
     expect(result.current.mode).toStrictEqual('dark')
     expect(result.current.accent).toStrictEqual('green')
+  })
+
+  it('forcedMode', () => {
+    const { result } = renderHook(() => useTheme(), {
+      wrapper: ({ children }) => (
+        <Providers themeProps={{ defaultMode: 'dark', forcedMode: 'light' }}>
+          {children}
+        </Providers>
+      ),
+    })
+
+    expect(result.current.mode).toStrictEqual('dark')
   })
 })

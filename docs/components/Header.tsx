@@ -3,8 +3,8 @@ import * as React from 'react'
 import { Box, Heading, Stack, Text } from '~/components'
 
 type Props = {
-  description?: React.ReactElement
-  title: React.ReactElement
+  description?: React.ReactNode
+  title: React.ReactNode
 }
 
 export const Header = ({ description, title }: Props) => {
