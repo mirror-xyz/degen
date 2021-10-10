@@ -2692,7 +2692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/glob@npm:*, @types/glob@npm:^7.1.4":
+"@types/glob@npm:*, @types/glob@npm:^7":
   version: 7.1.4
   resolution: "@types/glob@npm:7.1.4"
   dependencies:
@@ -6368,7 +6368,7 @@ __metadata:
     "@testing-library/react": ^12.1.2
     "@testing-library/react-hooks": ^7.0.2
     "@testing-library/user-event": ^13.2.1
-    "@types/glob": ^7.1.4
+    "@types/glob": ^7
     "@types/node": ^16.10.2
     "@types/react": ^17.0.27
     "@types/react-dom": ^17.0.9
@@ -6555,7 +6555,7 @@ __metadata:
     "@reach/skip-nav": ^0.16.0
     "@sindresorhus/slugify": ^2.1.0
     "@types/fs-extra": ^9.0.13
-    "@types/glob": ^7.1.4
+    "@types/glob": ^7
     "@types/lodash": ^4.14.175
     "@types/mdx-js__react": ^1.5.4
     "@types/react": ^17.0.27
@@ -11694,7 +11694,7 @@ fsevents@^1.2.7:
     "@svgr/core": ^5.5.0
     "@types/dedent": ^0
     "@types/fs-extra": ^9.0.13
-    "@types/glob": ^7.1.4
+    "@types/glob": ^7
     "@typescript-eslint/eslint-plugin": ^4.33.0
     "@typescript-eslint/parser": ^4.33.0
     change-case: ^4.1.2

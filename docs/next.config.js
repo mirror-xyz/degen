@@ -1,3 +1,4 @@
+const { glob } = require('glob')
 const { createVanillaExtractPlugin } = require('@vanilla-extract/next-plugin')
 const withVanillaExtract = createVanillaExtractPlugin({
   identifiers: 'short',
@@ -6,33 +7,10 @@ const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
 })
 
-const { glob } = require('glob')
-
 const path = require('path')
 
-console.log('Generating paths...')
-const pagePaths = glob
-  .sync('./pages/!(components)/*.mdx', {
-    cwd: process.cwd(),
-    absolute: true,
-  })
-  .map((x) => {
-    const name = path.basename(x, '.mdx')
-    const dir = path.dirname(x).split('/pages')[1]
-    const group = dir.split('/')[1]
-    const route = `${dir}/${name}`
-    return { name, route, group }
-  })
-
-const groupedPagePaths = {}
-for (const pagePath of pagePaths) {
-  const { group, ...rest } = pagePath
-  if (group in groupedPagePaths) groupedPagePaths[group].push(rest)
-  else groupedPagePaths[group] = [rest]
-}
-
 const componentPaths = glob
-  .sync('../components/src/components/!(icons)**/*.docs.mdx', {
+  .sync('../components/src/components/!(Icons)**/*.docs.mdx', {
     cwd: process.cwd(),
     absolute: true,
   })
@@ -42,23 +20,14 @@ const componentPaths = glob
     return { name, route }
   })
 
-const navLinks = [
-  ...Object.entries(groupedPagePaths).map(([k, v]) => ({
-    name: k,
-    links: v,
-    order: k === 'css' ? 1 : -1,
-  })),
-  {
-    name: 'components',
-    links: componentPaths,
-    order: 0,
-  },
-].sort((a, b) => (a.order > b.order ? 1 : -1))
-console.log('Done.')
-
 const config = {
   env: {
-    navLinks,
+    navLinks: [
+      {
+        name: 'components',
+        links: componentPaths,
+      },
+    ],
   },
   experimental: {
     externalDir: true,

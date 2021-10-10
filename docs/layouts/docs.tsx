@@ -2,12 +2,12 @@ import * as React from 'react'
 import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
 
-import { Nav, NavProps, SkipNavContent, SkipNavLink } from 'components'
+import { Header, Nav, NavProps, SkipNavContent, SkipNavLink } from 'components'
 
-import { Box, Heading, Stack, Text } from '~/components'
+import { Box } from '~/components'
 import { getLayout as getBaseLayout } from './site'
 
-type Props = {
+export type Props = {
   meta: {
     title: string
     description?: string
@@ -16,19 +16,20 @@ type Props = {
 
 const Layout: NextLayout<Props> = ({ children, meta }) => {
   const links = (process.env.navLinks as unknown as NavProps['links']) ?? []
-  const title = meta.title ? `${meta.title} — Mirror Design` : 'Mirror Design'
   return (
     <>
       <Head>
-        <title>{title}</title>
-
-        {meta.description && (
-          <meta
-            content={meta.description}
-            key="description"
-            name="description"
-          />
-        )}
+        <title>
+          {meta?.title ? `${meta.title} — Mirror Design` : 'Mirror Design'}
+        </title>
+        <meta
+          content={
+            meta?.description ??
+            'Design system for Mirror.xyz built with React and vanilla-extract.'
+          }
+          key="description"
+          name="description"
+        />
       </Head>
 
       <SkipNavLink>Skip to content</SkipNavLink>
@@ -54,19 +55,7 @@ const Layout: NextLayout<Props> = ({ children, meta }) => {
             paddingTop="20"
             paddingX={{ lg: '10' }}
           >
-            <Box as="header" marginBottom={meta.description ? '16' : '10'}>
-              <Stack space="10">
-                <Heading color="foreground" level="1">
-                  {meta.title}
-                </Heading>
-
-                {meta.description && (
-                  <Text color="text" lineHeight="1.375" size="extraLarge">
-                    {meta.description}
-                  </Text>
-                )}
-              </Stack>
-            </Box>
+            {meta && <Header {...meta} />}
 
             {children}
           </Box>

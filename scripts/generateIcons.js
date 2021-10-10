@@ -46,7 +46,7 @@ const iconComponentsDir = path.join(baseDir, 'components/src/components/icons')
 
 ;(async () => {
   // Clean old files
-  const svgComponentPaths = glob.sync('Icon*', {
+  const svgComponentPaths = glob.sync('Icon*/', {
     cwd: iconComponentsDir,
     absolute: true,
   })

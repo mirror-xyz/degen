@@ -27,6 +27,7 @@ const initialState = {
 }
 
 export const CodePreview = ({ code, expand = false, theme }: Props) => {
+  const previewRef = React.useRef<HTMLElement>(null)
   const [state, setState] = React.useState<State>({
     ...initialState,
     expand,
@@ -38,7 +39,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
     <LiveProvider
       as="div"
       code={code}
-      scope={{ mdx, ...Components, ...store, ...themeValue }}
+      scope={{ mdx, ...Components, ...store, ...themeValue, previewRef }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}
     >
@@ -48,7 +49,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
         borderWidth="0.5"
         overflow="hidden"
       >
-        <Box padding="6">
+        <Box backgroundColor="background" padding="6" ref={previewRef}>
           <LivePreview />
 
           <Text color="red" font="mono">

@@ -1,5 +1,5 @@
 export { CodeBlock } from './CodeBlock'
-export { ColorPalette } from './ColorPalette'
+export { Header } from './Header'
 export { Link } from './Link'
 export { MDX } from './MDX'
 export { Nav } from './Nav'

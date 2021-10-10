@@ -8,8 +8,12 @@ import { Box, Heading, Text } from '~/components'
 
 import { CodeBlock } from './CodeBlock'
 import { Link } from './Link'
+import { SearchIcons } from './SearchIcons'
 
 export const MDX: MDXProviderProps['components'] = {
+  SearchIcons,
+  // Default components
+  // https://mdxjs.com/table-of-components/
   a: (props) => <Link className={styles.link} {...props} />,
   code: (props) => <CodeBlock {...props} />,
   h2: ({ children }) => {

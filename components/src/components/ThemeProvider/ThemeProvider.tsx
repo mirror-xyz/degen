@@ -26,6 +26,8 @@ export type ThemeProviderProps = {
   defaultAccent?: Accent
   /** Default mode name. @default light */
   defaultMode?: Mode
+  /** Element to bind theme */
+  element?: string | HTMLElement
   /** Forced mode name for the current page */
   forcedMode?: Mode
 }
@@ -34,6 +36,7 @@ export const ThemeProvider = ({
   children,
   defaultAccent = 'blue',
   defaultMode = 'light',
+  element = ':root',
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
   const [state, setState] = React.useState<{
@@ -44,28 +47,34 @@ export const ThemeProvider = ({
     mode: defaultMode,
   })
 
-  const setAccent = React.useCallback((accent: Accent) => {
-    setState((x) => {
-      const root = document.querySelector(':root')
-      if (root) {
-        const enable = disableAnimation()
-        setElementVars(root as HTMLElement, {
-          [vars.mode.colors.accent]: getModeColors(x.mode)[accent],
-          [vars.mode.colors.accentText]: getAccentText(x.mode, accent),
-        })
-        enable()
-      }
-      return { ...x, accent }
-    })
-  }, [])
+  const setAccent = React.useCallback(
+    (accent: Accent) => {
+      setState((x) => {
+        const root = getElement(element)
+        if (root) {
+          const enable = disableAnimation()
+          setElementVars(root as HTMLElement, {
+            [vars.mode.colors.accent]: getModeColors(x.mode)[accent],
+            [vars.mode.colors.accentText]: getAccentText(x.mode, accent),
+          })
+          enable()
+        }
+        return { ...x, accent }
+      })
+    },
+    [element],
+  )
 
-  const setMode = React.useCallback((mode: Mode) => {
-    setState((x) => ({ ...x, mode }))
-    const enable = disableAnimation()
-    const d = document.documentElement
-    d.setAttribute(attribute, mode)
-    enable()
-  }, [])
+  const setMode = React.useCallback(
+    (mode: Mode) => {
+      setState((x) => ({ ...x, mode }))
+      const enable = disableAnimation()
+      const root = getElement(element)
+      root?.setAttribute(attribute, mode)
+      enable()
+    },
+    [element],
+  )
 
   const value = React.useMemo(
     () => ({
@@ -80,8 +89,8 @@ export const ThemeProvider = ({
   // Set mode on load
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
-    const d = document.documentElement
-    d.setAttribute(attribute, forcedMode ?? defaultMode)
+    const root = getElement(element)
+    root?.setAttribute(attribute, forcedMode ?? defaultMode)
   }, [])
   /* eslint-enable react-hooks/exhaustive-deps */
 
@@ -106,6 +115,11 @@ export const useTheme = () => {
   const context = React.useContext(ThemeContext)
   if (!context) throw Error('Must be used within ThemeProvider')
   return context
+}
+
+const getElement = (selector: string | HTMLElement = ':root') => {
+  if (typeof selector === 'string') return document.querySelector(selector)
+  return selector
 }
 
 const disableAnimation = () => {

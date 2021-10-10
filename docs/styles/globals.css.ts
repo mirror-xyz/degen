@@ -24,7 +24,6 @@ globalStyle('html', {
   fontSize: '16px',
   background: vars.colors.background,
   color: vars.colors.foreground,
-  scrollBehavior: 'smooth',
   textRendering: 'optimizeLegibility',
 })
 

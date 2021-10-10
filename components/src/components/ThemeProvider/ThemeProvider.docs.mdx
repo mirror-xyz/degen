@@ -1,10 +1,25 @@
 ---
 title: ThemeProvider
-description: Singleton wrapper for managing theme state
+description: Wrapper for managing theme state
 ---
 
 ```tsx
 import { ThemeProvider } from 'degen'
+```
+
+## Element
+
+Pass in an element selector or reference to change where the theme binds. By default, the theme attaches to the `:root` element.
+
+```tsx live=true
+<ThemeProvider
+  defaultMode={mode === 'light' ? 'dark' : 'light'}
+  element={previewRef.current}
+>
+  <Text>
+    The element mode is {previewRef.current.getAttribute('data-theme')}.
+  </Text>
+</ThemeProvider>
 ```
 
 ## useTheme

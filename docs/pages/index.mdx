@@ -1,11 +1,9 @@
-import Layout from 'layouts/docs'
-import { Link } from 'components'
+import { Header, Link } from 'components'
 
 import * as styles from '../styles/utils.css'
 
-export const meta = {
-  title: 'Mirror Design System',
-  description: (
+<Header
+  description={
     <>
       Design system for{' '}
       <Link className={styles.link} href="https://mirror.xyz">
@@ -21,8 +19,9 @@ export const meta = {
       </Link>
       .
     </>
-  ),
-}
+  }
+  title="Mirror Design System"
+/>
 
 ## Install
 
@@ -61,5 +60,3 @@ import { Button, IconLockClosed, Stack } from 'degen'
   </Button>
 </Stack>
 ```
-
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
