@@ -1,3 +1,9 @@
+## Usage
+
+```
+yarn add degen
+```
+
 ## Dev
 
 ```
@@ -5,8 +11,10 @@ yarn
 yarn dev
 ```
 
-## Prod
+## CI
+
+[Add secrets](https://github.com/mirror-xyz/degen/settings/secrets/actions) to GitHub:
 
 ```
-yarn add degen
+NPM_TOKEN
 ```

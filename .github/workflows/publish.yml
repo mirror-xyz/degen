@@ -21,7 +21,6 @@ jobs:
           cache: 'yarn'
           node-version: ${{ matrix.node-version }}
           registry-url: 'https://registry.npmjs.org'
-          scope: 'mirror-xyz'
       - name: Install dependencies
         run: yarn install
       - name: Test
@@ -31,13 +30,20 @@ jobs:
           git config --local user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git config --local user.name 'github-actions[bot]'
       - name: Bump version to ${{ github.event.release.tag_name }}
-        run: npm version ${{ github.event.release.tag_name }}
+        run: |
+          cd components
+          npm version ${{ github.event.release.tag_name }}
+          git status
+          git diff
+          git add package.json
+          git commit -m "${{ github.event.release.tag_name }}"
       - name: Publish
-        run: yarn workspace degen run publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          yarn config set npmAuthToken ${{ secrets.NPM_TOKEN }}
+          yarn workspace degen run publish
+          git status
+          git diff
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.event.release.target_commitish }}
+        run: git push
+        env:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
