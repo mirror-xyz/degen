@@ -44,17 +44,20 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
       transformCode={(code) => '/** @jsx mdx */' + code}
     >
       <Box
+        backgroundColor="background"
         borderColor="foregroundSecondary"
         borderRadius="2"
         borderWidth="0.5"
-        overflow="hidden"
       >
-        <Box backgroundColor="background" padding="6" ref={previewRef}>
+        <Box overflow="scroll" padding="6" ref={previewRef}>
           <LivePreview />
 
           <Text color="red" font="mono">
             <LiveError
-              style={{ fontFamily: 'inherit', margin: 0, whiteSpace: 'normal' }}
+              style={{
+                fontFamily: 'inherit',
+                margin: 0,
+              }}
             />
           </Text>
         </Box>

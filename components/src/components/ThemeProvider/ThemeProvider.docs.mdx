@@ -16,9 +16,7 @@ Pass in an element selector or reference to change where the theme binds. By def
   defaultMode={mode === 'light' ? 'dark' : 'light'}
   element={previewRef.current}
 >
-  <Text>
-    The element mode is {previewRef.current.getAttribute('data-theme')}.
-  </Text>
+  <Text>The element mode is {mode === 'light' ? 'dark' : 'light'}.</Text>
 </ThemeProvider>
 ```
 

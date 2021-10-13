@@ -9,6 +9,6 @@ describe('<Tag />', () => {
 
   it('renders', () => {
     render(<Tag>10 ETH</Tag>)
-    expect(screen.getByText(/foo/i)).toBeInTheDocument()
+    expect(screen.getByText(/eth/i)).toBeInTheDocument()
   })
 })

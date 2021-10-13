@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { ReactNodeNoStrings } from '~/types'
 import { Atoms } from '~/css'
-import { isOfType } from '~/utils'
 import { Box } from '../Box'
 import { Spinner } from '../Spinner'
 import { Text } from '../Text'
@@ -27,6 +26,7 @@ type BaseProps = {
 }
 
 type WithoutTone = {
+  tone?: never
   variant?: styles.Variant
 }
 
@@ -48,19 +48,14 @@ export const Button = React.forwardRef(
       shape,
       size = 'medium',
       tabIndex,
+      tone = 'accent',
       type,
       variant = 'highlight',
       width,
       onClick,
-      ...props
     }: Props,
     ref: React.Ref<HTMLButtonElement>,
   ) => {
-    let tone: WithTone['tone']
-    if (isOfType<WithTone>(props, 'tone')) tone = props.tone
-    // Default tone to `accent` if none provided and variant is `highlight` or `primary`
-    else if (variant === 'highlight' || variant === 'primary') tone = 'accent'
-
     const labelContent = (
       <Text color="inherit" ellipsis size="inherit" weight="medium">
         {children}

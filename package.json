@@ -19,7 +19,7 @@
     "lint:format": "prettier --write .",
     "lint:types": "yarn setup && yarn workspaces foreach -p run lint:types",
     "postinstall": "husky install",
-    "prepublish": "yarn clean && yarn build",
+    "prepublish": "yarn clean && yarn build:components",
     "setup": "yarn gen:icons",
     "size": "yarn build:components && yarn size-limit",
     "test": "yarn setup && yarn workspaces foreach -p run test"
