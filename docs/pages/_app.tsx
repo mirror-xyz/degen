@@ -16,13 +16,13 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider
       defaultAccent={getThemeAccent()}
-      defaultMode={getThemeMode() ?? 'light'}
+      defaultMode={getThemeMode() ?? 'dark'}
     >
       <Head>
         {/* Prevent theme flash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `!function(){try{var d=document.documentElement;var e=document.cookie.split(";").find(x=>x.includes("mode"));if(e){d.setAttribute('data-theme',e.replace("mode=","").trim())}else{d.setAttribute('data-theme','light');}}catch(t){}}();`,
+            __html: `!function(){try{var d=document.documentElement;var e=document.cookie.split(";").find(x=>x.includes("mode"));if(e){d.setAttribute('data-theme',e.replace("mode=","").trim())}else{d.setAttribute('data-theme','dark');}}catch(t){}}();`,
           }}
         />
       </Head>
