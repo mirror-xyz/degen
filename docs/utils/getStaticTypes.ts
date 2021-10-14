@@ -5,7 +5,7 @@ import mapValues from 'lodash/mapValues'
 export const getStaticTypes = (pathname: string) => {
   const types = docgen(pathname, {
     propFilter: {
-      skipPropsWithName: ['children', 'key'],
+      skipPropsWithName: ['key'],
     },
     shouldExtractValuesFromUnion: true,
     shouldExtractLiteralValuesFromEnum: true,

@@ -13,7 +13,7 @@ const hideFocusRingsDataAttribute =
 export const base = style({
   margin: 0,
   padding: 0,
-  borderColor: vars.colors.current,
+  borderColor: vars.colors.foregroundSecondary,
   borderStyle: vars.borderStyles.solid,
   borderWidth: 0,
   boxSizing: 'border-box',

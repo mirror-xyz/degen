@@ -8,11 +8,15 @@ import fs from 'fs-extra'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
+import { PropItem } from 'react-docgen-typescript'
 
-import { MDX } from 'components'
 import { Props as LayoutProps, getLayout } from 'layouts/docs'
 import { getComponentName, getComponentPaths } from 'utils/getComponent'
 import { getStaticTypes } from 'utils/getStaticTypes'
+import { createGitHubLink } from 'utils/github'
+import { Link } from 'components'
+
+import { Box, Text } from '~/components'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({
@@ -24,13 +28,15 @@ export const getStaticPaths: GetStaticPaths = async () => ({
 })
 
 type StaticProps = {
+  docsLink: string
   frontMatter: Record<string, any>
   source: MDXRemoteSerializeResult
-  staticTypes: Record<string, any>
+  sourceLink: string
+  staticTypes?: Record<string, PropItem>
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const slug = context.params?.slug
+  const slug = context.params?.slug?.toString() as string
   const pathname = getComponentPaths().find(
     (x) => getComponentName(x) === slug,
   ) as string
@@ -42,12 +48,19 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
   })
 
   const componentPathname = pathname.replace('docs.mdx', 'tsx')
-  const staticTypes = getStaticTypes(componentPathname)
+  const staticTypes = getStaticTypes(componentPathname)[slug] ?? null
+
+  const docsLink = createGitHubLink(pathname.replace(/^\/.*degen/i, ''))
+  const sourceLink = createGitHubLink(
+    componentPathname.replace(/^\/.*degen/i, ''),
+  )
 
   return {
     props: {
+      docsLink,
       frontMatter: data,
       source: mdxSource,
+      sourceLink,
       staticTypes,
     },
   }
@@ -55,8 +68,34 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-const Page: NextPageWithLayout<Props> = ({ source }: Props) => {
-  return <MDXRemote {...source} components={MDX as any} />
+const Page: NextPageWithLayout<Props> = ({
+  docsLink,
+  source,
+  sourceLink,
+  staticTypes,
+}: Props) => {
+  return (
+    <>
+      <MDXRemote
+        {...source}
+        scope={{
+          ...source.scope,
+          sourceLink,
+          types: staticTypes,
+        }}
+      />
+
+      {!docsLink.includes('Icon') && (
+        <Box marginTop="20">
+          <Link href={docsLink}>
+            <Text color="textSecondary" size="small">
+              Edit on GitHub
+            </Text>
+          </Link>
+        </Box>
+      )}
+    </>
+  )
 }
 
 Page.getLayout = (page) =>
