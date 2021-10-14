@@ -33,12 +33,12 @@
     ]
   },
   "devDependencies": {
-    "@size-limit/preset-big-lib": "^5.0.5",
+    "@size-limit/preset-big-lib": "^6.0.3",
     "@svgr/cli": "^5.5.0",
     "@svgr/core": "^5.5.0",
-    "@types/dedent": "^0",
+    "@types/dedent": "^0.7.0",
     "@types/fs-extra": "^9.0.13",
-    "@types/glob": "^7",
+    "@types/glob": "^7.1.4",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "change-case": "^4.1.2",
@@ -57,10 +57,10 @@
     "fs-extra": "^10.0.0",
     "glob": "^7.2.0",
     "husky": "^7.0.2",
-    "lint-staged": "^11.2.0",
+    "lint-staged": "^11.2.3",
     "prettier": "^2.4.1",
     "prompt": "^1.2.0",
-    "size-limit": "^5.0.5",
-    "typescript": "4.4.3"
+    "size-limit": "^6.0.3",
+    "typescript": "4.4.4"
   }
 }
