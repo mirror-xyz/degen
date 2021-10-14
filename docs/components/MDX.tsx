@@ -5,12 +5,13 @@ import NextLink from 'next/link'
 import * as styles from 'styles/utils.css'
 
 import { Box, Heading, Text } from '~/components'
-
 import { CodeBlock } from './CodeBlock'
 import { Link } from './Link'
 import { SearchIcons } from './SearchIcons'
+import { PropsTable } from './PropsTable'
 
 export const MDX: MDXProviderProps['components'] = {
+  PropsTable,
   SearchIcons,
   // Default components
   // https://mdxjs.com/table-of-components/

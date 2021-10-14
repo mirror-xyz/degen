@@ -22,11 +22,11 @@ const ThemeContext = React.createContext<ThemeContextValue | null>(null)
 export const attribute = 'data-theme'
 
 export type ThemeProviderProps = {
-  /** Default accent name. @default blue */
+  /** Default accent name. */
   defaultAccent?: Accent
-  /** Default mode name. @default light */
+  /** Default mode name. */
   defaultMode?: Mode
-  /** Element to bind theme. @default :root */
+  /** Element to bind theme. */
   element?: string | HTMLElement
   /** Forced mode name for the current page */
   forcedMode?: Mode

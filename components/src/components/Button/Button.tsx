@@ -11,6 +11,7 @@ import * as styles from './styles.css'
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
 type BaseProps = {
+  /** Centers text and reserves space for icon and spinner. */
   center?: true
   children: NativeButtonProps['children']
   disabled?: true

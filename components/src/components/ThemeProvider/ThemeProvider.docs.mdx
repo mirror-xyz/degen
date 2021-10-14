@@ -7,16 +7,20 @@ description: Wrapper for managing theme state
 import { ThemeProvider } from 'degen'
 ```
 
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
 ## Element
 
 Pass in an element selector or reference to change where the theme binds. By default, the theme attaches to the `:root` element.
 
 ```tsx live=true
 <ThemeProvider
-  defaultMode={mode === 'light' ? 'dark' : 'light'}
+  defaultMode={mode === 'dark' ? 'light' : 'dark'}
   element={previewRef.current}
 >
-  <Text>The element mode is {mode === 'light' ? 'dark' : 'light'}.</Text>
+  <Text>The element mode is {mode === 'dark' ? 'light' : 'dark'}.</Text>
 </ThemeProvider>
 ```
 

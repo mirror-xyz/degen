@@ -78,7 +78,7 @@ const componentsDir = path.join(baseDir, 'components/src/components')
       dedent`
           ---
           title: ${componentName}
-          description: My new component.
+          description: Brief component description
           ---
 
           \`\`\`tsx
@@ -88,6 +88,10 @@ const componentsDir = path.join(baseDir, 'components/src/components')
           \`\`\`tsx live=true expand=true
           <${componentName} />
           \`\`\`
+
+          ## Props
+
+          <PropsTable sourceLink={sourceLink} types={types} />
         `,
       'utf-8',
     )
