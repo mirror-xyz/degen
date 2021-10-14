@@ -114,6 +114,7 @@ const responsiveAtomicStyles = defineProperties({
     },
     minHeight: vars.space,
     minWidth: vars.space,
+    overflow: ['hidden', 'scroll', 'unset'],
     paddingBottom: vars.space,
     paddingLeft: vars.space,
     paddingRight: vars.space,
@@ -145,7 +146,6 @@ const unresponsiveAtomicStyles = defineProperties({
   properties: {
     cursor: ['default', 'pointer', 'not-allowed'],
     fontFamily: vars.fonts,
-    overflow: ['hidden', 'scroll'],
     pointerEvents: ['none'],
     strokeWidth: vars.borderWidths,
     textTransform: ['capitalize', 'lowercase', 'uppercase'],

@@ -19,7 +19,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
   const props = Object.values(types).sort((a, b) => (a.name > b.name ? 1 : -1))
   return (
     <>
-      <Box maxWidth="full">
+      <Box maxWidth="full" overflow={{ xs: 'scroll', lg: 'unset' }}>
         <Box as="table" width="full">
           <Box as="thead">
             <Box as="tr" textAlign="left">
