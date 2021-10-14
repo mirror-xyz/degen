@@ -62,7 +62,7 @@ export const Nav = ({ links }: Props) => {
             <Box display={{ md: 'none' }}>
               <Button
                 size="small"
-                variant="tertiary"
+                variant="secondary"
                 onClick={() => setState((x) => ({ ...x, open: !x.open }))}
               >
                 <Box aria-label={state.open ? 'Close menu' : 'Open menu'}>

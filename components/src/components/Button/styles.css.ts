@@ -101,7 +101,7 @@ const variant = {
     backgroundHover: vars.colors.foregroundSecondaryHover,
   }),
   tertiary: getVariant({
-    text: vars.colors.textTertiary,
+    text: vars.colors.textSecondary,
     background: vars.colors.foregroundTertiary,
     backgroundHover: vars.colors.foregroundSecondary,
   }),
@@ -112,6 +112,10 @@ const variant = {
   transparentSecondary: getVariant({
     text: vars.colors.textSecondary,
     backgroundHover: vars.colors.foregroundSecondary,
+  }),
+  transparentTertiary: getVariant({
+    text: vars.colors.textTertiary,
+    backgroundHover: vars.colors.foregroundTertiary,
   }),
 }
 
