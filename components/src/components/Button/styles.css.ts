@@ -101,7 +101,7 @@ const variant = {
     backgroundHover: vars.colors.foregroundSecondaryHover,
   }),
   tertiary: getVariant({
-    text: vars.colors.textSecondary,
+    text: vars.colors.textTertiary,
     background: vars.colors.foregroundTertiary,
     backgroundHover: vars.colors.foregroundSecondary,
   }),
@@ -174,7 +174,7 @@ export const variants = recipe({
     disabled: {
       true: style([
         getVariant({
-          text: vars.colors.textSecondary,
+          text: vars.colors.textTertiary,
           background: vars.colors.foregroundSecondary,
         }),
         atoms({

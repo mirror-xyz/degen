@@ -42,7 +42,7 @@ const makeColorScheme = (
       text: rgb(colors.foreground, shades.text),
       textPrimary: rgb(colors.foreground, `calc(${shades.text} + 0.1)`),
       textSecondary: rgb(colors.foreground, shades.textSecondary),
-      textTertiary: rgb(colors.foreground, `calc(${shades.text} * 0.66)`),
+      textTertiary: rgb(colors.foreground, shades.textTertiary),
       blue: rgb(colors.blue),
       green: rgb(colors.green),
       indigo: rgb(colors.indigo),
