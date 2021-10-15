@@ -33,7 +33,7 @@ const makeColorScheme = (
         colors.foreground,
         shades.foregroundSecondaryHover,
       ),
-      foregroundTertiary: rgb(colors.foreground, '0.075'),
+      foregroundTertiary: rgb(colors.foreground, shades.foregroundTertiary),
       groupBackground: rgb(colors.groupBackground),
       groupBorder: rgb(colors.groupBorder, shades.groupBorder),
       text: rgb(colors.foreground, shades.text),
