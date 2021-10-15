@@ -87,7 +87,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
         <Box marginY="2">
           <Stack direction="horizontal" justify="flex-end" space="2">
             <Link href={sourceLink}>
-              <Button size="small" variant="transparentSecondary">
+              <Button size="small" variant="transparent">
                 View Source on GitHub
               </Button>
             </Link>
