@@ -25,7 +25,7 @@ const variant = {
     letterSpacing: '-0.01',
   }),
   label: atoms({
-    color: 'textSecondary',
+    color: 'textTertiary',
     fontSize: 'label',
     fontWeight: 'semiBold',
     letterSpacing: '0.03',

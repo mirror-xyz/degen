@@ -16,7 +16,7 @@ export const Header = ({ description, title }: Props) => {
         </Heading>
 
         {description && (
-          <Text color="text" lineHeight="1.375" size="extraLarge">
+          <Text color="textSecondary" size="extraLarge">
             {description}
           </Text>
         )}

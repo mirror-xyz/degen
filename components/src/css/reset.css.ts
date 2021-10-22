@@ -66,7 +66,7 @@ const field = style([
   style({
     outline: 'none',
     '::placeholder': {
-      color: vars.colors.textSecondary,
+      color: vars.colors.textTertiary,
       opacity: 1,
     },
   }),

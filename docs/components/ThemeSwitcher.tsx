@@ -36,13 +36,13 @@ export const ThemeSwitcher = () => {
     <SkeletonGroup loading={!isMounted}>
       <Stack direction="horizontal" space="3">
         <Skeleton backgroundColor="foregroundTertiary">
-          <Button size="small" variant="tertiary" onClick={toggleMode}>
+          <Button size="small" variant="secondary" onClick={toggleMode}>
             <Box textTransform="capitalize">{isMounted ? mode : 'light'}</Box>
           </Button>
         </Skeleton>
 
         <Skeleton backgroundColor="foregroundTertiary">
-          <Button size="small" variant="tertiary" onClick={toggleAccent}>
+          <Button size="small" variant="secondary" onClick={toggleAccent}>
             <Box textTransform="capitalize">{isMounted ? accent : 'blue'}</Box>
           </Button>
         </Skeleton>
