@@ -1,15 +1,11 @@
 import { tokens } from '~/tokens'
-import { getAccentText, getModeColors, getVarName, rgb } from './utils'
-
-describe.each`
-  partial            | alpha        | expected
-  ${'255, 255, 255'} | ${undefined} | ${'rgb(255, 255, 255)'}
-  ${'255, 255, 255'} | ${'0.5'}     | ${'rgba(255, 255, 255, 0.5)'}
-`('rgb($partial, $alpha)', ({ partial, alpha, expected }) => {
-  it(`returns ${expected}`, () => {
-    expect(rgb(partial, alpha)).toEqual(expected)
-  })
-})
+import {
+  getAccentText,
+  getModeColors,
+  getVarName,
+  motionSafe,
+  rgb,
+} from './utils'
 
 describe.each`
   mode       | accent          | expected
@@ -43,5 +39,32 @@ describe.each`
 `('getVarName($value, $path)', ({ value, path, expected }) => {
   it(`returns ${expected}`, () => {
     expect(getVarName(value, path)).toStrictEqual(expected)
+  })
+})
+
+describe.each`
+  partial            | alpha        | expected
+  ${'255, 255, 255'} | ${undefined} | ${'rgb(255, 255, 255)'}
+  ${'255, 255, 255'} | ${'0.5'}     | ${'rgba(255, 255, 255, 0.5)'}
+`('rgb($partial, $alpha)', ({ partial, alpha, expected }) => {
+  it(`returns ${expected}`, () => {
+    expect(rgb(partial, alpha)).toEqual(expected)
+  })
+})
+
+describe.each`
+  style | expected
+  ${{
+  transition: 'color 2s',
+}} | ${{
+  '@media': {
+    '(prefers-reduced-motion: no-preference)': {
+      transition: 'color 2s',
+    },
+  },
+}}
+`('rgb($partial, $alpha)', ({ style, expected }) => {
+  it(`returns ${expected}`, () => {
+    expect(motionSafe(style)).toEqual(expected)
   })
 })
