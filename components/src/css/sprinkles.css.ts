@@ -22,9 +22,7 @@ export const breakpoints = {
   lg: 1024,
   xl: 1280,
 } as const
-
 export type Breakpoint = keyof typeof breakpoints
-
 export const breakpointNames = Object.keys(breakpoints) as Breakpoint[]
 
 const flexAlignment = ['flex-start', 'center', 'flex-end', 'stretch'] as const
@@ -59,7 +57,7 @@ const extendedSpace = {
   '320': '80rem',
 }
 
-const responsiveAtomicStyles = defineProperties({
+const responsiveStyles = defineProperties({
   defaultCondition: 'xs',
   conditions: {
     xs: {},
@@ -142,23 +140,13 @@ const responsiveAtomicStyles = defineProperties({
   },
 })
 
-const unresponsiveAtomicStyles = defineProperties({
+const unresponsiveStyles = defineProperties({
   properties: {
     cursor: ['default', 'pointer', 'not-allowed'],
     fontFamily: vars.fonts,
     pointerEvents: ['none'],
     strokeWidth: vars.borderWidths,
     textTransform: ['capitalize', 'lowercase', 'uppercase'],
-    transitionDuration: {
-      '75': '75ms',
-      '100': '100ms',
-      '150': '150ms',
-      '200': '200ms',
-      '300': '300ms',
-      '500': '500ms',
-      '700': '700ms',
-      '1000': '1000ms',
-    },
     transitionProperty: {
       none: 'none',
       all: 'all',
@@ -191,7 +179,7 @@ const unresponsiveAtomicStyles = defineProperties({
 
 const boxShadowColorVar = createVar()
 
-const selectorAtomicStyles = defineProperties({
+const selectorStyles = defineProperties({
   conditions: {
     base: {},
     active: { selector: '&:active' },
@@ -229,17 +217,37 @@ const selectorAtomicStyles = defineProperties({
   },
 })
 
+const motionSafeStyles = defineProperties({
+  conditions: {
+    base: { '@media': '(prefers-reduced-motion: no-preference)' },
+  },
+  defaultCondition: 'base',
+  properties: {
+    transitionDuration: {
+      '75': '75ms',
+      '100': '100ms',
+      '150': '150ms',
+      '200': '200ms',
+      '300': '300ms',
+      '500': '500ms',
+      '700': '700ms',
+      '1000': '1000ms',
+    },
+  },
+})
+
 export const sprinkles = createSprinkles(
-  responsiveAtomicStyles,
-  unresponsiveAtomicStyles,
-  selectorAtomicStyles,
+  responsiveStyles,
+  unresponsiveStyles,
+  selectorStyles,
+  motionSafeStyles,
 )
 export type Sprinkles = Parameters<typeof sprinkles>[0]
 
 export type OptionalResponsiveValue<Value extends string | number> =
-  ConditionalValue<typeof responsiveAtomicStyles, Value>
+  ConditionalValue<typeof responsiveStyles, Value>
 export type RequiredResponsiveValue<Value extends string | number> =
-  RequiredConditionalValue<typeof responsiveAtomicStyles, Value>
+  RequiredConditionalValue<typeof responsiveStyles, Value>
 
 export type OptionalResponsiveObject<Value> =
   | Value
@@ -249,7 +257,5 @@ export type RequiredResponsiveObject<Value> = Partial<
 > &
   Record<typeof breakpointNames[0], Value>
 
-export const normalizeResponsiveValue = createNormalizeValueFn(
-  responsiveAtomicStyles,
-)
-export const mapResponsiveValue = createMapValueFn(responsiveAtomicStyles)
+export const normalizeResponsiveValue = createNormalizeValueFn(responsiveStyles)
+export const mapResponsiveValue = createMapValueFn(responsiveStyles)
