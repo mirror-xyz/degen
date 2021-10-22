@@ -39,14 +39,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                     radiusLeft={i === 0 ? '2' : undefined}
                     radiusRight={i === headers.length - 1 ? '2' : undefined}
                   >
-                    <Text
-                      color="text"
-                      size="label"
-                      transform="uppercase"
-                      weight="normal"
-                    >
-                      {x}
-                    </Text>
+                    <Text variant="label">{x}</Text>
                   </Box>
                 </Box>
               ))}
@@ -94,7 +87,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
         <Box marginY="2">
           <Stack direction="horizontal" justify="flex-end" space="2">
             <Link href={sourceLink}>
-              <Button size="small" variant="transparentSecondary">
+              <Button size="small" variant="transparent">
                 View Source on GitHub
               </Button>
             </Link>

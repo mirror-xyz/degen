@@ -100,18 +100,9 @@ const variant = {
     background: vars.colors.foregroundSecondary,
     backgroundHover: vars.colors.foregroundSecondaryHover,
   }),
-  tertiary: getVariant({
-    text: vars.colors.textSecondary,
-    background: vars.colors.foregroundTertiary,
-    backgroundHover: vars.colors.foregroundSecondary,
-  }),
   transparent: getVariant({
-    text: vars.colors.text,
-    backgroundHover: vars.colors.foregroundSecondaryHover,
-  }),
-  transparentSecondary: getVariant({
-    text: vars.colors.textSecondary,
-    backgroundHover: vars.colors.foregroundSecondary,
+    text: vars.colors.textTertiary,
+    backgroundHover: vars.colors.foregroundTertiary,
   }),
 }
 
@@ -174,7 +165,7 @@ export const variants = recipe({
     disabled: {
       true: style([
         getVariant({
-          text: vars.colors.textSecondary,
+          text: vars.colors.textTertiary,
           background: vars.colors.foregroundSecondary,
         }),
         atoms({

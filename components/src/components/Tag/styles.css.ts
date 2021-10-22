@@ -43,6 +43,10 @@ export const variants = recipe({
         color: 'textSecondary',
         backgroundColor: 'foregroundTertiary',
       }),
+      tertiary: atoms({
+        color: 'textTertiary',
+        backgroundColor: 'foregroundTertiary',
+      }),
     },
   },
   compoundVariants: [

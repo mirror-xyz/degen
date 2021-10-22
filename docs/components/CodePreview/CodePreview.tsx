@@ -84,14 +84,14 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
         <Stack direction="horizontal" justify="flex-end" space="2">
           <Button
             size="small"
-            variant="transparentSecondary"
+            variant="transparent"
             onClick={() => setState((x) => ({ ...x, expand: !x.expand }))}
           >
             {state.expand ? 'Hide Code' : 'View Code'}
           </Button>
 
           <Link href={createPlayroomLink({ code })}>
-            <Button size="small" variant="transparentSecondary">
+            <Button size="small" variant="transparent">
               Open in Playroom
             </Button>
           </Link>

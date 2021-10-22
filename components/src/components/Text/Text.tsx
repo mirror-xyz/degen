@@ -35,7 +35,7 @@ export const Text = React.forwardRef(
       align,
       as = 'div',
       children,
-      color = 'foreground',
+      color = 'text',
       ellipsis,
       font = 'sans',
       letterSpacing,
