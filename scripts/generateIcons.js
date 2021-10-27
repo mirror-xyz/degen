@@ -10,7 +10,7 @@ const componentTemplate = ({ template }, opts, { componentName, jsx }) => {
   const code = `
     import * as React from 'react'
     NEWLINE
-    import { IconProps } from '../types'
+    import { IconProps } from '../../types'
     NEWLINE
     export const COMPONENT_NAME = ({ title, titleId, ...props }: IconProps) => COMPONENT_JSX
   `
@@ -42,7 +42,10 @@ const svgrConfig = {
 }
 
 const baseDir = path.join(__dirname, '..')
-const iconComponentsDir = path.join(baseDir, 'components/src/components/icons')
+const iconComponentsDir = path.join(
+  baseDir,
+  'components/src/components/icons/generated',
+)
 
 ;(async () => {
   // Clean old files
@@ -87,8 +90,8 @@ const iconComponentsDir = path.join(baseDir, 'components/src/components/icons')
           import * as React from 'react'
 
           import { Atoms } from '~/css'
-          import { Box } from '../../Box'
-          import { OptionalTitle } from '../types'
+          import { Box } from '../../../Box'
+          import { OptionalTitle } from '../../types'
           import { ${componentName} } from './${componentName}'
 
           type BoxProps = Parameters<typeof Box>[0]

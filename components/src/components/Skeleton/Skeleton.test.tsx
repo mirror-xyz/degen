@@ -8,7 +8,7 @@ describe('<Skeleton />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<Skeleton>foo bar baz</Skeleton>)
+    render(<Skeleton loading>foo bar baz</Skeleton>)
     expect(screen.getByText(/foo/i)).toBeInTheDocument()
   })
 })

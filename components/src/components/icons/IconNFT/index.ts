@@ -1,0 +1,1 @@
+export { IconNFT } from './IconNFT'

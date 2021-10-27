@@ -6,22 +6,29 @@ import { vars } from './vars.css'
 /**
  * Selector for `focus-visible` package
  * https://github.com/WICG/focus-visible
+ * Remove once better browser support
+ * https://caniuse.com/css-focus-visible
  */
 const hideFocusRingsDataAttribute =
   '[data-js-focus-visible] &:focus:not([data-focus-visible-added])'
 
 export const base = style({
+  // Prevent padding and border from affecting element width
+  boxSizing: 'border-box',
+
+  // Remove margin and padding in all browsers
   margin: 0,
   padding: 0,
+
+  // Allow adding border to element by just adding borderWidth
   borderColor: vars.colors.foregroundSecondary,
   borderStyle: vars.borderStyles.solid,
   borderWidth: 0,
-  boxSizing: 'border-box',
-  color: vars.colors.current,
+
+  color: vars.colors.text,
   fontSize: '100%',
   fontFamily: vars.fonts.sans,
   verticalAlign: 'baseline',
-  WebkitTapHighlightColor: vars.colors.transparent,
   selectors: {
     [`${hideFocusRingsDataAttribute}`]: {
       outline: 'none',
@@ -67,7 +74,7 @@ const field = style([
     outline: 'none',
     '::placeholder': {
       color: vars.colors.textTertiary,
-      opacity: 1,
+      opacity: vars.opacity['100'],
     },
   }),
 ])
@@ -93,12 +100,14 @@ const input = style([
   field,
   style({
     selectors: {
+      // Hide browser increment/decrement buttons
       '&::-webkit-outer-spin-button': {
         WebkitAppearance: 'none',
       },
       '&::-webkit-inner-spin-button': {
         WebkitAppearance: 'none',
       },
+      // Hide browser clear input button
       '&::-ms-clear': {
         display: 'none',
       },

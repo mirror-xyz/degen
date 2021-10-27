@@ -1,6 +1,5 @@
 import { MDXProviderProps } from '@mdx-js/react'
 import slugify from '@sindresorhus/slugify'
-import NextLink from 'next/link'
 
 import * as styles from 'styles/utils.css'
 
@@ -22,19 +21,22 @@ export const MDX: MDXProviderProps['components'] = {
     return (
       <Box display="block" marginBottom="6" marginTop="12">
         <Heading color="textPrimary" id={id}>
-          <NextLink href={`#${id}`} passHref>
-            <Box as="a" className={styles.hoverParent} width="max">
-              {children}
-              <Box
-                className={styles.hoverChild}
-                color="textSecondary"
-                display="inline-block"
-                marginLeft="2"
-              >
-                #
-              </Box>
+          <Box
+            as="a"
+            className={styles.hoverParent}
+            href={`#${id}`}
+            width="max"
+          >
+            {children}
+            <Box
+              className={styles.hoverChild}
+              color="textSecondary"
+              display="inline-block"
+              marginLeft="2"
+            >
+              #
             </Box>
-          </NextLink>
+          </Box>
         </Heading>
       </Box>
     )
