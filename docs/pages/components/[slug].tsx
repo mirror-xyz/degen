@@ -85,7 +85,7 @@ const Page: NextPageWithLayout<Props> = ({
         }}
       />
 
-      {!docsLink.includes('Icon') && (
+      {!docsLink.includes('generated') && (
         <Box marginTop="20">
           <Link href={docsLink}>
             <Text color="textSecondary" size="small">
