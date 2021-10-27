@@ -92,6 +92,8 @@ export const variants = recipe({
   },
 })
 
+export const maxParent = style({})
+
 export const max = style([
   atoms({
     backgroundColor: 'foregroundSecondary',
@@ -111,7 +113,10 @@ export const max = style([
   }),
   style({
     selectors: {
-      [`${root({})}:hover &`]: {
+      [`${maxParent}:hover &`]: {
+        visibility: 'visible',
+      },
+      [`${maxParent}:focus-within &`]: {
         visibility: 'visible',
       },
     },

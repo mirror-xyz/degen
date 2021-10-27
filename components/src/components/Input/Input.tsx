@@ -131,10 +131,13 @@ export const Input = React.forwardRef(
       >
         {(ids) => (
           <Box
-            className={styles.root({
-              disabled,
-              error: hasError,
-            })}
+            className={[
+              styles.root({
+                disabled,
+                error: hasError,
+              }),
+              styles.maxParent,
+            ]}
           >
             {icon && (
               <Box
