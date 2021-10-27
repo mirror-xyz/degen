@@ -3,15 +3,7 @@ export {
   Button,
   Field,
   Heading,
-  IconBookOpen,
-  IconCheck,
-  IconChevronDown,
-  IconChevronRight,
-  IconCode,
-  IconDuplicate,
-  IconLockClosed,
-  IconPlusSmall,
-  IconSearch,
+  IconNFT,
   Skeleton,
   SkeletonGroup,
   Spinner,
@@ -23,5 +15,8 @@ export {
   useTheme,
   VisuallyHidden,
 } from './components'
+
+// Export generated icons
+export * from './components/icons/generated'
 
 export { atoms, vars } from './css'

@@ -8,6 +8,7 @@ import * as Components from '~/components'
 const icons = Object.entries(Components)
   .filter(([k]) => k.includes('Icon'))
   .map(([name, Component]) => ({ name, Component }))
+  .sort((a, _b) => (a.name.toLowerCase().includes('nft') ? 1 : -1))
 
 type State = {
   query: string
@@ -43,7 +44,7 @@ export const SearchIcons = () => {
       <Stack direction="horizontal" space={{ xs: '4', md: '6' }} wrap>
         {filteredIcons.map((x) => (
           <Link href={`/components/${x.name}`} key={x.name}>
-            <Box width={{ xs: '20', md: '24' }}>
+            <Box>
               <Stack align="center" space="2">
                 <Box
                   backgroundColor="foregroundTertiary"

@@ -2,8 +2,8 @@ docs/.next/
 docs/public/playroom/
 
 components/dist/
-components/src/components/icons/index.ts
-components/src/components/icons/Icon*
+components/coverage/
+components/src/components/icons/generated/
 
 .yarn/*
 yarn.lock

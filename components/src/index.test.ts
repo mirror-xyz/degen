@@ -4,12 +4,12 @@ import path from 'path'
 
 import * as Exports from './'
 
-const svgComponentPaths = glob.sync('components/icons/Icon*/', {
+const generatedIconPaths = glob.sync('components/icons/generated/Icon*/', {
   cwd: __dirname,
   absolute: true,
 })
 
-const icons = svgComponentPaths.map((x) => path.basename(x))
+const generatedIcons = generatedIconPaths.map((x) => path.basename(x))
 
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
@@ -18,7 +18,7 @@ it('should expose correct exports', () => {
     'Button',
     'Field',
     'Heading',
-    ...icons,
+    'IconNFT',
     'Skeleton',
     'SkeletonGroup',
     'Spinner',
@@ -32,5 +32,7 @@ it('should expose correct exports', () => {
     // css
     'atoms',
     'vars',
+    // generated icons
+    ...generatedIcons,
   ])
 })
