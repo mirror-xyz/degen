@@ -8,7 +8,7 @@ import * as Components from '~/components'
 const icons = Object.entries(Components)
   .filter(([k]) => k.includes('Icon'))
   .map(([name, Component]) => ({ name, Component }))
-  .sort((a, _b) => (a.name.toLowerCase().includes('nft') ? 1 : -1))
+  .sort((a, b) => (a.name > b.name ? 1 : -1))
 
 type State = {
   query: string
@@ -62,7 +62,7 @@ export const SearchIcons = () => {
                     size: { xs: '10', md: '12' },
                   })}
                 </Box>
-                <Text align="center" color="text" ellipsis size="label">
+                <Text align="center" color="text" size="label">
                   {x.name.replace('Icon', '')}
                 </Text>
               </Stack>
