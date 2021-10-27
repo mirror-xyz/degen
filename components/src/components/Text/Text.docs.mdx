@@ -23,6 +23,7 @@ import { Text } from 'degen'
   <Text variant="large">Large</Text>
   <Text variant="base">Base</Text>
   <Text variant="small">Small</Text>
+  <Text variant="label">Label</Text>
 </Stack>
 ```
 
@@ -70,17 +71,15 @@ import { Text } from 'degen'
   <Text color="textSecondary">Text Secondary</Text>
   <Text color="textTertiary">Text Tertiary</Text>
   <Text color="accent">Accent</Text>
+  <Text color="red">Red</Text>
+  <Text color="green">Green</Text>
 </Stack>
 ```
 
 ## Ellipsis
 
 ```tsx live=true
-<Stack>
-  <Box width="64">
-    <Text color="foreground" ellipsis>
-      The quick brown fox jumped over the lazy dogs.
-    </Text>
-  </Box>
-</Stack>
+<Box width="64">
+  <Text ellipsis>The quick brown fox jumped over the lazy dogs.</Text>
+</Box>
 ```

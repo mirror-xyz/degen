@@ -15,10 +15,14 @@ type BaseProps = {
   center?: true
   children: NativeButtonProps['children']
   disabled?: true
-  icon?: ReactNodeNoStrings
+  /** Adds ReactNode before children. */
+  prefix?: ReactNodeNoStrings
   loading?: true
+  /** Constrains button to specific shape. */
   shape?: styles.Shape
   size?: styles.Size
+  /** Adds ReactNode after children. */
+  suffix?: ReactNodeNoStrings
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
   variant?: styles.Variant
@@ -44,10 +48,11 @@ export const Button = React.forwardRef(
       center,
       children,
       disabled,
-      icon,
+      prefix,
       loading,
       shape,
       size = 'medium',
+      suffix,
       tabIndex,
       tone = 'accent',
       type,
@@ -69,11 +74,14 @@ export const Button = React.forwardRef(
     } else {
       childContent = (
         <>
-          {icon && <Box {...getCenterProps(center, size, 'left')}>{icon}</Box>}
+          {prefix && (
+            <Box {...getCenterProps(center, size, 'left')}>{prefix}</Box>
+          )}
           {labelContent}
-          {loading && (
+
+          {(loading || suffix) && (
             <Box {...getCenterProps(center, size, 'right')}>
-              <Spinner tone="current" />
+              {loading ? <Spinner tone="current" /> : suffix}
             </Box>
           )}
         </>

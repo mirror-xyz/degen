@@ -4,12 +4,12 @@ export const fonts = {
 }
 
 export const fontSizes = {
-  base: '1.0625rem',
+  base: '1rem',
   label: '0.8125rem',
   small: '0.9375rem',
   large: '1.1875rem',
   extraLarge: '1.625rem',
-  headingTwo: '1.8125rem',
+  headingTwo: '1.875rem',
   headingOne: '3rem',
 }
 

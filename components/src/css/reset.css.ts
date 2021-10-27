@@ -25,7 +25,7 @@ export const base = style({
   borderStyle: vars.borderStyles.solid,
   borderWidth: 0,
 
-  color: vars.colors.text,
+  color: vars.colors.current,
   fontSize: '100%',
   fontFamily: vars.fonts.sans,
   verticalAlign: 'baseline',
