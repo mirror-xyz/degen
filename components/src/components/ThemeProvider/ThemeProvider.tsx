@@ -26,7 +26,7 @@ export type ThemeProviderProps = {
   defaultAccent?: Accent
   /** Default mode name. */
   defaultMode?: Mode
-  /** Element to bind theme. */
+  /** Element to bind theme */
   element?: string | HTMLElement
   /** Forced mode name for the current page */
   forcedMode?: Mode

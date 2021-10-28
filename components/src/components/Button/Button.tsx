@@ -11,17 +11,21 @@ import * as styles from './styles.css'
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
 type BaseProps = {
-  /** Centers text and reserves space for icon and spinner. */
+  /** Centers text and reserves space for icon and spinner */
   center?: true
+  /** Content to render */
   children: NativeButtonProps['children']
+  /** Marks as unusable */
   disabled?: true
-  /** Adds ReactNode before children. */
+  /** Adds ReactNode before children */
   prefix?: ReactNodeNoStrings
+  /** Shows loading spinner inside button */
   loading?: true
-  /** Constrains button to specific shape. */
+  /** Constrains button to specific shape */
   shape?: styles.Shape
+  /** Sets dimensions and layout  */
   size?: styles.Size
-  /** Adds ReactNode after children. */
+  /** Adds ReactNode after children */
   suffix?: ReactNodeNoStrings
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']

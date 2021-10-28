@@ -167,6 +167,7 @@ export const Input = React.forwardRef(
                 autoFocus={autoFocus}
                 className={[className, styles.input]}
                 defaultValue={defaultValue}
+                disabled={disabled}
                 inputMode={inputMode}
                 name={name}
                 placeholder={placeholderText}

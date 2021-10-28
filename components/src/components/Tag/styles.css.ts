@@ -1,11 +1,44 @@
 import { style } from '@vanilla-extract/css'
+import { CSSVarFunction } from '@vanilla-extract/private'
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
-import { atoms, vars } from '~/css'
+import { atoms, rgb, vars } from '~/css'
 
 export const label = style({
   boxShadow: `0 0 0 2px ${vars.colors.background}`,
 })
+
+const getToneHoverCompoundVariant = (
+  tone: 'critical' | 'info' | 'positive',
+) => {
+  const color = rgb(
+    {
+      critical: vars.mode.colors.red,
+      info: vars.mode.colors.blue,
+      positive: vars.mode.colors.green,
+    }[tone],
+    vars.mode.shades.accentSecondary,
+  )
+  return {
+    variants: {
+      hover: true,
+      tone,
+    },
+    style: {
+      selectors: {
+        '&:active': {
+          backgroundColor: color,
+        },
+        '&:hover': {
+          backgroundColor: color,
+        },
+      },
+    },
+  }
+}
+
+const getToneColor = (color: CSSVarFunction) =>
+  rgb(color, `calc(${vars.mode.shades.accentSecondary} * 0.5)`)
 
 export const variants = recipe({
   base: [
@@ -34,26 +67,46 @@ export const variants = recipe({
         fontSize: 'small',
       }),
     },
-    variant: {
-      primary: atoms({
+    tone: {
+      accent: atoms({
         color: 'accent',
         backgroundColor: 'accentTertiary',
       }),
-      secondary: atoms({
+      neutral: atoms({
         color: 'textSecondary',
         backgroundColor: 'foregroundTertiary',
       }),
-      tertiary: atoms({
-        color: 'textTertiary',
-        backgroundColor: 'foregroundTertiary',
-      }),
+      critical: style([
+        atoms({
+          color: 'red',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.red),
+        }),
+      ]),
+      info: style([
+        atoms({
+          color: 'blue',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.blue),
+        }),
+      ]),
+      positive: style([
+        atoms({
+          color: 'green',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.green),
+        }),
+      ]),
     },
   },
   compoundVariants: [
     {
       variants: {
         hover: true,
-        variant: 'primary',
+        tone: 'accent',
       },
       style: atoms({
         backgroundColor: {
@@ -66,7 +119,7 @@ export const variants = recipe({
     {
       variants: {
         hover: true,
-        variant: 'secondary',
+        tone: 'neutral',
       },
       style: atoms({
         color: { base: 'textSecondary', hover: 'text', active: 'text' },
@@ -77,6 +130,9 @@ export const variants = recipe({
         },
       }),
     },
+    getToneHoverCompoundVariant('critical'),
+    getToneHoverCompoundVariant('info'),
+    getToneHoverCompoundVariant('positive'),
   ],
 })
 

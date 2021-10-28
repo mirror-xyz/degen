@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { PropItem } from 'react-docgen-typescript'
 
 import { Box, Button, Stack, Text, VisuallyHidden } from '~/components'
@@ -15,7 +16,16 @@ const dataProps: Parameters<typeof Box>[0] = {
 }
 
 export const PropsTable = ({ sourceLink, types }: Props) => {
-  const headers = ['name', 'type', 'description', 'default']
+  const [state, setState] = React.useState<{
+    showDescriptions: boolean
+  }>({ showDescriptions: true })
+
+  const headers = [
+    'name',
+    'type',
+    'default',
+    ...(state.showDescriptions ? ['description'] : []),
+  ]
   const props = Object.values(types).sort((a, b) => (a.name > b.name ? 1 : -1))
   return (
     <>
@@ -68,32 +78,44 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
 
                 <Box {...dataProps}>
                   <Text color="textSecondary" size="small">
-                    {x.description || '-'}
-                  </Text>
-                </Box>
-
-                <Box {...dataProps}>
-                  <Text color="textSecondary" size="small">
                     {x.defaultValue?.value ?? '-'}
                   </Text>
                 </Box>
+
+                {state.showDescriptions && (
+                  <Box {...dataProps}>
+                    <Text color="textSecondary" size="small">
+                      {x.description || '-'}
+                    </Text>
+                  </Box>
+                )}
               </Box>
             ))}
           </Box>
         </Box>
       </Box>
 
-      {sourceLink && (
-        <Box marginY="2">
-          <Stack direction="horizontal" justify="flex-end" space="2">
+      <Box marginY="2">
+        <Stack direction="horizontal" justify="flex-end" space="2">
+          <Button
+            size="small"
+            variant="transparent"
+            onClick={() =>
+              setState((x) => ({ ...x, showDescriptions: !x.showDescriptions }))
+            }
+          >
+            {state.showDescriptions ? 'Hide Descriptions' : 'Show Descriptions'}
+          </Button>
+
+          {sourceLink && (
             <Link href={sourceLink}>
               <Button size="small" variant="transparent">
                 View Source on GitHub
               </Button>
             </Link>
-          </Stack>
-        </Box>
-      )}
+          )}
+        </Stack>
+      </Box>
     </>
   )
 }

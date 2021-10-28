@@ -1,4 +1,5 @@
-import { createVar, fallbackVar, style } from '@vanilla-extract/css'
+import { createVar, style } from '@vanilla-extract/css'
+import { CSSVarFunction } from '@vanilla-extract/private'
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
 import { atoms, rgb, vars } from '~/css'
@@ -33,95 +34,144 @@ const size = {
 
 export type Size = keyof typeof size
 
-const toneAccentVar = createVar()
-const toneAccentTextVar = createVar()
-
-const getTone = ({
-  accent,
-  accentText = vars.mode.colors.white,
-}: {
-  accent: string
-  accentText?: string
-}) =>
-  style({
-    vars: {
-      [toneAccentVar]: accent,
-      [toneAccentTextVar]: accentText,
-    },
-  })
+const getAccentVars = (colorVar: CSSVarFunction) => ({
+  [vars.colors.accent]: rgb(colorVar),
+  [vars.colors.accentText]: vars.colors.white,
+  [vars.colors.accentSecondary]: rgb(
+    colorVar,
+    vars.mode.shades.accentSecondary,
+  ),
+  [vars.colors.accentSecondaryHover]: rgb(
+    colorVar,
+    vars.mode.shades.accentSecondaryHover,
+  ),
+})
 
 const tone = {
-  accent: getTone({
-    accent: vars.mode.colors.accent,
-    accentText: vars.mode.colors.accentText,
+  accent: {},
+  critical: style({
+    vars: getAccentVars(vars.mode.colors.red),
   }),
-  blue: getTone({ accent: vars.mode.colors.blue }),
-  green: getTone({ accent: vars.mode.colors.green }),
-  red: getTone({ accent: vars.mode.colors.red }),
+  positive: style({
+    vars: getAccentVars(vars.mode.colors.green),
+  }),
+  info: style({
+    vars: getAccentVars(vars.mode.colors.blue),
+  }),
 }
 
 export type Tone = keyof typeof tone
 
-const variantTextVar = createVar()
-const variantBackgroundVar = createVar()
-const variantBackgroundHoverVar = createVar()
-
-const getVariant = ({
-  background,
-  backgroundHover,
-  text,
-}: {
-  background?: string
-  backgroundHover?: string
-  text: string
-}) =>
-  style({
-    vars: {
-      [variantTextVar]: text,
-      ...(background ? { [variantBackgroundVar]: background } : {}),
-      ...(backgroundHover
-        ? { [variantBackgroundHoverVar]: backgroundHover }
-        : {}),
-    },
-  })
+const boxShadowColorVar = createVar()
 
 const variant = {
-  highlight: getVariant({
-    text: rgb(toneAccentTextVar),
-    background: rgb(toneAccentVar),
-  }),
-  primary: getVariant({
-    text: rgb(toneAccentVar),
-    background: rgb(toneAccentVar, vars.mode.shades.accentSecondary),
-    backgroundHover: rgb(toneAccentVar, vars.mode.shades.accentSecondaryHover),
-  }),
-  secondary: getVariant({
-    text: vars.colors.text,
-    background: vars.colors.foregroundSecondary,
-    backgroundHover: vars.colors.foregroundSecondaryHover,
-  }),
-  transparent: getVariant({
-    text: vars.colors.textTertiary,
-    backgroundHover: vars.colors.foregroundTertiary,
-  }),
+  highlight: style([
+    atoms({
+      color: 'accentText',
+      backgroundColor: 'accent',
+    }),
+    style({
+      vars: {
+        [boxShadowColorVar]: vars.colors.accent,
+      },
+    }),
+  ]),
+  primary: style([
+    atoms({
+      color: 'accent',
+      backgroundColor: {
+        base: 'accentSecondary',
+        hover: 'accentSecondaryHover',
+        active: 'accentSecondaryHover',
+      },
+    }),
+    style({
+      vars: {
+        [boxShadowColorVar]: vars.colors.accentSecondary,
+      },
+      selectors: {
+        '&:hover': {
+          vars: {
+            [boxShadowColorVar]: vars.colors.accentSecondaryHover,
+          },
+        },
+        '&:active': {
+          vars: {
+            [boxShadowColorVar]: vars.colors.accentSecondaryHover,
+          },
+        },
+      },
+    }),
+  ]),
+  secondary: style([
+    atoms({
+      color: 'text',
+      backgroundColor: {
+        base: 'foregroundSecondary',
+        hover: 'foregroundSecondaryHover',
+        active: 'foregroundSecondaryHover',
+      },
+    }),
+    style({
+      vars: {
+        [boxShadowColorVar]: vars.colors.foregroundSecondary,
+      },
+      selectors: {
+        '&:hover': {
+          vars: {
+            [boxShadowColorVar]: vars.colors.foregroundSecondaryHover,
+          },
+        },
+        '&:active': {
+          vars: {
+            [boxShadowColorVar]: vars.colors.foregroundSecondaryHover,
+          },
+        },
+      },
+    }),
+  ]),
+  transparent: style([
+    atoms({
+      color: 'textTertiary',
+      backgroundColor: {
+        hover: 'foregroundTertiary',
+        active: 'foregroundTertiary',
+      },
+    }),
+    style({
+      vars: {
+        [boxShadowColorVar]: vars.colors.transparent,
+      },
+      selectors: {
+        '&:hover': {
+          vars: {
+            [boxShadowColorVar]: vars.colors.foregroundTertiary,
+          },
+        },
+        '&:active': {
+          vars: {
+            [boxShadowColorVar]: vars.colors.foregroundTertiary,
+          },
+        },
+      },
+    }),
+  ]),
 }
 
 export type Variant = keyof typeof variant
 
-const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => {
-  return {
-    variants: {
-      shape,
-      size,
-    },
-    style: atoms({
-      minWidth: size === 'small' ? '10' : '14',
-    }),
-  }
-}
+const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
+  variants: {
+    shape,
+    size,
+  },
+  style: atoms({
+    minWidth: size === 'small' ? '10' : '14',
+  }),
+})
 
 export const variants = recipe({
-  base: [
+  base: style([
     atoms({
       alignItems: 'center',
       cursor: 'pointer',
@@ -133,45 +183,27 @@ export const variants = recipe({
       transitionTimingFunction: 'inOut',
     }),
     style({
-      color: variantTextVar,
-      background: variantBackgroundVar,
-      boxShadow: `${vars.shadows['0']} ${variantBackgroundVar}`,
-      ':hover': {
-        background: fallbackVar(
-          variantBackgroundHoverVar,
-          variantBackgroundVar,
-        ),
-        boxShadow: `${vars.shadows['1']} ${fallbackVar(
-          variantBackgroundHoverVar,
-          variantBackgroundVar,
-        )}`,
-      },
-      ':active': {
-        background: fallbackVar(
-          variantBackgroundHoverVar,
-          variantBackgroundVar,
-        ),
-        boxShadow: `${vars.shadows['0.5']} ${fallbackVar(
-          variantBackgroundHoverVar,
-          variantBackgroundVar,
-        )}`,
-      },
-      ':disabled': {
-        boxShadow: 'none',
+      boxShadow: `${vars.shadows['0']} ${boxShadowColorVar}`,
+      selectors: {
+        '&:hover': {
+          boxShadow: `${vars.shadows['1']} ${boxShadowColorVar}`,
+        },
+        '&:active': {
+          boxShadow: `${vars.shadows['0.5']} ${boxShadowColorVar}`,
+        },
+        '&:disabled': {
+          boxShadow: 'none',
+        },
       },
     }),
-  ],
+  ]),
   variants: {
     disabled: {
-      true: style([
-        getVariant({
-          text: vars.colors.textTertiary,
-          background: vars.colors.foregroundSecondary,
-        }),
-        atoms({
-          cursor: 'not-allowed',
-        }),
-      ]),
+      true: atoms({
+        color: 'textTertiary',
+        backgroundColor: 'foregroundSecondary',
+        cursor: 'not-allowed',
+      }),
     },
     center: {
       true: atoms({
@@ -184,10 +216,12 @@ export const variants = recipe({
     variant,
   },
   compoundVariants: [
+    // Shape + Size
     getShapeSizeCompoundVariant('circle', 'medium'),
     getShapeSizeCompoundVariant('circle', 'small'),
     getShapeSizeCompoundVariant('square', 'medium'),
     getShapeSizeCompoundVariant('square', 'small'),
+    // Center + Size
     {
       variants: {
         center: true,

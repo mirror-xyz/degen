@@ -15,21 +15,23 @@ import { Tag } from 'degen'
 
 <PropsTable sourceLink={sourceLink} types={types} />
 
-## Variants
-
-```tsx live=true
-<Stack direction="horizontal" wrap>
-  <Tag variant="primary">Primary</Tag>
-  <Tag variant="secondary">Secondary</Tag>
-</Stack>
-```
-
 ## Sizes
 
 ```tsx live=true
 <Stack align="center" direction="horizontal">
   <Tag size="medium">Medium</Tag>
   <Tag size="small">Small</Tag>
+</Stack>
+```
+
+## Tones
+
+```tsx live=true
+<Stack direction="horizontal" wrap>
+  <Tag tone="accent">Accent</Tag>
+  <Tag tone="neutral">Neutral</Tag>
+  <Tag tone="positive">Positive</Tag>
+  <Tag tone="critical">Critical</Tag>
 </Stack>
 ```
 

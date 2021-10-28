@@ -17,8 +17,10 @@ export const root = recipe({
       width: 'full',
     }),
     style({
-      ':focus-within': {
-        borderColor: vars.colors.accent,
+      selectors: {
+        '&:focus-within': {
+          borderColor: vars.colors.accent,
+        },
       },
     }),
   ],
@@ -30,10 +32,19 @@ export const root = recipe({
       }),
     },
     error: {
-      true: atoms({
-        borderColor: 'red',
-        cursor: 'default',
-      }),
+      true: style([
+        atoms({
+          borderColor: 'red',
+          cursor: 'default',
+        }),
+        style({
+          selectors: {
+            '&:focus-within': {
+              borderColor: vars.colors.red,
+            },
+          },
+        }),
+      ]),
     },
   },
 })

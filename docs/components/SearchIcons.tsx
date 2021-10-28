@@ -50,7 +50,9 @@ export const SearchIcons = () => {
                   backgroundColor="foregroundTertiary"
                   borderRadius="2"
                   boxShadow={{ base: '1', hover: '1', active: '0.5' }}
-                  boxShadowColor={{ base: 'background' }}
+                  boxShadowColor={{
+                    base: 'transparent',
+                  }}
                   color="foreground"
                   padding="4"
                   transitionDuration="150"
