@@ -4,25 +4,21 @@ export const fonts = {
 }
 
 export const fontSizes = {
-  base: '1.0625rem',
+  base: '1rem',
   label: '0.8125rem',
   small: '0.9375rem',
   large: '1.1875rem',
   extraLarge: '1.625rem',
-  headingTwo: '1.8125rem',
+  headingTwo: '1.875rem',
   headingOne: '3rem',
 }
 
 export const fontWeights = {
-  thin: '100',
-  extraLight: '200',
   light: '300',
   normal: '400',
   medium: '500',
   semiBold: '600',
   bold: '700',
-  extraBold: '800',
-  black: '900',
 }
 
 export const letterSpacings = {

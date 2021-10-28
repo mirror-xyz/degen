@@ -4,26 +4,42 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 import { atoms } from '~/css'
 
 const variant = {
-  extraLarge: atoms({
-    fontSize: 'extraLarge',
-    fontWeight: 'medium',
-    letterSpacing: '-0.02',
-  }),
-  large: atoms({
-    fontSize: 'large',
-    fontWeight: 'normal',
-    letterSpacing: '-0.02',
-  }),
+  extraLarge: style([
+    atoms({
+      fontSize: 'extraLarge',
+      fontWeight: 'medium',
+      letterSpacing: '-0.02',
+    }),
+    style({
+      lineHeight: '2rem',
+    }),
+  ]),
+  large: style([
+    atoms({
+      fontSize: 'large',
+      fontWeight: 'normal',
+      letterSpacing: '-0.02',
+    }),
+    style({
+      lineHeight: '2rem',
+    }),
+  ]),
   base: atoms({
     fontSize: 'base',
     fontWeight: 'normal',
     letterSpacing: '-0.015',
+    lineHeight: '1.5',
   }),
-  small: atoms({
-    fontSize: 'small',
-    fontWeight: 'normal',
-    letterSpacing: '-0.01',
-  }),
+  small: style([
+    atoms({
+      fontSize: 'small',
+      fontWeight: 'normal',
+      letterSpacing: '-0.01',
+    }),
+    style({
+      lineHeight: '1.5rem',
+    }),
+  ]),
   label: atoms({
     color: 'textTertiary',
     fontSize: 'label',

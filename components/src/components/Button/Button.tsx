@@ -11,14 +11,21 @@ import * as styles from './styles.css'
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 
 type BaseProps = {
-  /** Centers text and reserves space for icon and spinner. */
+  /** Centers text and reserves space for icon and spinner */
   center?: true
   children: NativeButtonProps['children']
+  /** Marks as unusable */
   disabled?: true
-  icon?: ReactNodeNoStrings
+  /** Adds ReactNode before children */
+  prefix?: ReactNodeNoStrings
+  /** Shows loading spinner inside button */
   loading?: true
+  /** Constrains button to specific shape */
   shape?: styles.Shape
+  /** Sets dimensions and layout  */
   size?: styles.Size
+  /** Adds ReactNode after children */
+  suffix?: ReactNodeNoStrings
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
   variant?: styles.Variant
@@ -44,10 +51,11 @@ export const Button = React.forwardRef(
       center,
       children,
       disabled,
-      icon,
+      prefix,
       loading,
       shape,
       size = 'medium',
+      suffix,
       tabIndex,
       tone = 'accent',
       type,
@@ -65,15 +73,18 @@ export const Button = React.forwardRef(
 
     let childContent: ReactNodeNoStrings
     if (shape) {
-      childContent = loading ? <Spinner tone="current" /> : labelContent
+      childContent = loading ? <Spinner color="current" /> : labelContent
     } else {
       childContent = (
         <>
-          {icon && <Box {...getCenterProps(center, size, 'left')}>{icon}</Box>}
+          {prefix && (
+            <Box {...getCenterProps(center, size, 'left')}>{prefix}</Box>
+          )}
           {labelContent}
-          {loading && (
+
+          {(loading || suffix) && (
             <Box {...getCenterProps(center, size, 'right')}>
-              <Spinner tone="current" />
+              {loading ? <Spinner color="current" /> : suffix}
             </Box>
           )}
         </>

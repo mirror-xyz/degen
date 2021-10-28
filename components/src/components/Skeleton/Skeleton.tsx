@@ -15,7 +15,7 @@ type Props = {
 
 export const Skeleton = ({
   backgroundColor = 'foregroundSecondary',
-  radius = '1.5',
+  radius = 'medium',
   children,
   height,
   loading,

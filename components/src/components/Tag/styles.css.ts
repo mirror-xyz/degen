@@ -1,11 +1,35 @@
 import { style } from '@vanilla-extract/css'
+import { CSSVarFunction } from '@vanilla-extract/private'
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
-import { atoms, vars } from '~/css'
+import { atoms, rgb, vars } from '~/css'
 
 export const label = style({
   boxShadow: `0 0 0 2px ${vars.colors.background}`,
 })
+
+const getToneHoverCompoundVariant = (tone: 'blue' | 'green' | 'red') => {
+  const color = vars.mode.colors[tone]
+  return {
+    variants: {
+      hover: true,
+      tone,
+    },
+    style: {
+      selectors: {
+        '&:active': {
+          backgroundColor: color,
+        },
+        '&:hover': {
+          backgroundColor: color,
+        },
+      },
+    },
+  }
+}
+
+const getToneColor = (color: CSSVarFunction) =>
+  rgb(color, `calc(${vars.mode.shades.accentSecondary} * 0.5)`)
 
 export const variants = recipe({
   base: [
@@ -34,26 +58,46 @@ export const variants = recipe({
         fontSize: 'small',
       }),
     },
-    variant: {
-      primary: atoms({
+    tone: {
+      accent: atoms({
         color: 'accent',
         backgroundColor: 'accentTertiary',
       }),
+      blue: style([
+        atoms({
+          color: 'blue',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.blue),
+        }),
+      ]),
+      green: style([
+        atoms({
+          color: 'green',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.green),
+        }),
+      ]),
       secondary: atoms({
         color: 'textSecondary',
         backgroundColor: 'foregroundTertiary',
       }),
-      tertiary: atoms({
-        color: 'textTertiary',
-        backgroundColor: 'foregroundTertiary',
-      }),
+      red: style([
+        atoms({
+          color: 'red',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.red),
+        }),
+      ]),
     },
   },
   compoundVariants: [
     {
       variants: {
         hover: true,
-        variant: 'primary',
+        tone: 'accent',
       },
       style: atoms({
         backgroundColor: {
@@ -66,7 +110,7 @@ export const variants = recipe({
     {
       variants: {
         hover: true,
-        variant: 'secondary',
+        tone: 'secondary',
       },
       style: atoms({
         color: { base: 'textSecondary', hover: 'text', active: 'text' },
@@ -77,6 +121,9 @@ export const variants = recipe({
         },
       }),
     },
+    getToneHoverCompoundVariant('blue'),
+    getToneHoverCompoundVariant('green'),
+    getToneHoverCompoundVariant('red'),
   ],
 })
 

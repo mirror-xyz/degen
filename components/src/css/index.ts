@@ -16,4 +16,6 @@ export type {
 
 export { vars } from './vars.css'
 
+export type { Theme } from './types'
+
 export { getAccentText, getModeColors, motionSafe, rgb } from './utils'

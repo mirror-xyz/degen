@@ -83,8 +83,11 @@ const accentTokens = {
 const accentVars = createGlobalThemeContract(accentTokens, getVarName)
 createGlobalTheme(':root', accentVars, accentTokens)
 
-const colorVars = merge(modeVars, {
-  colors: accentVars,
-})
+const colorVars = merge(
+  {
+    colors: accentVars,
+  },
+  modeVars,
+)
 
 export const vars = merge(baseVars, colorVars)

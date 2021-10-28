@@ -6,6 +6,7 @@ import { compilerOptions } from './tsconfig.json'
 const config: Config.InitialOptions = {
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
+    '!**/index.ts',
     '!**/*.snippets.tsx',
     '!**/*.css.ts',
     '!**/icons/**',

@@ -8,7 +8,7 @@ export const root = recipe({
     atoms({
       borderWidth: '2px',
       borderColor: 'foregroundSecondary',
-      borderRadius: '4',
+      borderRadius: '2xLarge',
       color: 'text',
       display: 'flex',
       transitionDuration: '150',
@@ -17,8 +17,10 @@ export const root = recipe({
       width: 'full',
     }),
     style({
-      ':focus-within': {
-        borderColor: vars.colors.accent,
+      selectors: {
+        '&:focus-within': {
+          borderColor: vars.colors.accent,
+        },
       },
     }),
   ],
@@ -30,10 +32,19 @@ export const root = recipe({
       }),
     },
     error: {
-      true: atoms({
-        borderColor: 'red',
-        cursor: 'default',
-      }),
+      true: style([
+        atoms({
+          borderColor: 'red',
+          cursor: 'default',
+        }),
+        style({
+          selectors: {
+            '&:focus-within': {
+              borderColor: vars.colors.red,
+            },
+          },
+        }),
+      ]),
     },
   },
 })
@@ -92,10 +103,12 @@ export const variants = recipe({
   },
 })
 
+export const maxParent = style({})
+
 export const max = style([
   atoms({
     backgroundColor: 'foregroundSecondary',
-    borderRadius: '1.5',
+    borderRadius: 'medium',
     color: { base: 'textSecondary', hover: 'text' },
     cursor: 'pointer',
     fontSize: 'label',
@@ -111,7 +124,10 @@ export const max = style([
   }),
   style({
     selectors: {
-      [`${root({})}:hover &`]: {
+      [`${maxParent}:hover &`]: {
+        visibility: 'visible',
+      },
+      [`${maxParent}:focus-within &`]: {
         visibility: 'visible',
       },
     },

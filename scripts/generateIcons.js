@@ -98,14 +98,14 @@ const iconComponentsDir = path.join(
 
           type Props = Pick<BoxProps, 'className'> & {
             size?: Atoms['size']
-            tone?: Atoms['color']
+            color?: Atoms['color']
           } & OptionalTitle
 
-          export const ${svgName} = ({ size = '6', tone, ...props }: Props) => {
+          export const ${svgName} = ({ color, size = '6', ...props }: Props) => {
             return (
               <Box
                 as={${componentName}}
-                color={tone}
+                color={color}
                 height={size}
                 width={size}
                 {...props}

@@ -48,9 +48,11 @@ export const SearchIcons = () => {
               <Stack align="center" space="2">
                 <Box
                   backgroundColor="foregroundTertiary"
-                  borderRadius="2"
+                  borderRadius="large"
                   boxShadow={{ base: '1', hover: '1', active: '0.5' }}
-                  boxShadowColor={{ base: 'background' }}
+                  boxShadowColor={{
+                    base: 'transparent',
+                  }}
                   color="foreground"
                   padding="4"
                   transitionDuration="150"

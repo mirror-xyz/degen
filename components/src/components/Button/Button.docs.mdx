@@ -66,7 +66,7 @@ When `variant` is set to `highlight` or `primary`, you can `tone` to change the 
       <Button tone="accent" variant="highlight">
         Accent
       </Button>
-      <Button tone="blue" variant="highlight">
+      <Button tone="info" variant="highlight">
         Blue
       </Button>
       <Button tone="green" variant="highlight">
@@ -98,17 +98,21 @@ When `variant` is set to `highlight` or `primary`, you can `tone` to change the 
 </Stack>
 ```
 
-## Icons
+## Affixes
 
-Optional `center` prop reserves space for icon and loading spinner.
+Optional `center` prop reserves space for affixes and loading spinner.
 
 ```tsx live=true
 <Stack space="8">
   <Stack>
     <Text variant="label">Default</Text>
     <Stack direction="horizontal" wrap>
-      <Button icon={<IconPlusSmall />}>Add Entry</Button>
-      <Button icon={<IconPlusSmall />} loading>
+      <Button prefix={<IconPlusSmall />}>Add Entry</Button>
+      <Button suffix={<IconPlusSmall />}>Add Entry</Button>
+      <Button prefix={<IconPlusSmall />} suffix={<IconPlusSmall />}>
+        Add Entry
+      </Button>
+      <Button loading prefix={<IconPlusSmall />}>
         Add Entry
       </Button>
     </Stack>
@@ -117,10 +121,16 @@ Optional `center` prop reserves space for icon and loading spinner.
   <Stack>
     <Text variant="label">Center</Text>
     <Stack direction="horizontal" wrap>
-      <Button center icon={<IconPlusSmall />}>
+      <Button center prefix={<IconPlusSmall />}>
         Add Entry
       </Button>
-      <Button center icon={<IconPlusSmall />} loading>
+      <Button center suffix={<IconPlusSmall />}>
+        Add Entry
+      </Button>
+      <Button center prefix={<IconPlusSmall />} suffix={<IconPlusSmall />}>
+        Add Entry
+      </Button>
+      <Button center loading prefix={<IconPlusSmall />}>
         Add Entry
       </Button>
     </Stack>
@@ -135,11 +145,11 @@ Optional `center` prop reserves space for icon and loading spinner.
   <Button width="64">Fixed Width</Button>
   <Button width="full">Full Width</Button>
   <Button width={{ xs: 'full', md: 'max' }}>Responsive Width</Button>
-  <Button icon={<IconPlusSmall />} loading width="full">
-    With Icon & Loading
+  <Button loading prefix={<IconPlusSmall />} width="full">
+    With Prefix & Loading
   </Button>
-  <Button center icon={<IconPlusSmall />} loading width="full">
-    Centered With Icon & Loading
+  <Button center loading prefix={<IconPlusSmall />} width="full">
+    Centered With Prefix & Loading
   </Button>
 </Stack>
 ```

@@ -184,7 +184,6 @@ const selectorStyles = defineProperties({
     base: {},
     active: { selector: '&:active' },
     focus: { selector: '&:focus' },
-    focusWithin: { selector: '&:focus-within' },
     hover: { selector: '&:hover' },
   },
   defaultCondition: 'base',
@@ -206,14 +205,15 @@ const selectorStyles = defineProperties({
       },
     },
     boxShadowColor: {
-      background: {
-        vars: { [boxShadowColorVar]: vars.colors.background },
-      },
       foregroundSecondary: {
         vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
       },
+      transparent: {
+        vars: { [boxShadowColorVar]: vars.colors.transparent },
+      },
     },
     color: vars.colors,
+    outlineColor: vars.colors,
   },
 })
 

@@ -23,6 +23,7 @@ import { Text } from 'degen'
   <Text variant="large">Large</Text>
   <Text variant="base">Base</Text>
   <Text variant="small">Small</Text>
+  <Text variant="label">Label</Text>
 </Stack>
 ```
 
@@ -30,15 +31,11 @@ import { Text } from 'degen'
 
 ```tsx live=true
 <Stack>
-  <Text weight="black">Black</Text>
-  <Text weight="extraBold">Extra Bold</Text>
-  <Text weight="bold">Bold</Text>
-  <Text weight="semiBold">Semi Bold</Text>
-  <Text weight="medium">Medium</Text>
-  <Text weight="normal">Normal</Text>
-  <Text weight="light">Light</Text>
-  <Text weight="extraLight">Extra Light</Text>
-  <Text weight="thin">Thin</Text>
+  <Text weight="bold">Bold (700)</Text>
+  <Text weight="semiBold">Semi Bold (600)</Text>
+  <Text weight="medium">Medium (500)</Text>
+  <Text weight="normal">Normal (400)</Text>
+  <Text weight="light">Light (300)</Text>
 </Stack>
 ```
 
@@ -70,17 +67,15 @@ import { Text } from 'degen'
   <Text color="textSecondary">Text Secondary</Text>
   <Text color="textTertiary">Text Tertiary</Text>
   <Text color="accent">Accent</Text>
+  <Text color="red">Red</Text>
+  <Text color="green">Green</Text>
 </Stack>
 ```
 
 ## Ellipsis
 
 ```tsx live=true
-<Stack>
-  <Box width="64">
-    <Text color="foreground" ellipsis>
-      The quick brown fox jumped over the lazy dogs.
-    </Text>
-  </Box>
-</Stack>
+<Box width="64">
+  <Text ellipsis>The quick brown fox jumped over the lazy dogs.</Text>
+</Box>
 ```

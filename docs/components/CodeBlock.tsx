@@ -22,7 +22,7 @@ const CodePreview = dynamic<CodePreviewProps>(
     loading: () => (
       <Box
         backgroundColor="backgroundSecondary"
-        borderRadius="2"
+        borderRadius="large"
         height="48"
         width="full"
       />
@@ -72,7 +72,7 @@ export const CodeBlock = ({ children, className, live, expand }: Props) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Box
           as="pre"
-          borderRadius="2"
+          borderRadius="large"
           className={className}
           padding="6"
           position="relative"

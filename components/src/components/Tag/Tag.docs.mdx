@@ -8,21 +8,12 @@ import { Tag } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<Tag>100 $ELEKTRA</Tag>
+<Tag>100 $WRITE</Tag>
 ```
 
 ## Props
 
 <PropsTable sourceLink={sourceLink} types={types} />
-
-## Variants
-
-```tsx live=true
-<Stack direction="horizontal" wrap>
-  <Tag variant="primary">Primary</Tag>
-  <Tag variant="secondary">Secondary</Tag>
-</Stack>
-```
 
 ## Sizes
 
@@ -30,6 +21,18 @@ import { Tag } from 'degen'
 <Stack align="center" direction="horizontal">
   <Tag size="medium">Medium</Tag>
   <Tag size="small">Small</Tag>
+</Stack>
+```
+
+## Tones
+
+```tsx live=true
+<Stack direction="horizontal" wrap>
+  <Tag tone="accent">Accent</Tag>
+  <Tag tone="secondary">Secondary</Tag>
+  <Tag tone="blue">Blue</Tag>
+  <Tag tone="green">Green</Tag>
+  <Tag tone="red">Red</Tag>
 </Stack>
 ```
 

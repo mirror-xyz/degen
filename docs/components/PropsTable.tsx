@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { PropItem } from 'react-docgen-typescript'
 
 import { Box, Button, Stack, Text, VisuallyHidden } from '~/components'
@@ -15,8 +16,24 @@ const dataProps: Parameters<typeof Box>[0] = {
 }
 
 export const PropsTable = ({ sourceLink, types }: Props) => {
-  const headers = ['name', 'type', 'description', 'default']
-  const props = Object.values(types).sort((a, b) => (a.name > b.name ? 1 : -1))
+  const [state, setState] = React.useState<{
+    showDescriptions: boolean
+  }>({
+    showDescriptions: Object.values(types).some((x) => x.description !== ''),
+  })
+
+  const headers = [
+    'name',
+    'type',
+    'default',
+    ...(state.showDescriptions ? ['description'] : []),
+  ]
+  const props = Object.values(types).sort((a, b) => {
+    if (a.name.startsWith('on') || b.name.startsWith('on')) return 1
+    if (a.name < b.name) return -1
+    if (a.name > b.name) return 1
+    return 0
+  })
   return (
     <>
       <Box maxWidth="full" overflow={{ xs: 'scroll', lg: 'unset' }}>
@@ -36,8 +53,8 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                     borderColor="foregroundSecondary"
                     paddingX="4"
                     paddingY="2.5"
-                    radiusLeft={i === 0 ? '2' : undefined}
-                    radiusRight={i === headers.length - 1 ? '2' : undefined}
+                    radiusLeft={i === 0 ? 'large' : undefined}
+                    radiusRight={i === headers.length - 1 ? 'large' : undefined}
                   >
                     <Text variant="label">{x}</Text>
                   </Box>
@@ -68,32 +85,44 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
 
                 <Box {...dataProps}>
                   <Text color="textSecondary" size="small">
-                    {x.description || '-'}
-                  </Text>
-                </Box>
-
-                <Box {...dataProps}>
-                  <Text color="textSecondary" size="small">
                     {x.defaultValue?.value ?? '-'}
                   </Text>
                 </Box>
+
+                {state.showDescriptions && (
+                  <Box {...dataProps}>
+                    <Text color="textSecondary" size="small">
+                      {x.description || '-'}
+                    </Text>
+                  </Box>
+                )}
               </Box>
             ))}
           </Box>
         </Box>
       </Box>
 
-      {sourceLink && (
-        <Box marginY="2">
-          <Stack direction="horizontal" justify="flex-end" space="2">
+      <Box marginY="2">
+        <Stack direction="horizontal" justify="flex-end" space="2">
+          <Button
+            size="small"
+            variant="transparent"
+            onClick={() =>
+              setState((x) => ({ ...x, showDescriptions: !x.showDescriptions }))
+            }
+          >
+            {state.showDescriptions ? 'Hide Description' : 'Show Description'}
+          </Button>
+
+          {sourceLink && (
             <Link href={sourceLink}>
               <Button size="small" variant="transparent">
                 View Source on GitHub
               </Button>
             </Link>
-          </Stack>
-        </Box>
-      )}
+          )}
+        </Stack>
+      </Box>
     </>
   )
 }
