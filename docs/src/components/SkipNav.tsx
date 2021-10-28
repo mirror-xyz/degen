@@ -5,20 +5,22 @@ import {
 } from '@reach/skip-nav'
 import '@reach/skip-nav/styles.css'
 
+import { Box } from 'degen/components'
 import { vars } from 'degen/css'
 
 export const SkipNavLink = ({ children, ...rest }: SkipNavLinkProps) => {
   return (
-    <ReachSkipNavLink
+    <Box
+      as={ReachSkipNavLink}
       {...rest}
       style={{
-        background: vars.colors.foregroundSecondary,
-        color: vars.colors.text,
+        background: vars.colors.accent,
+        color: vars.colors.accentText,
         fontFamily: vars.fonts.sans,
       }}
     >
       {children}
-    </ReachSkipNavLink>
+    </Box>
   )
 }
 

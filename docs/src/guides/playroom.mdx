@@ -1,0 +1,95 @@
+---
+title: Playroom
+description: Guidelines for prototyping using Playroom
+---
+
+## Usage
+
+Select "Open in Playroom" to get started with the example below.
+
+```tsx live=true
+<Stack align="center">
+  <Button
+    disabled={getState('loading')}
+    loading={getState('loading')}
+    prefix={<IconLockClosed />}
+    tone="blue"
+    variant="highlight"
+    onClick={() => {
+      toggleState('loading')
+      setTimeout(() => toggleState('loading'), 1000)
+    }}
+  >
+    Connect Wallet
+  </Button>
+</Stack>
+```
+
+With Playroom, you can test different screen sizes and themes, share links to prototypes, and use all system components without needing to import anything.
+
+## State and Interactivity
+
+You can control Playroom state and interactivity using the variables and functions that are injected into the global context:
+
+```ts
+// State
+setDefaultState(key, value)
+getState(key)
+setState(key, value)
+toggleState(key)
+resetState()
+// Theme
+accent
+mode
+setAccent(accent)
+setMode(mode)
+// CSS
+vars
+```
+
+```tsx live=true
+<Stack>
+  <Text size="extraLarge">
+    {getState('counter') != null ? getState('counter') : 2}
+  </Text>
+  <Stack align="center" direction="horizontal">
+    <Button
+      disabled={getState('locked')}
+      size="small"
+      variant="secondary"
+      onClick={() => setState('counter', getState('counter') - 1)}
+    >
+      Decrement
+    </Button>
+    <Button
+      disabled={getState('locked')}
+      size="small"
+      variant="secondary"
+      onClick={() => setState('counter', getState('counter') + 1)}
+    >
+      Increment
+    </Button>
+
+    {getState('counter') !== 2 && (
+      <Button
+        disabled={getState('locked')}
+        size="small"
+        variant="secondary"
+        onClick={() => resetState()}
+      >
+        Reset
+      </Button>
+    )}
+
+    <Button
+      size="small"
+      variant="secondary"
+      onClick={() => toggleState('locked')}
+    >
+      {getState('locked') ? 'Unlock' : 'Lock'}
+    </Button>
+
+    <VisuallyHidden>{setDefaultState('counter', 2)}</VisuallyHidden>
+  </Stack>
+</Stack>
+```

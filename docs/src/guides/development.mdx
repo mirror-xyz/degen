@@ -1,0 +1,42 @@
+---
+title: Development
+description: Guidelines for working with code
+---
+
+## Set Up
+
+Clone repository, install dependencies, and run docs site and Playroom.
+
+```bash
+gh repo clone mirror-xyz/degen
+yarn
+yarn dev
+```
+
+## Adding Components
+
+Scaffold a new component:
+
+```bash
+yarn gen:component
+```
+
+Export from `src/index.ts` to make available:
+
+```ts
+export { ComponentName } from './components'
+```
+
+## Adding Icons
+
+Add a `.svg` file to `icons` and run:
+
+```bash
+yarn gen:icons
+```
+
+All files in the `icons` directory are automatically converted to React components and exported for use. Generated icons should follow a 24x24 bounding box.
+
+## Publishing New Versions
+
+[Create a new release](https://github.com/mirror-xyz/degen/releases/new) on GitHub with a tag that follows [semantic versioning](https://semver.org/). Publishing a release triggers a workflow for building, testing, and pushing to [NPM](https://www.npmjs.com/package/degen).

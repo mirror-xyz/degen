@@ -89,6 +89,14 @@ export const Nav = ({ links }: Props) => {
             <NavLink href={createPlayroomLink()}>Playroom</NavLink>
           </Stack>
 
+          <Stack>
+            <Text variant="label">Guides</Text>
+            <Stack space="3">
+              <NavLink href="/guides/development">Development</NavLink>
+              <NavLink href="/guides/playroom">Playroom</NavLink>
+            </Stack>
+          </Stack>
+
           {links.map((x) => (
             <Stack key={x.name}>
               <Text variant="label">{x.name}</Text>
