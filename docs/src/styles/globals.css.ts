@@ -1,6 +1,6 @@
 import { globalFontFace, globalStyle } from '@vanilla-extract/css'
 
-import { vars } from '~/css'
+import { vars } from 'degen/css'
 
 globalFontFace('iAWriter Mono', {
   fontDisplay: 'optional',

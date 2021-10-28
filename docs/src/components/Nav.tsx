@@ -2,12 +2,12 @@ import { useRouter } from 'next/dist/client/router'
 import * as React from 'react'
 import NextImage from 'next/image'
 
-import { createGitHubLink } from 'utils/github'
-import { createPlayroomLink } from 'utils/playroom'
-import { useIsMounted } from 'utils/isMounted'
-import * as styles from 'styles/utils.css'
+import { Box, Button, Stack, Text } from 'degen/components'
 
-import { Box, Button, Stack, Text } from '~/components'
+import { createGitHubLink } from '~/utils/github'
+import { createPlayroomLink } from '~/utils/playroom'
+import { useIsMounted } from '~/utils/isMounted'
+import * as styles from '~/styles/utils.css'
 import { Link } from './Link'
 import { ThemeSwitcher } from './ThemeSwitcher'
 

@@ -89,7 +89,7 @@ const iconComponentsDir = path.join(
       dedent`
           import * as React from 'react'
 
-          import { Atoms } from '~/css'
+          import { Atoms } from '../../../../css'
           import { Box } from '../../../Box'
           import { OptionalTitle } from '../../types'
           import { ${componentName} } from './${componentName}'
@@ -131,6 +131,10 @@ const iconComponentsDir = path.join(
           \`\`\`tsx live=true expand=true
           <${svgName} />
           \`\`\`
+
+          ## Props
+
+          <PropsTable sourceLink={sourceLink} types={types} />
         `,
       'utf-8',
     )

@@ -4,7 +4,7 @@ import {
   createGlobalThemeContract,
 } from '@vanilla-extract/css'
 
-import { Mode, tokens } from '~/tokens'
+import { Mode, tokens } from '../tokens'
 import { Theme } from './types'
 import { getVarName, rgb } from './utils'
 
@@ -16,9 +16,7 @@ const baseTokens: Omit<Theme, 'colors' | 'mode'> = restTokens
 const baseVars = createGlobalThemeContract(baseTokens, getVarName)
 createGlobalTheme(':root', baseVars, baseTokens)
 
-const makeColorScheme = (
-  mode: Mode = 'light',
-): { colors: Theme['colors']; mode: Theme['mode'] } => {
+const makeColorScheme = (mode: Mode = 'light') => {
   const colors = tokens.colors[mode]
   const shades = tokens.shades[mode]
   return {
@@ -83,11 +81,12 @@ const accentTokens = {
 const accentVars = createGlobalThemeContract(accentTokens, getVarName)
 createGlobalTheme(':root', accentVars, accentTokens)
 
-const colorVars = merge(
-  {
-    colors: accentVars,
-  },
-  modeVars,
-)
+const normalizedAccentVars = {
+  colors: accentVars,
+}
 
-export const vars = merge(baseVars, colorVars)
+type ColorVars = typeof modeVars & typeof normalizedAccentVars
+const colorVars = merge(normalizedAccentVars, modeVars) as ColorVars
+
+type ThemeVars = typeof baseVars & typeof colorVars
+export const vars = merge(baseVars, colorVars) as ThemeVars

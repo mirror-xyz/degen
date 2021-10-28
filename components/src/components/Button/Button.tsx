@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { ReactNodeNoStrings } from '~/types'
-import { Atoms } from '~/css'
+import { ReactNodeNoStrings } from '../../types'
+import { Atoms } from '../../css'
 import { Box } from '../Box'
 import { Spinner } from '../Spinner'
 import { Text } from '../Text'

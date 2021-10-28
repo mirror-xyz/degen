@@ -3,12 +3,12 @@ import { AppProps } from 'next'
 import { MDXProvider } from '@mdx-js/react'
 import Head from 'next/head'
 
-import { MDX } from 'components'
-import { getLayout as getDocsLayout } from 'layouts/docs'
-import { getThemeAccent, getThemeMode } from 'utils/cookies'
+import { ThemeProvider } from 'degen/components'
 
-import { ThemeProvider } from '~/components'
-import 'styles/globals.css'
+import { MDX } from '~/components'
+import { getLayout as getDocsLayout } from '~/layouts/docs'
+import { getThemeAccent, getThemeMode } from '~/utils/cookies'
+import '~/styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   const getLayout = Component.getLayout || getDocsLayout

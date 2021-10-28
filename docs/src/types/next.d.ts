@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NextPage } from 'next'
 import { AppProps as NextAppProps } from 'next/app'
 
-import { EmptyObject } from '~/types'
+import { EmptyObject } from 'degen/types'
 
 declare module 'next' {
   export type NextLayout<P = EmptyObject> = (

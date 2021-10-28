@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { ThemeProvider } from '~/components'
-import { PlayroomStateProvider } from './PlayroomState'
+import { ThemeProvider } from 'degen/components'
 
+import { PlayroomStateProvider } from './PlayroomState'
 import './styles.css'
 
 type ThemeProviderProps = Parameters<typeof ThemeProvider>[0]

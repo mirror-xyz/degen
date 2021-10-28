@@ -1,7 +1,7 @@
 import * as React from 'react'
 import NextLink from 'next/link'
 
-import { Box } from '~/components'
+import { Box } from 'degen/components'
 
 type NextLinkProps = Parameters<typeof NextLink>[0]
 

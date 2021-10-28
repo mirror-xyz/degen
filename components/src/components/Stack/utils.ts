@@ -2,7 +2,7 @@ import {
   OptionalResponsiveObject,
   OptionalResponsiveValue,
   mapResponsiveValue,
-} from '~/css'
+} from '../../css'
 export type Direction = 'horizontal' | 'vertical'
 
 const directionToFlexDirectionLookup = {

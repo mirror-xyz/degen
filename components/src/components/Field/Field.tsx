@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { ReactNodeNoStrings } from '~/types'
-
+import { ReactNodeNoStrings } from '../../types'
 import { Box } from '../Box'
 import { Stack } from '../Stack'
 import { VisuallyHidden } from '../VisuallyHidden'

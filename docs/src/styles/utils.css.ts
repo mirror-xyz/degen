@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css'
 
-import { atoms, vars } from '~/css'
+import { atoms, vars } from 'degen/css'
 
 export const hoverParent = style({})
 

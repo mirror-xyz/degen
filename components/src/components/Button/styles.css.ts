@@ -2,7 +2,7 @@ import { createVar, style } from '@vanilla-extract/css'
 import { CSSVarFunction } from '@vanilla-extract/private'
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
-import { atoms, rgb, vars } from '~/css'
+import { atoms, rgb, vars } from '../../css'
 
 const shape = {
   circle: atoms({

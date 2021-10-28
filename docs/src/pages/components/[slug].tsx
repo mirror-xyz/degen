@@ -10,13 +10,13 @@ import { serialize } from 'next-mdx-remote/serialize'
 import matter from 'gray-matter'
 import { PropItem } from 'react-docgen-typescript'
 
-import { Props as LayoutProps, getLayout } from 'layouts/docs'
-import { getComponentName, getComponentPaths } from 'utils/getComponent'
-import { getStaticTypes } from 'utils/getStaticTypes'
-import { createGitHubLink } from 'utils/github'
-import { Link } from 'components'
+import { Box, Text } from 'degen/components'
 
-import { Box, Text } from '~/components'
+import { Props as LayoutProps, getLayout } from '~/layouts/docs'
+import { getComponentName, getComponentPaths } from '~/utils/getComponent'
+import { getStaticTypes } from '~/utils/getStaticTypes'
+import { createGitHubLink } from '~/utils/github'
+import { Link } from '~/components'
 
 export const getStaticPaths: GetStaticPaths = async () => ({
   paths: getComponentPaths().map((x) => ({

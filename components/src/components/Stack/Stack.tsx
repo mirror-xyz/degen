@@ -1,8 +1,11 @@
 import * as React from 'react'
 
-import { Atoms, OptionalResponsiveObject, OptionalResponsiveValue } from '~/css'
-import { ReactNodeNoStrings } from '~/types'
-
+import {
+  Atoms,
+  OptionalResponsiveObject,
+  OptionalResponsiveValue,
+} from '../../css'
+import { ReactNodeNoStrings } from '../../types'
 import { Box } from '../Box'
 import { Direction, directionToFlexDirection, wrapToFlexWrap } from './utils'
 

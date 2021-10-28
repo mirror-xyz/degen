@@ -58,7 +58,7 @@ module.exports = {
     },
     resolve: {
       alias: {
-        '~': path.resolve(__dirname, '../components/src'),
+        degen: path.resolve(__dirname, '../components/src'),
       },
       extensions: ['.js', '.ts', '.tsx'],
     },

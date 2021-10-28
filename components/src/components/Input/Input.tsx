@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { Atoms } from '~/css'
-import { ReactNodeNoStrings } from '~/types'
+import { Atoms } from '../../css'
+import { ReactNodeNoStrings } from '../../types'
 import { Box } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
 import * as styles from './styles.css'

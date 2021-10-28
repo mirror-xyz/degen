@@ -27,7 +27,7 @@
   "license": "MIT",
   "scripts": {
     "build": "vite build",
-    "clean": "rimraf dist src/components/icons/index.ts src/components/icons/Icon*/",
+    "clean": "rimraf dist src/components/icons/generated/",
     "lint:types": "tsc --noEmit",
     "prepack": "yarn gen:icons && yarn build",
     "publish": "yarn npm publish",

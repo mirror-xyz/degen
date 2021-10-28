@@ -1,7 +1,7 @@
 import * as React from 'react'
 import clsx, { ClassValue } from 'clsx'
 
-import { Atoms, atoms, sprinkles } from '~/css'
+import { Atoms, atoms, sprinkles } from '../../css'
 
 type HTMLProperties = Omit<
   React.AllHTMLAttributes<HTMLElement>,
@@ -28,7 +28,7 @@ export const Box = React.forwardRef<HTMLElement, Props>(
     }
 
     const atomicClasses = atoms({
-      reset: typeof as === 'string' ? as : 'div',
+      reset: typeof as === 'string' ? (as as Atoms['reset']) : 'div',
       ...atomProps,
     })
 

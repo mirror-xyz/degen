@@ -24,7 +24,6 @@ export default defineConfig({
     dts({
       exclude: [
         'src/**/*.docs.mdx',
-        'src/**/*.css.ts',
         'src/**/*.snippets.tsx',
         'src/**/*.test.ts*',
       ],

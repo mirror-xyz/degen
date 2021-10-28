@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Atoms } from '~/css'
+import { Atoms } from '../../css'
 import { Box } from '../Box'
 import { Context } from '../SkeletonGroup'
 import * as styles from './styles.css'

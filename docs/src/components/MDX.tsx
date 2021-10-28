@@ -1,9 +1,9 @@
 import { MDXProviderProps } from '@mdx-js/react'
 import slugify from '@sindresorhus/slugify'
 
-import * as styles from 'styles/utils.css'
+import { Box, Heading, Text } from 'degen/components'
 
-import { Box, Heading, Text } from '~/components'
+import * as styles from '~/styles/utils.css'
 import { CodeBlock } from './CodeBlock'
 import { Link } from './Link'
 import { SearchIcons } from './SearchIcons'

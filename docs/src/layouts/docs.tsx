@@ -2,9 +2,15 @@ import * as React from 'react'
 import { GetLayout, NextLayout } from 'next'
 import Head from 'next/head'
 
-import { Header, Nav, NavProps, SkipNavContent, SkipNavLink } from 'components'
+import { Box } from 'degen/components'
 
-import { Box } from '~/components'
+import {
+  Header,
+  Nav,
+  NavProps,
+  SkipNavContent,
+  SkipNavLink,
+} from '~/components'
 import { getLayout as getBaseLayout } from './site'
 
 export type Props = {
