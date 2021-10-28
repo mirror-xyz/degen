@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Atoms } from '~/css'
+import { Atoms } from '../../../css'
 import { Box } from '../../Box'
 import { OptionalTitle } from '../types'
 import { IconNFTSvg } from './IconNFTSVG'

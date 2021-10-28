@@ -1,6 +1,15 @@
-import { Accent, Tokens } from '~/tokens'
+import { Accent, Tokens } from '../tokens'
 
-type ThemeColors = Tokens['colors']['base'] & { [key in Accent]: string } & {
+type BaseColors = Tokens['colors']['base'] & {
+  [key in Accent]: string
+}
+
+type ThemeColors = BaseColors & {
+  accent: string
+  accentText: string
+  accentSecondary?: string
+  accentSecondaryHover?: string
+  accentTertiary?: string
   background: string
   backgroundSecondary: string
   backgroundTertiary: string
@@ -17,13 +26,7 @@ type ThemeColors = Tokens['colors']['base'] & { [key in Accent]: string } & {
 }
 
 type ThemeMode = {
-  colors: Tokens['colors']['light'] & {
-    accent: string
-    accentText: string
-    accentSecondary?: string
-    accentSecondaryHover?: string
-    accentTertiary?: string
-  }
+  colors: Tokens['colors']['light']
   shades: Tokens['shades']['light']
 }
 

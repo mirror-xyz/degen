@@ -1,4 +1,4 @@
-import { style } from '@vanilla-extract/css'
+import { style as resetStyles } from '@vanilla-extract/css'
 
 import 'focus-visible'
 import { vars } from './vars.css'
@@ -12,7 +12,7 @@ import { vars } from './vars.css'
 const hideFocusRingsDataAttribute =
   '[data-js-focus-visible] &:focus:not([data-focus-visible-added])'
 
-export const base = style({
+export const base = resetStyles({
   // Prevent padding and border from affecting element width
   boxSizing: 'border-box',
 
@@ -37,19 +37,19 @@ export const base = style({
 })
 
 // HTML5 display-role reset for older browsers
-const block = style({
+const block = resetStyles({
   display: 'block',
 })
 
-const body = style({
+const body = resetStyles({
   lineHeight: vars.lineHeights.none,
 })
 
-const list = style({
+const list = resetStyles({
   listStyle: 'none',
 })
 
-const quote = style({
+const quote = resetStyles({
   quotes: 'none',
   selectors: {
     '&:before, &:after': {
@@ -58,19 +58,19 @@ const quote = style({
   },
 })
 
-const table = style({
+const table = resetStyles({
   borderCollapse: 'collapse',
   borderSpacing: 0,
 })
 
-const appearance = style({
+const appearance = resetStyles({
   appearance: 'none',
 })
 
-const field = style([
+const field = resetStyles([
   block,
   appearance,
-  style({
+  resetStyles({
     outline: 'none',
     '::placeholder': {
       color: vars.colors.textTertiary,
@@ -80,14 +80,14 @@ const field = style([
 ])
 
 // Custom reset rules
-const mark = style({
+const mark = resetStyles({
   backgroundColor: vars.colors.transparent,
   color: vars.colors.inherit,
 })
 
-const select = style([
+const select = resetStyles([
   field,
-  style({
+  resetStyles({
     selectors: {
       '&::-ms-expand': {
         display: 'none',
@@ -96,9 +96,9 @@ const select = style([
   }),
 ])
 
-const input = style([
+const input = resetStyles([
   field,
-  style({
+  resetStyles({
     selectors: {
       // Hide browser increment/decrement buttons
       '&::-webkit-outer-spin-button': {
@@ -118,11 +118,11 @@ const input = style([
   }),
 ])
 
-const button = style({
+const button = resetStyles({
   background: 'none',
 })
 
-const a = style({
+const a = resetStyles({
   textDecoration: 'none',
   color: vars.colors.inherit,
 })
@@ -153,3 +153,5 @@ export const element = {
   textarea: field,
   input,
 }
+
+export type Element = keyof typeof element

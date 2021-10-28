@@ -1,7 +1,7 @@
 import { StyleRule } from '@vanilla-extract/css'
 import { CSSVarFunction } from '@vanilla-extract/private'
 
-import { Accent, Mode, tokens } from '~/tokens'
+import { Accent, Mode, tokens } from '../tokens'
 
 export const rgb = (partial: string, alpha?: CSSVarFunction | string) =>
   alpha ? `rgba(${partial}, ${alpha})` : `rgb(${partial})`

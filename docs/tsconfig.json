@@ -5,8 +5,9 @@
     "baseUrl": "./",
     "jsx": "preserve",
     "paths": {
-      "src/*": ["./src/*"],
-      "~/*": ["../components/src/*"]
+      "!/*": ["../*"],
+      "~/*": ["./src/*"],
+      "degen/*": ["../components/src/*"]
     },
     "target": "es5",
     "incremental": true

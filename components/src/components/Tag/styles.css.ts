@@ -2,7 +2,7 @@ import { style } from '@vanilla-extract/css'
 import { CSSVarFunction } from '@vanilla-extract/private'
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
-import { atoms, rgb, vars } from '~/css'
+import { atoms, rgb, vars } from '../../css'
 
 export const label = style({
   boxShadow: `0 0 0 2px ${vars.colors.background}`,

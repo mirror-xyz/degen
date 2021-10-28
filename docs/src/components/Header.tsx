@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Box, Heading, Stack, Text } from '~/components'
+import { Box, Heading, Stack, Text } from 'degen/components'
 
 type Props = {
   description?: React.ReactNode

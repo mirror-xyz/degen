@@ -6,17 +6,18 @@ import {
   renderHook as defaultRenderHook,
 } from '@testing-library/react-hooks'
 
-import { ThemeProvider } from '~/components'
+import {
+  ThemeProvider,
+  ThemeProviderProps,
+} from '../src/components/ThemeProvider'
 
 import '@testing-library/jest-dom/extend-expect'
-
-type ThemeProps = Partial<Omit<Parameters<typeof ThemeProvider>[0], 'children'>>
 
 type ProvidersProps = {
   children:
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
     | React.ReactNode
-  themeProps?: ThemeProps
+  themeProps?: ThemeProviderProps
 }
 export const Providers = ({ children, themeProps }: ProvidersProps) => {
   return <ThemeProvider {...themeProps}>{children}</ThemeProvider>

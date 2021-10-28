@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { Link } from 'components'
+import { Box, IconSearch, Input, Stack, Text } from 'degen/components'
+import * as Components from 'degen/components'
 
-import { Box, IconSearch, Input, Stack, Text } from '~/components'
-import * as Components from '~/components'
+import { Link } from '~/components'
 
 const icons = Object.entries(Components)
   .filter(([k]) => k.includes('Icon'))

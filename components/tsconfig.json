@@ -6,9 +6,8 @@
     "jsx": "react",
     "outDir": "./dist/types",
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./*"],
-      "!/*": ["../*"]
+      "!/*": ["../*"],
+      "@/*": ["./*"]
     },
     "types": ["@testing-library/jest-dom", "jest"]
   },

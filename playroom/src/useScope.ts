@@ -1,4 +1,5 @@
-import { useTheme } from '~/components'
+import { useTheme } from 'degen/components'
+
 import { usePlayroomStore } from './PlayroomState'
 
 const useScope = () => {
