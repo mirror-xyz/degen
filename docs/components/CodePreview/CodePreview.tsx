@@ -46,15 +46,15 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
       <Box
         backgroundColor="background"
         borderColor="foregroundSecondary"
-        borderRadius="2"
+        borderRadius="large"
         borderWidth="0.5"
       >
         <Box
           backgroundColor="background"
           overflow="scroll"
           padding="6"
-          radiusBottom={state.expand ? undefined : '2'}
-          radiusTop="2"
+          radiusBottom={state.expand ? undefined : 'large'}
+          radiusTop="large"
           ref={previewRef}
         >
           <LivePreview />

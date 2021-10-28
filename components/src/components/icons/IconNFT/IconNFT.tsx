@@ -9,11 +9,11 @@ type BoxProps = Parameters<typeof Box>[0]
 
 type Props = Pick<BoxProps, 'className'> & {
   size?: Atoms['size']
-  tone?: Atoms['color']
+  color?: Atoms['color']
 } & OptionalTitle
 
-export const IconNFT = ({ size = '6', tone, ...props }: Props) => {
+export const IconNFT = ({ size = '6', color, ...props }: Props) => {
   return (
-    <Box as={IconNFTSvg} color={tone} height={size} width="auto" {...props} />
+    <Box as={IconNFTSvg} color={color} height={size} width="auto" {...props} />
   )
 }

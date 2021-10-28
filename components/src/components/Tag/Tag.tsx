@@ -12,7 +12,7 @@ export const Tag = ({
   hover,
   label,
   size = 'medium',
-  tone = 'neutral',
+  tone = 'secondary',
 }: React.PropsWithChildren<Props>) => {
   return (
     <Box className={styles.variants({ hover, size, tone })}>

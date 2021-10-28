@@ -8,7 +8,7 @@ export const root = recipe({
     atoms({
       borderWidth: '2px',
       borderColor: 'foregroundSecondary',
-      borderRadius: '4',
+      borderRadius: '2xLarge',
       color: 'text',
       display: 'flex',
       transitionDuration: '150',
@@ -108,7 +108,7 @@ export const maxParent = style({})
 export const max = style([
   atoms({
     backgroundColor: 'foregroundSecondary',
-    borderRadius: '1.5',
+    borderRadius: 'medium',
     color: { base: 'textSecondary', hover: 'text' },
     cursor: 'pointer',
     fontSize: 'label',

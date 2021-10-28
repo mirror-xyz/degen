@@ -18,7 +18,9 @@ const dataProps: Parameters<typeof Box>[0] = {
 export const PropsTable = ({ sourceLink, types }: Props) => {
   const [state, setState] = React.useState<{
     showDescriptions: boolean
-  }>({ showDescriptions: true })
+  }>({
+    showDescriptions: Object.values(types).some((x) => x.description !== ''),
+  })
 
   const headers = [
     'name',
@@ -26,7 +28,12 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
     'default',
     ...(state.showDescriptions ? ['description'] : []),
   ]
-  const props = Object.values(types).sort((a, b) => (a.name > b.name ? 1 : -1))
+  const props = Object.values(types).sort((a, b) => {
+    if (a.name.startsWith('on') || b.name.startsWith('on')) return 1
+    if (a.name < b.name) return -1
+    if (a.name > b.name) return 1
+    return 0
+  })
   return (
     <>
       <Box maxWidth="full" overflow={{ xs: 'scroll', lg: 'unset' }}>
@@ -46,8 +53,8 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                     borderColor="foregroundSecondary"
                     paddingX="4"
                     paddingY="2.5"
-                    radiusLeft={i === 0 ? '2' : undefined}
-                    radiusRight={i === headers.length - 1 ? '2' : undefined}
+                    radiusLeft={i === 0 ? 'large' : undefined}
+                    radiusRight={i === headers.length - 1 ? 'large' : undefined}
                   >
                     <Text variant="label">{x}</Text>
                   </Box>
@@ -104,7 +111,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
               setState((x) => ({ ...x, showDescriptions: !x.showDescriptions }))
             }
           >
-            {state.showDescriptions ? 'Hide Descriptions' : 'Show Descriptions'}
+            {state.showDescriptions ? 'Hide Description' : 'Show Description'}
           </Button>
 
           {sourceLink && (

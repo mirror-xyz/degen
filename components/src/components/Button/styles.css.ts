@@ -10,7 +10,7 @@ const shape = {
     padding: 'px',
   }),
   square: atoms({
-    borderRadius: '1.5',
+    borderRadius: 'medium',
     padding: 'px',
   }),
 }
@@ -19,13 +19,13 @@ export type Shape = keyof typeof shape
 
 const size = {
   small: atoms({
-    borderRadius: '1.5',
+    borderRadius: 'medium',
     fontSize: 'small',
     height: '10',
     paddingX: '4',
   }),
   medium: atoms({
-    borderRadius: '3',
+    borderRadius: 'extraLarge',
     fontSize: 'base',
     height: '14',
     paddingX: '5',
@@ -49,14 +49,14 @@ const getAccentVars = (colorVar: CSSVarFunction) => ({
 
 const tone = {
   accent: {},
-  critical: style({
-    vars: getAccentVars(vars.mode.colors.red),
+  blue: style({
+    vars: getAccentVars(vars.mode.colors.blue),
   }),
-  positive: style({
+  green: style({
     vars: getAccentVars(vars.mode.colors.green),
   }),
-  info: style({
-    vars: getAccentVars(vars.mode.colors.blue),
+  red: style({
+    vars: getAccentVars(vars.mode.colors.red),
   }),
 }
 

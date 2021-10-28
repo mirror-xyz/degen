@@ -13,7 +13,6 @@ type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
 type BaseProps = {
   /** Centers text and reserves space for icon and spinner */
   center?: true
-  /** Content to render */
   children: NativeButtonProps['children']
   /** Marks as unusable */
   disabled?: true
@@ -74,7 +73,7 @@ export const Button = React.forwardRef(
 
     let childContent: ReactNodeNoStrings
     if (shape) {
-      childContent = loading ? <Spinner tone="current" /> : labelContent
+      childContent = loading ? <Spinner color="current" /> : labelContent
     } else {
       childContent = (
         <>
@@ -85,7 +84,7 @@ export const Button = React.forwardRef(
 
           {(loading || suffix) && (
             <Box {...getCenterProps(center, size, 'right')}>
-              {loading ? <Spinner tone="current" /> : suffix}
+              {loading ? <Spinner color="current" /> : suffix}
             </Box>
           )}
         </>

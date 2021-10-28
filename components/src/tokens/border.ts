@@ -15,12 +15,9 @@ export const borderWidths = {
 
 export const radii = {
   none: '0',
-  '0.5': '0.125rem', // sm
-  '1': '0.25rem', // default
-  '1.5': '0.375rem', // md
-  '2': '0.5rem', // lg
-  '3': '0.75rem', // xl
-  '4': '1rem', // 2xl
-  '6': '1.5rem', // 3xl
+  medium: '0.375rem',
+  large: '0.5rem',
+  extraLarge: '0.75rem',
+  '2xLarge': '1rem',
   full: '9999px',
 }

@@ -8,17 +8,8 @@ export const label = style({
   boxShadow: `0 0 0 2px ${vars.colors.background}`,
 })
 
-const getToneHoverCompoundVariant = (
-  tone: 'critical' | 'info' | 'positive',
-) => {
-  const color = rgb(
-    {
-      critical: vars.mode.colors.red,
-      info: vars.mode.colors.blue,
-      positive: vars.mode.colors.green,
-    }[tone],
-    vars.mode.shades.accentSecondary,
-  )
+const getToneHoverCompoundVariant = (tone: 'blue' | 'green' | 'red') => {
+  const color = vars.mode.colors[tone]
   return {
     variants: {
       hover: true,
@@ -72,19 +63,7 @@ export const variants = recipe({
         color: 'accent',
         backgroundColor: 'accentTertiary',
       }),
-      neutral: atoms({
-        color: 'textSecondary',
-        backgroundColor: 'foregroundTertiary',
-      }),
-      critical: style([
-        atoms({
-          color: 'red',
-        }),
-        style({
-          backgroundColor: getToneColor(vars.mode.colors.red),
-        }),
-      ]),
-      info: style([
+      blue: style([
         atoms({
           color: 'blue',
         }),
@@ -92,12 +71,24 @@ export const variants = recipe({
           backgroundColor: getToneColor(vars.mode.colors.blue),
         }),
       ]),
-      positive: style([
+      green: style([
         atoms({
           color: 'green',
         }),
         style({
           backgroundColor: getToneColor(vars.mode.colors.green),
+        }),
+      ]),
+      secondary: atoms({
+        color: 'textSecondary',
+        backgroundColor: 'foregroundTertiary',
+      }),
+      red: style([
+        atoms({
+          color: 'red',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.red),
         }),
       ]),
     },
@@ -119,7 +110,7 @@ export const variants = recipe({
     {
       variants: {
         hover: true,
-        tone: 'neutral',
+        tone: 'secondary',
       },
       style: atoms({
         color: { base: 'textSecondary', hover: 'text', active: 'text' },
@@ -130,9 +121,9 @@ export const variants = recipe({
         },
       }),
     },
-    getToneHoverCompoundVariant('critical'),
-    getToneHoverCompoundVariant('info'),
-    getToneHoverCompoundVariant('positive'),
+    getToneHoverCompoundVariant('blue'),
+    getToneHoverCompoundVariant('green'),
+    getToneHoverCompoundVariant('red'),
   ],
 })
 
