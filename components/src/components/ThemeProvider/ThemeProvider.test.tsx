@@ -29,6 +29,8 @@ describe('useTheme', () => {
 
     expect(result.current).toStrictEqual({
       accent: 'blue',
+      forcedAccent: undefined,
+      forcedMode: undefined,
       mode: 'light',
       setAccent: expect.any(Function),
       setMode: expect.any(Function),
@@ -79,6 +81,22 @@ describe('useTheme', () => {
       ),
     })
 
+    expect(result.current.forcedMode).toStrictEqual('light')
     expect(result.current.mode).toStrictEqual('dark')
+  })
+
+  it('forcedAccent', () => {
+    const { result } = renderHook(() => useTheme(), {
+      wrapper: ({ children }) => (
+        <Providers
+          themeProps={{ defaultAccent: 'blue', forcedAccent: 'indigo' }}
+        >
+          {children}
+        </Providers>
+      ),
+    })
+
+    expect(result.current.forcedAccent).toStrictEqual('indigo')
+    expect(result.current.accent).toStrictEqual('blue')
   })
 })

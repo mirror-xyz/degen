@@ -9,6 +9,10 @@ type Accent = TokenAccent | 'foreground'
 type ThemeContextValue = {
   /** Active accent name */
   accent: Accent
+  /** Forced accent name */
+  forcedAccent?: Accent
+  /** Forced mode name */
+  forcedMode?: Mode
   /** Active mode name */
   mode: Mode
   /** Update accent */
@@ -28,7 +32,9 @@ export type ThemeProviderProps = {
   defaultMode?: Mode
   /** Element to bind theme */
   element?: string | HTMLElement
-  /** Forced mode name for the current page */
+  /** Forced accent name */
+  forcedAccent?: Accent
+  /** Forced mode name */
   forcedMode?: Mode
 }
 
@@ -37,6 +43,7 @@ export const ThemeProvider = ({
   defaultAccent = 'blue',
   defaultMode = 'light',
   element = ':root',
+  forcedAccent,
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
   const [state, setState] = React.useState<{
@@ -53,16 +60,20 @@ export const ThemeProvider = ({
         const root = getElement(element)
         if (root) {
           const enable = disableAnimation()
+          const resolvedAccent = forcedAccent ?? accent
           setElementVars(root as HTMLElement, {
-            [vars.mode.colors.accent]: getModeColors(x.mode)[accent],
-            [vars.mode.colors.accentText]: getAccentText(x.mode, accent),
+            [vars.mode.colors.accent]: getModeColors(x.mode)[resolvedAccent],
+            [vars.mode.colors.accentText]: getAccentText(
+              x.mode,
+              resolvedAccent,
+            ),
           })
           enable()
         }
         return { ...x, accent }
       })
     },
-    [element],
+    [element, forcedAccent],
   )
 
   const setMode = React.useCallback(
@@ -79,11 +90,13 @@ export const ThemeProvider = ({
   const value = React.useMemo(
     () => ({
       accent: state.accent,
+      forcedAccent,
+      forcedMode,
       mode: state.mode,
       setAccent,
       setMode,
     }),
-    [state.accent, state.mode, setAccent, setMode],
+    [forcedAccent, forcedMode, state.accent, state.mode, setAccent, setMode],
   )
 
   // Set mode on load
@@ -98,7 +111,7 @@ export const ThemeProvider = ({
   // Set accent on load
   /* eslint-disable react-hooks/exhaustive-deps */
   React.useEffect(() => {
-    setAccent(defaultAccent)
+    setAccent(forcedAccent ?? defaultAccent)
   }, [defaultAccent])
   /* eslint-enable react-hooks/exhaustive-deps */
 
