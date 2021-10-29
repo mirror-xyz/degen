@@ -192,6 +192,8 @@ export const variants = recipe({
           boxShadow: `${vars.shadows['0.5']} ${boxShadowColorVar}`,
         },
         '&:disabled': {
+          backgroundColor: vars.colors.foregroundSecondary,
+          color: vars.colors.textTertiary,
           boxShadow: 'none',
         },
       },
@@ -200,8 +202,6 @@ export const variants = recipe({
   variants: {
     disabled: {
       true: atoms({
-        color: 'textTertiary',
-        backgroundColor: 'foregroundSecondary',
         cursor: 'not-allowed',
       }),
     },
