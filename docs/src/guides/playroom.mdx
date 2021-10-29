@@ -70,7 +70,7 @@ vars
       Increment
     </Button>
 
-    {getState('counter') !== 2 && (
+    {getState('counter') != null && getState('counter') !== 2 && (
       <Button
         disabled={getState('locked')}
         size="small"
