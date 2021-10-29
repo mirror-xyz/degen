@@ -17,10 +17,46 @@ Pass in an element selector or reference to change where the theme binds. By def
 
 ```tsx live=true
 <ThemeProvider
+  defaultAccent="indigo"
   defaultMode={mode === 'dark' ? 'light' : 'dark'}
   element={previewRef.current}
 >
-  <Text>The element mode is {mode === 'dark' ? 'light' : 'dark'}.</Text>
+  <Text>
+    The element mode is {mode === 'dark' ? 'light' : 'dark'} and accent is{' '}
+    <Text as="span" color="accent">
+      indigo
+    </Text>
+    .
+  </Text>
+</ThemeProvider>
+```
+
+## Forced Theme
+
+Passing `forcedAccent` and `forcedMode` allows you to override the internal state kept by `ThemeProvider`.
+
+```tsx live=true
+<ThemeProvider
+  defaultAccent={accent}
+  defaultMode={mode}
+  element={previewRef.current}
+  forcedAccent="indigo"
+  forcedMode="dark"
+>
+  <Stack space="2">
+    <Text>Parent mode is {mode} and element mode is forced to dark.</Text>
+    <Text>
+      Parent accent is{' '}
+      <Text as="span" color={accent}>
+        {accent}
+      </Text>{' '}
+      and element accent is forced to{' '}
+      <Text as="span" color="accent">
+        indigo
+      </Text>
+      .
+    </Text>
+  </Stack>
 </ThemeProvider>
 ```
 

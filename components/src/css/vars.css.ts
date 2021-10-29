@@ -79,7 +79,7 @@ const accentTokens = {
   ),
 }
 const accentVars = createGlobalThemeContract(accentTokens, getVarName)
-createGlobalTheme(':root', accentVars, accentTokens)
+createGlobalTheme('[data-theme]', accentVars, accentTokens)
 
 const normalizedAccentVars = {
   colors: accentVars,
