@@ -66,27 +66,25 @@ createGlobalTheme('[data-theme="dark"]', modeVars, makeColorScheme('dark'))
 
 const mode = modeVars.mode
 const accentTokens = {
-  accent: rgb(mode.colors.accent),
-  accentText: rgb(mode.colors.accentText),
-  accentSecondary: rgb(mode.colors.accent, mode.shades.accentSecondary),
-  accentSecondaryHover: rgb(
-    mode.colors.accent,
-    mode.shades.accentSecondaryHover,
-  ),
-  accentTertiary: rgb(
-    mode.colors.accent,
-    `calc(${mode.shades.accentSecondary} * 0.5)`,
-  ),
+  colors: {
+    accent: rgb(mode.colors.accent),
+    accentText: rgb(mode.colors.accentText),
+    accentSecondary: rgb(mode.colors.accent, mode.shades.accentSecondary),
+    accentSecondaryHover: rgb(
+      mode.colors.accent,
+      mode.shades.accentSecondaryHover,
+    ),
+    accentTertiary: rgb(
+      mode.colors.accent,
+      `calc(${mode.shades.accentSecondary} * 0.5)`,
+    ),
+  },
 }
 const accentVars = createGlobalThemeContract(accentTokens, getVarName)
 createGlobalTheme('[data-theme]', accentVars, accentTokens)
 
-const normalizedAccentVars = {
-  colors: accentVars,
-}
-
-type ColorVars = typeof modeVars & typeof normalizedAccentVars
-const colorVars = merge(normalizedAccentVars, modeVars) as ColorVars
+type ColorVars = typeof modeVars & typeof accentVars
+const colorVars = merge(accentVars, modeVars) as ColorVars
 
 type ThemeVars = typeof baseVars & typeof colorVars
 export const vars = merge(baseVars, colorVars) as ThemeVars
