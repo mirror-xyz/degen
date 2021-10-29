@@ -1,6 +1,6 @@
 {
   "name": "degen",
-  "version": "0.0.1-beta.5",
+  "version": "0.0.3",
   "description": "Design system for Mirror.xyz",
   "main": "./dist/index.cjs.js",
   "module": "./dist/index.es.js",
