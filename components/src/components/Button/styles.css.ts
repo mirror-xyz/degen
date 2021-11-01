@@ -204,11 +204,13 @@ export const variants = recipe({
       true: atoms({
         cursor: 'not-allowed',
       }),
+      false: {},
     },
     center: {
       true: atoms({
         position: 'relative',
       }),
+      false: {},
     },
     shape,
     size,

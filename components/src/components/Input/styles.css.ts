@@ -30,6 +30,7 @@ export const root = recipe({
         borderColor: 'foregroundSecondary',
         cursor: 'default',
       }),
+      false: {},
     },
     error: {
       true: style([

@@ -11,7 +11,7 @@ type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
 type BaseProps = FieldBaseProps & {
   autoFocus?: NativeInputProps['autoFocus']
   defaultValue?: string | number
-  disabled?: true
+  disabled?: boolean
   icon?: ReactNodeNoStrings
   id?: NativeInputProps['id']
   inputMode?: NativeInputProps['inputMode']
