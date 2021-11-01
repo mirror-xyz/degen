@@ -36,7 +36,7 @@ body:
     attributes:
       label: Steps To Reproduce
       description: Steps to reproduce the behavior.
-      placeholder: Share your steps or code snippet. A [CodeSandbox](https://codesandbox.io) link is also appreciated!
+      placeholder: Share your steps or code snippet. A [StackBlitz](https://stackblitz.com) link is also appreciated!
     validations:
       required: false
 

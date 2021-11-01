@@ -47,6 +47,7 @@ export const variants = recipe({
   variants: {
     hover: {
       true: {},
+      false: {},
     },
     size: {
       small: atoms({
