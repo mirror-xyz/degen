@@ -29,7 +29,24 @@ const level = {
 export const variants = recipe({
   variants: {
     level,
+    responsive: {
+      true: {},
+    },
   },
+  compoundVariants: [
+    {
+      variants: {
+        level: '2',
+        responsive: true,
+      },
+      style: style([
+        atoms({
+          fontSize: { xs: 'large', sm: 'headingTwo' },
+          letterSpacing: { xs: 'normal', sm: '-0.02' },
+        }),
+      ]),
+    },
+  ],
 })
 
 export type Variants = RecipeVariants<typeof variants>
