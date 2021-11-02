@@ -4,13 +4,13 @@ export const fonts = {
 }
 
 export const fontSizes = {
-  base: '1rem',
-  label: '0.8125rem',
-  small: '0.9375rem',
-  large: '1.1875rem',
-  extraLarge: '1.625rem',
-  headingTwo: '1.875rem',
   headingOne: '3rem',
+  headingTwo: '1.875rem',
+  extraLarge: '1.625rem',
+  large: '1.1875rem',
+  small: '0.9375rem',
+  label: '0.8125rem',
+  base: '1rem',
 }
 
 export const fontWeights = {
