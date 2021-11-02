@@ -31,6 +31,7 @@ export const variants = recipe({
     level,
     responsive: {
       true: {},
+      false: {},
     },
   },
   compoundVariants: [
@@ -39,12 +40,10 @@ export const variants = recipe({
         level: '2',
         responsive: true,
       },
-      style: style([
-        atoms({
-          fontSize: { xs: 'large', sm: 'headingTwo' },
-          letterSpacing: { xs: 'normal', sm: '-0.02' },
-        }),
-      ]),
+      style: atoms({
+        fontSize: { xs: 'large', sm: 'headingTwo' },
+        letterSpacing: { xs: 'normal', sm: '-0.02' },
+      }),
     },
   ],
 })
