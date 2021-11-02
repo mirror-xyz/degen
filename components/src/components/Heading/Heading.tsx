@@ -25,6 +25,7 @@ export const Heading = ({
   color = 'foreground',
   id,
   level = '2',
+  responsive,
   transform,
 }: Props) => {
   return (
@@ -32,6 +33,7 @@ export const Heading = ({
       as={as ?? resolveDefaultComponent[level]}
       className={styles.variants({
         level,
+        responsive,
       })}
       color={color}
       fontFamily="sans"
