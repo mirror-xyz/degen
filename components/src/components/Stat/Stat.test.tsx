@@ -8,6 +8,12 @@ describe('<Stat />', () => {
   afterEach(cleanup)
 
   it('renders', () => {
-    render(<Stat />)
+    render(
+      <Stat
+        label="Current time"
+        subValue="12:01am"
+        value="October 3rd, 2021"
+      />,
+    )
   })
 })
