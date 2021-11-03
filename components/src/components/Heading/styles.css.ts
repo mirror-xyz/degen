@@ -41,7 +41,7 @@ export const variants = recipe({
         responsive: true,
       },
       style: atoms({
-        fontSize: { xs: 'large', sm: 'headingTwo' },
+        fontSize: { xs: 'extraLarge', sm: 'headingTwo' },
         letterSpacing: { xs: 'normal', sm: '-0.02' },
       }),
     },

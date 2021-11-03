@@ -1,0 +1,35 @@
+---
+title: Stat
+description: Display a label, value, and sub-value
+---
+
+```tsx
+import { Stat } from 'degen'
+```
+
+```tsx live=true expand=true
+<Stat label="Current time" subValue="Pacific Standard Time" value="12:01am" />
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Sizes
+
+```tsx live=true expand=true
+<Stack>
+  <Stat
+    label="Current time"
+    size="md"
+    subValue="Pacific Standard Time"
+    value="12:01am"
+  />
+  <Stat
+    label="Current time"
+    size="sm"
+    subValue="Pacific Standard Time"
+    value="12:01am"
+  />
+</Stack>
+```

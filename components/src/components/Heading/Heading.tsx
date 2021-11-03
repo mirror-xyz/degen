@@ -16,6 +16,7 @@ type Props = {
   color?: Atoms['color']
   id?: string
   transform?: Atoms['textTransform']
+  responsive?: boolean
 } & styles.Variants
 
 export const Heading = ({
