@@ -4,16 +4,16 @@ import { Heading, Stack, Text } from '../'
 
 type Props = {
   label: string
-  value: string | number
+  size?: 'small' | 'medium'
   subValue?: string | number
-  size?: 'sm' | 'md'
+  value: string | number
 }
 
-export const Stat = ({ label, value, subValue, size = 'md' }: Props) => {
+export const Stat = ({ size = 'medium', subValue, value, label }: Props) => {
   return (
-    <Stack space={size == 'md' ? '1' : '2'}>
+    <Stack space={size == 'medium' ? '1' : '2'}>
       <Text variant="label">{label}</Text>
-      {size === 'md' ? (
+      {size === 'medium' ? (
         <Heading level="2" responsive>
           {value}
         </Heading>

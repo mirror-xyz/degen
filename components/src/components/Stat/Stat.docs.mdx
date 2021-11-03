@@ -8,7 +8,14 @@ import { Stat } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<Stat label="Current time" subValue="Pacific Standard Time" value="12:01am" />
+<Stat
+  label="Current time"
+  subValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
+  value={new Date().toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  })}
+/>
 ```
 
 ## Props
@@ -21,15 +28,21 @@ import { Stat } from 'degen'
 <Stack>
   <Stat
     label="Current time"
-    size="md"
-    subValue="Pacific Standard Time"
-    value="12:01am"
+    size="medium"
+    subValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
+    value={new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    })}
   />
   <Stat
     label="Current time"
-    size="sm"
-    subValue="Pacific Standard Time"
-    value="12:01am"
+    size="small"
+    subValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
+    value={new Date().toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    })}
   />
 </Stack>
 ```
