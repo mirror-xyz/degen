@@ -8,6 +8,7 @@ export {
   SkeletonGroup,
   Spinner,
   Stack,
+  Stat,
   Tag,
   Text,
   Input,

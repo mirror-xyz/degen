@@ -23,6 +23,7 @@ it('should expose correct exports', () => {
     'SkeletonGroup',
     'Spinner',
     'Stack',
+    'Stat',
     'Tag',
     'Text',
     'Input',
