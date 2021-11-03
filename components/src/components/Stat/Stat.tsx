@@ -19,7 +19,7 @@ export const Stat = ({ label, value, subValue, size = 'md' }: Props) => {
         </Heading>
       ) : (
         <Text size="large" weight="semiBold">
-          {subValue}
+          {value}
         </Text>
       )}
       {subValue !== undefined && <Text color="textTertiary">{subValue}</Text>}
