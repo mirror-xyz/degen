@@ -11,6 +11,7 @@ export {
   Stat,
   Tag,
   Text,
+  Textarea,
   Input,
   ThemeProvider,
   useTheme,

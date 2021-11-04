@@ -1,0 +1,59 @@
+---
+title: Textarea
+description: Surface for accepting multi-line user input
+---
+
+```tsx
+import { Textarea } from 'degen'
+```
+
+```tsx live=true expand=true
+<Textarea
+  label="Why are you entering $WRITE Race?"
+  placeholder="Share your story…"
+/>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Disabled
+
+```tsx live=true
+<Textarea
+  disabled
+  label="Why are you entering $WRITE Race?"
+  placeholder="Share your story…"
+/>
+```
+
+## Description
+
+```tsx live=true
+<Textarea
+  description="Pitch to community members for votes!"
+  label="Why are you entering $WRITE Race?"
+  placeholder="Share your story…"
+/>
+```
+
+## Error
+
+```tsx live=true
+<Textarea
+  error="Prompt is required"
+  label="Why are you entering $WRITE Race?"
+  placeholder="Share your story…"
+/>
+```
+
+## Hide Label
+
+```tsx live=true
+<Textarea
+  hideLabel
+  label="Why are you entering $WRITE Race?"
+  placeholder="Share your story…"
+/>
+```
