@@ -1,16 +1,15 @@
 import * as React from 'react'
 
-import { Atoms } from '../../css'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { Context } from '../SkeletonGroup'
 import * as styles from './styles.css'
 
 type Props = {
-  backgroundColor?: Atoms['backgroundColor']
-  radius?: Atoms['borderRadius']
-  height?: Atoms['height']
+  backgroundColor?: BoxProps['backgroundColor']
+  radius?: BoxProps['borderRadius']
+  height?: BoxProps['height']
   loading?: boolean
-  width?: Atoms['width']
+  width?: BoxProps['width']
 }
 
 export const Skeleton = ({

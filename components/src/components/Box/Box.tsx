@@ -40,4 +40,6 @@ export const Box = React.forwardRef<HTMLElement, Props>(
   },
 )
 
+export type BoxProps = Parameters<typeof Box>[0]
+
 Box.displayName = 'Box'

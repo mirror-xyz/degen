@@ -1,11 +1,10 @@
 import * as React from 'react'
 
-import { Atoms } from '../../css'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
-  align?: Atoms['textAlign']
+  align?: BoxProps['textAlign']
   as?:
     | 'code'
     | 'div'
@@ -19,14 +18,14 @@ type Props = {
     | 'p'
     | 'span'
   children?: React.ReactNode
-  color?: Atoms['color']
-  font?: Atoms['fontFamily']
-  letterSpacing?: Atoms['letterSpacing']
-  lineHeight?: Atoms['lineHeight']
-  size?: Atoms['fontSize']
-  transform?: Atoms['textTransform']
-  weight?: Atoms['fontWeight']
-  whiteSpace?: Atoms['whiteSpace']
+  color?: BoxProps['color']
+  font?: BoxProps['fontFamily']
+  letterSpacing?: BoxProps['letterSpacing']
+  lineHeight?: BoxProps['lineHeight']
+  size?: BoxProps['fontSize']
+  transform?: BoxProps['textTransform']
+  weight?: BoxProps['fontWeight']
+  whiteSpace?: BoxProps['whiteSpace']
 } & styles.Variants
 
 export const Text = React.forwardRef(

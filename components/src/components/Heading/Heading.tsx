@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import { Atoms } from '../../css'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
 
 const resolveDefaultComponent = {
@@ -10,12 +9,12 @@ const resolveDefaultComponent = {
 } as const
 
 type Props = {
-  align?: Atoms['textAlign']
+  align?: BoxProps['textAlign']
   as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   children?: React.ReactNode
-  color?: Atoms['color']
+  color?: BoxProps['color']
   id?: string
-  transform?: Atoms['textTransform']
+  transform?: BoxProps['textTransform']
   responsive?: boolean
 } & styles.Variants
 

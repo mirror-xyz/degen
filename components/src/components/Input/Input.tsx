@@ -1,8 +1,7 @@
 import * as React from 'react'
 
-import { Atoms } from '../../css'
 import { ReactNodeNoStrings } from '../../types'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
 import * as styles from './styles.css'
 
@@ -20,7 +19,7 @@ type BaseProps = FieldBaseProps & {
   prefix?: string
   readOnly?: NativeInputProps['readOnly']
   tabIndex?: NativeInputProps['tabIndex']
-  textTransform?: Atoms['textTransform']
+  textTransform?: BoxProps['textTransform']
   type?: 'number' | 'text'
   units?: string
   value?: string | number

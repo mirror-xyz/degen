@@ -5,13 +5,11 @@ import { PrismTheme } from 'prism-react-renderer'
 
 import * as Components from 'degen/components'
 import { Box, Button, Stack, Text, useTheme } from 'degen/components'
-
 import { vars } from 'degen/css'
 
 import { createPlayroomLink } from '~/utils/playroom'
 import { usePlayroomStore } from '../../../../playroom/src/PlayroomState'
 import { CopyButton } from '../CopyButton'
-import { Link } from '../Link'
 import './styles.css'
 
 export type Props = {
@@ -92,11 +90,14 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
             {state.expand ? 'Hide Code' : 'View Code'}
           </Button>
 
-          <Link href={createPlayroomLink({ code })}>
-            <Button size="small" variant="transparent">
-              Open in Playroom
-            </Button>
-          </Link>
+          <Button
+            as="a"
+            href={createPlayroomLink({ code })}
+            size="small"
+            variant="transparent"
+          >
+            Open in Playroom
+          </Button>
         </Stack>
       </Box>
     </LiveProvider>

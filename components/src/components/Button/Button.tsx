@@ -1,14 +1,14 @@
 import * as React from 'react'
 
 import { ReactNodeNoStrings } from '../../types'
-import { Atoms } from '../../css'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { Spinner } from '../Spinner'
 import { Text } from '../Text'
 import { getCenterProps } from './utils'
 import * as styles from './styles.css'
 
 type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
+type NativeAnchorProps = React.AllHTMLAttributes<HTMLAnchorElement>
 
 type BaseProps = {
   /** Centers text and reserves space for icon and spinner */
@@ -29,7 +29,7 @@ type BaseProps = {
   tabIndex?: NativeButtonProps['tabIndex']
   type?: NativeButtonProps['type']
   variant?: styles.Variant
-  width?: Atoms['width']
+  width?: BoxProps['width']
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
@@ -43,20 +43,38 @@ type WithTone = {
   variant?: 'highlight' | 'primary'
 }
 
-type Props = BaseProps & (WithTone | WithoutTone)
+type WithoutAnchor = {
+  as?: 'button'
+  href?: never
+  rel?: never
+  target?: never
+}
+
+type WithAnchor = {
+  as?: 'a' | React.ComponentType
+  href: string
+  rel?: NativeAnchorProps['rel']
+  target?: NativeAnchorProps['target']
+}
+
+type Props = BaseProps & (WithTone | WithoutTone) & (WithAnchor | WithoutAnchor)
 
 export const Button = React.forwardRef(
   (
     {
+      as = 'button',
       center,
       children,
       disabled,
+      href,
       prefix,
       loading,
+      rel,
       shape,
       size = 'medium',
       suffix,
       tabIndex,
+      target,
       tone = 'accent',
       type,
       variant = 'highlight',
@@ -93,7 +111,7 @@ export const Button = React.forwardRef(
 
     return (
       <Box
-        as="button"
+        as={as}
         className={styles.variants({
           center,
           disabled,
@@ -103,8 +121,11 @@ export const Button = React.forwardRef(
           variant,
         })}
         disabled={disabled}
+        href={href}
         ref={ref}
+        rel={rel}
         tabIndex={tabIndex}
+        target={target}
         type={type}
         width={width ?? 'max'}
         onClick={onClick}
