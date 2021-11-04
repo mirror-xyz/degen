@@ -1,18 +1,16 @@
 import * as React from 'react'
 
-import { Atoms } from '../../../css'
-import { Box } from '../../Box'
+import { Box, BoxProps } from '../../Box'
 import { OptionalTitle } from '../types'
 import { IconNFTSvg } from './IconNFTSVG'
 
-type BoxProps = Parameters<typeof Box>[0]
-
-type Props = Pick<BoxProps, 'className'> & {
-  size?: Atoms['size']
-  color?: Atoms['color']
+type Props = {
+  className?: BoxProps['className']
+  color?: BoxProps['color']
+  size?: BoxProps['height']
 } & OptionalTitle
 
-export const IconNFT = ({ size = '6', color, ...props }: Props) => {
+export const IconNFT = ({ color, size = '6', ...props }: Props) => {
   return (
     <Box as={IconNFTSvg} color={color} height={size} width="auto" {...props} />
   )
