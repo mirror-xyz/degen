@@ -35,8 +35,10 @@ body:
   - type: textarea
     attributes:
       label: Steps To Reproduce
-      description: Steps to reproduce the behavior.
-      placeholder: Share your steps or code snippet. A [StackBlitz](https://stackblitz.com) link is also appreciated!
+      description: |
+        Steps to reproduce the behavior.
+
+        Tip: Share your steps or code snippet. A [StackBlitz](https://stackblitz.com) link is also appreciated!
     validations:
       required: false
 
