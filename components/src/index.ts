@@ -4,6 +4,7 @@ export {
   Field,
   Heading,
   IconNFT,
+  MediaInput,
   Skeleton,
   SkeletonGroup,
   Spinner,

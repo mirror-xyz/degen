@@ -1,0 +1,49 @@
+---
+title: MediaInput
+description: Surface for accepting media
+---
+
+```tsx
+import { MediaInput } from 'degen'
+```
+
+```tsx live=true expand=true
+<MediaInput label="Choose or drag and drop an image" />
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Disabled
+
+```tsx live=true
+<MediaInput disabled label="Choose or drag and drop an image" />
+```
+
+## Error
+
+```tsx live=true
+<MediaInput
+  error="Profile image is required"
+  label="Choose or drag and drop an image"
+/>
+```
+
+## Uploading
+
+```tsx live=true
+<MediaInput label="Choose or drag and drop an image" uploading />
+```
+
+## Max Size
+
+```tsx live=true
+<MediaInput label="Choose or drag and drop an image" maxSize={10} />
+```
+
+## Compact
+
+```tsx live=true
+<MediaInput compact label="Choose or drag and drop an image" maxSize={10} />
+```

@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { ReactNodeNoStrings } from '../../types'
+import { useFieldIds } from '../../hooks'
 import { Box } from '../Box'
 import { Stack } from '../Stack'
 import { VisuallyHidden } from '../VisuallyHidden'
-import { useFieldIds } from './utils'
 
 type State = ReturnType<typeof useFieldIds> | undefined
 const Context = React.createContext<State>(undefined)
