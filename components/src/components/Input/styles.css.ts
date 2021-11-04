@@ -28,7 +28,6 @@ export const root = recipe({
     disabled: {
       true: atoms({
         borderColor: 'foregroundSecondary',
-        cursor: 'default',
       }),
       false: {},
     },
@@ -74,10 +73,20 @@ export const prefix = style([
   atoms({ paddingLeft: '4', paddingRight: '1.5' }),
 ])
 
-export const input = atoms({
-  backgroundColor: 'transparent',
-  position: 'relative',
-  width: 'full',
+export const input = recipe({
+  base: atoms({
+    backgroundColor: 'transparent',
+    position: 'relative',
+    width: 'full',
+  }),
+  variants: {
+    disabled: {
+      true: atoms({
+        cursor: 'not-allowed',
+      }),
+      false: {},
+    },
+  },
 })
 
 export const ghost = atoms({

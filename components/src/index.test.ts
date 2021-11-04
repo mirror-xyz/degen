@@ -26,6 +26,7 @@ it('should expose correct exports', () => {
     'Stat',
     'Tag',
     'Text',
+    'Textarea',
     'Input',
     'ThemeProvider',
     'useTheme',
