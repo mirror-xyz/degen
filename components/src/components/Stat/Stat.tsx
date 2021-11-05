@@ -11,7 +11,7 @@ type Props = {
 
 export const Stat = ({ size = 'medium', subValue, value, label }: Props) => {
   return (
-    <Stack space={size == 'medium' ? '1' : '2'}>
+    <Stack>
       <Text variant="label">{label}</Text>
       {size === 'medium' ? (
         <Heading level="2" responsive>

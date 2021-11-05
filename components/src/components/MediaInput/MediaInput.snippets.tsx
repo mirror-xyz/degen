@@ -6,6 +6,6 @@ import { MediaInput } from './MediaInput'
 export const snippets: Snippet[] = [
   {
     name: 'Basic',
-    code: <MediaInput />,
+    code: <MediaInput label="Choose or drag and drop an image" />,
   },
 ]

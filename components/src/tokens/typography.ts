@@ -6,7 +6,7 @@ export const fonts = {
 export const fontSizes = {
   headingOne: '3rem',
   headingTwo: '1.875rem',
-  extraLarge: '1.625rem',
+  extraLarge: '1.3125rem',
   large: '1.1875rem',
   small: '0.9375rem',
   label: '0.8125rem',
