@@ -6,10 +6,10 @@ import { atoms, vars } from '../../css'
 export const root = recipe({
   base: [
     atoms({
-      backgroundColor: 'transparent',
       borderColor: 'foregroundSecondary',
       borderRadius: '2xLarge',
       borderWidth: '2px',
+      position: 'relative',
       transitionDuration: '150',
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
@@ -30,21 +30,6 @@ export const root = recipe({
         cursor: 'not-allowed',
       }),
     },
-    error: {
-      true: style([
-        atoms({
-          borderColor: 'red',
-          cursor: 'default',
-        }),
-        style({
-          selectors: {
-            '&:focus-within': {
-              borderColor: vars.colors.red,
-            },
-          },
-        }),
-      ]),
-    },
   },
 })
 
@@ -62,6 +47,7 @@ export const label = recipe({
       true: atoms({
         flexDirection: 'row',
         padding: '4',
+        paddingRight: '12',
       }),
       false: atoms({
         padding: '10',
@@ -72,6 +58,9 @@ export const label = recipe({
         cursor: 'not-allowed',
       }),
     },
+  },
+  defaultVariants: {
+    compact: false,
   },
 })
 
@@ -84,17 +73,21 @@ export const preview = recipe({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    overflow: 'hidden',
+    position: 'relative',
   }),
   variants: {
     compact: {
       true: atoms({
-        minWidth: '16',
-        minHeight: '16',
+        size: '16',
       }),
       false: atoms({
         size: '32',
       }),
     },
+  },
+  defaultVariants: {
+    compact: false,
   },
 })
 
@@ -116,5 +109,8 @@ export const content = recipe({
         textAlign: 'center',
       }),
     },
+  },
+  defaultVariants: {
+    compact: false,
   },
 })

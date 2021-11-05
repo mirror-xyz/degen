@@ -4,10 +4,12 @@ import { Box } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
+  as?: 'div' | 'span'
   label?: string
 } & styles.Variants
 
 export const Tag = ({
+  as = 'div',
   children,
   hover,
   label,
@@ -15,7 +17,7 @@ export const Tag = ({
   tone = 'secondary',
 }: React.PropsWithChildren<Props>) => {
   return (
-    <Box className={styles.variants({ hover, size, tone })}>
+    <Box as={as} className={styles.variants({ hover, size, tone })}>
       {label && (
         <Box
           alignItems="center"
@@ -29,7 +31,9 @@ export const Tag = ({
           <span>{label}</span>
         </Box>
       )}
-      <Box paddingX="2">{children}</Box>
+      <Box as={as} paddingX="2">
+        {children}
+      </Box>
     </Box>
   )
 }

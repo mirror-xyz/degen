@@ -8,7 +8,7 @@ import { MediaInput } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<MediaInput label="Choose or drag and drop an image" />
+<MediaInput label="Choose or drag and drop media" />
 ```
 
 ## Props
@@ -18,14 +18,14 @@ import { MediaInput } from 'degen'
 ## Disabled
 
 ```tsx live=true
-<MediaInput disabled label="Choose or drag and drop an image" />
+<MediaInput disabled label="Choose or drag and drop media" />
 ```
 
 ## Error
 
 ```tsx live=true
 <MediaInput
-  error="Profile image is required"
+  error="Image is required"
   label="Choose or drag and drop an image"
 />
 ```
@@ -33,17 +33,55 @@ import { MediaInput } from 'degen'
 ## Uploading
 
 ```tsx live=true
-<MediaInput label="Choose or drag and drop an image" uploading />
+<MediaInput label="Choose or drag and drop media" uploading />
+```
+
+## Uploaded
+
+```tsx live=true
+<MediaInput
+  defaultValue={{
+    type: 'image/png',
+    url: 'https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png?height=320&width=320',
+  }}
+  label="Choose or drag and drop media"
+  uploaded
+/>
 ```
 
 ## Max Size
 
 ```tsx live=true
-<MediaInput label="Choose or drag and drop an image" maxSize={10} />
+<MediaInput label="Choose or drag and drop media" maxSize={10} />
 ```
 
 ## Compact
 
 ```tsx live=true
-<MediaInput compact label="Choose or drag and drop an image" maxSize={10} />
+<MediaInput compact label="Choose or drag and drop media" maxSize={10} />
+```
+
+## Cover
+
+```tsx live=true
+<MediaInput cover label="Choose or drag and drop media" />
+```
+
+## Content Types
+
+Uses HTML [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) attribute.
+
+```tsx live=true
+<Stack>
+  <MediaInput
+    accept="image/*"
+    compact
+    label="Choose or drag and drop an image"
+  />
+  <MediaInput
+    accept="video/*"
+    compact
+    label="Choose or drag and drop an video"
+  />
+</Stack>
 ```

@@ -33,21 +33,14 @@ type BaseProps = {
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
-type WithoutTone = {
-  tone?: never
-  variant?: styles.Variant
-}
-
 type WithTone = {
   tone?: styles.Tone
   variant?: 'highlight' | 'primary'
 }
 
-type WithoutAnchor = {
-  as?: 'button'
-  href?: never
-  rel?: never
-  target?: never
+type WithoutTone = {
+  tone?: never
+  variant?: styles.Variant
 }
 
 type WithAnchor = {
@@ -55,6 +48,13 @@ type WithAnchor = {
   href: string
   rel?: NativeAnchorProps['rel']
   target?: NativeAnchorProps['target']
+}
+
+type WithoutAnchor = {
+  as?: 'button'
+  href?: never
+  rel?: never
+  target?: never
 }
 
 type Props = BaseProps & (WithTone | WithoutTone) & (WithAnchor | WithoutAnchor)

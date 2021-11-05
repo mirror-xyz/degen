@@ -173,6 +173,7 @@ const unresponsiveStyles = defineProperties({
       'initial',
       'inherit',
     ],
+    wordBreak: ['break-word'],
     wordWrap: ['normal', 'break-word', 'initial', 'inherit'],
   },
 })
