@@ -100,7 +100,7 @@ export const content = recipe({
     compact: {
       true: atoms({
         alignItems: 'flex-start',
-        gap: '1',
+        gap: '1.5',
         textAlign: 'left',
       }),
       false: atoms({

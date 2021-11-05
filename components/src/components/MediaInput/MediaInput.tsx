@@ -136,39 +136,27 @@ export const MediaInput = React.forwardRef(
       return () => URL.revokeObjectURL(previewUrl)
     }, [state.file])
 
-    let statusContent: React.ReactNode | null = null
+    let statusProps: Parameters<typeof Tag>[0] | undefined
     if (uploading)
-      statusContent = (
-        <Tag
-          as="span"
-          {...(uploadProgress
-            ? { label: 'Uploading', children: `${uploadProgress * 100}%` }
-            : { children: 'Uploading' })}
-          tone="accent"
-        />
-      )
-    else if (uploaded)
-      statusContent = (
-        <Tag as="span" tone="green">
-          Success
-        </Tag>
-      )
+      statusProps = {
+        tone: 'accent',
+        ...(uploadProgress
+          ? { label: 'Uploading', children: `${uploadProgress * 100}%` }
+          : { children: 'Uploading' }),
+      }
+    else if (uploaded) statusProps = { children: 'Success', tone: 'green' }
     else if (error)
-      statusContent = (
-        <Tag
-          as="span"
-          {...(typeof error === 'string'
-            ? { label: 'Error', children: error }
-            : { children: 'Error' })}
-          tone="red"
-        />
-      )
+      statusProps = {
+        tone: 'red',
+        ...(typeof error === 'string'
+          ? { label: 'Error', children: error }
+          : { children: 'Error' }),
+      }
     else if (maxSize !== undefined)
-      statusContent = (
-        <Tag as="span" label="Maximum size">
-          {maxSize}mb
-        </Tag>
-      )
+      statusProps = {
+        label: 'Maximum size',
+        children: `${maxSize}mb`,
+      }
 
     return (
       <Box position="relative">
@@ -221,7 +209,7 @@ export const MediaInput = React.forwardRef(
               <Box
                 as="span"
                 color={state.file ? 'text' : 'textSecondary'}
-                fontSize="large"
+                fontSize={compact ? 'base' : 'large'}
                 fontWeight="semiBold"
                 wordBreak="break-word"
               >
@@ -236,7 +224,13 @@ export const MediaInput = React.forwardRef(
                   </>
                 )}
               </Box>
-              {statusContent}
+              {statusProps && (
+                <Tag
+                  as="span"
+                  size={compact ? 'small' : 'medium'}
+                  {...statusProps}
+                />
+              )}
             </Box>
           </Box>
         </Box>
