@@ -9,11 +9,7 @@ describe('<Stat />', () => {
 
   it('renders', () => {
     render(
-      <Stat
-        label="Current time"
-        subValue="12:01am"
-        value="October 3rd, 2021"
-      />,
+      <Stat label="Current time" meta="12:01am" value="October 3rd, 2021" />,
     )
   })
 })

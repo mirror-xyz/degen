@@ -10,7 +10,7 @@ import { Stat } from 'degen'
 ```tsx live=true expand=true
 <Stat
   label="Current time"
-  subValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
+  meta={Intl.DateTimeFormat().resolvedOptions().timeZone}
   value={new Date().toLocaleTimeString([], {
     hour: '2-digit',
     minute: '2-digit',
@@ -28,8 +28,8 @@ import { Stat } from 'degen'
 <Stack>
   <Stat
     label="Current time"
+    meta={Intl.DateTimeFormat().resolvedOptions().timeZone}
     size="medium"
-    subValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
     value={new Date().toLocaleTimeString([], {
       hour: '2-digit',
       minute: '2-digit',
@@ -37,8 +37,8 @@ import { Stat } from 'degen'
   />
   <Stat
     label="Current time"
+    meta={Intl.DateTimeFormat().resolvedOptions().timeZone}
     size="small"
-    subValue={Intl.DateTimeFormat().resolvedOptions().timeZone}
     value={new Date().toLocaleTimeString([], {
       hour: '2-digit',
       minute: '2-digit',
