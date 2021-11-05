@@ -136,7 +136,6 @@ const responsiveStyles = defineProperties({
     radiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
     radiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
     radiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
-    size: ['height', 'width'],
   },
 })
 

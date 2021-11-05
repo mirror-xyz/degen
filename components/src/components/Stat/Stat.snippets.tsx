@@ -7,11 +7,7 @@ export const snippets: Snippet[] = [
   {
     name: 'Basic',
     code: (
-      <Stat
-        label="Current time"
-        subValue="Pacific Standard Time"
-        value="12:01am"
-      />
+      <Stat label="Current time" meta="Pacific Standard Time" value="12:01am" />
     ),
   },
 ]
