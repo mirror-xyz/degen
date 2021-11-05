@@ -9,6 +9,7 @@ export const root = recipe({
       borderColor: 'foregroundSecondary',
       borderRadius: '2xLarge',
       borderWidth: '2px',
+      overflow: 'hidden',
       position: 'relative',
       transitionDuration: '150',
       transitionProperty: 'colors',
@@ -28,6 +29,11 @@ export const root = recipe({
       true: atoms({
         borderColor: 'foregroundSecondary',
         cursor: 'not-allowed',
+      }),
+    },
+    droppable: {
+      true: atoms({
+        borderColor: 'foreground',
       }),
     },
   },
@@ -114,3 +120,17 @@ export const content = recipe({
     compact: false,
   },
 })
+
+export const cover = style([
+  atoms({
+    inset: '0',
+    position: 'absolute',
+    width: 'full',
+  }),
+  style({
+    top: '50%',
+    transform: 'translateY(-50%)',
+    objectFit: 'cover',
+    objectPosition: 'center',
+  }),
+])

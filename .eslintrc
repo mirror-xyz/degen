@@ -56,6 +56,7 @@
     // https://github.com/yannickcr/eslint-plugin-react
     "react/display-name": "off",
     "react/jsx-boolean-value": ["warn", "never"],
+    'react/jsx-curly-brace-presence': ['error', { props: 'never', children: 'ignore' }],
     "react/jsx-sort-props": [
       "error",
       {

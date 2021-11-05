@@ -1,14 +1,14 @@
 ---
-title: MediaInput
+title: MediaPicker
 description: Surface for accepting media
 ---
 
 ```tsx
-import { MediaInput } from 'degen'
+import { MediaPicker } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<MediaInput label="Choose or drag and drop media" />
+<MediaPicker label="Choose or drag and drop media" />
 ```
 
 ## Props
@@ -18,13 +18,13 @@ import { MediaInput } from 'degen'
 ## Disabled
 
 ```tsx live=true
-<MediaInput disabled label="Choose or drag and drop media" />
+<MediaPicker disabled label="Choose or drag and drop media" />
 ```
 
 ## Error
 
 ```tsx live=true
-<MediaInput
+<MediaPicker
   error="Image is required"
   label="Choose or drag and drop an image"
 />
@@ -33,13 +33,13 @@ import { MediaInput } from 'degen'
 ## Uploading
 
 ```tsx live=true
-<MediaInput label="Choose or drag and drop media" uploading />
+<MediaPicker label="Choose or drag and drop media" uploading />
 ```
 
 ## Uploaded
 
 ```tsx live=true
-<MediaInput
+<MediaPicker
   defaultValue={{
     type: 'image/png',
     url: 'https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png?height=320&width=320',
@@ -49,39 +49,31 @@ import { MediaInput } from 'degen'
 />
 ```
 
-## Max Size
-
-```tsx live=true
-<MediaInput label="Choose or drag and drop media" maxSize={10} />
-```
-
 ## Compact
 
 ```tsx live=true
-<MediaInput compact label="Choose or drag and drop media" maxSize={10} />
+<MediaPicker compact label="Choose or drag and drop media" />
 ```
 
 ## Cover
 
 ```tsx live=true
-<MediaInput cover label="Choose or drag and drop media" />
+<MediaPicker cover label="Choose or drag and drop media" />
 ```
 
 ## Content Types
 
-Uses HTML [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) attribute.
-
 ```tsx live=true
 <Stack>
-  <MediaInput
+  <MediaPicker
     accept="image/*"
     compact
     label="Choose or drag and drop an image"
   />
-  <MediaInput
+  <MediaPicker
     accept="video/*"
     compact
-    label="Choose or drag and drop an video"
+    label="Choose or drag and drop a video"
   />
 </Stack>
 ```

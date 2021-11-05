@@ -94,6 +94,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
             as="a"
             href={createPlayroomLink({ code })}
             size="small"
+            target="_blank"
             variant="transparent"
           >
             Open in Playroom
