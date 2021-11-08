@@ -15,6 +15,7 @@ it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
     // components
     'Avatar',
+    'AvatarGroup',
     'Box',
     'Button',
     'Card',

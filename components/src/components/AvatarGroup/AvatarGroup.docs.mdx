@@ -1,0 +1,38 @@
+---
+title: AvatarGroup
+description: Group of entity representations
+---
+
+```tsx
+import { AvatarGroup } from 'degen'
+```
+
+```tsx live=true expand=true
+<AvatarGroup
+  members={[
+    { label: 'Noun 97', src: avatarUrl },
+    { label: 'Noun 97', src: avatarUrl },
+  ]}
+/>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+
+## Limit
+
+```tsx live=true expand=true
+<AvatarGroup
+  limit={3}
+  members={[
+    { label: 'Noun 97', src: avatarUrl },
+    { label: 'Noun 98', src: avatarUrl },
+    { label: 'Noun 99', src: avatarUrl },
+    { label: 'Noun 100', src: avatarUrl },
+    { label: 'Noun 101', src: avatarUrl },
+  ]}
+/>
+```
+
