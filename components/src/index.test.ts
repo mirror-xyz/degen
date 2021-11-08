@@ -16,6 +16,7 @@ it('should expose correct exports', () => {
     // components
     'Box',
     'Button',
+    'Card',
     'Field',
     'Heading',
     'IconNFT',

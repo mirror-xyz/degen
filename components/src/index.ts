@@ -1,6 +1,7 @@
 export {
   Box,
   Button,
+  Card,
   Field,
   Heading,
   IconNFT,
