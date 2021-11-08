@@ -16,11 +16,11 @@ export const Card = ({
   padding,
   width,
 }: React.PropsWithChildren<Props>) => {
-  const { mode } = useTheme()
+  const { mode, forcedMode } = useTheme()
   return (
     <Box
       as={as}
-      className={styles.variants({ dark: mode === 'dark' })}
+      className={styles.variants({ dark: (forcedMode ?? mode) === 'dark' })}
       padding={padding}
       width={width}
     >
