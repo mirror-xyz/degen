@@ -14,12 +14,14 @@ export const variants = recipe({
       true: atoms({
         backgroundColor: 'black',
       }),
-      false: style({
-        boxShadow: `0px 0px ${vars.radii['2xLarge']} ${rgb(
-          vars.mode.colors.foreground,
-          '0.1',
-        )}`,
-      }),
+      false: style([
+        atoms({
+          backgroundColor: 'white',
+        }),
+        style({
+          boxShadow: `0px 0px ${vars.radii['2xLarge']} ${rgb('0,0,0', '0.1')}`,
+        }),
+      ]),
     },
   },
 })
