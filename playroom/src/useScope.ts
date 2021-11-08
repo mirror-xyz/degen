@@ -8,6 +8,8 @@ const useScope = () => {
     ...useTheme(),
     ...usePlayroomStore(),
     vars,
+    avatarUrl:
+      'https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png',
   }
 }
 

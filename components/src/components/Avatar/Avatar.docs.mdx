@@ -1,0 +1,41 @@
+---
+title: Avatar
+description: Representation of entity
+---
+
+```tsx
+import { Avatar } from 'degen'
+```
+
+```tsx live=true expand=true
+<Avatar src={avatarUrl} />
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Sizes
+
+```tsx live=true
+<Stack align="center" direction="horizontal">
+  <Avatar size="24" src={avatarUrl} />
+  <Avatar size="16" src={avatarUrl} />
+  <Avatar size="12" src={avatarUrl} />
+  <Avatar size="10" src={avatarUrl} />
+</Stack>
+```
+
+## Placeholder
+
+```tsx live=true
+<Avatar placeholder />
+```
+
+## next/image
+
+If you are using Next.js and configured [`next/image`](https://nextjs.org/docs/api-reference/next/image) appropriately, you can pass it in with the `as` prop.
+
+```tsx live=true expand=true
+<Avatar as={NextImage} src={avatarUrl} />
+```

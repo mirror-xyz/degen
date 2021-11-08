@@ -1,4 +1,5 @@
 export {
+  Avatar,
   Box,
   Button,
   Card,
