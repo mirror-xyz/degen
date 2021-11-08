@@ -11,6 +11,7 @@ import { vars } from 'degen/css'
 
 import { createPlayroomLink } from '~/utils/playroom'
 import { usePlayroomStore } from '../../../../playroom/src/PlayroomState'
+import { avatars } from '../../../../playroom/src/useScope'
 import { CopyButton } from '../CopyButton'
 import './styles.css'
 
@@ -50,8 +51,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
         vars,
         NextImage,
         NextLink,
-        avatarUrl:
-          'https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png',
+        avatars,
       }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}

@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { Avatar } from '../Avatar'
 import { Box, BoxProps } from '../Box'
-import { Text } from '../Text'
 import * as styles from './styles.css'
 
 type Props = {
@@ -21,14 +20,15 @@ export const AvatarGroup = ({
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
   return (
-    <Box alignItems="center" display="flex" gap="1.5">
-      <Box display="flex" paddingLeft="1.5">
-        {visibleMembers.map((x) => (
+    <Box alignItems="center" display="flex">
+      <Box display="flex">
+        {visibleMembers.map((x, i) => (
           <Box
+            backgroundColor="background"
             borderRadius="full"
             className={styles.wrapper}
             key={x.label}
-            marginLeft="-1.5"
+            marginLeft={i === 0 ? '0' : '-1.5'}
           >
             <Avatar
               as={as}
@@ -41,9 +41,14 @@ export const AvatarGroup = ({
         ))}
       </Box>
       {membersCount > limit && (
-        <Text color="textTertiary" size="base" weight="bold">
+        <Box
+          color="textTertiary"
+          fontSize="base"
+          fontWeight="bold"
+          marginLeft="1.5"
+        >
           +{(membersCount - limit).toLocaleString()}
-        </Text>
+        </Box>
       )}
     </Box>
   )

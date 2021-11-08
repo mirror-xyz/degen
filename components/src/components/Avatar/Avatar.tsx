@@ -25,7 +25,6 @@ export const Avatar = ({
       borderRadius="full"
       height={size}
       position="relative"
-      role="img"
       width={size}
     >
       {placeholder ? (
