@@ -154,6 +154,7 @@ export const MediaPicker = React.forwardRef(
     const handleDrop = React.useCallback(
       (event: React.DragEvent<HTMLInputElement>) => {
         event.preventDefault()
+        setState((x) => ({ ...x, droppable: false }))
         let file: File | null
         if (event.dataTransfer.items) {
           const files = event.dataTransfer.items
