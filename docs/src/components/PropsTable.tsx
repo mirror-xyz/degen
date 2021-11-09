@@ -90,7 +90,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
 
                   <Box {...dataProps}>
                     <Text color="textSecondary" size="small">
-                      {x.defaultValue?.value ?? '-'}
+                      {x.defaultValue?.value.toString() ?? '-'}
                     </Text>
                   </Box>
 

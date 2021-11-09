@@ -1,0 +1,80 @@
+---
+title: MediaPicker
+description: Surface for accepting media
+---
+
+```tsx
+import { MediaPicker } from 'degen'
+```
+
+```tsx live=true expand=true
+<MediaPicker label="Choose or drag and drop media" />
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Disabled
+
+```tsx live=true
+<MediaPicker disabled label="Choose or drag and drop media" />
+```
+
+## Error
+
+```tsx live=true
+<MediaPicker
+  error="Image is required"
+  label="Choose or drag and drop an image"
+/>
+```
+
+## Uploading
+
+```tsx live=true
+<MediaPicker label="Choose or drag and drop media" uploading />
+```
+
+## Uploaded
+
+```tsx live=true
+<MediaPicker
+  defaultValue={{
+    type: 'image/png',
+    url: 'https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png?height=320&width=320',
+  }}
+  label="Choose or drag and drop media"
+  uploaded
+/>
+```
+
+## Compact
+
+```tsx live=true
+<MediaPicker compact label="Choose or drag and drop media" />
+```
+
+## Cover
+
+```tsx live=true
+<MediaPicker cover label="Choose or drag and drop media" />
+```
+
+## Content Types
+
+```tsx live=true
+<Stack>
+  <MediaPicker
+    accept="image/jpeg, image/png, image/webp"
+    compact
+    label="Choose or drag and drop an image"
+  />
+  <MediaPicker
+    accept="image/gif, video/mp4, video/ogg, video/webm"
+    compact
+    label="Choose or drag and drop a video"
+    maxSize={50}
+  />
+</Stack>
+```

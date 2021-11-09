@@ -22,6 +22,7 @@ it('should expose correct exports', () => {
     'Field',
     'Heading',
     'IconNFT',
+    'MediaPicker',
     'Skeleton',
     'SkeletonGroup',
     'Spinner',

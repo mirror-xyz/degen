@@ -1,6 +1,6 @@
 import { cleanup, renderHook } from '@/test'
 
-import { useFieldIds } from './utils'
+import { useFieldIds } from './useFieldIds'
 
 const noArgs = {
   content: {

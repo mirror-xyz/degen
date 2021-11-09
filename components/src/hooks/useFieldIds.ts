@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useId } from '../../hooks'
+import { useId } from './useId'
 
 type Args = {
   description?: boolean

@@ -12,6 +12,7 @@ import {
 } from '../src/components/ThemeProvider'
 
 import '@testing-library/jest-dom/extend-expect'
+import './mocks/URL.js'
 
 type ProvidersProps = {
   children:

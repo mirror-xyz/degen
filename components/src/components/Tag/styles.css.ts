@@ -38,15 +38,16 @@ export const variants = recipe({
       borderRadius: 'full',
       display: 'flex',
       fontWeight: 'medium',
-      transitionProperty: 'colors',
-      transitionDuration: '150',
-      transitionTimingFunction: 'inOut',
       width: 'max',
     }),
   ],
   variants: {
     hover: {
-      true: {},
+      true: {
+        transitionProperty: 'colors',
+        transitionDuration: '150',
+        transitionTimingFunction: 'inOut',
+      },
       false: {},
     },
     size: {
