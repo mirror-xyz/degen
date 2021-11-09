@@ -9,6 +9,7 @@ type Props = {
   radius?: BoxProps['borderRadius']
   height?: BoxProps['height']
   loading?: boolean
+  maxWidth?: BoxProps['maxWidth']
   width?: BoxProps['width']
 }
 
@@ -18,6 +19,7 @@ export const Skeleton = ({
   children,
   height,
   loading,
+  maxWidth,
   width = 'fit',
 }: React.PropsWithChildren<Props>) => {
   const groupLoading = React.useContext(Context)
@@ -27,6 +29,7 @@ export const Skeleton = ({
         backgroundColor,
         borderRadius: radius,
         height,
+        maxWidth,
         width,
       }
     : {}

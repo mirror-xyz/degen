@@ -51,7 +51,7 @@ type WithoutAnchor = {
 }
 
 type WithAnchor = {
-  as?: 'a' | React.ComponentType
+  as?: 'a'
   href: string
   rel?: NativeAnchorProps['rel']
   target?: NativeAnchorProps['target']

@@ -170,7 +170,14 @@ Optional `center` prop reserves space for affixes and loading spinner.
 ## Link
 
 ```tsx live=true
-<Button as="a" href="https://mirror.xyz" rel="noreferrer" target="_blank">
-  Visit Mirror
-</Button>
+<Stack direction="horizontal" wrap>
+  <Button as="a" href="https://mirror.xyz" rel="noreferrer" target="_blank">
+    Visit Mirror
+  </Button>
+  <NextLink href="/" passHref>
+    <Button as="a" >
+      Go to Home
+    </Button>
+  </NextLink>
+</Stack>
 ```

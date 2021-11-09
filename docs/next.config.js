@@ -21,6 +21,9 @@ const componentPaths = glob
   })
 
 const config = {
+  images: {
+    domains: ['images.mirror-media.xyz'],
+  },
   env: {
     navLinks: [
       {
