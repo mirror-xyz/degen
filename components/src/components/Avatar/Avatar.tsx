@@ -24,6 +24,7 @@ export const Avatar = ({
       backgroundColor="foregroundSecondary"
       borderRadius="full"
       height={size}
+      minWidth={size}
       position="relative"
       width={size}
     >
