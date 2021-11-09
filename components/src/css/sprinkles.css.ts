@@ -55,6 +55,11 @@ const extendedSpace = {
   '256': '64rem',
   '288': '72rem',
   '320': '80rem',
+  '1/4': '25%',
+  '1/3': '33.333333%',
+  '1/2': '50%',
+  '2/3': '66.666667%',
+  '3/4': '75%',
 }
 
 const responsiveStyles = defineProperties({
@@ -136,7 +141,6 @@ const responsiveStyles = defineProperties({
     radiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
     radiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
     radiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
-    size: ['height', 'width'],
   },
 })
 

@@ -1,6 +1,9 @@
 export {
+  Avatar,
+  AvatarGroup,
   Box,
   Button,
+  Card,
   Field,
   Heading,
   IconNFT,

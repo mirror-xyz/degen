@@ -14,8 +14,11 @@ const generatedIcons = generatedIconPaths.map((x) => path.basename(x))
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toEqual([
     // components
+    'Avatar',
+    'AvatarGroup',
     'Box',
     'Button',
+    'Card',
     'Field',
     'Heading',
     'IconNFT',

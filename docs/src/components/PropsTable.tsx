@@ -35,85 +35,99 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
     if (a.name > b.name) return 1
     return 0
   })
+
   return (
     <>
-      <Box maxWidth="full" overflow={{ xs: 'scroll', lg: 'unset' }}>
-        <Box as="table" width="full">
-          <Box as="thead">
-            <Box as="tr" textAlign="left">
-              {headers.map((x, i) => (
-                <Box
-                  as="th"
-                  backgroundColor="background"
-                  key={x}
-                  position="sticky"
-                  top="0"
-                >
+      {props.length ? (
+        <Box maxWidth="full" overflow={{ xs: 'scroll', lg: 'unset' }}>
+          <Box as="table" width="full">
+            <Box as="thead">
+              <Box as="tr" textAlign="left">
+                {headers.map((x, i) => (
                   <Box
-                    backgroundColor="foregroundTertiary"
-                    borderColor="foregroundSecondary"
-                    paddingX="4"
-                    paddingY="2.5"
-                    radiusLeft={i === 0 ? 'large' : undefined}
-                    radiusRight={i === headers.length - 1 ? 'large' : undefined}
+                    as="th"
+                    backgroundColor="background"
+                    key={x}
+                    position="sticky"
+                    top="0"
                   >
-                    <Text variant="label">{x}</Text>
+                    <Box
+                      backgroundColor="foregroundTertiary"
+                      borderColor="foregroundSecondary"
+                      paddingX="4"
+                      paddingY="2.5"
+                      radiusLeft={i === 0 ? 'large' : undefined}
+                      radiusRight={
+                        i === headers.length - 1 ? 'large' : undefined
+                      }
+                    >
+                      <Text variant="label">{x}</Text>
+                    </Box>
                   </Box>
+                ))}
+              </Box>
+            </Box>
+
+            <Box as="tbody">
+              {props.map((x) => (
+                <Box as="tr" borderBottomWidth="px" key={x.name}>
+                  <Box {...dataProps}>
+                    <Text color="text" size="small">
+                      {x.name}
+                      {x.required && (
+                        <Text as="span" color="red" size="small">
+                          *<VisuallyHidden>Required</VisuallyHidden>
+                        </Text>
+                      )}
+                    </Text>
+                  </Box>
+
+                  <Box {...dataProps}>
+                    <Text color="accent" font="mono" size="small">
+                      {x.type.raw ?? x.type.name}
+                    </Text>
+                  </Box>
+
+                  <Box {...dataProps}>
+                    <Text color="textSecondary" size="small">
+                      {x.defaultValue?.value.toString() ?? '-'}
+                    </Text>
+                  </Box>
+
+                  {state.showDescriptions && (
+                    <Box {...dataProps}>
+                      <Text color="textSecondary" size="small">
+                        {x.description || '-'}
+                      </Text>
+                    </Box>
+                  )}
                 </Box>
               ))}
             </Box>
           </Box>
-
-          <Box as="tbody">
-            {props.map((x) => (
-              <Box as="tr" borderBottomWidth="px" key={x.name}>
-                <Box {...dataProps}>
-                  <Text color="text" size="small">
-                    {x.name}
-                    {x.required && (
-                      <Text as="span" color="red" size="small">
-                        *<VisuallyHidden>Required</VisuallyHidden>
-                      </Text>
-                    )}
-                  </Text>
-                </Box>
-
-                <Box {...dataProps}>
-                  <Text color="accent" font="mono" size="small">
-                    {x.type.raw ?? x.type.name}
-                  </Text>
-                </Box>
-
-                <Box {...dataProps}>
-                  <Text color="textSecondary" size="small">
-                    {x.defaultValue?.value.toString() ?? '-'}
-                  </Text>
-                </Box>
-
-                {state.showDescriptions && (
-                  <Box {...dataProps}>
-                    <Text color="textSecondary" size="small">
-                      {x.description || '-'}
-                    </Text>
-                  </Box>
-                )}
-              </Box>
-            ))}
-          </Box>
         </Box>
-      </Box>
+      ) : (
+        <Box>
+          <Text color="textSecondary">No props</Text>
+        </Box>
+      )}
 
       <Box marginY="2">
         <Stack direction="horizontal" justify="flex-end" space="2">
-          <Button
-            size="small"
-            variant="transparent"
-            onClick={() =>
-              setState((x) => ({ ...x, showDescriptions: !x.showDescriptions }))
-            }
-          >
-            {state.showDescriptions ? 'Hide Description' : 'Show Description'}
-          </Button>
+          {!!props.length && (
+            <Button
+              size="small"
+              variant="transparent"
+              onClick={() =>
+                setState((x) => ({
+                  ...x,
+                  showDescriptions: !x.showDescriptions,
+                }))
+              }
+            >
+              {state.showDescriptions ? 'Hide Description' : 'Show Description'}
+            </Button>
+          )}
 
           {sourceLink && (
             <Link href={sourceLink}>

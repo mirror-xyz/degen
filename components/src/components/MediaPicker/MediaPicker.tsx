@@ -12,16 +12,16 @@ import { validateAccept } from './utils'
 
 type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
 type Image =
-  | 'image/gif'
   | 'image/jpeg'
   | 'image/png'
   | 'image/webp'
-  | 'image/gif, image/jpeg, image/png, image/webp'
+  | 'image/jpeg, image/png, image/webp'
 type Video =
+  | 'image/gif'
   | 'video/mp4'
   | 'video/ogg'
   | 'video/webm'
-  | 'video/mp4, video/ogg, video/webm'
+  | 'image/gif, video/mp4, video/ogg, video/webm'
 export type Accept = Image | Video | `${Image}, ${Video}`
 
 type BaseProps = {
@@ -73,7 +73,7 @@ const initialState: State = {}
 export const MediaPicker = React.forwardRef(
   (
     {
-      accept = 'image/gif, image/jpeg, image/png, image/webp, video/mp4, video/ogg, video/webm',
+      accept = 'image/jpeg, image/png, image/webp, image/gif, video/mp4, video/ogg, video/webm',
       autoFocus,
       compact,
       cover,
@@ -143,7 +143,7 @@ export const MediaPicker = React.forwardRef(
       [],
     )
 
-    const handleDragExit = React.useCallback(
+    const handleDragLeave = React.useCallback(
       (event: React.DragEvent<HTMLInputElement>) => {
         event.preventDefault()
         setState((x) => ({ ...x, droppable: false }))
@@ -205,12 +205,7 @@ export const MediaPicker = React.forwardRef(
 
     return (
       <Box position="relative">
-        <Box
-          className={styles.root({
-            disabled,
-            droppable: state.droppable,
-          })}
-        >
+        <Box className={styles.root({ disabled, droppable: state.droppable })}>
           <VisuallyHidden>
             <Box
               accept={accept}
@@ -231,12 +226,9 @@ export const MediaPicker = React.forwardRef(
 
           <Box
             as="label"
-            className={styles.label({
-              compact,
-              disabled,
-            })}
+            className={styles.label({ compact, disabled })}
             {...ids.label}
-            onDragExit={handleDragExit}
+            onDragLeave={handleDragLeave}
             onDragOver={handleDragOver}
             onDrop={handleDrop}
           >
@@ -248,12 +240,7 @@ export const MediaPicker = React.forwardRef(
               previewUrl={state.previewUrl}
               uploading={uploading}
             />
-            <Box
-              as="span"
-              className={styles.content({
-                compact,
-              })}
-            >
+            <Box as="span" className={styles.content({ compact })}>
               <Box
                 as="span"
                 color={state.file ? 'text' : 'textSecondary'}
@@ -261,7 +248,7 @@ export const MediaPicker = React.forwardRef(
                 fontWeight="semiBold"
                 wordBreak="break-word"
               >
-                {state.file ? (
+                {!cover && state.file ? (
                   state.file.name
                 ) : (
                   <>
@@ -284,28 +271,29 @@ export const MediaPicker = React.forwardRef(
           </Box>
 
           {cover && state.type && state.previewUrl && (
-            <Media
-              cover
-              name={state.name}
-              type={state.type}
-              url={state.previewUrl}
-            />
+            <Box
+              display="flex"
+              inset="0"
+              justifyContent="center"
+              position="absolute"
+            >
+              <Media
+                cover
+                name={state.name}
+                type={state.type}
+                url={state.previewUrl}
+              />
+            </Box>
           )}
         </Box>
 
         {state.type && (
           <Box position="absolute" right="2" top="2">
-            <Button
-              disabled={cover && uploading}
-              loading={cover && uploading}
-              shape="circle"
-              size="small"
-              variant={cover ? 'secondary' : 'transparent'}
+            <RemoveButton
+              cover={cover}
+              uploading={uploading}
               onClick={handleReset}
-            >
-              <VisuallyHidden>Remove Media</VisuallyHidden>
-              <IconClose color="textTertiary" />
-            </Button>
+            />
           </Box>
         )}
       </Box>
@@ -402,4 +390,41 @@ const MediaTag = ({
 
   if (!statusProps) return null
   return <Tag as="span" size={compact ? 'small' : 'medium'} {...statusProps} />
+}
+
+type RemoveButtonProps = Pick<Props, 'cover' | 'uploading'> & {
+  onClick(event: React.MouseEvent<HTMLButtonElement>): void
+}
+
+const RemoveButton = ({ cover, uploading, onClick }: RemoveButtonProps) => {
+  const content = (
+    <>
+      <VisuallyHidden>Remove Media</VisuallyHidden>
+      <IconClose />
+    </>
+  )
+  if (cover)
+    return (
+      <Box
+        alignItems="center"
+        as="button"
+        borderRadius="full"
+        className={styles.removeButton}
+        cursor="pointer"
+        disabled={uploading}
+        display="flex"
+        height="12"
+        justifyContent="center"
+        width="12"
+        onClick={onClick}
+      >
+        {uploading ? <Spinner /> : content}
+      </Box>
+    )
+
+  return (
+    <Button shape="circle" size="small" variant="transparent" onClick={onClick}>
+      {content}
+    </Button>
+  )
 }

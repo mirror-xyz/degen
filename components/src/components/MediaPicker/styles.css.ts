@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
-import { atoms, vars } from '../../css'
+import { atoms, rgb, vars } from '../../css'
 
 export const root = recipe({
   base: [
@@ -32,8 +32,8 @@ export const root = recipe({
       }),
     },
     droppable: {
-      true: atoms({
-        borderColor: 'foreground',
+      true: style({
+        borderStyle: 'dashed',
       }),
     },
   },
@@ -85,10 +85,12 @@ export const preview = recipe({
   variants: {
     compact: {
       true: atoms({
-        size: '16',
+        height: '16',
+        minWidth: '16',
       }),
       false: atoms({
-        size: '32',
+        height: '32',
+        width: '32',
       }),
     },
   },
@@ -123,14 +125,24 @@ export const content = recipe({
 
 export const cover = style([
   atoms({
-    inset: '0',
-    position: 'absolute',
-    width: 'full',
+    backgroundColor: 'background',
+    minHeight: 'full',
+    minWidth: 'full',
   }),
   style({
-    top: '50%',
-    transform: 'translateY(-50%)',
     objectFit: 'cover',
     objectPosition: 'center',
   }),
 ])
+
+export const removeButton = style({
+  background: `linear-gradient(0deg, ${rgb(
+    vars.mode.colors.background,
+    '0.8',
+  )}, ${rgb(vars.mode.colors.background, '0.8')}), ${rgb(
+    vars.mode.colors.foreground,
+    '0.075',
+  )}`,
+  backdropFilter: 'blur(4px)',
+  color: rgb(vars.mode.colors.foreground, '0.4'),
+})

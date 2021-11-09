@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { default as NextImage } from 'next/image'
+import { default as NextLink } from 'next/link'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { mdx } from '@mdx-js/react'
 import { PrismTheme } from 'prism-react-renderer'
@@ -9,6 +11,7 @@ import { vars } from 'degen/css'
 
 import { createPlayroomLink } from '~/utils/playroom'
 import { usePlayroomStore } from '../../../../playroom/src/PlayroomState'
+import { avatars } from '../../../../playroom/src/useScope'
 import { CopyButton } from '../CopyButton'
 import './styles.css'
 
@@ -39,7 +42,17 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
     <LiveProvider
       as="div"
       code={code}
-      scope={{ mdx, ...Components, ...store, ...themeValue, previewRef, vars }}
+      scope={{
+        mdx,
+        ...Components,
+        ...store,
+        ...themeValue,
+        previewRef,
+        vars,
+        NextImage,
+        NextLink,
+        avatars,
+      }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}
     >

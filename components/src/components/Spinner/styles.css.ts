@@ -19,12 +19,14 @@ export const variants = recipe({
   variants: {
     size: {
       small: atoms({
-        size: '6',
+        height: '6',
         strokeWidth: '0.5',
+        width: '6',
       }),
       large: atoms({
-        size: '16',
+        height: '16',
         strokeWidth: '0.375',
+        width: '16',
       }),
     },
   },

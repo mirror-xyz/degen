@@ -1,17 +1,19 @@
 import * as React from 'react'
 
-import { Heading, Stack, Text } from '../'
+import { Heading } from '../Heading'
+import { Stack } from '../Stack'
+import { Text } from '../Text'
 
 type Props = {
-  label: string
+  label: React.ReactNode
+  meta?: React.ReactNode
   size?: 'small' | 'medium'
-  subValue?: string | number
-  value: string | number
+  value: React.ReactNode
 }
 
-export const Stat = ({ size = 'medium', subValue, value, label }: Props) => {
+export const Stat = ({ label, meta, size = 'medium', value }: Props) => {
   return (
-    <Stack>
+    <Stack space={size === 'medium' ? '0' : '0.5'}>
       <Text variant="label">{label}</Text>
       {size === 'medium' ? (
         <Heading level="2" responsive>
@@ -22,7 +24,7 @@ export const Stat = ({ size = 'medium', subValue, value, label }: Props) => {
           {value}
         </Text>
       )}
-      {subValue !== undefined && <Text color="textTertiary">{subValue}</Text>}
+      {meta !== undefined && <Text color="textTertiary">{meta}</Text>}
     </Stack>
   )
 }

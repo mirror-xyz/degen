@@ -66,14 +66,15 @@ import { MediaPicker } from 'degen'
 ```tsx live=true
 <Stack>
   <MediaPicker
-    accept="image/*"
+    accept="image/jpeg, image/png, image/webp"
     compact
     label="Choose or drag and drop an image"
   />
   <MediaPicker
-    accept="video/*"
+    accept="image/gif, video/mp4, video/ogg, video/webm"
     compact
     label="Choose or drag and drop a video"
+    maxSize={50}
   />
 </Stack>
 ```
