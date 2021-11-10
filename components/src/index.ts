@@ -25,4 +25,4 @@ export {
 // Export generated icons
 export * from './components/icons/generated'
 
-export { atoms, vars } from './css'
+export { atoms, motionSafe, vars } from './css'

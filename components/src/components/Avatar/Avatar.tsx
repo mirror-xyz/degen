@@ -20,7 +20,6 @@ export const Avatar = ({
 }: Props) => {
   return (
     <Box
-      aria-label={label}
       backgroundColor="foregroundSecondary"
       borderRadius="full"
       height={size}
@@ -31,6 +30,7 @@ export const Avatar = ({
       {placeholder ? (
         <Box
           alignItems="center"
+          aria-label={label}
           display="flex"
           height="full"
           justifyContent="center"
@@ -41,6 +41,7 @@ export const Avatar = ({
         </Box>
       ) : (
         <Box
+          alt={label}
           as={as}
           borderRadius="full"
           height="full"

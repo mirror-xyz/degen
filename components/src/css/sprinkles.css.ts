@@ -62,7 +62,7 @@ const extendedSpace = {
   '3/4': '75%',
 }
 
-const responsiveStyles = defineProperties({
+const responsiveProperties = defineProperties({
   defaultCondition: 'xs',
   conditions: {
     xs: {},
@@ -144,7 +144,7 @@ const responsiveStyles = defineProperties({
   },
 })
 
-const unresponsiveStyles = defineProperties({
+const unresponsiveProperties = defineProperties({
   properties: {
     cursor: ['default', 'pointer', 'not-allowed'],
     fontFamily: vars.fonts,
@@ -184,7 +184,7 @@ const unresponsiveStyles = defineProperties({
 
 const boxShadowColorVar = createVar()
 
-const selectorStyles = defineProperties({
+const selectorProperties = defineProperties({
   conditions: {
     base: {},
     active: { selector: '&:active' },
@@ -222,7 +222,7 @@ const selectorStyles = defineProperties({
   },
 })
 
-const motionSafeStyles = defineProperties({
+const motionSafeProperties = defineProperties({
   conditions: {
     base: { '@media': '(prefers-reduced-motion: no-preference)' },
   },
@@ -242,17 +242,17 @@ const motionSafeStyles = defineProperties({
 })
 
 export const sprinkles = createSprinkles(
-  responsiveStyles,
-  unresponsiveStyles,
-  selectorStyles,
-  motionSafeStyles,
+  responsiveProperties,
+  unresponsiveProperties,
+  selectorProperties,
+  motionSafeProperties,
 )
 export type Sprinkles = Parameters<typeof sprinkles>[0]
 
 export type OptionalResponsiveValue<Value extends string | number> =
-  ConditionalValue<typeof responsiveStyles, Value>
+  ConditionalValue<typeof responsiveProperties, Value>
 export type RequiredResponsiveValue<Value extends string | number> =
-  RequiredConditionalValue<typeof responsiveStyles, Value>
+  RequiredConditionalValue<typeof responsiveProperties, Value>
 
 export type OptionalResponsiveObject<Value> =
   | Value
@@ -262,5 +262,6 @@ export type RequiredResponsiveObject<Value> = Partial<
 > &
   Record<typeof breakpointNames[0], Value>
 
-export const normalizeResponsiveValue = createNormalizeValueFn(responsiveStyles)
-export const mapResponsiveValue = createMapValueFn(responsiveStyles)
+export const normalizeResponsiveValue =
+  createNormalizeValueFn(responsiveProperties)
+export const mapResponsiveValue = createMapValueFn(responsiveProperties)
