@@ -76,6 +76,8 @@ const responsiveProperties = defineProperties({
     alignSelf: [...flexAlignment, 'baseline'],
     borderWidth: vars.borderWidths,
     borderBottomWidth: vars.borderWidths,
+    borderLeftWidth: vars.borderWidths,
+    borderRightWidth: vars.borderWidths,
     borderTopWidth: vars.borderWidths,
     borderRadius: vars.radii,
     borderBottomLeftRadius: vars.radii,
