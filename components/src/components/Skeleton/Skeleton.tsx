@@ -5,6 +5,7 @@ import { Context } from '../SkeletonGroup'
 import * as styles from './styles.css'
 
 type Props = {
+  as?: 'div' | 'span'
   backgroundColor?: BoxProps['backgroundColor']
   radius?: BoxProps['borderRadius']
   height?: BoxProps['height']
@@ -14,6 +15,7 @@ type Props = {
 }
 
 export const Skeleton = ({
+  as,
   backgroundColor = 'foregroundSecondary',
   radius = 'medium',
   children,
@@ -34,8 +36,15 @@ export const Skeleton = ({
       }
     : {}
   return (
-    <Box {...containerProps}>
-      <div className={active ? styles.root : undefined}>{children}</div>
+    <Box as={as} {...containerProps}>
+      <Box
+        as="span"
+        className={active ? styles.root : undefined}
+        display="block"
+        width="max"
+      >
+        {children}
+      </Box>
     </Box>
   )
 }
