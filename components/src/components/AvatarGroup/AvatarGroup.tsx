@@ -44,7 +44,7 @@ export const AvatarGroup = ({
         <Box
           color="textTertiary"
           fontSize="base"
-          fontWeight="bold"
+          fontWeight="semiBold"
           marginLeft="1.5"
         >
           +{(membersCount - limit).toLocaleString()}
