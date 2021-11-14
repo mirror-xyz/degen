@@ -1,13 +1,17 @@
 import * as React from 'react'
 
-import { Avatar } from '../Avatar'
+import { Avatar, Props as AvatarProps } from '../Avatar'
 import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
 
 type Props = {
   as?: 'img' | React.ComponentType
   limit?: number
-  members: { label: string; placeholder?: boolean; src?: string }[]
+  members: {
+    label: AvatarProps['label']
+    placeholder?: AvatarProps['placeholder']
+    src?: AvatarProps['src']
+  }[]
   size?: BoxProps['height']
 }
 

@@ -131,8 +131,6 @@ const responsiveProperties = defineProperties({
     width: vars.space,
   },
   shorthands: {
-    insetX: ['left', 'right'],
-    insetY: ['bottom', 'top'],
     margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
     marginX: ['marginLeft', 'marginRight'],
     marginY: ['marginTop', 'marginBottom'],

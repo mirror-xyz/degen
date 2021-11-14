@@ -45,7 +45,7 @@ type WithoutTone = {
 
 type WithAnchor = {
   as?: 'a'
-  href: string
+  href?: string
   rel?: NativeAnchorProps['rel']
   target?: NativeAnchorProps['target']
 }

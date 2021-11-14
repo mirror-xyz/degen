@@ -21,8 +21,9 @@ export {
   useTheme,
   VisuallyHidden,
 } from './components'
+export type { BoxProps } from './components'
 
 // Export generated icons
 export * from './components/icons/generated'
 
-export { atoms, motionSafe, vars } from './css'
+export { atoms, breakpoints, motionSafe, vars } from './css'

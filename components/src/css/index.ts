@@ -2,6 +2,7 @@ export { atoms } from './atoms'
 export type { Atoms } from './atoms'
 
 export {
+  breakpoints,
   mapResponsiveValue,
   normalizeResponsiveValue,
   sprinkles,
