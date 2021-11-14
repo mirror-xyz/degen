@@ -41,7 +41,6 @@ export const Skeleton = ({
         as="span"
         className={active ? styles.root : undefined}
         display="block"
-        width="max"
       >
         {children}
       </Box>

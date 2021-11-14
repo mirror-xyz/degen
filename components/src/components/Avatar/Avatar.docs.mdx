@@ -32,6 +32,25 @@ import { Avatar } from 'degen'
 <Avatar placeholder />
 ```
 
+## Shapes
+
+```tsx live=true
+<Stack align="center" direction="horizontal" wrap>
+  <Avatar
+    label="Noun 97 circle"
+    shape="circle"
+    size="24"
+    src={avatars.noun97}
+  />
+  <Avatar
+    label="Noun 97 squircle"
+    shape="squircle"
+    size="24"
+    src={avatars.noun97}
+  />
+</Stack>
+```
+
 ## next/image
 
 If you are using Next.js and configured [`next/image`](https://nextjs.org/docs/api-reference/next/image) appropriately, you can pass it in with the `as` prop.

@@ -37,6 +37,7 @@ it('should expose correct exports', () => {
     'VisuallyHidden',
     // css
     'atoms',
+    'breakpoints',
     'motionSafe',
     'vars',
     // generated icons

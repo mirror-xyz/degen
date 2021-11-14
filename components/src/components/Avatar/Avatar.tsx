@@ -2,28 +2,31 @@ import * as React from 'react'
 
 import { Box, BoxProps } from '../Box'
 import { IconUserSolid } from '../icons'
+import * as styles from './styles.css'
 
-type Props = {
+export type Props = {
   as?: 'img' | React.ComponentType
   label: string
   placeholder?: boolean
   size?: BoxProps['height']
   src?: string
-}
+} & styles.Variants
 
 export const Avatar = ({
   as = 'img',
   label,
   placeholder,
+  shape = 'circle',
   size = '12',
   src,
 }: Props) => {
   return (
     <Box
       backgroundColor="foregroundSecondary"
-      borderRadius="full"
+      className={styles.variants({ shape })}
       height={size}
       minWidth={size}
+      overflow="hidden"
       position="relative"
       width={size}
     >
@@ -43,7 +46,6 @@ export const Avatar = ({
         <Box
           alt={label}
           as={as}
-          borderRadius="full"
           height="full"
           src={src}
           width="full"
