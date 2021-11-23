@@ -51,6 +51,32 @@ import { Avatar } from 'degen'
 </Stack>
 ```
 
+## Border
+
+By default, there is a light border around the edge to define image edges on similarly colored backgrounds. This can be disabled by using the `noBorder` prop.
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Avatar
+    size="24"
+    src={
+      mode === 'light'
+        ? 'https://images.mirror-media.xyz/publication-images/152cd86f-45ad-4f48-8971-4dd33fde5bc1.png'
+        : 'https://images.mirror-media.xyz/publication-images/5eaba6b2-b9ee-4bea-aeac-75796d53798f.jpg'
+    }
+  />
+  <Avatar
+    noBorder
+    size="24"
+    src={
+      mode === 'light'
+        ? 'https://images.mirror-media.xyz/publication-images/152cd86f-45ad-4f48-8971-4dd33fde5bc1.png'
+        : 'https://images.mirror-media.xyz/publication-images/5eaba6b2-b9ee-4bea-aeac-75796d53798f.jpg'
+    }
+  />
+</Stack>
+```
+
 ## next/image
 
 If you are using Next.js and configured [`next/image`](https://nextjs.org/docs/api-reference/next/image) appropriately, you can pass it in with the `as` prop.
