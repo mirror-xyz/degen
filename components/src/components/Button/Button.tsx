@@ -84,7 +84,7 @@ export const Button = React.forwardRef(
     ref: React.Ref<HTMLButtonElement>,
   ) => {
     const labelContent = (
-      <Text color="inherit" ellipsis size="inherit" weight="medium">
+      <Text color="inherit" ellipsis size="inherit" weight="semiBold">
         {children}
       </Text>
     )
