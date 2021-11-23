@@ -208,9 +208,9 @@ const selectorProperties = defineProperties({
         vars: { [boxShadowColorVar]: vars.colors.foregroundSecondary },
         boxShadow: `${vars.shadows['0']} ${boxShadowColorVar}`,
       },
-      '-1px': {
+      '-px': {
         vars: { [boxShadowColorVar]: vars.colors.foregroundTertiary },
-        boxShadow: `${vars.shadows['-1px']} ${boxShadowColorVar}`,
+        boxShadow: `${vars.shadows['-px']} ${boxShadowColorVar}`,
       },
     },
     boxShadowColor: {

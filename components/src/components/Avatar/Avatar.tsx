@@ -59,7 +59,7 @@ export const Avatar = ({
           />
           {border && (
             <Box
-              boxShadow="-1px"
+              boxShadow="-px"
               className={styles.variants({ shape })}
               height="full"
               pointerEvents="none"
