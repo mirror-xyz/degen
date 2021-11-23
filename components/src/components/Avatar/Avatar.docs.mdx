@@ -51,6 +51,17 @@ import { Avatar } from 'degen'
 </Stack>
 ```
 
+## Border
+
+Display a light border around the edge to define image edges on similarly colored backgrounds. Defaults to `true`.
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Avatar src={avatars.noun97} />
+  <Avatar border={false} src={avatars.noun97} />
+</Stack>
+```
+
 ## next/image
 
 If you are using Next.js and configured [`next/image`](https://nextjs.org/docs/api-reference/next/image) appropriately, you can pass it in with the `as` prop.
