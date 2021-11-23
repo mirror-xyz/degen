@@ -46,16 +46,6 @@ export const Avatar = ({
         </Box>
       ) : (
         <>
-          {border && (
-            <Box
-              boxShadow="-1px"
-              className={styles.variants({ shape })}
-              height="full"
-              pointerEvents="none"
-              position="absolute"
-              width="full"
-            />
-          )}
           <Box
             alt={label}
             as={as}
@@ -67,6 +57,16 @@ export const Avatar = ({
               layout: typeof as === 'string' ? undefined : 'fill',
             }}
           />
+          {border && (
+            <Box
+              boxShadow="-1px"
+              className={styles.variants({ shape })}
+              height="full"
+              pointerEvents="none"
+              position="absolute"
+              width="full"
+            />
+          )}
         </>
       )}
     </Box>
