@@ -8,7 +8,7 @@ export type Props = {
   as?: 'img' | React.ComponentType
   label: string
   placeholder?: boolean
-  border?: boolean
+  noBorder?: boolean
   size?: BoxProps['height']
   src?: string
 } & styles.Variants
@@ -17,7 +17,7 @@ export const Avatar = ({
   as = 'img',
   label,
   placeholder,
-  border = true,
+  noBorder,
   shape = 'circle',
   size = '12',
   src,
@@ -25,7 +25,7 @@ export const Avatar = ({
   return (
     <Box
       backgroundColor="foregroundSecondary"
-      className={styles.variants({ shape })}
+      className={styles.variants({ shape, noBorder: placeholder || noBorder })}
       height={size}
       minWidth={size}
       overflow="hidden"
@@ -57,16 +57,6 @@ export const Avatar = ({
               layout: typeof as === 'string' ? undefined : 'fill',
             }}
           />
-          {border && (
-            <Box
-              boxShadow="-px"
-              className={styles.variants({ shape })}
-              height="full"
-              pointerEvents="none"
-              position="absolute"
-              width="full"
-            />
-          )}
         </>
       )}
     </Box>

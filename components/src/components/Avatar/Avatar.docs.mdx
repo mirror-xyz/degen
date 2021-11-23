@@ -53,12 +53,27 @@ import { Avatar } from 'degen'
 
 ## Border
 
-Display a light border around the edge to define image edges on similarly colored backgrounds. Defaults to `true`.
+By default, there is a light border around the edge to define image edges on similarly colored backgrounds. This can be disabled by using the `noBorder` prop.
 
 ```tsx live=true
 <Stack direction="horizontal">
-  <Avatar src={avatars.noun97} />
-  <Avatar border={false} src={avatars.noun97} />
+  <Avatar
+    size="24"
+    src={
+      mode === 'light'
+        ? 'https://images.mirror-media.xyz/publication-images/152cd86f-45ad-4f48-8971-4dd33fde5bc1.png'
+        : 'https://images.mirror-media.xyz/publication-images/5eaba6b2-b9ee-4bea-aeac-75796d53798f.jpg'
+    }
+  />
+  <Avatar
+    noBorder
+    size="24"
+    src={
+      mode === 'light'
+        ? 'https://images.mirror-media.xyz/publication-images/152cd86f-45ad-4f48-8971-4dd33fde5bc1.png'
+        : 'https://images.mirror-media.xyz/publication-images/5eaba6b2-b9ee-4bea-aeac-75796d53798f.jpg'
+    }
+  />
 </Stack>
 ```
 
