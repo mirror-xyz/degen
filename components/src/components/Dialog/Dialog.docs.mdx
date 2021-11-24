@@ -1,0 +1,37 @@
+---
+title: Dialog
+description: Overlay for actions or information
+---
+
+```tsx
+import { Dialog } from 'degen'
+```
+
+```tsx live=true expand=true
+<Dialog
+  title="Dialog Title"
+  trigger={<Button size="small">Open Dialog</Button>}
+/>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Title Variant
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Dialog
+    title="Dialog Title"
+    titleVariant="small"
+    trigger={<Button size="small">Small Title</Button>}
+  />
+  <Dialog
+    title="Dialog Title"
+    titleVariant="large"
+    trigger={<Button size="small">Large Title</Button>}
+  />
+</Stack>
+```
+
