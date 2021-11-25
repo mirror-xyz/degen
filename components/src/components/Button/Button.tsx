@@ -27,20 +27,11 @@ type BaseProps = {
   /** Adds ReactNode after children */
   suffix?: ReactNodeNoStrings
   tabIndex?: NativeButtonProps['tabIndex']
+  tone?: styles.Tone
   type?: NativeButtonProps['type']
   variant?: styles.Variant
   width?: BoxProps['width']
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
-}
-
-type WithTone = {
-  tone?: styles.Tone
-  variant?: 'highlight' | 'primary'
-}
-
-type WithoutTone = {
-  tone?: never
-  variant?: styles.Variant
 }
 
 type WithAnchor = {
@@ -57,7 +48,7 @@ type WithoutAnchor = {
   target?: never
 }
 
-type Props = BaseProps & (WithTone | WithoutTone) & (WithAnchor | WithoutAnchor)
+export type Props = BaseProps & (WithAnchor | WithoutAnchor)
 
 export const Button = React.forwardRef(
   (

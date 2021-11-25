@@ -119,7 +119,7 @@ const responsiveProperties = defineProperties({
     },
     minHeight: vars.space,
     minWidth: vars.space,
-    overflow: ['hidden', 'scroll', 'unset'],
+    overflow: ['auto', 'hidden', 'scroll', 'unset'],
     paddingBottom: vars.space,
     paddingLeft: vars.space,
     paddingRight: vars.space,

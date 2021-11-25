@@ -4,6 +4,7 @@ export {
   Box,
   Button,
   Card,
+  Dialog,
   Field,
   Heading,
   IconNFT,

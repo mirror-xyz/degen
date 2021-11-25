@@ -19,6 +19,7 @@ it('should expose correct exports', () => {
     'Box',
     'Button',
     'Card',
+    'Dialog',
     'Field',
     'Heading',
     'IconNFT',

@@ -1,6 +1,6 @@
 ---
 title: Dialog
-description: Overlay for actions or information
+description: Overlay for actions or information rendering content underneath inert
 ---
 
 ```tsx
@@ -8,30 +8,175 @@ import { Dialog } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<Dialog
-  title="Dialog Title"
-  trigger={<Button size="small">Open Dialog</Button>}
-/>
+<Box>
+  <Button size="small" onClick={() => setState('open', true)}>
+    Open Dialog
+  </Button>
+  <Dialog
+    open={getState('open')}
+    title="Welcome"
+    onClose={() => setState('open', false)}
+  >
+    <Box
+      backgroundColor="foregroundSecondary"
+      borderRadius="2xLarge"
+      height="36"
+      width="full"
+    />
+  </Dialog>
+</Box>
 ```
 
 ## Props
 
 <PropsTable sourceLink={sourceLink} types={types} />
 
-## Title Variant
+## Width
 
 ```tsx live=true
 <Stack direction="horizontal">
+  <Button size="small" onClick={() => setState('width', 'small')}>
+    Small
+  </Button>
+  <Button size="small" onClick={() => setState('width', 'large')}>
+    Large
+  </Button>
+
   <Dialog
-    title="Dialog Title"
-    titleVariant="small"
-    trigger={<Button size="small">Small Title</Button>}
-  />
-  <Dialog
-    title="Dialog Title"
-    titleVariant="large"
-    trigger={<Button size="small">Large Title</Button>}
-  />
+    open={getState('width') !== undefined}
+    title="Width"
+    width={getState('width')}
+    onClose={() => setState('width', undefined)}
+  >
+    <Box
+      backgroundColor="foregroundSecondary"
+      borderRadius="2xLarge"
+      height="36"
+      width="full"
+    />
+  </Dialog>
 </Stack>
 ```
 
+## Title Variant
+
+When `titleVariant="heading"`, the dialog uses the `large` width.
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Button size="small" onClick={() => setState('titleVariant', 'normal')}>
+    Normal
+  </Button>
+  <Button size="small" onClick={() => setState('titleVariant', 'heading')}>
+    Heading
+  </Button>
+
+  <Dialog
+    description={
+      getState('titleVariant') === 'heading'
+        ? 'The quick brown fox jumped over the lazy dogs.'
+        : undefined
+    }
+    open={getState('titleVariant') !== undefined}
+    title="Variant"
+    titleVariant={getState('titleVariant')}
+    onClose={() => setState('titleVariant', undefined)}
+  >
+    <Box
+      backgroundColor="foregroundSecondary"
+      borderRadius="2xLarge"
+      height="36"
+      width="full"
+    />
+  </Dialog>
+</Stack>
+```
+
+## Actions
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Button size="small" onClick={() => setState('actions', true)}>
+    Open Dialog
+  </Button>
+
+  <Dialog
+    open={getState('actions')}
+    primaryAction={{
+      children: 'Do Something',
+      onClick: () => {
+        alert('Nice click :)')
+        setState('actions', false)
+      },
+    }}
+    secondaryAction={{
+      children: 'Cancel',
+      onClick: () => setState('actions', false),
+    }}
+    title="Actions"
+    onClose={() => setState('actions', false)}
+  >
+    <Box
+      backgroundColor="foregroundSecondary"
+      borderRadius="2xLarge"
+      height="36"
+      width="full"
+    />
+  </Dialog>
+</Stack>
+```
+
+## Back Action
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Button size="small" onClick={() => setState('actions', true)}>
+    Open Dialog
+  </Button>
+
+  <Dialog
+    open={getState('actions')}
+    title="Back Action"
+    onBack={() => {
+      alert('Back!')
+      setState('actions', false)
+    }}
+    onClose={() => setState('actions', false)}
+  >
+    <Box
+      backgroundColor="foregroundSecondary"
+      borderRadius="2xLarge"
+      height="36"
+      width="full"
+    />
+  </Dialog>
+</Stack>
+```
+
+## Scrollable Content
+
+```tsx live=true
+<Stack direction="horizontal">
+  <Button size="small" onClick={() => setState('actions', true)}>
+    Open Dialog
+  </Button>
+
+  <Dialog
+    open={getState('actions')}
+    title="Scrollable Content"
+    onClose={() => setState('actions', false)}
+  >
+    <Stack>
+      {[1, 2, 3].map((x) => (
+        <Box
+          backgroundColor="foregroundSecondary"
+          borderRadius="2xLarge"
+          height="96"
+          key={x}
+          width="full"
+        />
+      ))}
+    </Stack>
+  </Dialog>
+</Stack>
+```

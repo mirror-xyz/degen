@@ -45,6 +45,16 @@ export const variants = recipe({
         letterSpacing: { xs: 'normal', sm: '-0.02' },
       }),
     },
+    {
+      variants: {
+        level: '1',
+        responsive: true,
+      },
+      style: atoms({
+        fontSize: { xs: 'headingTwo', sm: 'headingOne' },
+        letterSpacing: { xs: 'normal', sm: '-0.02' },
+      }),
+    },
   ],
 })
 
