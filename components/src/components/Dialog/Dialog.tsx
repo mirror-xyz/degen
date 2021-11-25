@@ -4,7 +4,7 @@ import { AutoFocusInside, default as FocusLock } from 'react-focus-lock'
 import { RemoveScroll } from 'react-remove-scroll'
 import { animated, useTransition } from 'react-spring'
 
-import { useId, useWindowEvent } from '../../hooks'
+import { useId, useReduceMotion, useWindowEvent } from '../../hooks'
 import { Box } from '../Box'
 import { Button, ButtonProps } from '../Button'
 import { Heading } from '../Heading'
@@ -54,11 +54,17 @@ export const Dialog = ({
   let descriptionId: string
   if (description) descriptionId = `${id}-description`
 
+  const prefersReducedMotion = useReduceMotion()
   const transitions = useTransition(open, {
     from: { opacity: 0, y: 36 },
     enter: { opacity: 1, y: 0 },
     leave: { opacity: 0, y: 36 },
-    config: { mass: 1, tension: 210, friction: 20 },
+    config: {
+      mass: 1,
+      tension: 210,
+      friction: 20,
+    },
+    immediate: prefersReducedMotion,
   })
 
   const hasActionAutoFocus =
@@ -69,11 +75,7 @@ export const Dialog = ({
 
   useWindowEvent('keydown', (event) => {
     if (!event.defaultPrevented) {
-      if (
-        event.code === 'Escape' ||
-        event.key === 'Escape' ||
-        event.keyCode === 27
-      ) {
+      if (event.code === 'Escape' || event.key === 'Escape') {
         onClose()
       }
     }
