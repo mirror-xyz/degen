@@ -1,8 +1,10 @@
 export { atoms } from './atoms'
 export type { Atoms } from './atoms'
 
+export { breakpoints } from './breakpoints'
+export type { Breakpoint } from './breakpoints'
+
 export {
-  breakpoints,
   mapResponsiveValue,
   normalizeResponsiveValue,
   sprinkles,
@@ -19,4 +21,5 @@ export { vars } from './vars.css'
 
 export type { Theme } from './types'
 
+export { responsiveStyle } from './responsiveStyle'
 export { getAccentText, getModeColors, motionSafe, rgb } from './utils'

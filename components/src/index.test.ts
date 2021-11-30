@@ -39,6 +39,7 @@ it('should expose correct exports', () => {
     'atoms',
     'breakpoints',
     'motionSafe',
+    'responsiveStyle',
     'vars',
     // generated icons
     ...generatedIcons,
