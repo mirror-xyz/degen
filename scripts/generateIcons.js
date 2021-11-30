@@ -39,6 +39,19 @@ const svgrConfig = {
   },
   template: componentTemplate,
   titleProp: true,
+  jsx: {
+    babelConfig: {
+      plugins: [
+        [
+          '@svgr/babel-plugin-remove-jsx-attribute',
+          {
+            elements: ['path'],
+            attributes: ['className', 'strokeWidth'],
+          },
+        ],
+      ],
+    },
+  },
 }
 
 const baseDir = path.join(__dirname, '..')
@@ -97,14 +110,21 @@ const iconComponentsDir = path.join(
             className?: BoxProps['className']
             color?: BoxProps['color']
             size?: BoxProps['height']
+            strokeWidth?: BoxProps['strokeWidth']
           } & OptionalTitle
 
-          export const ${svgName} = ({ color, size = '6', ...props }: Props) => {
+          export const ${svgName} = ({
+            color,
+            size = '6',
+            strokeWidth = '0.5',
+            ...props
+          }: Props) => {
             return (
               <Box
                 as={${componentName}}
                 color={color}
                 height={size}
+                strokeWidth={strokeWidth}
                 width={size}
                 {...props}
               />

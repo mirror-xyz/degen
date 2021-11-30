@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-big-lib": "^6.0.3",
+    "@svgr/babel-plugin-remove-jsx-attribute": "^6.0.0",
     "@svgr/cli": "^5.5.0",
     "@svgr/core": "^5.5.0",
     "@types/dedent": "^0.7.0",

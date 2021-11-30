@@ -2617,6 +2617,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@svgr/babel-plugin-remove-jsx-attribute@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "@svgr/babel-plugin-remove-jsx-attribute@npm:6.0.0"
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 82c988ed40f88640fcd68fc24ff3dbf729673d59cf1627ed0aa5f0c992a1ddc220fe23e7f23ba39110cd47720cc7c630e70333f1a25ff6a65662584317ff2385
+  languageName: node
+  linkType: hard
+
 "@svgr/babel-plugin-remove-jsx-empty-expression@npm:^5.0.1":
   version: 5.0.1
   resolution: "@svgr/babel-plugin-remove-jsx-empty-expression@npm:5.0.1"
@@ -11395,6 +11404,7 @@ __metadata:
   resolution: "mirror@workspace:."
   dependencies:
     "@size-limit/preset-big-lib": ^6.0.3
+    "@svgr/babel-plugin-remove-jsx-attribute": ^6.0.0
     "@svgr/cli": ^5.5.0
     "@svgr/core": ^5.5.0
     "@types/dedent": ^0.7.0
