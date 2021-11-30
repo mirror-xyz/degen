@@ -9,7 +9,7 @@ export const variants = recipe({
       backgroundColor: 'transparent',
       borderColor: { base: 'foregroundSecondary', focus: 'accent' },
       borderRadius: '2xLarge',
-      borderWidth: '2px',
+      borderWidth: '0.5',
       color: 'text',
       display: 'flex',
       fontFamily: 'sans',

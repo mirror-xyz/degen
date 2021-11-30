@@ -6,7 +6,7 @@ import { atoms, vars } from '../../css'
 export const root = recipe({
   base: [
     atoms({
-      borderWidth: '2px',
+      borderWidth: '0.5',
       borderColor: 'foregroundSecondary',
       borderRadius: '2xLarge',
       color: 'text',

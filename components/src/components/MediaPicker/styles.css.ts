@@ -8,7 +8,7 @@ export const root = recipe({
     atoms({
       borderColor: 'foregroundSecondary',
       borderRadius: '2xLarge',
-      borderWidth: '2px',
+      borderWidth: '0.5',
       overflow: 'hidden',
       position: 'relative',
       transitionDuration: '150',
