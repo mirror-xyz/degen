@@ -63,7 +63,7 @@ describe.each`
     },
   },
 }}
-`('rgb($partial, $alpha)', ({ style, expected }) => {
+`('motionSafe($style)', ({ style, expected }) => {
   it(`returns ${expected}`, () => {
     expect(motionSafe(style)).toEqual(expected)
   })
