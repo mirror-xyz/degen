@@ -37,6 +37,15 @@ export const variants = recipe({
   compoundVariants: [
     {
       variants: {
+        level: '1',
+        responsive: true,
+      },
+      style: atoms({
+        fontSize: { xs: 'headingTwo', sm: 'headingOne' },
+      }),
+    },
+    {
+      variants: {
         level: '2',
         responsive: true,
       },

@@ -8,7 +8,7 @@ export const variants = recipe({
     noBorder: {
       true: {},
       false: style({
-        ':before': {
+        ':after': {
           boxShadow: `${vars.shadows['-px']} ${vars.colors.foregroundTertiary}`,
           content: '',
           inset: 0,
@@ -22,7 +22,7 @@ export const variants = recipe({
           borderRadius: 'full',
         }),
         style({
-          ':before': {
+          ':after': {
             borderRadius: vars.radii.full,
           },
         }),
@@ -32,7 +32,7 @@ export const variants = recipe({
           borderRadius: '2xLarge',
         }),
         style({
-          ':before': {
+          ':after': {
             borderRadius: vars.radii['2xLarge'],
           },
         }),

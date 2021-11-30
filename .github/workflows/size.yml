@@ -5,7 +5,7 @@ on:
     branches:
       - main
 
-concurrency: 
+concurrency:
   group: ${{ github.head_ref }}
   cancel-in-progress: true
 
