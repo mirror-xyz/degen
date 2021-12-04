@@ -10,7 +10,7 @@ const shape = {
     padding: 'px',
   }),
   square: atoms({
-    borderRadius: 'medium',
+    borderRadius: '2xLarge',
     padding: 'px',
   }),
 }
@@ -19,13 +19,13 @@ export type Shape = keyof typeof shape
 
 const size = {
   small: atoms({
-    borderRadius: 'medium',
+    borderRadius: 'large',
     fontSize: 'small',
     height: '10',
     paddingX: '4',
   }),
   medium: atoms({
-    borderRadius: 'extraLarge',
+    borderRadius: '2xLarge',
     fontSize: 'base',
     height: '14',
     paddingX: '5',
