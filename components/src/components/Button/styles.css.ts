@@ -7,11 +7,8 @@ import { atoms, rgb, vars } from '../../css'
 const shape = {
   circle: atoms({
     borderRadius: 'full',
-    padding: 'px',
   }),
-  square: atoms({
-    padding: 'px',
-  }),
+  square: {},
 }
 
 export type Shape = keyof typeof shape
@@ -164,11 +161,20 @@ const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
     shape,
     size,
   },
-  style: atoms({
-    minWidth: size === 'small' ? '10' : '14',
-    borderRadius:
-      shape === 'square' ? (size === 'small' ? 'large' : '2xLarge') : undefined,
-  }),
+  style: style([
+    atoms({
+      borderRadius:
+        shape === 'square'
+          ? size === 'small'
+            ? 'large'
+            : '2xLarge'
+          : undefined,
+      minWidth: size === 'small' ? '10' : '14',
+    }),
+    style({
+      padding: 0,
+    }),
+  ]),
 })
 
 export const variants = recipe({

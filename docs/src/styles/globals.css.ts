@@ -21,7 +21,7 @@ globalStyle('*, ::before, ::after', {
 })
 
 globalStyle('html', {
-  fontSize: '16px',
+  fontSize: vars.fontSizes.root,
   background: vars.colors.background,
   color: vars.colors.foreground,
   textRendering: 'optimizeLegibility',

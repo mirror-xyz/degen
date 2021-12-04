@@ -11,6 +11,7 @@ export const fontSizes = {
   small: '0.9375rem',
   label: '0.8125rem',
   base: '1.0625rem',
+  root: '16px',
 }
 
 export const fontWeights = {
