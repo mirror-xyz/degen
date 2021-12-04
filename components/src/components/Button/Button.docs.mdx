@@ -19,9 +19,9 @@ import { Button } from 'degen'
 
 ```tsx live=true
 <Stack direction="horizontal" wrap>
-  <Button variant="highlight">Highlight</Button>
   <Button variant="primary">Primary</Button>
   <Button variant="secondary">Secondary</Button>
+  <Button variant="tertiary">Tertiary</Button>
   <Button variant="transparent">Transparent</Button>
 </Stack>
 ```
@@ -56,41 +56,41 @@ import { Button } from 'degen'
 
 ## Tones
 
-When `variant` is set to `highlight` or `primary`, you can `tone` to change the button accent color.
+When `variant` is set to `primary` or `secondary`, you can `tone` to change the button accent color.
 
 ```tsx live=true
 <Stack space="8">
-  <Stack>
-    <Text variant="label">Highlight</Text>
-    <Stack direction="horizontal" wrap>
-      <Button tone="accent" variant="highlight">
-        Accent
-      </Button>
-      <Button tone="info" variant="highlight">
-        Blue
-      </Button>
-      <Button tone="green" variant="highlight">
-        Green
-      </Button>
-      <Button tone="red" variant="highlight">
-        Red
-      </Button>
-    </Stack>
-  </Stack>
-
   <Stack>
     <Text variant="label">Primary</Text>
     <Stack direction="horizontal" wrap>
       <Button tone="accent" variant="primary">
         Accent
       </Button>
-      <Button tone="blue" variant="primary">
+      <Button tone="info" variant="primary">
         Blue
       </Button>
       <Button tone="green" variant="primary">
         Green
       </Button>
       <Button tone="red" variant="primary">
+        Red
+      </Button>
+    </Stack>
+  </Stack>
+
+  <Stack>
+    <Text variant="label">Secondary</Text>
+    <Stack direction="horizontal" wrap>
+      <Button tone="accent" variant="secondary">
+        Accent
+      </Button>
+      <Button tone="blue" variant="secondary">
+        Blue
+      </Button>
+      <Button tone="green" variant="secondary">
+        Green
+      </Button>
+      <Button tone="red" variant="secondary">
         Red
       </Button>
     </Stack>

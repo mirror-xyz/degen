@@ -71,6 +71,7 @@ export const prefix = style([
   container,
   text,
   atoms({ paddingLeft: '4', paddingRight: '1.5' }),
+  style({ lineHeight: 'normal' }),
 ])
 
 export const input = recipe({

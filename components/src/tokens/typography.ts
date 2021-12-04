@@ -10,7 +10,7 @@ export const fontSizes = {
   large: '1.1875rem',
   small: '0.9375rem',
   label: '0.8125rem',
-  base: '1rem',
+  base: '1.0625rem',
 }
 
 export const fontWeights = {

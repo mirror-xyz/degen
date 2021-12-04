@@ -14,7 +14,7 @@ Select "Open in Playroom" to get started with the example below.
     loading={getState('loading')}
     prefix={<IconLockClosed />}
     tone="blue"
-    variant="highlight"
+    variant="primary"
     onClick={() => {
       toggleState('loading')
       setTimeout(() => toggleState('loading'), 1000)
@@ -56,7 +56,7 @@ vars
     <Button
       disabled={getState('locked')}
       size="small"
-      variant="secondary"
+      variant="tertiary"
       onClick={() => setState('counter', getState('counter') - 1)}
     >
       Decrement
@@ -64,7 +64,7 @@ vars
     <Button
       disabled={getState('locked')}
       size="small"
-      variant="secondary"
+      variant="tertiary"
       onClick={() => setState('counter', getState('counter') + 1)}
     >
       Increment
@@ -74,7 +74,7 @@ vars
       <Button
         disabled={getState('locked')}
         size="small"
-        variant="secondary"
+        variant="tertiary"
         onClick={() => resetState()}
       >
         Reset
@@ -83,7 +83,7 @@ vars
 
     <Button
       size="small"
-      variant="secondary"
+      variant="tertiary"
       onClick={() => toggleState('locked')}
     >
       {getState('locked') ? 'Unlock' : 'Lock'}

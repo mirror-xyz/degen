@@ -10,7 +10,6 @@ const shape = {
     padding: 'px',
   }),
   square: atoms({
-    borderRadius: '2xLarge',
     padding: 'px',
   }),
 }
@@ -65,7 +64,7 @@ export type Tone = keyof typeof tone
 const boxShadowColorVar = createVar()
 
 const variant = {
-  highlight: style([
+  primary: style([
     atoms({
       color: 'accentText',
       backgroundColor: 'accent',
@@ -76,7 +75,7 @@ const variant = {
       },
     }),
   ]),
-  primary: style([
+  secondary: style([
     atoms({
       color: 'accent',
       backgroundColor: {
@@ -103,7 +102,7 @@ const variant = {
       },
     }),
   ]),
-  secondary: style([
+  tertiary: style([
     atoms({
       color: 'text',
       backgroundColor: {
@@ -167,6 +166,8 @@ const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
   },
   style: atoms({
     minWidth: size === 'small' ? '10' : '14',
+    borderRadius:
+      shape === 'square' ? (size === 'small' ? 'large' : '2xLarge') : undefined,
   }),
 })
 

@@ -35,7 +35,7 @@ type BaseProps = {
 
 type WithTone = {
   tone?: styles.Tone
-  variant?: 'highlight' | 'primary'
+  variant?: 'primary' | 'secondary'
 }
 
 type WithoutTone = {
@@ -77,7 +77,7 @@ export const Button = React.forwardRef(
       target,
       tone = 'accent',
       type,
-      variant = 'highlight',
+      variant = 'primary',
       width,
       onClick,
     }: Props,

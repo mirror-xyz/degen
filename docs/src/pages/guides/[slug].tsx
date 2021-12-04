@@ -63,7 +63,7 @@ const Page: NextPageWithLayout<Props> = ({ docsLink, source }: Props) => {
 
       <Box marginTop="20">
         <Link href={docsLink}>
-          <Text color="textSecondary" size="small">
+          <Text color="textTertiary" size="small">
             Edit on GitHub
           </Text>
         </Link>
