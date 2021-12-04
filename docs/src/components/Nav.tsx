@@ -52,7 +52,7 @@ export const Nav = ({ links }: Props) => {
         >
           <Stack align="center" direction="horizontal">
             <NavLink active={router.asPath === '/'} href="/">
-              <Button shape="circle" variant="secondary">
+              <Button shape="circle" variant="tertiary">
                 <Stack align="center" direction="horizontal">
                   <NextImage height={32} src="/logo.svg" width={32} />
                 </Stack>
@@ -62,7 +62,7 @@ export const Nav = ({ links }: Props) => {
             <Box display={{ md: 'none' }}>
               <Button
                 size="small"
-                variant="secondary"
+                variant="tertiary"
                 onClick={() => setState((x) => ({ ...x, open: !x.open }))}
               >
                 <Box aria-label={state.open ? 'Close menu' : 'Open menu'}>

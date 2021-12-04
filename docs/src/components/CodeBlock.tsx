@@ -72,7 +72,7 @@ export const CodeBlock = ({ children, className, live, expand }: Props) => {
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Box
           as="pre"
-          borderRadius="large"
+          borderRadius="2xLarge"
           className={className}
           padding="6"
           position="relative"

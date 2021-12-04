@@ -31,7 +31,7 @@ yarn add degen
 
 ## Set Up
 
-Wrap the root of your app in a [`ThemeProvider`](/components/ThemeProvider), import the external stylesheet, and add [Inter](https://rsms.me/inter/) and [iA Writer Mono](https://github.com/iaolo/iA-Fonts/tree/master/iA%20Writer%20Mono) to your font stack.
+Wrap the root of your app in a [`ThemeProvider`](/components/ThemeProvider), import the external stylesheet, and add [Inter](https://rsms.me/inter/) and [iA Writer Mono](https://github.com/iaolo/iA-Fonts/tree/master/iA%20Writer%20Mono) to your font stack. (Tip: Both fonts are available on [Fontsource](https://fontsource.org).)
 
 ```tsx
 import { ThemeProvider } from 'degen'
@@ -52,7 +52,7 @@ import { Button, IconLockClosed, Stack } from 'degen'
 <Stack align="center">
   <Button
     prefix={<IconLockClosed />}
-    variant="highlight"
+    variant="primary"
     width={{ xs: 'full', md: 'max' }}
   >
     Connect Wallet
