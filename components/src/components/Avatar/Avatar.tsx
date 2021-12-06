@@ -50,6 +50,7 @@ export const Avatar = ({
             alt={label}
             as={as}
             height="full"
+            objectFit="cover"
             src={src}
             width="full"
             {...{
