@@ -20,6 +20,7 @@ it('should expose correct exports', () => {
     'Button',
     'Card',
     'Field',
+    'FieldSet',
     'Heading',
     'IconNFT',
     'MediaPicker',
