@@ -173,6 +173,7 @@ export const Input = React.forwardRef(
                 readOnly={readOnly}
                 ref={inputRef}
                 tabIndex={tabIndex}
+                textTransform={textTransform}
                 type={type}
                 value={value}
                 onBlur={onBlur}

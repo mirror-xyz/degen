@@ -10,7 +10,7 @@ const resolveDefaultComponent = {
 
 type Props = {
   align?: BoxProps['textAlign']
-  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'legend'
   children?: React.ReactNode
   color?: BoxProps['color']
   id?: string

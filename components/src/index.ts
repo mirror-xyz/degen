@@ -5,6 +5,7 @@ export {
   Button,
   Card,
   Field,
+  FieldSet,
   Heading,
   IconNFT,
   MediaPicker,

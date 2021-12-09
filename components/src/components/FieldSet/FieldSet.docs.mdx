@@ -1,0 +1,68 @@
+---
+title: FieldSet
+description: Group related form elements
+---
+
+```tsx
+import { FieldSet } from 'degen'
+```
+
+```tsx live=true expand=true
+<FieldSet legend="Token">
+  <Input label="Name" placeholder="Mirror Write Token" />
+  <Input
+    label="Symbol"
+    placeholder="WRITE"
+    prefix="$"
+    textTransform="uppercase"
+  />
+</FieldSet>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Description
+
+```tsx live=true
+<FieldSet description="Basic information about your token." legend="Token">
+  <Input label="Name" placeholder="Mirror Write Token" />
+  <Input
+    label="Symbol"
+    placeholder="WRITE"
+    prefix="$"
+    textTransform="uppercase"
+  />
+</FieldSet>
+```
+
+## Required
+
+```tsx live=true
+<FieldSet legend="Token" required>
+  <Input label="Name" placeholder="Mirror Write Token" />
+  <Input
+    label="Symbol"
+    placeholder="WRITE"
+    prefix="$"
+    textTransform="uppercase"
+  />
+</FieldSet>
+```
+
+## Disabled
+
+Uses native [`fieldset[disabled]`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset#attr-disabled) to automatically disable form elements inside.
+
+```tsx live=true
+<FieldSet disabled legend="Token">
+  <Input label="Name" placeholder="Mirror Write Token" />
+  <Input
+    label="Symbol"
+    placeholder="WRITE"
+    prefix="$"
+    textTransform="uppercase"
+  />
+</FieldSet>
+```
