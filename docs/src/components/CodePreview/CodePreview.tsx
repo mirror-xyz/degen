@@ -16,6 +16,7 @@ import { CopyButton } from '../CopyButton'
 import './styles.css'
 
 export type Props = {
+  backgroundColor?: Components.BoxProps['backgroundColor']
   code: string
   expand?: boolean
   theme?: PrismTheme
@@ -29,7 +30,12 @@ const initialState = {
   expand: false,
 }
 
-export const CodePreview = ({ code, expand = false, theme }: Props) => {
+export const CodePreview = ({
+  backgroundColor = 'background',
+  code,
+  expand = false,
+  theme,
+}: Props) => {
   const previewRef = React.useRef<HTMLElement>(null)
   const [state, setState] = React.useState<State>({
     ...initialState,
@@ -64,7 +70,7 @@ export const CodePreview = ({ code, expand = false, theme }: Props) => {
         overflow="hidden"
       >
         <Box
-          backgroundColor="background"
+          backgroundColor={backgroundColor}
           overflow="scroll"
           padding="6"
           radiusBottom={state.expand ? undefined : '2xLarge'}

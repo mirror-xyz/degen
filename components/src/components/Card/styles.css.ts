@@ -1,12 +1,14 @@
 import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
-import { style } from '@vanilla-extract/css'
+import { createVar, style } from '@vanilla-extract/css'
 
-import { atoms, rgb, vars } from '../../css'
+import { atoms, responsiveStyle, rgb, vars } from '../../css'
+
+const radiiVar = createVar()
 
 export const variants = recipe({
   base: [
     atoms({
-      borderRadius: '2xLarge',
+      borderRadius: { xs: '2xLarge', lg: '3xLarge' },
     }),
   ],
   variants: {
@@ -18,12 +20,38 @@ export const variants = recipe({
         atoms({
           backgroundColor: 'white',
         }),
+      ]),
+    },
+    shadow: {
+      true: {},
+      false: {},
+    },
+  },
+  compoundVariants: [
+    {
+      variants: {
+        dark: false,
+        shadow: true,
+      },
+      style: style([
+        responsiveStyle({
+          xs: {
+            vars: {
+              [radiiVar]: vars.radii['2xLarge'],
+            },
+          },
+          lg: {
+            vars: {
+              [radiiVar]: vars.radii['3xLarge'],
+            },
+          },
+        }),
         style({
-          boxShadow: `0px 0px ${vars.radii['2xLarge']} ${rgb('0,0,0', '0.1')}`,
+          boxShadow: `0px 0px ${radiiVar} ${rgb('0,0,0', '0.1')}`,
         }),
       ]),
     },
-  },
+  ],
 })
 
 export type Variants = RecipeVariants<typeof variants>
