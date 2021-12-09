@@ -9,7 +9,7 @@ import vsLight from 'prism-react-renderer/themes/vsLight'
 import vsDark from 'prism-react-renderer/themes/vsDark'
 
 import { vars } from 'degen/css'
-import { Box, useTheme } from 'degen/components'
+import { Box, BoxProps, useTheme } from 'degen/components'
 
 import { useIsMounted } from '~/utils/isMounted'
 import { PlayroomStateProvider } from '../../../playroom/src/PlayroomState'
@@ -31,13 +31,20 @@ const CodePreview = dynamic<CodePreviewProps>(
 )
 
 type Props = {
+  backgroundColor?: BoxProps['backgroundColor']
   children: string
   className: string
   live?: boolean
   expand?: boolean
 }
 
-export const CodeBlock = ({ children, className, live, expand }: Props) => {
+export const CodeBlock = ({
+  backgroundColor,
+  children,
+  className,
+  live,
+  expand,
+}: Props) => {
   const isMounted = useIsMounted()
   const { mode } = useTheme()
   const theme = mode === 'light' ? vsLight : vsDark
@@ -56,7 +63,12 @@ export const CodeBlock = ({ children, className, live, expand }: Props) => {
   if (live)
     return (
       <PlayroomStateProvider>
-        <CodePreview code={code} expand={expand} theme={modifiedTheme} />
+        <CodePreview
+          backgroundColor={backgroundColor}
+          code={code}
+          expand={expand}
+          theme={modifiedTheme}
+        />
       </PlayroomStateProvider>
     )
 

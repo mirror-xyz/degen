@@ -7,10 +7,24 @@ description: Styled wrapper for content
 import { Card } from 'degen'
 ```
 
-```tsx live=true expand=true
-<Card padding="4">Hello World</Card>
+```tsx live=true expand=true backgroundColor=foregroundTertiary
+<Card padding="6">
+  <Heading>Hello World</Heading>
+  <Text>The quick brown fox…</Text>
+</Card>
 ```
 
 ## Props
 
 <PropsTable sourceLink={sourceLink} types={types} />
+
+## Shadow
+
+Adds shadow when `mode` is `light`.
+
+```tsx live=true expand=true
+<Card padding="6" shadow>
+  <Heading>Hello World</Heading>
+  <Text>The quick brown fox…</Text>
+</Card>
+```
