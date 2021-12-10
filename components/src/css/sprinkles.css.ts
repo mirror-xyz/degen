@@ -52,6 +52,10 @@ const extendedSpace = {
   '1/2': '50%',
   '2/3': '66.666667%',
   '3/4': '75%',
+  screenSm: breakpoints.sm,
+  screenMd: breakpoints.md,
+  screenLg: breakpoints.lg,
+  screenXl: breakpoints.xl,
 }
 
 const responsiveProperties = defineProperties({
@@ -120,7 +124,10 @@ const responsiveProperties = defineProperties({
     right: vars.space,
     textAlign: ['center', 'left', 'right'],
     top: vars.space,
-    width: vars.space,
+    width: {
+      ...vars.space,
+      ...extendedSpace,
+    },
   },
   shorthands: {
     margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
