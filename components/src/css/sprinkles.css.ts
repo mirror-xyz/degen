@@ -130,21 +130,27 @@ const responsiveProperties = defineProperties({
     },
   },
   shorthands: {
+    borderRadiusLeft: ['borderBottomLeftRadius', 'borderTopLeftRadius'],
+    borderRadiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
+    borderRadiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
+    borderRadiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
     margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
     marginX: ['marginLeft', 'marginRight'],
     marginY: ['marginTop', 'marginBottom'],
     padding: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
     paddingX: ['paddingLeft', 'paddingRight'],
     paddingY: ['paddingTop', 'paddingBottom'],
-    radiusLeft: ['borderBottomLeftRadius', 'borderTopLeftRadius'],
-    radiusRight: ['borderBottomRightRadius', 'borderTopRightRadius'],
-    radiusTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
-    radiusBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
   },
 })
 
 const unresponsiveProperties = defineProperties({
   properties: {
+    aspectRatio: {
+      auto: 'auto',
+      '2/1': '2 / 1',
+      '4/3': '4 / 3',
+      '16/9': '16 / 9',
+    },
     cursor: ['default', 'pointer', 'not-allowed'],
     fontFamily: vars.fonts,
     isolation: ['isolate'],
