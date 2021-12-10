@@ -88,6 +88,7 @@ export const MediaPicker = ({
       autoFocus={autoFocus}
       defaultValue={defaultValue}
       id={id}
+      maxSize={maxSize}
       name={name}
       tabIndex={tabIndex}
       onBlur={onBlur}

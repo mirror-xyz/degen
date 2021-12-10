@@ -32,7 +32,6 @@ export type Props = {
   id?: NativeInputProps['id']
   /** Size in megabytes */
   maxSize?: number
-  multiple?: NativeInputProps['multiple']
   name?: string
   required?: NativeInputProps['required']
   tabIndex?: NativeInputProps['tabIndex']
@@ -80,7 +79,12 @@ export const FileInput = React.forwardRef(
         // Disallow file larger than max
         if (maxSize && file.size > maxSize * 1_000_000) {
           event?.preventDefault()
-          onError && onError(`File must be smaller than ${maxSize} MB`)
+          onError &&
+            onError(
+              `File is ${(file.size / 1_000_000).toFixed(
+                2,
+              )} MB. Must be smaller than ${maxSize} MB`,
+            )
           return
         }
         setState((x) => ({
