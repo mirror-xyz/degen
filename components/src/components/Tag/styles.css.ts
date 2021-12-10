@@ -82,7 +82,7 @@ export const variants = recipe({
         }),
       ]),
       secondary: atoms({
-        color: 'textSecondary',
+        color: 'textTertiary',
         backgroundColor: 'foregroundTertiary',
       }),
       red: style([
