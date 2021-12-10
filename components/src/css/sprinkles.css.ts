@@ -140,6 +140,7 @@ const unresponsiveProperties = defineProperties({
   properties: {
     cursor: ['default', 'pointer', 'not-allowed'],
     fontFamily: vars.fonts,
+    isolation: ['isolate'],
     objectFit: ['contain', 'cover'],
     pointerEvents: ['none'],
     strokeWidth: vars.borderWidths,
