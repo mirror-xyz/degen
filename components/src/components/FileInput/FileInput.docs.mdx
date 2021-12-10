@@ -1,0 +1,35 @@
+---
+title: FileInput
+description: Surface for accepting files
+---
+
+```tsx
+import { FileInput } from 'degen'
+```
+
+```tsx live=true expand=true
+<FileInput onChange={(file) => alert(file)}>
+  {(context) =>
+    context.name ? (
+      <Stack align="center" direction="horizontal">
+        {context.name}
+        <Button
+          shape="circle"
+          size="small"
+          variant="transparent"
+          onClick={context.reset}
+        >
+          <VisuallyHidden>Remove</VisuallyHidden>
+          <IconClose />
+        </Button>
+      </Stack>
+    ) : (
+      <Box>{context.droppable ? 'Drop file' : 'Attach file'}</Box>
+    )
+  }
+</FileInput>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />

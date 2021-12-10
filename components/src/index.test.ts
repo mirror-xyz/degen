@@ -21,6 +21,7 @@ it('should expose correct exports', () => {
     'Card',
     'Field',
     'FieldSet',
+    'FileInput',
     'Heading',
     'IconNFT',
     'MediaPicker',

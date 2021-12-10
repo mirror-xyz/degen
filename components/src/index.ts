@@ -6,6 +6,7 @@ export {
   Card,
   Field,
   FieldSet,
+  FileInput,
   Heading,
   IconNFT,
   MediaPicker,

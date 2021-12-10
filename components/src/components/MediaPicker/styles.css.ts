@@ -6,7 +6,6 @@ import { atoms, rgb, vars } from '../../css'
 export const root = recipe({
   base: [
     atoms({
-      borderColor: 'foregroundSecondary',
       borderRadius: '2xLarge',
       borderWidth: '0.5',
       overflow: 'hidden',
@@ -15,13 +14,6 @@ export const root = recipe({
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
       width: 'full',
-    }),
-    style({
-      selectors: {
-        '&:focus-within': {
-          borderColor: vars.colors.accent,
-        },
-      },
     }),
   ],
   variants: {
@@ -34,6 +26,14 @@ export const root = recipe({
     droppable: {
       true: style({
         borderStyle: 'dashed',
+      }),
+    },
+    focused: {
+      true: atoms({
+        borderColor: 'accent',
+      }),
+      false: atoms({
+        borderColor: 'foregroundSecondary',
       }),
     },
   },

@@ -1,6 +1,6 @@
-import { Accept } from './MediaPicker'
+import { Props } from './FileInput'
 
-export const validateAccept = (fileType: string, accept: Accept) => {
+export const validateAccept = (fileType: string, accept: Props['accept']) => {
   const allowedTypes = accept?.split(', ')
   if (!allowedTypes) return true
   const mime = getMimeType(fileType)

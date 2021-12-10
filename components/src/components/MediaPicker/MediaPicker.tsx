@@ -1,16 +1,14 @@
 import * as React from 'react'
 
-import { useFieldIds } from '../../hooks'
 import { Box, BoxProps } from '../Box'
 import { Button } from '../Button'
-import { IconClose, IconExclamation, IconUpload } from '../icons'
+import { FileInput, FileInputProps } from '../FileInput'
 import { Spinner } from '../Spinner'
 import { Tag } from '../Tag'
 import { VisuallyHidden } from '../VisuallyHidden'
+import { IconClose, IconExclamation, IconUpload } from '../icons'
 import * as styles from './styles.css'
-import { validateAccept } from './utils'
 
-type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
 type Image =
   | 'image/jpeg'
   | 'image/png'
@@ -26,25 +24,25 @@ export type Accept = Image | Video | `${Image}, ${Video}`
 
 type BaseProps = {
   accept?: Accept
-  autoFocus?: NativeInputProps['autoFocus']
+  autoFocus?: FileInputProps['autoFocus']
   defaultValue?: { name?: string; type: string; url: string }
-  disabled?: boolean
+  disabled?: FileInputProps['disabled']
   error?: boolean | React.ReactNode
-  id?: NativeInputProps['id']
+  id?: FileInputProps['id']
   label: React.ReactNode
   /** Size in megabytes */
   maxSize?: number
   name?: string
-  required?: NativeInputProps['required']
-  tabIndex?: NativeInputProps['tabIndex']
+  required?: FileInputProps['required']
+  tabIndex?: FileInputProps['tabIndex']
   uploaded?: boolean
   uploading?: boolean
   uploadProgress?: number
-  onBlur?: NativeInputProps['onBlur']
+  onBlur?: FileInputProps['onBlur']
   onError?(error: string): void
-  onChange?(file: File): void
-  onFocus?: NativeInputProps['onFocus']
-  onReset?(): void
+  onChange?: FileInputProps['onChange']
+  onFocus?: FileInputProps['onFocus']
+  onReset?: FileInputProps['onReset']
 }
 
 type WithoutCompact = {
@@ -60,247 +58,123 @@ type WithCompact = {
 
 type Props = BaseProps & (WithCompact | WithoutCompact)
 
-type State = {
-  droppable?: boolean
-  file?: File
-  name?: string
-  type?: string
-  previewUrl?: string
-}
-
-const initialState: State = {}
-
-export const MediaPicker = React.forwardRef(
-  (
-    {
-      accept = 'image/jpeg, image/png, image/webp, image/gif, video/mp4, video/ogg, video/webm',
-      autoFocus,
-      compact,
-      cover,
-      defaultValue,
-      disabled,
-      error,
-      id,
-      label,
-      maxSize = 5,
-      name,
-      required,
-      tabIndex,
-      uploaded,
-      uploading,
-      uploadProgress,
-      onBlur,
-      onChange,
-      onError,
-      onFocus,
-      onReset,
-    }: Props,
-    ref: React.Ref<HTMLElement>,
-  ) => {
-    const defaultRef = React.useRef<HTMLInputElement>(null)
-    const inputRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef
-    const [state, setState] = React.useState<State>(initialState)
-
-    const hasError = error ? true : undefined
-    const ids = useFieldIds({
-      id,
-      error: hasError,
-    })
-
-    const handleFile = React.useCallback(
-      (file: File, event?: React.ChangeEvent | React.DragEvent) => {
-        // Disallow file larger than max
-        if (maxSize && file.size > maxSize * 1_000_000) {
-          event?.preventDefault()
-          onError && onError(`File must be smaller than ${maxSize} MB`)
-          return
-        }
-        setState((x) => ({
-          ...x,
-          file,
-          name: file.name,
-          type: file.type,
-        }))
-        onChange && onChange(file)
-      },
-      [maxSize, onChange, onError],
-    )
-
-    const handleChange = React.useCallback(
-      (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files
-        if (!files?.length) return
-        handleFile(files[0], event)
-      },
-      [handleFile],
-    )
-
-    const handleDragOver = React.useCallback(
-      (event: React.DragEvent<HTMLInputElement>) => {
-        event.preventDefault()
-        setState((x) => ({ ...x, droppable: true }))
-      },
-      [],
-    )
-
-    const handleDragLeave = React.useCallback(
-      (event: React.DragEvent<HTMLInputElement>) => {
-        event.preventDefault()
-        setState((x) => ({ ...x, droppable: false }))
-      },
-      [],
-    )
-
-    const handleDrop = React.useCallback(
-      (event: React.DragEvent<HTMLInputElement>) => {
-        event.preventDefault()
-        setState((x) => ({ ...x, droppable: false }))
-        let file: File | null
-        if (event.dataTransfer.items) {
-          const files = event.dataTransfer.items
-          if (files?.[0].kind !== 'file') return
-          file = files[0].getAsFile()
-          if (!file) return
-        } else {
-          const files = event.dataTransfer.files
-          if (!files?.length) return
-          file = files[0]
-        }
-        if (!validateAccept(file.type, accept)) return
-        handleFile(file, event)
-      },
-      [handleFile, accept],
-    )
-
-    /* eslint-disable react-hooks/exhaustive-deps */
-    const handleReset = React.useCallback(
-      (_event: React.MouseEvent<HTMLButtonElement>) => {
-        setState(initialState)
-        if (inputRef.current) inputRef.current.value = ''
-        onReset && onReset()
-      },
-      // No need to add defaultValue
-      [inputRef, onReset],
-    )
-    /* eslint-enable react-hooks/exhaustive-deps */
-
-    // Display preview for default value
-    /* eslint-disable react-hooks/exhaustive-deps */
-    React.useEffect(() => {
-      if (!defaultValue) return
-      setState({
-        previewUrl: defaultValue.url,
-        name: defaultValue.name,
-        type: defaultValue.type,
-      })
-    }, [])
-    /* eslint-enable react-hooks/exhaustive-deps */
-
-    // Create URL for displaying media preview
-    React.useEffect(() => {
-      if (!state.file) return
-      const previewUrl = URL.createObjectURL(state.file)
-      setState((x) => ({ ...x, previewUrl }))
-      return () => URL.revokeObjectURL(previewUrl)
-    }, [state.file])
-
-    return (
-      <Box position="relative">
-        <Box className={styles.root({ disabled, droppable: state.droppable })}>
-          <VisuallyHidden>
-            <Box
-              accept={accept}
-              aria-invalid={hasError}
-              as="input"
-              autoFocus={autoFocus}
-              disabled={disabled}
-              name={name}
-              ref={inputRef}
-              tabIndex={tabIndex}
-              type="file"
-              onBlur={onBlur}
-              onChange={handleChange}
-              onFocus={onFocus}
-              {...ids.content}
-            />
-          </VisuallyHidden>
-
+export const MediaPicker = ({
+  accept = 'image/jpeg, image/png, image/webp, image/gif, video/mp4, video/ogg, video/webm',
+  autoFocus,
+  compact,
+  cover,
+  defaultValue,
+  disabled,
+  error,
+  id,
+  label,
+  maxSize = 5,
+  name,
+  required,
+  tabIndex,
+  uploaded,
+  uploading,
+  uploadProgress,
+  onBlur,
+  onChange,
+  onError,
+  onFocus,
+  onReset,
+}: Props) => {
+  const hasError = error ? true : undefined
+  return (
+    <FileInput
+      accept={accept}
+      autoFocus={autoFocus}
+      defaultValue={defaultValue}
+      id={id}
+      name={name}
+      tabIndex={tabIndex}
+      onBlur={onBlur}
+      onChange={onChange}
+      onError={onError}
+      onFocus={onFocus}
+      onReset={onReset}
+    >
+      {(context) => (
+        <Box position="relative">
           <Box
-            as="label"
-            className={styles.label({ compact, disabled })}
-            {...ids.label}
-            onDragLeave={handleDragLeave}
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
+            className={styles.root({
+              disabled,
+              droppable: context.droppable,
+              focused: context.focused,
+            })}
           >
-            <MediaPreview
-              compact={compact}
-              fileName={state.name}
-              fileType={state.type}
-              hasError={hasError}
-              previewUrl={state.previewUrl}
-              uploading={uploading}
-            />
-            <Box as="span" className={styles.content({ compact })}>
-              <Box
-                as="span"
-                color={state.file ? 'text' : 'textSecondary'}
-                fontSize={compact ? 'base' : 'large'}
-                fontWeight="semiBold"
-                wordBreak="break-word"
-              >
-                {!cover && state.file ? (
-                  state.file.name
-                ) : (
-                  <>
-                    {label}{' '}
-                    {required && (
-                      <VisuallyHidden as="span">(required)</VisuallyHidden>
-                    )}
-                  </>
-                )}
-              </Box>
-              <MediaTag
+            <Box className={styles.label({ compact, disabled })}>
+              <MediaPreview
                 compact={compact}
-                error={error}
-                maxSize={maxSize}
-                uploadProgress={uploadProgress}
-                uploaded={uploaded}
+                fileName={context.name}
+                fileType={context.type}
+                hasError={hasError}
+                previewUrl={context.previewUrl}
                 uploading={uploading}
               />
+              <Box as="span" className={styles.content({ compact })}>
+                <Box
+                  as="span"
+                  color={context.file ? 'text' : 'textSecondary'}
+                  fontSize={compact ? 'base' : 'large'}
+                  fontWeight="semiBold"
+                  wordBreak="break-word"
+                >
+                  {!cover && context.file ? (
+                    context.file.name
+                  ) : (
+                    <>
+                      {label}{' '}
+                      {required && (
+                        <VisuallyHidden as="span">(required)</VisuallyHidden>
+                      )}
+                    </>
+                  )}
+                </Box>
+                <MediaTag
+                  compact={compact}
+                  error={error}
+                  maxSize={maxSize}
+                  uploadProgress={uploadProgress}
+                  uploaded={uploaded}
+                  uploading={uploading}
+                />
+              </Box>
             </Box>
+
+            {cover && context.type && context.previewUrl && (
+              <Box
+                display="flex"
+                inset="0"
+                justifyContent="center"
+                position="absolute"
+              >
+                <Media
+                  cover
+                  name={context.name}
+                  type={context.type}
+                  url={context.previewUrl}
+                />
+              </Box>
+            )}
           </Box>
 
-          {cover && state.type && state.previewUrl && (
-            <Box
-              display="flex"
-              inset="0"
-              justifyContent="center"
-              position="absolute"
-            >
-              <Media
-                cover
-                name={state.name}
-                type={state.type}
-                url={state.previewUrl}
+          {context.type && (
+            <Box position="absolute" right="2" top="2">
+              <RemoveButton
+                cover={cover}
+                uploading={uploading}
+                onClick={context.reset}
               />
             </Box>
           )}
         </Box>
-
-        {state.type && (
-          <Box position="absolute" right="2" top="2">
-            <RemoveButton
-              cover={cover}
-              uploading={uploading}
-              onClick={handleReset}
-            />
-          </Box>
-        )}
-      </Box>
-    )
-  },
-)
+      )}
+    </FileInput>
+  )
+}
 
 MediaPicker.displayName = 'MediaPicker'
 
