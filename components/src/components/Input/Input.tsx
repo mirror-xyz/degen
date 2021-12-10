@@ -28,6 +28,10 @@ type BaseProps = FieldBaseProps & {
   onFocus?: NativeInputProps['onFocus']
 }
 
+type WithTypeEmail = {
+  type?: 'email'
+}
+
 type WithTypeText = {
   type?: 'text'
   maxLength?: NativeInputProps['maxLength']
@@ -39,7 +43,7 @@ type WithTypeNumber = {
   min?: NativeInputProps['min']
 }
 
-type Props = BaseProps & (WithTypeText | WithTypeNumber)
+type Props = BaseProps & (WithTypeEmail | WithTypeText | WithTypeNumber)
 
 export const Input = React.forwardRef(
   (
