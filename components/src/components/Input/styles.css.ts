@@ -11,6 +11,7 @@ export const root = recipe({
       borderRadius: '2xLarge',
       color: 'text',
       display: 'flex',
+      height: '14',
       transitionDuration: '150',
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
@@ -52,7 +53,7 @@ export const root = recipe({
 const container = atoms({
   alignItems: 'center',
   display: 'flex',
-  height: '14',
+  height: 'full',
   lineHeight: 'none',
 })
 

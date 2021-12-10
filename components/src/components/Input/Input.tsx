@@ -20,7 +20,7 @@ type BaseProps = FieldBaseProps & {
   readOnly?: NativeInputProps['readOnly']
   tabIndex?: NativeInputProps['tabIndex']
   textTransform?: BoxProps['textTransform']
-  type?: 'number' | 'text'
+  type?: 'email' | 'number' | 'text'
   units?: string
   value?: string | number
   onChange?: React.EventHandler<React.ChangeEvent<HTMLInputElement>>

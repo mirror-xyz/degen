@@ -10,7 +10,7 @@ type NativeFieldSetProps = React.AllHTMLAttributes<HTMLFieldSetElement>
 
 type Props = {
   children: ReactNodeNoStrings
-  description?: string
+  description?: string | React.ReactNode
   disabled?: NativeFieldSetProps['disabled']
   form?: NativeFieldSetProps['form']
   name?: NativeFieldSetProps['name']

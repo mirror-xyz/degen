@@ -3,7 +3,6 @@ import * as React from 'react'
 import { ReactNodeNoStrings } from '../../types'
 import { useFieldIds } from '../../hooks'
 import { Box } from '../Box'
-import { Stack } from '../Stack'
 import { VisuallyHidden } from '../VisuallyHidden'
 
 type State = ReturnType<typeof useFieldIds> | undefined
@@ -67,7 +66,7 @@ export const Field = ({
   else content = children
 
   return (
-    <Stack space="2">
+    <Box display="flex" flexDirection="column" gap="2" width="full">
       {hideLabel ? (
         <VisuallyHidden>{labelContent}</VisuallyHidden>
       ) : (
@@ -87,6 +86,6 @@ export const Field = ({
           {error}
         </Box>
       )}
-    </Stack>
+    </Box>
   )
 }
