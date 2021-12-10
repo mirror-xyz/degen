@@ -124,7 +124,10 @@ const responsiveProperties = defineProperties({
     right: vars.space,
     textAlign: ['center', 'left', 'right'],
     top: vars.space,
-    width: vars.space,
+    width: {
+      ...vars.space,
+      ...extendedSpace,
+    },
   },
   shorthands: {
     margin: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
