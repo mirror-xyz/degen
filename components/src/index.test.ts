@@ -40,6 +40,7 @@ it('should expose correct exports', () => {
     // css
     'atoms',
     'breakpoints',
+    'getAccentText',
     'motionSafe',
     'responsiveStyle',
     'vars',

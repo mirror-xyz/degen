@@ -28,4 +28,11 @@ export type { BoxProps } from './components'
 // Export generated icons
 export * from './components/icons/generated'
 
-export { atoms, breakpoints, motionSafe, responsiveStyle, vars } from './css'
+export {
+  atoms,
+  breakpoints,
+  getAccentText,
+  motionSafe,
+  responsiveStyle,
+  vars,
+} from './css'
