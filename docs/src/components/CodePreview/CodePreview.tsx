@@ -71,10 +71,10 @@ export const CodePreview = ({
       >
         <Box
           backgroundColor={backgroundColor}
+          borderRadiusBottom={state.expand ? undefined : '2xLarge'}
+          borderRadiusTop="2xLarge"
           overflow="scroll"
           padding="6"
-          radiusBottom={state.expand ? undefined : '2xLarge'}
-          radiusTop="2xLarge"
           ref={previewRef}
         >
           <LivePreview />
