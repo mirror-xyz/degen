@@ -13,16 +13,18 @@ type Props = {
   description?: string | React.ReactNode
   disabled?: NativeFieldSetProps['disabled']
   form?: NativeFieldSetProps['form']
+  hideRequiredStatus?: boolean
   name?: NativeFieldSetProps['name']
   legend: string
   required?: boolean
 }
 
 export const FieldSet = ({
+  children,
   description,
   disabled,
   form,
-  children,
+  hideRequiredStatus,
   legend,
   name,
   required,
@@ -42,9 +44,11 @@ export const FieldSet = ({
           <Heading as="legend" level="2" responsive>
             {legend}
           </Heading>
-          <Tag tone={required ? 'accent' : 'secondary'}>
-            {required ? 'Required' : 'Optional'}
-          </Tag>
+          {!hideRequiredStatus && (
+            <Tag tone={required ? 'accent' : 'secondary'}>
+              {required ? 'Required' : 'Optional'}
+            </Tag>
+          )}
         </Stack>
 
         <Box color="textSecondary" fontSize="base">

@@ -54,8 +54,8 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                     <Box
                       backgroundColor="foregroundTertiary"
                       borderColor="foregroundSecondary"
-                      borderRadiusLeft={i === 0 ? 'large' : undefined}
-                      borderRadiusRight={
+                      borderLeftRadius={i === 0 ? 'large' : undefined}
+                      borderRightRadius={
                         i === headers.length - 1 ? 'large' : undefined
                       }
                       paddingX="4"
