@@ -5626,6 +5626,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"compute-scroll-into-view@npm:^1.0.17":
+  version: 1.0.17
+  resolution: "compute-scroll-into-view@npm:1.0.17"
+  checksum: b20c05a10c37813c5a6e4bf053c00f65c88d23afed7a6bd7a2a69e05e2ffc2df3483ecfe407d36bf16b8cec8be21ae1966c9c523093a03117e567156cd79a51e
+  languageName: node
+  linkType: hard
+
 "concat-map@npm:0.0.1":
   version: 0.0.1
   resolution: "concat-map@npm:0.0.1"
@@ -6405,6 +6412,7 @@ __metadata:
     "@vanilla-extract/sprinkles": ^1.3.1
     "@vanilla-extract/vite-plugin": ^3.0.0
     clsx: ^1.1.1
+    compute-scroll-into-view: ^1.0.17
     deepmerge: ^4.2.2
     focus-visible: ^5.2.0
     glob: ^7.2.0

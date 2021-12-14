@@ -2,6 +2,7 @@
 *tsconfig.tsbuildinfo*
 .DS_Store
 .eslintcache
+Brewfile.lock.json
 node_modules
 npm-debug.log*
 yarn-debug.log*

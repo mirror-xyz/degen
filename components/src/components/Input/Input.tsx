@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { ReactNodeNoStrings } from '../../types'
 import { Box, BoxProps } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
 import * as styles from './styles.css'
@@ -11,21 +10,22 @@ type BaseProps = FieldBaseProps & {
   autoFocus?: NativeInputProps['autoFocus']
   defaultValue?: string | number
   disabled?: boolean
-  icon?: ReactNodeNoStrings
   id?: NativeInputProps['id']
   inputMode?: NativeInputProps['inputMode']
   name?: string
   placeholder?: NativeInputProps['placeholder']
-  prefix?: string
+  prefix?: React.ReactNode
   readOnly?: NativeInputProps['readOnly']
+  suffix?: React.ReactNode
   tabIndex?: NativeInputProps['tabIndex']
   textTransform?: BoxProps['textTransform']
   type?: 'email' | 'number' | 'text'
   units?: string
   value?: string | number
-  onChange?: React.EventHandler<React.ChangeEvent<HTMLInputElement>>
   onBlur?: NativeInputProps['onBlur']
+  onChange?: React.EventHandler<React.ChangeEvent<HTMLInputElement>>
   onFocus?: NativeInputProps['onFocus']
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
 }
 
 type WithTypeEmail = {
@@ -43,7 +43,7 @@ type WithTypeNumber = {
   min?: NativeInputProps['min']
 }
 
-type Props = BaseProps & (WithTypeEmail | WithTypeText | WithTypeNumber)
+export type Props = BaseProps & (WithTypeEmail | WithTypeText | WithTypeNumber)
 
 export const Input = React.forwardRef(
   (
@@ -54,7 +54,6 @@ export const Input = React.forwardRef(
       disabled,
       error,
       hideLabel,
-      icon,
       id,
       inputMode,
       label,
@@ -64,14 +63,16 @@ export const Input = React.forwardRef(
       prefix,
       readOnly,
       required,
+      suffix,
       tabIndex,
       textTransform,
       type = 'text',
       units,
       value,
-      onChange,
       onBlur,
+      onChange,
       onFocus,
+      onKeyDown,
       ...props
     }: Props,
     ref: React.Ref<HTMLInputElement>,
@@ -88,8 +89,8 @@ export const Input = React.forwardRef(
       : undefined
     const hasError = error ? true : undefined
     const className = styles.variants({
-      icon: icon ? true : undefined,
       prefix: prefix ? true : undefined,
+      suffix: suffix ? true : undefined,
     })
     const max = (props as WithTypeNumber).max
 
@@ -108,8 +109,9 @@ export const Input = React.forwardRef(
           const filteredKeys = ['E', 'e', '+']
           if (filteredKeys.includes(key)) event.preventDefault()
         }
+        onKeyDown && onKeyDown(event)
       },
-      [type, units],
+      [type, units, onKeyDown],
     )
 
     const handleMax = React.useCallback(() => {
@@ -139,19 +141,9 @@ export const Input = React.forwardRef(
                 disabled,
                 error: hasError,
               }),
-              styles.maxParent,
+              styles.inputParent,
             ]}
           >
-            {icon && (
-              <Box
-                aria-hidden="true"
-                as="label"
-                className={styles.icon}
-                {...ids?.label}
-              >
-                {icon}
-              </Box>
-            )}
             {prefix && (
               <Box
                 aria-hidden="true"
@@ -184,7 +176,7 @@ export const Input = React.forwardRef(
                 onChange={onChange}
                 onFocus={onFocus}
                 onInput={handleInput}
-                onKeyDown={units ? handleKeyDown : undefined}
+                onKeyDown={units ? handleKeyDown : onKeyDown}
                 {...props}
                 {...ids?.content}
               />
@@ -210,10 +202,25 @@ export const Input = React.forwardRef(
             </Box>
 
             {max && (
-              <Box alignItems="center" display="flex" paddingRight="4">
+              <Box
+                alignItems="center"
+                display="flex"
+                paddingRight={suffix ? undefined : '4'}
+              >
                 <Box as="button" className={styles.max} onClick={handleMax}>
                   Max
                 </Box>
+              </Box>
+            )}
+
+            {suffix && (
+              <Box
+                aria-hidden="true"
+                as="label"
+                className={styles.suffix}
+                {...ids?.label}
+              >
+                {suffix}
               </Box>
             )}
           </Box>

@@ -72,26 +72,56 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
               {props.map((x) => (
                 <Box as="tr" borderBottomWidth="px" key={x.name}>
                   <Box {...dataProps}>
-                    <Text color="text" size="small">
+                    <Box
+                      backgroundColor="foregroundTertiary"
+                      borderRadius="medium"
+                      color="textSecondary"
+                      display="inline-block"
+                      fontFamily="mono"
+                      fontSize="small"
+                      paddingX="1"
+                      paddingY="px"
+                      verticalAlign="top"
+                    >
                       {x.name}
                       {x.required && (
                         <Text as="span" color="red" size="small">
                           *<VisuallyHidden>Required</VisuallyHidden>
                         </Text>
                       )}
-                    </Text>
+                    </Box>
                   </Box>
 
                   <Box {...dataProps}>
-                    <Text color="accent" font="mono" size="small">
+                    <Box
+                      backgroundColor="foregroundTertiary"
+                      borderRadius="medium"
+                      color="textSecondary"
+                      display="inline-block"
+                      fontFamily="mono"
+                      fontSize="small"
+                      paddingX="1"
+                      paddingY="px"
+                      verticalAlign="top"
+                    >
                       {x.type.raw ?? x.type.name}
-                    </Text>
+                    </Box>
                   </Box>
 
                   <Box {...dataProps}>
-                    <Text color="textSecondary" size="small">
-                      {x.defaultValue?.value.toString() ?? '-'}
-                    </Text>
+                    <Box
+                      backgroundColor="foregroundTertiary"
+                      borderRadius="medium"
+                      color="textSecondary"
+                      display="inline-block"
+                      fontFamily="mono"
+                      fontSize="small"
+                      paddingX="1"
+                      paddingY="px"
+                      verticalAlign="top"
+                    >
+                      {x.defaultValue?.value.toString()}
+                    </Box>
                   </Box>
 
                   {state.showDescriptions && (

@@ -1,0 +1,50 @@
+---
+title: Combobox
+description: Input for filtering and selecting an option
+---
+
+```tsx
+import { Combobox } from 'degen'
+```
+
+```tsx live=true expand=true
+<Combobox label="Nouns" options={options} placeholder="Search Nouns…" />
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Disabled
+
+```tsx live=true
+<Combobox
+  disabled
+  label="Nouns"
+  options={options}
+  placeholder="Search Nouns…"
+/>
+```
+
+## Create Button
+
+```tsx live=true
+<Combobox
+  createButtonText={(value) => `Create ${value} Noun`}
+  label="Nouns"
+  options={options}
+  placeholder="Search or create Nouns…"
+/>
+```
+
+## Loading
+
+```tsx live=true
+<Combobox
+  loading
+  label="Nouns"
+  options={options}
+  placeholder="Search Nouns…"
+/>
+```
+

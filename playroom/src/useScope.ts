@@ -18,12 +18,22 @@ export const avatars = {
     'https://images.mirror-media.xyz/publication-images/ncbsh8OPR_VdkRhGSljJD.png',
 }
 
+export const nouns = [
+  { label: 'Pineapple', avatar: avatars.noun2, value: 2 },
+  { label: 'Wolf', avatar: avatars.noun3, value: 3 },
+  { label: 'Party', avatar: avatars.noun11, value: 11 },
+  { label: 'Pumpkin', avatar: avatars.noun17, value: 17 },
+  { label: 'Alligator', avatar: avatars.noun97, value: 97 },
+  { label: 'Coelacanth', avatar: avatars.noun102, value: 102 },
+]
+
 const useScope = () => {
   return {
     ...useTheme(),
     ...usePlayroomStore(),
     vars,
     avatars,
+    nouns,
   }
 }
 

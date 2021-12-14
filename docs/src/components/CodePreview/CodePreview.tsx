@@ -11,7 +11,7 @@ import { vars } from 'degen/css'
 
 import { createPlayroomLink } from '~/utils/playroom'
 import { usePlayroomStore } from '../../../../playroom/src/PlayroomState'
-import { avatars } from '../../../../playroom/src/useScope'
+import { avatars, nouns } from '../../../../playroom/src/useScope'
 import { CopyButton } from '../CopyButton'
 import './styles.css'
 
@@ -58,6 +58,11 @@ export const CodePreview = ({
         NextImage,
         NextLink,
         avatars,
+        nouns,
+        options: nouns.map((x) => ({
+          ...x,
+          prefix: <Components.Avatar label={x.label} size="6" src={x.avatar} />,
+        })),
       }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}
