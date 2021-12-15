@@ -16,6 +16,9 @@ globalStyle(`${comboboxActive} ${inputStyles.inputParent}`, {
 })
 
 export const listbox = style([
+  style({
+    overscrollBehavior: 'contain',
+  }),
   responsiveStyle({
     md: {
       borderBottomLeftRadius: vars.radii['2xLarge'],

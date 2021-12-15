@@ -4,6 +4,7 @@ import { default as NextLink } from 'next/link'
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from 'react-live'
 import { mdx } from '@mdx-js/react'
 import { PrismTheme } from 'prism-react-renderer'
+import { matchSorter } from 'match-sorter'
 
 import * as Components from 'degen/components'
 import { Box, Button, Stack, Text, useTheme } from 'degen/components'
@@ -55,8 +56,11 @@ export const CodePreview = ({
         ...themeValue,
         previewRef,
         vars,
+        // Third-party content
         NextImage,
         NextLink,
+        matchSorter,
+        // Data
         avatars,
         nouns,
         options: nouns.map((x) => ({

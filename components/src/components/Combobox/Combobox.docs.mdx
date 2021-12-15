@@ -8,7 +8,14 @@ import { Combobox } from 'degen'
 ```
 
 ```tsx live=true expand=true
-<Combobox label="Nouns" options={options} placeholder="Search Nouns…" />
+<Combobox
+  filter={(options, inputValue) =>
+    matchSorter(options, inputValue, { keys: ['label'] })
+  }
+  label="Nouns"
+  options={options}
+  placeholder="Search Nouns…"
+/>
 ```
 
 ## Props
@@ -26,25 +33,44 @@ import { Combobox } from 'degen'
 />
 ```
 
-## Create Button
-
-```tsx live=true
-<Combobox
-  createButtonText={(value) => `Create ${value} Noun`}
-  label="Nouns"
-  options={options}
-  placeholder="Search or create Nouns…"
-/>
-```
-
 ## Loading
 
 ```tsx live=true
 <Combobox
-  loading
+  filter={(options, inputValue) =>
+    matchSorter(options, inputValue, { keys: ['label'] })
+  }
   label="Nouns"
+  loading
   options={options}
   placeholder="Search Nouns…"
 />
 ```
 
+## Controlled
+
+```tsx live=true
+<Combobox
+  filter={(options, inputValue) =>
+    matchSorter(options, inputValue, { keys: ['label'] })
+  }
+  label="Nouns"
+  options={options}
+  placeholder="Search Nouns…"
+  value={getState('value')}
+  onChange={(value) => setState('value', value)}
+/>
+```
+
+## Uncontrolled
+
+```tsx live=true
+<Combobox
+  filter={(options, inputValue) =>
+    matchSorter(options, inputValue, { keys: ['label'] })
+  }
+  label="Nouns"
+  options={options}
+  placeholder="Search Nouns…"
+/>
+```

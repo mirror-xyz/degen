@@ -148,6 +148,7 @@ const unresponsiveProperties = defineProperties({
     aspectRatio: {
       auto: 'auto',
       '2/1': '2 / 1',
+      '4/1': '4 / 1',
       '4/3': '4 / 3',
       '16/9': '16 / 9',
     },

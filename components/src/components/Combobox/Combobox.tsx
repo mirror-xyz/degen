@@ -1,15 +1,15 @@
 import * as React from 'react'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
-import { useId } from '../../hooks'
-import { Box } from '../Box'
+import { useId, useWindowEvent } from '../../hooks'
+import { Box, BoxProps } from '../Box'
 import { Input, InputProps } from '../Input'
 import { VisuallyHidden } from '../VisuallyHidden'
-import * as styles from './styles.css'
 import { Stack } from '../Stack'
-import { Button } from '../Button'
-import { getNextWrappingIndex } from './utils'
 import { Spinner } from '../Spinner'
+import { IconCheck, IconClose } from '../icons'
+import { getNextWrappingIndex } from './utils'
+import * as styles from './styles.css'
 
 export type Option = {
   label: string
@@ -33,26 +33,23 @@ type Props = Pick<
   | 'onBlur'
   | 'onFocus'
 > & {
-  createButtonText?(value: string): string
   defaultValue?: string
   emptyText?: string
   loading?: boolean
   options?: Option[]
-  filter?: (option: Option, inputValue: string) => boolean
+  filter?: (options: Option[], inputValue: string) => Option[]
   value?: string
-  onChange?(value: string, create?: boolean): void
+  onChange?(value: Option['value']): void
 }
 
 export const Combobox = React.forwardRef(
   (
     {
       autoFocus,
-      createButtonText,
       defaultValue,
       disabled,
       emptyText = 'No results',
-      filter = (option, inputValue) =>
-        option.label.toLowerCase().includes(inputValue.toLowerCase()),
+      filter,
       hideLabel,
       id: contentId,
       label,
@@ -70,16 +67,29 @@ export const Combobox = React.forwardRef(
     }: Props,
     ref: React.Ref<HTMLInputElement>,
   ) => {
+    const rootRef = React.useRef<HTMLElement>(null)
+
     const defaultRef = React.useRef<HTMLInputElement>(null)
     const inputRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef
     const optionRefs = React.useRef<Record<string, HTMLElement>>({})
     const menuRef = React.useRef<HTMLElement>(null)
 
     const [state, setState] = React.useState<{
+      changed?: boolean
       highlightedIndex?: number
+      inputValue: string
       open: boolean
-      value: string
-    }>(() => ({ open: false, value: value ?? defaultValue ?? '' }))
+      selectedOption?: Option
+    }>(() => {
+      const inputValue = (value || defaultValue) ?? ''
+      const selectedOption = options.find((x) => x.value === inputValue)
+      return {
+        changed: false,
+        inputValue,
+        open: false,
+        selectedOption,
+      }
+    })
 
     const _id = useId()
     const id = `${_id}${contentId ? `-${contentId}` : ''}`
@@ -88,41 +98,31 @@ export const Combobox = React.forwardRef(
       getItemId: (index: number) => `${id}-option-${index}`,
     })
 
-    const hasCreate = createButtonText && !!state.value.length
     // Whenever internal value changes, filter options
     const filteredOptions = React.useMemo(() => {
-      const _options =
-        state.value === ''
-          ? options
-          : options.filter((x) => filter(x, state.value))
-      return [
-        ...(hasCreate
-          ? [{ value: 'create', label: createButtonText(state.value) }]
-          : []),
-        ..._options,
-      ]
-    }, [createButtonText, filter, hasCreate, options, state.value])
+      if (state.inputValue === state.selectedOption?.label && !state.changed)
+        return options
+      return state.inputValue && filter
+        ? filter(options, state.inputValue)
+        : options
+    }, [filter, options, state.changed, state.inputValue, state.selectedOption])
     const filteredOptionsLength = filteredOptions.length
-
-    const handleBlur = React.useCallback(
-      (event: React.FocusEvent<HTMLInputElement>) => {
-        setState((x) => ({ ...x, open: false }))
-        onBlur && onBlur(event)
-      },
-      [onBlur],
-    )
 
     const handleChange = React.useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        setState((x) => ({ ...x, value: event.target.value }))
+        setState((x) => ({
+          ...x,
+          changed: true,
+          inputValue: event.target.value,
+        }))
       },
       [],
     )
 
     const handleFocus = React.useCallback(
       (event: React.FocusEvent<HTMLInputElement>) => {
-        setState((x) => ({ ...x, open: true }))
-        onFocus && onFocus(event)
+        setState((x) => ({ ...x, changed: false, open: true }))
+        onFocus?.(event)
       },
       [onFocus],
     )
@@ -174,10 +174,17 @@ export const Combobox = React.forwardRef(
     )
 
     const handleSelect = React.useCallback(
-      (value: string | number, create?: boolean) => {
-        console.log(value, create)
+      (option?: Option) => {
+        const inputValue = option?.label ?? ''
+        setState((x) => ({
+          ...x,
+          inputValue,
+          open: false,
+          selectedOption: option,
+        }))
+        onChange?.(inputValue)
       },
-      [],
+      [onChange],
     )
 
     const handleKeyDown = React.useCallback(
@@ -192,7 +199,11 @@ export const Combobox = React.forwardRef(
             onArrowKeyEvent(event)
             break
           case 'Escape': {
-            setState((x) => ({ ...x, open: false }))
+            setState((x) => ({
+              ...x,
+              inputValue: (x.inputValue || x.selectedOption?.label) ?? '',
+              open: false,
+            }))
             inputRef.current?.blur()
             break
           }
@@ -200,9 +211,8 @@ export const Combobox = React.forwardRef(
             event.preventDefault()
             const index = state.highlightedIndex
             const item = index ? filteredOptions[index] : filteredOptions[0]
-            if (!item) return
-            const isCreate = item.value === 'create'
-            handleSelect(isCreate ? state.value : item.value, isCreate)
+            handleSelect(item)
+            inputRef.current?.blur()
             break
           }
           default:
@@ -213,7 +223,6 @@ export const Combobox = React.forwardRef(
         filteredOptions,
         inputRef,
         state.highlightedIndex,
-        state.value,
         handleSelect,
         onArrowKeyEvent,
       ],
@@ -225,13 +234,50 @@ export const Combobox = React.forwardRef(
 
     // Whenever value changes, update internal state value
     React.useEffect(() => {
-      setState((x) => ({ ...x, value: value ?? '' }))
+      setState((x) => ({ ...x, changed: true, inputValue: value ?? '' }))
     }, [value])
 
+    // Close menu if click outside
+    useWindowEvent('mousedown', (event) => {
+      if (!open) return
+      const target = event.target as HTMLElement
+      if (rootRef.current?.contains(target)) return
+      setState((x) => ({
+        ...x,
+        inputValue: (x.inputValue || x.selectedOption?.label) ?? '',
+        open: false,
+      }))
+    })
+
+    const suffix = (loading || state.selectedOption) && (
+      <Stack direction="horizontal" space="2.5">
+        {loading && <Spinner />}
+        {state.selectedOption && (
+          <Box
+            as="button"
+            color={{ base: 'textTertiary', hover: 'text' }}
+            cursor="pointer"
+            onClick={(event) => {
+              event.preventDefault()
+              setState((x) => ({
+                ...x,
+                inputValue: '',
+                open: false,
+                selectedOption: undefined,
+              }))
+            }}
+          >
+            <VisuallyHidden>Clear selected option</VisuallyHidden>
+            <IconClose />
+          </Box>
+        )}
+      </Stack>
+    )
+
     return (
-      <Box>
+      <Box ref={rootRef}>
         <Box
-          aria-expanded="false"
+          aria-expanded={state.open}
           aria-haspopup="listbox"
           aria-owns={listboxId}
           className={[styles.combobox, state.open && styles.comboboxActive]}
@@ -239,7 +285,11 @@ export const Combobox = React.forwardRef(
           role="combobox"
         >
           <Input
-            aria-activedescendant="merp"
+            aria-activedescendant={
+              state.highlightedIndex
+                ? elementIdsRef.current.getItemId(state.highlightedIndex)
+                : ''
+            }
             aria-autocomplete="both"
             aria-controls={listboxId}
             autoFocus={autoFocus}
@@ -251,11 +301,11 @@ export const Combobox = React.forwardRef(
             placeholder={placeholder}
             readOnly={readOnly}
             ref={inputRef}
-            suffix={loading ? <Spinner /> : undefined}
+            suffix={suffix}
             tabIndex={tabIndex}
             textTransform={textTransform}
-            value={state.value}
-            onBlur={handleBlur}
+            value={state.inputValue ?? ''}
+            onBlur={onBlur}
             onChange={handleChange}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
@@ -266,46 +316,27 @@ export const Combobox = React.forwardRef(
           <Box className={styles.listbox}>
             {filteredOptions.length ? (
               <Box as="ul" id={listboxId} ref={menuRef} role="listbox">
-                {filteredOptions.map((x, i) =>
-                  x.value === 'create' ? (
-                    <Box
-                      key={x.value}
-                      padding="4"
-                      ref={(node) => {
-                        // Set ref when list item loads
-                        if (!node) return
-                        optionRefs.current[elementIdsRef.current.getItemId(i)] =
-                          node
-                      }}
-                      onClick={() => handleSelect(state.value, true)}
-                    >
-                      <Button variant="secondary" width="full">
-                        {x.label}
-                      </Button>
-                    </Box>
-                  ) : (
-                    <Option
-                      hasCreate={hasCreate}
-                      highlighted={i === state.highlightedIndex}
-                      id={elementIdsRef.current.getItemId(i)}
-                      index={i}
-                      key={x.value}
-                      label={x.label}
-                      prefix={x.prefix}
-                      ref={(node) => {
-                        // Set ref when list item loads
-                        if (!node) return
-                        optionRefs.current[elementIdsRef.current.getItemId(i)] =
-                          node
-                      }}
-                      selected={x.value === value}
-                      suffix={x.suffix}
-                      value={x.value}
-                      onHover={handleHover}
-                      onSelect={handleSelect}
-                    />
-                  ),
-                )}
+                {filteredOptions.map((x, i) => (
+                  <Option
+                    highlighted={i === state.highlightedIndex}
+                    id={elementIdsRef.current.getItemId(i)}
+                    index={i}
+                    key={x.value}
+                    label={x.label}
+                    option={x}
+                    prefix={x.prefix}
+                    ref={(node) => {
+                      // Set ref when list item loads
+                      if (!node) return
+                      optionRefs.current[elementIdsRef.current.getItemId(i)] =
+                        node
+                    }}
+                    selected={x.value === state.selectedOption?.value}
+                    suffix={x.suffix}
+                    onHover={handleHover}
+                    onSelect={handleSelect}
+                  />
+                ))}
               </Box>
             ) : (
               <Box alignItems="center" display="flex" flexDirection="column">
@@ -337,30 +368,28 @@ export const Combobox = React.forwardRef(
 )
 
 type OptionProps = {
-  hasCreate?: boolean
   highlighted?: boolean
   id: string
   index: number
   label: Option['label']
+  option: Option
   prefix?: Option['prefix']
   selected?: boolean
   suffix?: Option['suffix']
-  value: Option['value']
-  onSelect(value: Option['value']): void
+  onSelect(option: Option): void
   onHover(index: number): void
 }
 
 const Option = React.forwardRef(
   (
     {
-      hasCreate,
       highlighted,
       id,
       index,
+      option,
       prefix,
       selected,
       suffix,
-      value,
       label,
       onSelect,
       onHover,
@@ -368,27 +397,25 @@ const Option = React.forwardRef(
     ref: React.Ref<HTMLLIElement>,
   ) => {
     const onClick = React.useCallback(() => {
-      onSelect(value)
-    }, [value, onSelect])
+      onSelect(option)
+    }, [option, onSelect])
 
     const onMouseMove = React.useCallback(() => {
       onHover(index)
     }, [index, onHover])
 
     const isEven = index % 2 === 0
+    let backgroundColor: BoxProps['backgroundColor']
+    if (highlighted) backgroundColor = 'accentSecondary'
+    else if (isEven) backgroundColor = 'foregroundTertiary'
+    else backgroundColor = 'background'
 
     return (
       <Box
         alignItems="center"
         aria-selected={selected}
         as="li"
-        backgroundColor={
-          highlighted
-            ? 'accentSecondary'
-            : (isEven && !hasCreate) || (!isEven && hasCreate)
-            ? 'foregroundTertiary'
-            : 'background'
-        }
+        backgroundColor={backgroundColor}
         cursor="pointer"
         data-highlighted={highlighted || undefined}
         display="flex"
@@ -404,14 +431,18 @@ const Option = React.forwardRef(
       >
         <Stack align="center" direction="horizontal" space="2.5">
           {prefix}
-          <Box fontSize="base" fontWeight="semiBold">
+          <Box fontSize="base" fontWeight={selected ? 'bold' : 'semiBold'}>
             {label}
           </Box>
         </Stack>
 
-        {suffix}
+        {(suffix || selected) && (
+          <Stack align="center" direction="horizontal" space="2.5">
+            {suffix && suffix}
+            {selected && <IconCheck />}
+          </Stack>
+        )}
       </Box>
     )
   },
 )
-

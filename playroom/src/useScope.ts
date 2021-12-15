@@ -1,3 +1,5 @@
+import { matchSorter } from 'match-sorter'
+
 import { useTheme } from 'degen/components'
 import { vars } from 'degen/css'
 
@@ -32,8 +34,12 @@ const useScope = () => {
     ...useTheme(),
     ...usePlayroomStore(),
     vars,
+    // Third-party content
+    matchSorter,
+    // Data
     avatars,
     nouns,
+    options: nouns,
   }
 }
 

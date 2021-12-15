@@ -119,6 +119,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                       paddingX="1"
                       paddingY="px"
                       verticalAlign="top"
+                      wordBreak="break-word"
                     >
                       {x.defaultValue?.value.toString()}
                     </Box>

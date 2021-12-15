@@ -32,5 +32,8 @@
     "rimraf": "^3.0.2",
     "utility-types": "^3.10.0",
     "webpack": "^5.60.0"
+  },
+  "dependencies": {
+    "match-sorter": "^6.3.1"
   }
 }
