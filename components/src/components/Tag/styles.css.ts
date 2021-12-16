@@ -43,11 +43,11 @@ export const variants = recipe({
   ],
   variants: {
     hover: {
-      true: {
+      true: atoms({
         transitionProperty: 'colors',
         transitionDuration: '150',
         transitionTimingFunction: 'inOut',
-      },
+      }),
       false: {},
     },
     size: {

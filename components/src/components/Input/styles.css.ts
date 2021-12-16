@@ -3,6 +3,8 @@ import { recipe } from '@vanilla-extract/recipes'
 
 import { atoms, vars } from '../../css'
 
+export const inputParent = style({})
+
 export const root = recipe({
   base: [
     atoms({
@@ -65,15 +67,14 @@ const text = atoms({
   fontWeight: 'medium',
 })
 
-export const icon = style([
-  container,
+const affix = style([container, text, style({ lineHeight: 'normal' })])
+export const prefix = style([
+  affix,
   atoms({ paddingLeft: '4', paddingRight: '2' }),
 ])
-export const prefix = style([
-  container,
-  text,
-  atoms({ paddingLeft: '4', paddingRight: '1.5' }),
-  style({ lineHeight: 'normal' }),
+export const suffix = style([
+  affix,
+  atoms({ paddingRight: '4', paddingLeft: '2' }),
 ])
 
 export const input = recipe({
@@ -92,31 +93,32 @@ export const input = recipe({
   },
 })
 
-export const ghost = atoms({
-  borderColor: 'transparent',
-  inset: '0',
-  position: 'absolute',
-  pointerEvents: 'none',
-  whiteSpace: 'pre',
-})
+export const ghost = style([
+  atoms({
+    borderColor: 'transparent',
+    inset: '0',
+    position: 'absolute',
+    pointerEvents: 'none',
+    whiteSpace: 'pre',
+  }),
+  style({ lineHeight: 'normal' }),
+])
 
 export const variants = recipe({
   base: [style([container, text, atoms({ paddingX: '4' })])],
   variants: {
-    icon: {
-      true: atoms({
-        paddingLeft: 'none',
-      }),
-    },
     prefix: {
       true: atoms({
         paddingLeft: 'none',
       }),
     },
+    suffix: {
+      true: atoms({
+        paddingRight: 'none',
+      }),
+    },
   },
 })
-
-export const maxParent = style({})
 
 export const max = style([
   atoms({
@@ -137,10 +139,10 @@ export const max = style([
   }),
   style({
     selectors: {
-      [`${maxParent}:hover &`]: {
+      [`${inputParent}:hover &`]: {
         visibility: 'visible',
       },
-      [`${maxParent}:focus-within &`]: {
+      [`${inputParent}:focus-within &`]: {
         visibility: 'visible',
       },
     },

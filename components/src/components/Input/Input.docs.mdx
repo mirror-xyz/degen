@@ -41,20 +41,23 @@ import { Input } from 'degen'
 />
 ```
 
-## Icon
+## Affixes
 
 ```tsx live=true
-<Input
-  icon={<IconSearch />}
-  label="Search"
-  placeholder="Name or wallet address"
-/>
-```
-
-## Prefix
-
-```tsx live=true
-<Input label="Funding Goal" placeholder="10" prefix="Ξ" type="number" />
+<Stack>
+  <Input
+    label="Search"
+    placeholder="Name or wallet address"
+    prefix={<IconSearch />}
+  />
+  <Input label="Funding Goal" placeholder="10" prefix="Ξ" type="number" />
+  <Input
+    label="Subdomain"
+    placeholder="subdomain"
+    suffix=".mirror.xyz"
+    type="text"
+  />
+</Stack>
 ```
 
 ## Units
