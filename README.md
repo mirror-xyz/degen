@@ -26,6 +26,8 @@ yarn add degen
 ## Development
 
 ```
+brew bundle
+fnm install
 yarn
 yarn dev
 ```

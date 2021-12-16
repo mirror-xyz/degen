@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { ReactNodeNoStrings } from '../../types'
 import { Box, BoxProps } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
 import * as styles from './styles.css'
@@ -9,23 +8,27 @@ type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
 
 type BaseProps = FieldBaseProps & {
   autoFocus?: NativeInputProps['autoFocus']
+  autoComplete?: NativeInputProps['autoComplete']
+  autoCorrect?: NativeInputProps['autoCorrect']
   defaultValue?: string | number
   disabled?: boolean
-  icon?: ReactNodeNoStrings
   id?: NativeInputProps['id']
   inputMode?: NativeInputProps['inputMode']
   name?: string
   placeholder?: NativeInputProps['placeholder']
-  prefix?: string
+  prefix?: React.ReactNode
   readOnly?: NativeInputProps['readOnly']
+  spellCheck?: NativeInputProps['spellCheck']
+  suffix?: React.ReactNode
   tabIndex?: NativeInputProps['tabIndex']
   textTransform?: BoxProps['textTransform']
   type?: 'email' | 'number' | 'text'
   units?: string
   value?: string | number
-  onChange?: React.EventHandler<React.ChangeEvent<HTMLInputElement>>
   onBlur?: NativeInputProps['onBlur']
+  onChange?: React.EventHandler<React.ChangeEvent<HTMLInputElement>>
   onFocus?: NativeInputProps['onFocus']
+  onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
 }
 
 type WithTypeEmail = {
@@ -49,12 +52,13 @@ export const Input = React.forwardRef(
   (
     {
       autoFocus,
+      autoComplete,
+      autoCorrect,
       defaultValue,
       description,
       disabled,
       error,
       hideLabel,
-      icon,
       id,
       inputMode,
       label,
@@ -64,14 +68,18 @@ export const Input = React.forwardRef(
       prefix,
       readOnly,
       required,
+      spellCheck,
+      suffix,
       tabIndex,
       textTransform,
       type = 'text',
       units,
       value,
-      onChange,
+      width,
       onBlur,
+      onChange,
       onFocus,
+      onKeyDown,
       ...props
     }: Props,
     ref: React.Ref<HTMLInputElement>,
@@ -88,8 +96,8 @@ export const Input = React.forwardRef(
       : undefined
     const hasError = error ? true : undefined
     const className = styles.variants({
-      icon: icon ? true : undefined,
       prefix: prefix ? true : undefined,
+      suffix: suffix ? true : undefined,
     })
     const max = (props as WithTypeNumber).max
 
@@ -108,8 +116,9 @@ export const Input = React.forwardRef(
           const filteredKeys = ['E', 'e', '+']
           if (filteredKeys.includes(key)) event.preventDefault()
         }
+        onKeyDown && onKeyDown(event)
       },
-      [type, units],
+      [type, units, onKeyDown],
     )
 
     const handleMax = React.useCallback(() => {
@@ -131,6 +140,7 @@ export const Input = React.forwardRef(
         label={label}
         labelSecondary={labelSecondary}
         required={required}
+        width={width}
       >
         {(ids) => (
           <Box
@@ -139,19 +149,9 @@ export const Input = React.forwardRef(
                 disabled,
                 error: hasError,
               }),
-              styles.maxParent,
+              styles.inputParent,
             ]}
           >
-            {icon && (
-              <Box
-                aria-hidden="true"
-                as="label"
-                className={styles.icon}
-                {...ids?.label}
-              >
-                {icon}
-              </Box>
-            )}
             {prefix && (
               <Box
                 aria-hidden="true"
@@ -167,6 +167,8 @@ export const Input = React.forwardRef(
               <Box
                 aria-invalid={hasError}
                 as="input"
+                autoComplete={autoComplete}
+                autoCorrect={autoCorrect}
                 autoFocus={autoFocus}
                 className={[className, styles.input({ disabled })]}
                 defaultValue={defaultValue}
@@ -176,6 +178,7 @@ export const Input = React.forwardRef(
                 placeholder={placeholderText}
                 readOnly={readOnly}
                 ref={inputRef}
+                spellCheck={spellCheck}
                 tabIndex={tabIndex}
                 textTransform={textTransform}
                 type={type}
@@ -184,7 +187,7 @@ export const Input = React.forwardRef(
                 onChange={onChange}
                 onFocus={onFocus}
                 onInput={handleInput}
-                onKeyDown={units ? handleKeyDown : undefined}
+                onKeyDown={units ? handleKeyDown : onKeyDown}
                 {...props}
                 {...ids?.content}
               />
@@ -210,10 +213,25 @@ export const Input = React.forwardRef(
             </Box>
 
             {max && (
-              <Box alignItems="center" display="flex" paddingRight="4">
+              <Box
+                alignItems="center"
+                display="flex"
+                paddingRight={suffix ? undefined : '4'}
+              >
                 <Box as="button" className={styles.max} onClick={handleMax}>
                   Max
                 </Box>
+              </Box>
+            )}
+
+            {suffix && (
+              <Box
+                aria-hidden="true"
+                as="label"
+                className={styles.suffix}
+                {...ids?.label}
+              >
+                {suffix}
               </Box>
             )}
           </Box>

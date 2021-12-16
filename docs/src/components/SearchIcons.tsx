@@ -32,9 +32,9 @@ export const SearchIcons = () => {
     <Stack space="8">
       <Input
         hideLabel
-        icon={<IconSearch />}
         label="Search icons"
         placeholder="Search icons"
+        prefix={<IconSearch />}
         value={state.query}
         onChange={(event) =>
           setState((x) => ({ ...x, query: event.target.value }))

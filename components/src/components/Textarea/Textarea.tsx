@@ -7,6 +7,7 @@ import * as styles from './styles.css'
 type NativeTextareaProps = React.AllHTMLAttributes<HTMLTextAreaElement>
 
 type Props = FieldBaseProps & {
+  autoCorrect?: NativeTextareaProps['autoCorrect']
   autoFocus?: NativeTextareaProps['autoFocus']
   defaultValue?: string | number
   disabled?: boolean
@@ -16,6 +17,7 @@ type Props = FieldBaseProps & {
   placeholder?: NativeTextareaProps['placeholder']
   readOnly?: NativeTextareaProps['readOnly']
   rows?: NativeTextareaProps['rows']
+  spellCheck?: NativeTextareaProps['spellCheck']
   tabIndex?: NativeTextareaProps['tabIndex']
   value?: string | number
   onChange?: React.EventHandler<React.ChangeEvent<HTMLTextAreaElement>>
@@ -26,6 +28,7 @@ type Props = FieldBaseProps & {
 export const Textarea = React.forwardRef(
   (
     {
+      autoCorrect,
       autoFocus,
       defaultValue,
       description,
@@ -41,8 +44,10 @@ export const Textarea = React.forwardRef(
       readOnly,
       required,
       rows = 5,
+      spellCheck,
       tabIndex,
       value,
+      width,
       onChange,
       onBlur,
       onFocus,
@@ -63,10 +68,12 @@ export const Textarea = React.forwardRef(
         label={label}
         labelSecondary={labelSecondary}
         required={required}
+        width={width}
       >
         <Box
           aria-invalid={hasError}
           as="textarea"
+          autoCorrect={autoCorrect}
           autoFocus={autoFocus}
           className={styles.variants({
             disabled,
@@ -80,6 +87,7 @@ export const Textarea = React.forwardRef(
           readOnly={readOnly}
           ref={inputRef}
           rows={rows}
+          spellCheck={spellCheck}
           tabIndex={tabIndex}
           value={value}
           onBlur={onBlur}
