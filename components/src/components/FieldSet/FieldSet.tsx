@@ -4,7 +4,7 @@ import { ReactNodeNoStrings } from '../../types'
 import { Box } from '../Box'
 import { Heading } from '../Heading'
 import { Stack } from '../Stack'
-import { Tag } from '../Tag'
+import { Tag, TagProps } from '../Tag'
 
 type NativeFieldSetProps = React.AllHTMLAttributes<HTMLFieldSetElement>
 
@@ -13,10 +13,17 @@ type Props = {
   description?: string | React.ReactNode
   disabled?: NativeFieldSetProps['disabled']
   form?: NativeFieldSetProps['form']
-  hideRequiredStatus?: boolean
   name?: NativeFieldSetProps['name']
   legend: string
-  required?: boolean
+  status?:
+    | 'required'
+    | 'optional'
+    | 'pending'
+    | 'complete'
+    | {
+        name: string
+        tone: TagProps['tone']
+      }
 }
 
 export const FieldSet = ({
@@ -24,11 +31,35 @@ export const FieldSet = ({
   description,
   disabled,
   form,
-  hideRequiredStatus,
   legend,
   name,
-  required,
+  status,
 }: Props) => {
+  let statusText: string | undefined
+  let statusTone: TagProps['tone']
+  switch (status) {
+    case 'complete': {
+      statusText = 'Complete'
+      statusTone = 'green'
+      break
+    }
+    case 'required':
+    case 'pending': {
+      statusText = status === 'pending' ? 'Pending' : 'Required'
+      statusTone = 'accent'
+      break
+    }
+    case 'optional': {
+      statusText = 'Optional'
+      statusTone = 'secondary'
+      break
+    }
+  }
+  if (typeof status === 'object') {
+    statusText = status.name
+    statusTone = status.tone
+  }
+
   return (
     <Box
       as="fieldset"
@@ -44,10 +75,8 @@ export const FieldSet = ({
           <Heading as="legend" level="2" responsive>
             {legend}
           </Heading>
-          {!hideRequiredStatus && (
-            <Tag tone={required ? 'accent' : 'secondary'}>
-              {required ? 'Required' : 'Optional'}
-            </Tag>
+          {statusTone && statusText && (
+            <Tag tone={statusTone}>{statusText}</Tag>
           )}
         </Stack>
 

@@ -18,7 +18,6 @@ export const root = recipe({
       transitionDuration: '150',
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
-      width: 'full',
     }),
     style({
       selectors: {

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Box } from '../Box'
 import * as styles from './styles.css'
 
-type Props = {
+export type Props = {
   as?: 'div' | 'span'
   label?: string
 } & styles.Variants
