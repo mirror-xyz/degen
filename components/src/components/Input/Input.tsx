@@ -140,7 +140,7 @@ export const Input = React.forwardRef(
         label={label}
         labelSecondary={labelSecondary}
         required={required}
-        width={width ?? 'full'}
+        width={width}
       >
         {(ids) => (
           <Box

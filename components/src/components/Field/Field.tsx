@@ -34,7 +34,7 @@ export const Field = ({
   label,
   labelSecondary,
   required,
-  width,
+  width = 'full',
 }: Props) => {
   const ids = useFieldIds({
     id,
@@ -68,7 +68,7 @@ export const Field = ({
   else content = children
 
   return (
-    <Box display="flex" flexDirection="column" gap="2" width={width ?? 'full'}>
+    <Box display="flex" flexDirection="column" gap="2" width={width}>
       {hideLabel ? (
         <VisuallyHidden>{labelContent}</VisuallyHidden>
       ) : (
