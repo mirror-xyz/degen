@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { ReactNodeNoStrings } from '../../types'
 import { useFieldIds } from '../../hooks'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { VisuallyHidden } from '../VisuallyHidden'
 
 type State = ReturnType<typeof useFieldIds> | undefined
@@ -17,6 +17,7 @@ export type FieldBaseProps = {
   label: React.ReactNode
   labelSecondary?: React.ReactNode
   required?: NativeFormProps['required']
+  width?: BoxProps['width']
 }
 
 type Props = FieldBaseProps & {
@@ -33,6 +34,7 @@ export const Field = ({
   label,
   labelSecondary,
   required,
+  width,
 }: Props) => {
   const ids = useFieldIds({
     id,
@@ -66,7 +68,7 @@ export const Field = ({
   else content = children
 
   return (
-    <Box display="flex" flexDirection="column" gap="2" width="full">
+    <Box display="flex" flexDirection="column" gap="2" width={width ?? 'full'}>
       {hideLabel ? (
         <VisuallyHidden>{labelContent}</VisuallyHidden>
       ) : (

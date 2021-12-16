@@ -8,6 +8,8 @@ type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
 
 type BaseProps = FieldBaseProps & {
   autoFocus?: NativeInputProps['autoFocus']
+  autoComplete?: NativeInputProps['autoComplete']
+  autoCorrect?: NativeInputProps['autoCorrect']
   defaultValue?: string | number
   disabled?: boolean
   id?: NativeInputProps['id']
@@ -16,6 +18,7 @@ type BaseProps = FieldBaseProps & {
   placeholder?: NativeInputProps['placeholder']
   prefix?: React.ReactNode
   readOnly?: NativeInputProps['readOnly']
+  spellCheck?: NativeInputProps['spellCheck']
   suffix?: React.ReactNode
   tabIndex?: NativeInputProps['tabIndex']
   textTransform?: BoxProps['textTransform']
@@ -49,6 +52,8 @@ export const Input = React.forwardRef(
   (
     {
       autoFocus,
+      autoComplete,
+      autoCorrect,
       defaultValue,
       description,
       disabled,
@@ -63,12 +68,14 @@ export const Input = React.forwardRef(
       prefix,
       readOnly,
       required,
+      spellCheck,
       suffix,
       tabIndex,
       textTransform,
       type = 'text',
       units,
       value,
+      width,
       onBlur,
       onChange,
       onFocus,
@@ -133,6 +140,7 @@ export const Input = React.forwardRef(
         label={label}
         labelSecondary={labelSecondary}
         required={required}
+        width={width ?? 'full'}
       >
         {(ids) => (
           <Box
@@ -159,6 +167,8 @@ export const Input = React.forwardRef(
               <Box
                 aria-invalid={hasError}
                 as="input"
+                autoComplete={autoComplete}
+                autoCorrect={autoCorrect}
                 autoFocus={autoFocus}
                 className={[className, styles.input({ disabled })]}
                 defaultValue={defaultValue}
@@ -168,6 +178,7 @@ export const Input = React.forwardRef(
                 placeholder={placeholderText}
                 readOnly={readOnly}
                 ref={inputRef}
+                spellCheck={spellCheck}
                 tabIndex={tabIndex}
                 textTransform={textTransform}
                 type={type}

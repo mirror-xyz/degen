@@ -1,12 +1,13 @@
 import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import computeScrollIntoView from 'compute-scroll-into-view'
+import { usePopper } from 'react-popper'
 
 import { useId, useWindowEvent } from '../../hooks'
 import { Box, BoxProps } from '../Box'
-import { Input, InputProps } from '../Input'
+import { Button } from '../Button'
 import { VisuallyHidden } from '../VisuallyHidden'
 import { Stack } from '../Stack'
-import { Spinner } from '../Spinner'
 import { IconCheck, IconClose } from '../icons'
 import { getNextWrappingIndex } from './utils'
 import * as styles from './styles.css'
@@ -18,42 +19,50 @@ export type Option = {
   value: number | string
 }
 
-type Props = Pick<
-  InputProps,
-  | 'autoFocus'
-  | 'disabled'
-  | 'hideLabel'
-  | 'id'
-  | 'label'
-  | 'name'
-  | 'placeholder'
-  | 'readOnly'
-  | 'tabIndex'
-  | 'textTransform'
-  | 'onBlur'
-  | 'onFocus'
-> & {
-  defaultValue?: string
+type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
+
+type BaseProps = {
+  autoFocus?: NativeInputProps['autoFocus']
+  disabled?: boolean
   emptyText?: string
-  loading?: boolean
-  options?: Option[]
   filter?: (options: Option[], inputValue: string) => Option[]
-  value?: string
-  onChange?(value: Option['value']): void
+  id?: NativeInputProps['id']
+  label: string
+  name?: string
+  options?: Option[]
+  placeholder?: NativeInputProps['placeholder']
+  readOnly?: NativeInputProps['readOnly']
+  tabIndex?: NativeInputProps['tabIndex']
+  textTransform?: BoxProps['textTransform']
+  value: number | string | undefined
+  width?: BoxProps['width']
+  onBlur?: NativeInputProps['onBlur']
+  onChange(value?: Option['value']): void
+  onFocus?: NativeInputProps['onFocus']
 }
+
+type CreateProps = {
+  createText(inputValue: string): string
+  onCreate(inputValue: string): void
+}
+
+type NoCreateProps = {
+  createText?: never
+  onCreate?: never
+}
+
+type Props = BaseProps & (CreateProps | NoCreateProps)
 
 export const Combobox = React.forwardRef(
   (
     {
       autoFocus,
-      defaultValue,
+      createText,
       disabled,
       emptyText = 'No results',
       filter,
-      hideLabel,
       id: contentId,
       label,
-      loading,
       name,
       options = [],
       placeholder,
@@ -61,7 +70,9 @@ export const Combobox = React.forwardRef(
       tabIndex,
       textTransform,
       value,
+      width,
       onChange,
+      onCreate,
       onBlur,
       onFocus,
     }: Props,
@@ -72,7 +83,29 @@ export const Combobox = React.forwardRef(
     const defaultRef = React.useRef<HTMLInputElement>(null)
     const inputRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef
     const optionRefs = React.useRef<Record<string, HTMLElement>>({})
+    const listboxRef = React.useRef<HTMLElement>(null)
     const menuRef = React.useRef<HTMLElement>(null)
+
+    const { styles: popperStyles, attributes } = usePopper(
+      inputRef.current,
+      listboxRef.current,
+      {
+        modifiers: [
+          {
+            name: 'sameWidth',
+            enabled: true,
+            phase: 'beforeWrite',
+            requires: ['computeStyles'],
+            fn: ({ state }) => {
+              state.styles.popper.width = `${state.rects.reference.width}px`
+            },
+            effect: ({ state }) => {
+              state.elements.popper.style.width = `${state.elements.reference.offsetWidth}px`
+            },
+          },
+        ],
+      },
+    )
 
     const [state, setState] = React.useState<{
       changed?: boolean
@@ -81,11 +114,13 @@ export const Combobox = React.forwardRef(
       open: boolean
       selectedOption?: Option
     }>(() => {
-      const inputValue = (value || defaultValue) ?? ''
-      const selectedOption = options.find((x) => x.value === inputValue)
+      const initialOption = options.find((x) => x.value === value || x.value)
+      const selectedOption = options.find(
+        (x) => x.value === initialOption?.value,
+      )
       return {
         changed: false,
-        inputValue,
+        inputValue: initialOption?.label ?? '',
         open: false,
         selectedOption,
       }
@@ -95,13 +130,22 @@ export const Combobox = React.forwardRef(
     const id = `${_id}${contentId ? `-${contentId}` : ''}`
     const listboxId = `${id}-listbox`
     const elementIdsRef = React.useRef({
-      getItemId: (index: number) => `${id}-option-${index}`,
+      getItemId: (id: string, index: number) => `${id}-option-${index}`,
     })
 
     // Whenever internal value changes, filter options
     const filteredOptions = React.useMemo(() => {
-      if (state.inputValue === state.selectedOption?.label && !state.changed)
-        return options
+      // If there is a selected option, add to start of list on initial open
+      if (
+        state.selectedOption &&
+        state.inputValue === state.selectedOption?.label &&
+        !state.changed
+      ) {
+        return [
+          state.selectedOption,
+          ...options.filter((x) => x.value !== state.selectedOption?.value),
+        ]
+      }
       return state.inputValue && filter
         ? filter(options, state.inputValue)
         : options
@@ -121,7 +165,12 @@ export const Combobox = React.forwardRef(
 
     const handleFocus = React.useCallback(
       (event: React.FocusEvent<HTMLInputElement>) => {
-        setState((x) => ({ ...x, changed: false, open: true }))
+        setState((x) => ({
+          ...x,
+          changed: false,
+          highlightedIndex: undefined,
+          open: true,
+        }))
         onFocus?.(event)
       },
       [onFocus],
@@ -129,14 +178,15 @@ export const Combobox = React.forwardRef(
 
     const scrollIntoView = React.useCallback(
       (index) => {
-        const node = optionRefs.current[elementIdsRef.current.getItemId(index)]
+        const node =
+          optionRefs.current[elementIdsRef.current.getItemId(id, index)]
         const actions = computeScrollIntoView(node, {
           block: 'nearest',
           scrollMode: 'if-needed',
         })
         actions.forEach(({ el, top }) => (el.scrollTop = top))
       },
-      [elementIdsRef],
+      [elementIdsRef, id],
     )
 
     const onArrowKeyEvent = React.useCallback(
@@ -182,7 +232,7 @@ export const Combobox = React.forwardRef(
           open: false,
           selectedOption: option,
         }))
-        onChange?.(inputValue)
+        onChange?.(option?.value)
       },
       [onChange],
     )
@@ -234,8 +284,14 @@ export const Combobox = React.forwardRef(
 
     // Whenever value changes, update internal state value
     React.useEffect(() => {
-      setState((x) => ({ ...x, changed: true, inputValue: value ?? '' }))
-    }, [value])
+      const selectedOption = options.find((x) => x.value === value)
+      setState((x) => ({
+        ...x,
+        changed: true,
+        inputValue: selectedOption?.label ?? '',
+        selectedOption,
+      }))
+    }, [options, value])
 
     // Close menu if click outside
     useWindowEvent('mousedown', (event) => {
@@ -249,110 +305,137 @@ export const Combobox = React.forwardRef(
       }))
     })
 
-    const suffix = (loading || state.selectedOption) && (
-      <Stack direction="horizontal" space="2.5">
-        {loading && <Spinner />}
-        {state.selectedOption && (
-          <Box
-            as="button"
-            color={{ base: 'textTertiary', hover: 'text' }}
-            cursor="pointer"
-            onClick={(event) => {
-              event.preventDefault()
-              setState((x) => ({
-                ...x,
-                inputValue: '',
-                open: false,
-                selectedOption: undefined,
-              }))
-            }}
-          >
-            <VisuallyHidden>Clear selected option</VisuallyHidden>
-            <IconClose />
-          </Box>
-        )}
-      </Stack>
-    )
-
     return (
-      <Box ref={rootRef}>
+      <Box position="relative" ref={rootRef} width={width}>
         <Box
           aria-expanded={state.open}
           aria-haspopup="listbox"
           aria-owns={listboxId}
-          className={[styles.combobox, state.open && styles.comboboxActive]}
+          className={styles.combobox({ active: state.open })}
           id={id}
           role="combobox"
         >
-          <Input
+          <Box
             aria-activedescendant={
               state.highlightedIndex
-                ? elementIdsRef.current.getItemId(state.highlightedIndex)
+                ? elementIdsRef.current.getItemId(id, state.highlightedIndex)
                 : ''
             }
             aria-autocomplete="both"
             aria-controls={listboxId}
+            aria-label={label}
+            as="input"
+            autoCorrect="off"
             autoFocus={autoFocus}
-            defaultValue={defaultValue}
+            className={styles.textbox({
+              disabled,
+              suffix: !!state.selectedOption,
+            })}
             disabled={disabled}
-            hideLabel={hideLabel}
-            label={label}
             name={name}
             placeholder={placeholder}
             readOnly={readOnly}
             ref={inputRef}
-            suffix={suffix}
+            spellCheck="false"
             tabIndex={tabIndex}
             textTransform={textTransform}
-            value={state.inputValue ?? ''}
+            type="text"
+            value={state.inputValue}
+            width="full"
             onBlur={onBlur}
             onChange={handleChange}
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
           />
+
+          {state.selectedOption && (
+            <Box
+              alignItems="center"
+              display="flex"
+              height="full"
+              paddingLeft="2"
+              paddingRight="4"
+            >
+              <Box
+                as="button"
+                color={{ base: 'textTertiary', hover: 'text' }}
+                cursor="pointer"
+                onClick={(event) => {
+                  event.preventDefault()
+                  setState((x) => ({
+                    ...x,
+                    inputValue: '',
+                    open: false,
+                    selectedOption: undefined,
+                  }))
+                  onChange?.('')
+                }}
+              >
+                <VisuallyHidden>Clear selected option</VisuallyHidden>
+                <IconClose />
+              </Box>
+            </Box>
+          )}
         </Box>
 
         {state.open ? (
-          <Box className={styles.listbox}>
-            {filteredOptions.length ? (
-              <Box as="ul" id={listboxId} ref={menuRef} role="listbox">
-                {filteredOptions.map((x, i) => (
-                  <Option
-                    highlighted={i === state.highlightedIndex}
-                    id={elementIdsRef.current.getItemId(i)}
-                    index={i}
-                    key={x.value}
-                    label={x.label}
-                    option={x}
-                    prefix={x.prefix}
-                    ref={(node) => {
-                      // Set ref when list item loads
-                      if (!node) return
-                      optionRefs.current[elementIdsRef.current.getItemId(i)] =
-                        node
-                    }}
-                    selected={x.value === state.selectedOption?.value}
-                    suffix={x.suffix}
-                    onHover={handleHover}
-                    onSelect={handleSelect}
-                  />
-                ))}
-              </Box>
-            ) : (
-              <Box alignItems="center" display="flex" flexDirection="column">
-                <Box
-                  alignItems="center"
-                  display="flex"
-                  fontSize="base"
-                  fontWeight="semiBold"
-                  height="14"
-                  textAlign="center"
-                >
-                  {emptyText}
+          ReactDOM.createPortal(
+            <Box
+              className={styles.listbox}
+              ref={listboxRef}
+              style={popperStyles.popper}
+              {...attributes.popper}
+            >
+              {createText && onCreate && (
+                <Box padding="4">
+                  <Button onClick={() => onCreate(state.inputValue)}>
+                    {createText(state.inputValue)}
+                  </Button>
                 </Box>
-              </Box>
-            )}
-          </Box>
+              )}
+
+              {filteredOptions.length ? (
+                <Box as="ul" id={listboxId} ref={menuRef} role="listbox">
+                  {filteredOptions.map((x, i) => (
+                    <Option
+                      highlighted={i === state.highlightedIndex}
+                      id={elementIdsRef.current.getItemId(id, i)}
+                      index={i}
+                      key={x.value}
+                      label={x.label}
+                      option={x}
+                      prefix={x.prefix}
+                      ref={(node) => {
+                        // Set ref when list item loads
+                        if (!node) return
+                        optionRefs.current[
+                          elementIdsRef.current.getItemId(id, i)
+                        ] = node
+                      }}
+                      selected={x.value === state.selectedOption?.value}
+                      suffix={x.suffix}
+                      onHover={handleHover}
+                      onSelect={handleSelect}
+                    />
+                  ))}
+                </Box>
+              ) : (
+                <Box alignItems="center" display="flex" flexDirection="column">
+                  <Box
+                    alignItems="center"
+                    display="flex"
+                    fontSize="base"
+                    fontWeight="semiBold"
+                    height="14"
+                    textAlign="center"
+                  >
+                    {emptyText}
+                  </Box>
+                </Box>
+              )}
+            </Box>,
+            document.body,
+          )
         ) : (
           <Box as="ul" id={listboxId} ref={menuRef} role="listbox" />
         )}

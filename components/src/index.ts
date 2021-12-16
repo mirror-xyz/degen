@@ -4,6 +4,7 @@ export {
   Box,
   Button,
   Card,
+  Combobox,
   Field,
   FieldSet,
   FileInput,

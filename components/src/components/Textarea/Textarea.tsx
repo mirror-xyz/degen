@@ -8,11 +8,13 @@ type NativeTextareaProps = React.AllHTMLAttributes<HTMLTextAreaElement>
 
 type Props = FieldBaseProps & {
   autoFocus?: NativeTextareaProps['autoFocus']
+  autoCorrect?: NativeTextareaProps['autoCorrect']
   defaultValue?: string | number
   disabled?: boolean
   id?: NativeTextareaProps['id']
   name?: string
   maxLength?: NativeTextareaProps['maxLength']
+  spellCheck?: NativeTextareaProps['spellCheck']
   placeholder?: NativeTextareaProps['placeholder']
   readOnly?: NativeTextareaProps['readOnly']
   rows?: NativeTextareaProps['rows']
@@ -27,6 +29,7 @@ export const Textarea = React.forwardRef(
   (
     {
       autoFocus,
+      autoCorrect,
       defaultValue,
       description,
       disabled,
@@ -41,6 +44,7 @@ export const Textarea = React.forwardRef(
       readOnly,
       required,
       rows = 5,
+      spellCheck,
       tabIndex,
       value,
       onChange,
@@ -67,6 +71,7 @@ export const Textarea = React.forwardRef(
         <Box
           aria-invalid={hasError}
           as="textarea"
+          autoCorrect={autoCorrect}
           autoFocus={autoFocus}
           className={styles.variants({
             disabled,
@@ -80,6 +85,7 @@ export const Textarea = React.forwardRef(
           readOnly={readOnly}
           ref={inputRef}
           rows={rows}
+          spellCheck={spellCheck}
           tabIndex={tabIndex}
           value={value}
           onBlur={onBlur}

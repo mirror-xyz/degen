@@ -34,6 +34,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.0",
     "@vanilla-extract/css": "^1.6.3",
     "@vanilla-extract/css-utils": "^0.1.1",
     "@vanilla-extract/dynamic": "^2.0.0",
@@ -41,7 +42,8 @@
     "@vanilla-extract/sprinkles": "^1.3.1",
     "clsx": "^1.1.1",
     "compute-scroll-into-view": "^1.0.17",
-    "focus-visible": "^5.2.0"
+    "focus-visible": "^5.2.0",
+    "react-popper": "^2.2.5"
   },
   "devDependencies": {
     "@jest/types": "^27.2.5",
