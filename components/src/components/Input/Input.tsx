@@ -112,7 +112,6 @@ export const Input = React.forwardRef(
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLInputElement>) => {
-        console.log(type, event.key)
         if (type === 'number') {
           const key = event.key
           const filteredKeys = ['E', 'e', '+']
@@ -124,10 +123,10 @@ export const Input = React.forwardRef(
     )
 
     const handleWheel = React.useCallback(
-      (_event: React.WheelEvent<HTMLElement>) => {
-        inputRef.current?.blur()
+      (event: React.WheelEvent<HTMLElement>) => {
+        ;(event.target as HTMLElement)?.blur()
       },
-      [inputRef],
+      [],
     )
 
     const handleMax = React.useCallback(() => {
