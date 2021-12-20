@@ -89,19 +89,37 @@ export const input = recipe({
       }),
       false: {},
     },
+    type: {
+      number: style({
+        fontFeatureSettings: "'kern' 1,  'tnum' 1, 'calt' 0",
+        fontVariantNumeric: 'tabular-nums',
+      }),
+      text: {},
+    },
   },
 })
 
-export const ghost = style([
-  atoms({
-    borderColor: 'transparent',
-    inset: '0',
-    position: 'absolute',
-    pointerEvents: 'none',
-    whiteSpace: 'pre',
-  }),
-  style({ lineHeight: 'normal' }),
-])
+export const ghost = recipe({
+  base: [
+    atoms({
+      borderColor: 'transparent',
+      inset: '0',
+      position: 'absolute',
+      pointerEvents: 'none',
+      whiteSpace: 'pre',
+    }),
+    style({ lineHeight: 'normal' }),
+  ],
+  variants: {
+    type: {
+      number: style({
+        fontFeatureSettings: "'kern' 1,  'tnum' 1, 'calt' 0",
+        fontVariantNumeric: 'tabular-nums',
+      }),
+      text: {},
+    },
+  },
+})
 
 export const variants = recipe({
   base: [style([container, text, atoms({ paddingX: '4' })])],

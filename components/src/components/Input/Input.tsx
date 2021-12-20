@@ -100,6 +100,7 @@ export const Input = React.forwardRef(
       suffix: suffix ? true : undefined,
     })
     const max = (props as WithTypeNumber).max
+    const inputType = type === 'number' ? 'number' : 'text'
 
     const handleInput = React.useCallback(
       (event: React.FormEvent<HTMLInputElement>) => {
@@ -111,14 +112,22 @@ export const Input = React.forwardRef(
 
     const handleKeyDown = React.useCallback(
       (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (type === 'number' && units) {
+        console.log(type, event.key)
+        if (type === 'number') {
           const key = event.key
           const filteredKeys = ['E', 'e', '+']
           if (filteredKeys.includes(key)) event.preventDefault()
         }
         onKeyDown && onKeyDown(event)
       },
-      [type, units, onKeyDown],
+      [type, onKeyDown],
+    )
+
+    const handleWheel = React.useCallback(
+      (_event: React.WheelEvent<HTMLElement>) => {
+        inputRef.current?.blur()
+      },
+      [inputRef],
     )
 
     const handleMax = React.useCallback(() => {
@@ -170,7 +179,13 @@ export const Input = React.forwardRef(
                 autoComplete={autoComplete}
                 autoCorrect={autoCorrect}
                 autoFocus={autoFocus}
-                className={[className, styles.input({ disabled })]}
+                className={[
+                  className,
+                  styles.input({
+                    disabled,
+                    type: inputType,
+                  }),
+                ]}
                 defaultValue={defaultValue}
                 disabled={disabled}
                 inputMode={inputMode}
@@ -187,7 +202,8 @@ export const Input = React.forwardRef(
                 onChange={onChange}
                 onFocus={onFocus}
                 onInput={handleInput}
-                onKeyDown={units ? handleKeyDown : onKeyDown}
+                onKeyDown={type === 'number' ? handleKeyDown : onKeyDown}
+                onWheel={type === 'number' ? handleWheel : undefined}
                 {...props}
                 {...ids?.content}
               />
@@ -195,7 +211,12 @@ export const Input = React.forwardRef(
               {units && state.ghostValue && (
                 <Box
                   aria-hidden="true"
-                  className={[className, styles.ghost]}
+                  className={[
+                    className,
+                    styles.ghost({
+                      type: inputType,
+                    }),
+                  ]}
                   data-testid="ghost"
                 >
                   <Box
