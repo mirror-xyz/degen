@@ -57,7 +57,9 @@ type WithoutAnchor = {
   target?: never
 }
 
-type Props = BaseProps & (WithTone | WithoutTone) & (WithAnchor | WithoutAnchor)
+export type Props = BaseProps &
+  (WithTone | WithoutTone) &
+  (WithAnchor | WithoutAnchor)
 
 export const Button = React.forwardRef(
   (

@@ -41,7 +41,9 @@ it('should expose correct exports', () => {
     'atoms',
     'breakpoints',
     'getAccentText',
+    'mapResponsiveValue',
     'motionSafe',
+    'normalizeResponsiveValue',
     'responsiveStyle',
     'vars',
     // generated icons
