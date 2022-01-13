@@ -19,6 +19,8 @@ import './reset.css'
 
 const flexAlignment = ['flex-start', 'center', 'flex-end', 'stretch'] as const
 
+const flexibility = [0, 1, 2, 3, 4] as const
+
 const space = vars.space
 const negativeSpace = {
   ['-px']: `${calc(space.px).negate()}`,
@@ -88,7 +90,13 @@ const responsiveProperties = defineProperties({
       initial: '0 1 auto',
       none: 'none',
     },
+    flexBasis: {
+      ...vars.space,
+      ...extendedSpace,
+    },
     flexDirection: ['column', 'row'],
+    flexGrow: flexibility,
+    flexShrink: flexibility,
     flexWrap: ['wrap', 'nowrap'],
     fontSize: {
       ...vars.fontSizes,
