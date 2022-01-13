@@ -90,7 +90,10 @@ const responsiveProperties = defineProperties({
       initial: '0 1 auto',
       none: 'none',
     },
-    flexBasis: vars.space,
+    flexBasis: {
+      ...vars.space,
+      ...extendedSpace,
+    },
     flexDirection: ['column', 'row'],
     flexGrow: flexibility,
     flexShrink: flexibility,
