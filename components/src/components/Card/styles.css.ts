@@ -40,7 +40,7 @@ export const variants = recipe({
               [radiiVar]: vars.radii['2xLarge'],
             },
           },
-          lg: {
+          sm: {
             vars: {
               [radiiVar]: vars.radii['3xLarge'],
             },
