@@ -57,6 +57,9 @@ const tone = {
   purple: style({
     vars: getAccentVars(vars.mode.colors.purple),
   }),
+  pink: style({
+    vars: getAccentVars(vars.mode.colors.pink),
+  }),
 }
 
 export type Tone = keyof typeof tone
