@@ -8,7 +8,7 @@ const radiiVar = createVar()
 export const variants = recipe({
   base: [
     atoms({
-      borderRadius: { xs: '2xLarge', lg: '3xLarge' },
+      borderRadius: { xs: '2xLarge', sm: '3xLarge' },
     }),
   ],
   variants: {
