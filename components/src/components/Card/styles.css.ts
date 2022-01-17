@@ -22,6 +22,26 @@ export const variants = recipe({
         }),
       ]),
     },
+    hover: {
+      true: style([
+        atoms({
+          transitionProperty: 'shadow',
+          transitionTimingFunction: 'inOut',
+        }),
+        style({
+          transitionDuration: '150ms',
+          selectors: {
+            '&:hover': {
+              boxShadow: `${vars.shadows['1']} ${vars.colors['foregroundTertiary']}`,
+            },
+            '&:active': {
+              boxShadow: `${vars.shadows['0.5']} ${vars.colors['foregroundTertiary']}`,
+            },
+          },
+        }),
+      ]),
+      false: {},
+    },
     shadow: {
       true: {},
       false: {},
