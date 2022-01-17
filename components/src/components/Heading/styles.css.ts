@@ -19,9 +19,7 @@ const level = {
       fontSize: 'headingTwo',
       fontWeight: 'semiBold',
       letterSpacing: '-0.02',
-    }),
-    style({
-      lineHeight: '2.5rem',
+      lineHeight: '1.25',
     }),
   ]),
 }
