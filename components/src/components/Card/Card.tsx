@@ -7,6 +7,7 @@ import * as styles from './styles.css'
 type Props = {
   as?: BoxProps['as']
   shadow?: boolean
+  hover?: boolean
   padding?: BoxProps['padding']
   width?: BoxProps['width']
 }
@@ -16,6 +17,7 @@ export const Card = ({
   children,
   padding,
   shadow,
+  hover,
   width,
 }: React.PropsWithChildren<Props>) => {
   const { mode, forcedMode } = useTheme()
@@ -25,6 +27,7 @@ export const Card = ({
       className={styles.variants({
         dark: (forcedMode ?? mode) === 'dark',
         shadow,
+        hover,
       })}
       padding={padding}
       width={width}
