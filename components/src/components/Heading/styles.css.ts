@@ -51,7 +51,7 @@ export const variants = recipe({
       },
       style: atoms({
         fontSize: { xs: 'extraLarge', sm: 'headingTwo' },
-        letterSpacing: { xs: 'normal', sm: '-0.02' },
+        letterSpacing: { xs: '-0.015', sm: '-0.02' },
       }),
     },
   ],
