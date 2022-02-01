@@ -31,6 +31,8 @@ type BaseProps = {
   variant?: styles.Variant
   width?: BoxProps['width']
   onClick?: React.MouseEventHandler<HTMLElement> | undefined
+  onMouseEnter?: React.MouseEventHandler<HTMLElement> | undefined
+  onMouseLeave?: React.MouseEventHandler<HTMLElement> | undefined
 }
 
 type WithTone = {
@@ -82,6 +84,8 @@ export const Button = React.forwardRef(
       variant = 'primary',
       width,
       onClick,
+      onMouseEnter,
+      onMouseLeave,
     }: Props,
     ref: React.Ref<HTMLButtonElement>,
   ) => {
@@ -131,6 +135,8 @@ export const Button = React.forwardRef(
         type={type}
         width={width ?? 'max'}
         onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       >
         {childContent}
       </Box>
