@@ -6,22 +6,7 @@ import { atoms, responsiveStyle, rgb, vars } from '../../css'
 const radiiVar = createVar()
 
 export const variants = recipe({
-  base: [
-    atoms({
-      borderRadius: { xs: '2xLarge', sm: '3xLarge' },
-    }),
-  ],
   variants: {
-    dark: {
-      true: atoms({
-        backgroundColor: 'black',
-      }),
-      false: style([
-        atoms({
-          backgroundColor: 'white',
-        }),
-      ]),
-    },
     hover: {
       true: style([
         atoms({
@@ -42,12 +27,40 @@ export const variants = recipe({
       ]),
       false: {},
     },
+    level: {
+      '1': {},
+      '2': atoms({
+        backgroundColor: 'background',
+      }),
+    },
+    dark: {
+      true: {},
+      false: {},
+    },
     shadow: {
       true: {},
       false: {},
     },
   },
   compoundVariants: [
+    {
+      variants: {
+        dark: true,
+        level: '1',
+      },
+      style: atoms({
+        backgroundColor: 'black',
+      }),
+    },
+    {
+      variants: {
+        dark: false,
+        level: '1',
+      },
+      style: atoms({
+        backgroundColor: 'white',
+      }),
+    },
     {
       variants: {
         dark: false,
