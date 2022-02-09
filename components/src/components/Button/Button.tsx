@@ -7,15 +7,9 @@ import { Text } from '../Text'
 import { getCenterProps } from './utils'
 import * as styles from './styles.css'
 
-type NativeButtonProps = React.AllHTMLAttributes<HTMLButtonElement>
-type NativeAnchorProps = React.AllHTMLAttributes<HTMLAnchorElement>
-
 type BaseProps = {
   /** Centers text and reserves space for icon and spinner */
   center?: boolean
-  children: NativeButtonProps['children']
-  /** Marks as unusable */
-  disabled?: boolean
   /** Adds ReactNode before children */
   prefix?: ReactNodeNoStrings
   /** Shows loading spinner inside button */
@@ -26,14 +20,18 @@ type BaseProps = {
   size?: styles.Size
   /** Adds ReactNode after children */
   suffix?: ReactNodeNoStrings
-  tabIndex?: NativeButtonProps['tabIndex']
-  type?: NativeButtonProps['type']
   variant?: styles.Variant
   width?: BoxProps['width']
-  onClick?: React.MouseEventHandler<HTMLElement> | undefined
-  onMouseEnter?: React.MouseEventHandler<HTMLElement> | undefined
-  onMouseLeave?: React.MouseEventHandler<HTMLElement> | undefined
-}
+} & Pick<
+  JSX.IntrinsicElements['button'],
+  | 'onClick'
+  | 'onMouseEnter'
+  | 'onMouseLeave'
+  | 'children'
+  | 'disabled'
+  | 'type'
+  | 'tabIndex'
+>
 
 type WithTone = {
   tone?: styles.Tone
@@ -47,16 +45,10 @@ type WithoutTone = {
 
 type WithAnchor = {
   as?: 'a'
-  href?: string
-  rel?: NativeAnchorProps['rel']
-  target?: NativeAnchorProps['target']
-}
+} & Pick<JSX.IntrinsicElements['a'], 'href' | 'rel' | 'target'>
 
 type WithoutAnchor = {
   as?: 'button'
-  href?: never
-  rel?: never
-  target?: never
 }
 
 export type Props = BaseProps &
@@ -66,26 +58,17 @@ export type Props = BaseProps &
 export const Button = React.forwardRef(
   (
     {
-      as = 'button',
       center,
       children,
       disabled,
-      href,
       prefix,
       loading,
-      rel,
       shape,
       size = 'medium',
       suffix,
-      tabIndex,
-      target,
       tone = 'accent',
-      type,
       variant = 'primary',
-      width,
-      onClick,
-      onMouseEnter,
-      onMouseLeave,
+      ...boxProps
     }: Props,
     ref: React.Ref<HTMLButtonElement>,
   ) => {
@@ -117,7 +100,6 @@ export const Button = React.forwardRef(
 
     return (
       <Box
-        as={as}
         className={styles.variants({
           center,
           disabled,
@@ -126,17 +108,13 @@ export const Button = React.forwardRef(
           tone,
           variant,
         })}
-        disabled={disabled}
-        href={href}
         ref={ref}
-        rel={rel}
-        tabIndex={tabIndex}
-        target={target}
-        type={type}
-        width={width ?? 'max'}
-        onClick={onClick}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
+        // Passed-through boxProps.
+        // Note: Default values for boxProps need to be
+        // assigned after the {...boxProps} spread below
+        {...boxProps}
+        as={boxProps.as ?? 'button'}
+        width={boxProps.width ?? 'max'}
       >
         {childContent}
       </Box>
