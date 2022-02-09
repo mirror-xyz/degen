@@ -58,7 +58,6 @@ export type Props = BaseProps &
 export const Button = React.forwardRef(
   (
     {
-      as = 'button',
       center,
       children,
       disabled,
@@ -101,7 +100,6 @@ export const Button = React.forwardRef(
 
     return (
       <Box
-        as={as}
         className={styles.variants({
           center,
           disabled,
@@ -111,8 +109,12 @@ export const Button = React.forwardRef(
           variant,
         })}
         ref={ref}
-        width="max"
+        // Passed-through boxProps.
+        // Note: Default values for boxProps need to be
+        // assigned after the {...boxProps} spread below
         {...boxProps}
+        as={boxProps.as ?? 'button'}
+        width={boxProps.width ?? 'max'}
       >
         {childContent}
       </Box>
