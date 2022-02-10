@@ -60,7 +60,6 @@ export const Button = React.forwardRef(
     {
       center,
       children,
-      disabled,
       prefix,
       loading,
       shape,
@@ -102,7 +101,7 @@ export const Button = React.forwardRef(
       <Box
         className={styles.variants({
           center,
-          disabled,
+          disabled: boxProps.disabled,
           shape,
           size,
           tone,
