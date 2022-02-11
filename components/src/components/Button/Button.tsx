@@ -21,7 +21,6 @@ type BaseProps = {
   /** Adds ReactNode after children */
   suffix?: ReactNodeNoStrings
   variant?: styles.Variant
-  width?: BoxProps['width']
 } & Pick<
   JSX.IntrinsicElements['button'],
   | 'onClick'
@@ -31,7 +30,8 @@ type BaseProps = {
   | 'disabled'
   | 'type'
   | 'tabIndex'
->
+> &
+  Pick<BoxProps, 'width' | 'justifyContent'>
 
 type WithTone = {
   tone?: styles.Tone
@@ -86,6 +86,7 @@ export const Button = React.forwardRef(
           {prefix && (
             <Box {...getCenterProps(center, size, 'left')}>{prefix}</Box>
           )}
+
           {labelContent}
 
           {(loading || suffix) && (
