@@ -190,7 +190,6 @@ export const variants = recipe({
       cursor: 'pointer',
       display: 'flex',
       gap: '4',
-      justifyContent: 'center',
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
