@@ -114,6 +114,7 @@ export const Button = React.forwardRef(
         // assigned after the {...boxProps} spread below
         {...boxProps}
         as={boxProps.as ?? 'button'}
+        justifyContent={boxProps.justifyContent ?? 'center'}
         width={boxProps.width ?? 'max'}
       >
         {childContent}
