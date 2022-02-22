@@ -2286,6 +2286,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prettier/plugin-xml@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@prettier/plugin-xml@npm:1.2.0"
+  dependencies:
+    "@xml-tools/parser": ^1.0.11
+    prettier: ">=2.3"
+  checksum: 2f9958d7f910c7ee83b5e2dd207564992952b40fdd28aea3bd5bd4c77351a72308b916f1b8fd0c6de958d67324658c655a8521c58d5dca24ef338f9307ffb0bf
+  languageName: node
+  linkType: hard
+
 "@reach/skip-nav@npm:^0.16.0":
   version: 0.16.0
   resolution: "@reach/skip-nav@npm:0.16.0"
@@ -3921,6 +3931,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xml-tools/parser@npm:^1.0.11":
+  version: 1.0.11
+  resolution: "@xml-tools/parser@npm:1.0.11"
+  dependencies:
+    chevrotain: 7.1.1
+  checksum: 79f32386ef935c1ba65d421e36b556fb14593c7b7e5ca99160ec8ec6dba912a00be6c32d0ab8bad35f82cb5640c05f1a8cfd1d227d563aed20ecc57d678ceab2
+  languageName: node
+  linkType: hard
+
 "@xobotyi/scrollbar-width@npm:^1.9.5":
   version: 1.9.5
   resolution: "@xobotyi/scrollbar-width@npm:1.9.5"
@@ -5215,6 +5234,15 @@ __metadata:
   version: 0.0.2
   resolution: "charenc@npm:0.0.2"
   checksum: 81dcadbe57e861d527faf6dd3855dc857395a1c4d6781f4847288ab23cffb7b3ee80d57c15bba7252ffe3e5e8019db767757ee7975663ad2ca0939bb8fcaf2e5
+  languageName: node
+  linkType: hard
+
+"chevrotain@npm:7.1.1":
+  version: 7.1.1
+  resolution: "chevrotain@npm:7.1.1"
+  dependencies:
+    regexp-to-ast: 0.5.0
+  checksum: 3ba268b745b89674712930f5d5b212f0bae6218309a05e1f89301384a9a2e8482429c83b9c52f38e536c38bb1940a53c2c0e6149e15277ea6bc6a1307528474d
   languageName: node
   linkType: hard
 
@@ -11403,6 +11431,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "mirror@workspace:."
   dependencies:
+    "@prettier/plugin-xml": ^1.2.0
     "@size-limit/preset-big-lib": ^6.0.3
     "@svgr/babel-plugin-remove-jsx-attribute": ^6.0.0
     "@svgr/cli": ^5.5.0
@@ -13176,6 +13205,15 @@ playroom@0.27.7:
   languageName: node
   linkType: hard
 
+"prettier@npm:>=2.3":
+  version: 2.5.1
+  resolution: "prettier@npm:2.5.1"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 21b9408476ea1c544b0e45d51ceb94a84789ff92095abb710942d780c862d0daebdb29972d47f6b4d0f7ebbfb0ffbf56cc2cfa3e3e9d1cca54864af185b15b66
+  languageName: node
+  linkType: hard
+
 "prettier@npm:^2.1.2, prettier@npm:^2.2.1, prettier@npm:^2.4.1":
   version: 2.4.1
   resolution: "prettier@npm:2.4.1"
@@ -13866,6 +13904,13 @@ playroom@0.27.7:
   dependencies:
     "@babel/runtime": ^7.8.4
   checksum: a467a3b652b4ec26ff964e9c5f1817523a73fc44cb928b8d21ff11aebeac5d10a84d297fe02cea9f282bcec81a0b0d562237da69ef0f40a0160b30a4fa98bc94
+  languageName: node
+  linkType: hard
+
+"regexp-to-ast@npm:0.5.0":
+  version: 0.5.0
+  resolution: "regexp-to-ast@npm:0.5.0"
+  checksum: 72e32f2a1217bb22398ac30867ddd43e16943b6b569dd4eb472de47494c7a39e34f47ee3e92ad4cbf92308f98997da366fe094a0e58eb6b93eab0ee956fff86d
   languageName: node
   linkType: hard
 
