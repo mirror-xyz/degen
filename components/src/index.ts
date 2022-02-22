@@ -1,4 +1,5 @@
 export {
+  Alert,
   Avatar,
   AvatarGroup,
   Box,

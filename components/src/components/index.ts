@@ -1,5 +1,6 @@
 export * from './icons'
 export type { BoxProps } from './Box'
+export { Alert } from './Alert'
 export { Avatar } from './Avatar'
 export { AvatarGroup } from './AvatarGroup'
 export { Box } from './Box'

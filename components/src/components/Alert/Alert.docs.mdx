@@ -1,0 +1,34 @@
+---
+title: Alert
+description: Element that displays a brief, important message
+---
+
+```tsx
+import { Alert } from 'degen'
+```
+
+```tsx live=true expand=true
+<Alert title="Alert Title">This is an alert description.</Alert>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
+
+## Variants
+
+```tsx live=true
+<Stack>
+  <Alert title="Alert Title">This is an alert description.</Alert>
+</Stack>
+```
+
+## Close
+
+```tsx live=true
+<Stack>
+  <Alert title="Alert Title" onClose={() => alert('Close alert')}>
+    This is an alert description.
+  </Alert>
+</Stack>
+```

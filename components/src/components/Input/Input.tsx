@@ -129,15 +129,19 @@ export const Input = React.forwardRef(
       [],
     )
 
-    const handleMax = React.useCallback(() => {
-      if (onChange)
-        onChange({
-          target: { value: max },
-        } as React.ChangeEvent<HTMLInputElement>)
-      else if (inputRef.current) inputRef.current.value = max as string
-      if (!units) return
-      setState((x) => ({ ...x, ghostValue: max }))
-    }, [inputRef, max, units, onChange])
+    const handleMax = React.useCallback(
+      (event) => {
+        event.preventDefault()
+        if (onChange)
+          onChange({
+            target: { value: max },
+          } as React.ChangeEvent<HTMLInputElement>)
+        else if (inputRef.current) inputRef.current.value = max as string
+        if (!units) return
+        setState((x) => ({ ...x, ghostValue: max }))
+      },
+      [inputRef, max, units, onChange],
+    )
 
     return (
       <Field
