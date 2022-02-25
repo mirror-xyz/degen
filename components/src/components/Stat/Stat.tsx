@@ -20,7 +20,7 @@ export const Stat = ({ label, meta, size = 'medium', value }: Props) => {
           {value}
         </Heading>
       ) : (
-        <Text size="large" weight="semiBold">
+        <Text lineHeight="1.25" size="large" weight="semiBold">
           {value}
         </Text>
       )}
