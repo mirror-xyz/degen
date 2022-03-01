@@ -93,6 +93,14 @@ export const variants = recipe({
           backgroundColor: getToneColor(vars.mode.colors.red),
         }),
       ]),
+      orange: style([
+        atoms({
+          color: 'orange',
+        }),
+        style({
+          backgroundColor: getToneColor(vars.mode.colors.orange),
+        }),
+      ]),
       purple: style([
         atoms({
           color: 'purple',
