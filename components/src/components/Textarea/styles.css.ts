@@ -6,7 +6,7 @@ import { atoms, vars } from '../../css'
 export const variants = recipe({
   base: [
     atoms({
-      backgroundColor: 'transparent',
+      backgroundColor: 'background',
       borderColor: { base: 'foregroundSecondary', focus: 'accent' },
       borderRadius: '2xLarge',
       borderWidth: '0.5',
