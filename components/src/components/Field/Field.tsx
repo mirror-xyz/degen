@@ -49,7 +49,13 @@ export const Field = ({
       justifyContent="space-between"
       paddingX="4"
     >
-      <Box as="label" color="text" fontWeight="medium" {...ids.label}>
+      <Box
+        as="label"
+        color="text"
+        fontSize="small"
+        fontWeight="medium"
+        {...ids.label}
+      >
         {label} {required && <VisuallyHidden>(required)</VisuallyHidden>}
       </Box>
       {labelSecondary && labelSecondary}
@@ -78,13 +84,24 @@ export const Field = ({
       {content}
 
       {description && (
-        <Box color="textSecondary" paddingX="4" {...ids.description}>
+        <Box
+          color="textSecondary"
+          fontSize="small"
+          paddingX="4"
+          {...ids.description}
+        >
           {description}
         </Box>
       )}
 
       {error && (
-        <Box aria-live="polite" color="red" paddingX="4" {...ids.error}>
+        <Box
+          aria-live="polite"
+          color="red"
+          fontSize="small"
+          paddingX="4"
+          {...ids.error}
+        >
           {error}
         </Box>
       )}
