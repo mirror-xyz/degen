@@ -112,7 +112,7 @@ export const FieldSet = ({
       </Box>
 
       <Context.Provider value={{ size }}>
-        <Stack>{children}</Stack>
+        <Stack space={space}>{children}</Stack>
       </Context.Provider>
     </Box>
   )
