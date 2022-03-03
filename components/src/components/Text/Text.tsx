@@ -26,6 +26,7 @@ type Props = {
   transform?: BoxProps['textTransform']
   weight?: BoxProps['fontWeight']
   whiteSpace?: BoxProps['whiteSpace']
+  wordBreak?: BoxProps['wordBreak']
 } & styles.Variants
 
 export const Text = React.forwardRef(
@@ -44,6 +45,7 @@ export const Text = React.forwardRef(
       variant,
       weight,
       whiteSpace,
+      wordBreak,
     }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
@@ -64,6 +66,7 @@ export const Text = React.forwardRef(
         textAlign={align}
         textTransform={transform}
         whiteSpace={whiteSpace}
+        wordBreak={wordBreak}
       >
         {children}
       </Box>

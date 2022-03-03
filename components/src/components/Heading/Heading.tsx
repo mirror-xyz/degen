@@ -16,6 +16,7 @@ type Props = {
   id?: string
   transform?: BoxProps['textTransform']
   responsive?: boolean
+  wordBreak?: BoxProps['wordBreak']
 } & styles.Variants
 
 export const Heading = ({
@@ -27,6 +28,7 @@ export const Heading = ({
   level = '2',
   responsive,
   transform,
+  wordBreak,
 }: Props) => {
   return (
     <Box
@@ -40,6 +42,7 @@ export const Heading = ({
       id={id}
       textAlign={align}
       textTransform={transform}
+      wordBreak={wordBreak}
     >
       {children}
     </Box>
