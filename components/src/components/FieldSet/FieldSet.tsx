@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ReactNodeNoStrings } from '../../types'
-import { Box } from '../Box'
+import { Box, BoxProps } from '../Box'
 import { Heading } from '../Heading'
 import { Stack } from '../Stack'
 import { Tag, TagProps } from '../Tag'
@@ -17,6 +17,7 @@ type Props = {
   name?: NativeFieldSetProps['name']
   legend: string
   size?: 'medium' | 'small'
+  space?: BoxProps['gap']
   status?:
     | 'required'
     | 'optional'
@@ -38,6 +39,7 @@ export const FieldSet = ({
   legend,
   name,
   size,
+  space = '4',
   status,
 }: Props) => {
   let statusText: string | undefined
@@ -74,7 +76,7 @@ export const FieldSet = ({
       display="flex"
       flexDirection="column"
       form={form}
-      gap="4"
+      gap={space}
       name={name}
     >
       <Box
