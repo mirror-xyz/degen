@@ -5,6 +5,7 @@ import { Box } from '../Box'
 import { Heading } from '../Heading'
 import { Stack } from '../Stack'
 import { Tag, TagProps } from '../Tag'
+import { Text } from '../Text'
 
 type NativeFieldSetProps = React.AllHTMLAttributes<HTMLFieldSetElement>
 
@@ -15,6 +16,7 @@ type Props = {
   form?: NativeFieldSetProps['form']
   name?: NativeFieldSetProps['name']
   legend: string
+  size?: 'medium' | 'small'
   status?:
     | 'required'
     | 'optional'
@@ -26,6 +28,8 @@ type Props = {
       }
 }
 
+export const Context = React.createContext<{ size?: Props['size'] }>({})
+
 export const FieldSet = ({
   children,
   description,
@@ -33,6 +37,7 @@ export const FieldSet = ({
   form,
   legend,
   name,
+  size,
   status,
 }: Props) => {
   let statusText: string | undefined
@@ -60,6 +65,8 @@ export const FieldSet = ({
     statusTone = status.tone
   }
 
+  const isSmall = size === 'small'
+
   return (
     <Box
       as="fieldset"
@@ -70,22 +77,41 @@ export const FieldSet = ({
       gap="4"
       name={name}
     >
-      <Box display="flex" flexDirection="column" gap="1" paddingX="4">
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={isSmall ? '0' : '1'}
+        paddingX="4"
+      >
         <Stack align="center" direction="horizontal" space="3">
-          <Heading as="legend" level="2" responsive>
-            {legend}
-          </Heading>
+          {isSmall ? (
+            <Text size="base" weight="semiBold">
+              {legend}
+            </Text>
+          ) : (
+            <Heading as="legend" level="2" responsive>
+              {legend}
+            </Heading>
+          )}
           {statusTone && statusText && (
-            <Tag tone={statusTone}>{statusText}</Tag>
+            <Tag size={isSmall ? 'small' : 'medium'} tone={statusTone}>
+              {statusText}
+            </Tag>
           )}
         </Stack>
 
-        <Box color="textSecondary" fontSize="base">
+        <Box
+          color="textSecondary"
+          fontSize={isSmall ? 'small' : 'base'}
+          lineHeight={isSmall ? '1.5' : undefined}
+        >
           {description}
         </Box>
       </Box>
 
-      <Stack>{children}</Stack>
+      <Context.Provider value={{ size }}>
+        <Stack>{children}</Stack>
+      </Context.Provider>
     </Box>
   )
 }

@@ -66,3 +66,37 @@ Uses native [`fieldset[disabled]`](https://developer.mozilla.org/en-US/docs/Web/
   />
 </FieldSet>
 ```
+
+## Size
+
+Notice how the field styles also change inside the `FieldSet` depending on the `size`.
+
+```tsx live=true
+<Stack space="10">
+  <FieldSet
+    description="This is a medium size FieldSet"
+    legend="Token"
+    size="medium"
+    status="required"
+  >
+    <Input
+      description="Token name shows up in wallets."
+      label="Name"
+      placeholder="Mirror Write Token"
+    />
+  </FieldSet>
+
+  <FieldSet
+    description="This is a small size FieldSet"
+    legend="Token"
+    size="small"
+    status="required"
+  >
+    <Input
+      description="Token name shows up in wallets."
+      label="Name"
+      placeholder="Mirror Write Token"
+    />
+  </FieldSet>
+</Stack>
+```

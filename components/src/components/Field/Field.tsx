@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { ReactNodeNoStrings } from '../../types'
 import { useFieldIds } from '../../hooks'
+import { Context as FieldSetContext } from '../FieldSet'
 import { Box, BoxProps } from '../Box'
 import { VisuallyHidden } from '../VisuallyHidden'
 
@@ -36,6 +37,7 @@ export const Field = ({
   required,
   width = 'full',
 }: Props) => {
+  const fieldSetProps = React.useContext(FieldSetContext)
   const ids = useFieldIds({
     id,
     description: description !== undefined,
@@ -51,7 +53,7 @@ export const Field = ({
     >
       <Box
         as="label"
-        color="text"
+        color={fieldSetProps.size === 'small' ? 'textSecondary' : 'text'}
         fontSize="small"
         fontWeight="medium"
         {...ids.label}
@@ -85,7 +87,9 @@ export const Field = ({
 
       {description && (
         <Box
-          color="textSecondary"
+          color={
+            fieldSetProps.size === 'small' ? 'textTertiary' : 'textSecondary'
+          }
           fontSize="small"
           paddingX="4"
           {...ids.description}
