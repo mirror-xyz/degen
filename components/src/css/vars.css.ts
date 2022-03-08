@@ -86,5 +86,5 @@ createGlobalTheme('[data-theme]', accentVars, accentTokens)
 type ColorVars = typeof modeVars & typeof accentVars
 const colorVars = merge(accentVars, modeVars) as ColorVars
 
-export type ThemeVars = typeof baseVars & typeof colorVars
+type ThemeVars = typeof baseVars & typeof colorVars
 export const vars = merge(baseVars, colorVars) as ThemeVars
