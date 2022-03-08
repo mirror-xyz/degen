@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
 import { vars as globalVars } from '../../css'
-import { ThemeVars } from '@/src/css/vars.css'
+import { ThemeVars } from '../../css/vars.css'
 
 type Props = {
   width?: Extract<BoxProps['width'], keyof ThemeVars['space']>
