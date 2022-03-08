@@ -1,14 +1,18 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic'
 import * as React from 'react'
 
 import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
-import { vars as globalVars } from '../../css'
-import { ThemeVars } from '../../css/vars.css'
 
-type Props = {
-  width?: Extract<BoxProps['width'], keyof ThemeVars['space']>
-} & Pick<BoxProps, 'marginX' | 'marginY'> &
+type Props = Pick<
+  BoxProps,
+  | 'marginX'
+  | 'marginY'
+  | 'width'
+  | 'flex'
+  | 'flexBasis'
+  | 'flexGrow'
+  | 'flexShrink'
+> &
   React.InputHTMLAttributes<HTMLInputElement>
 
 export const Range = React.forwardRef(
@@ -25,20 +29,22 @@ export const Range = React.forwardRef(
       form,
       name,
       disabled,
+      flex,
+      flexBasis,
+      flexGrow,
+      flexShrink,
     }: Props,
     ref: React.Ref<HTMLInputElement>,
   ) => {
-    const style = React.useMemo(() => {
-      return assignInlineVars(styles.vars, {
-        trackWidth: globalVars.space[width],
-      })
-    }, [width])
-
     return (
       <Box
         as="input"
         className={styles.range}
         disabled={disabled}
+        flex={flex}
+        flexBasis={flexBasis}
+        flexGrow={flexGrow}
+        flexShrink={flexShrink}
         form={form}
         margin="0"
         marginX={marginX}
@@ -48,9 +54,9 @@ export const Range = React.forwardRef(
         name={name}
         ref={ref}
         step={step}
-        style={style}
         type="range"
         value={value}
+        width={width}
         onChange={onChange}
       />
     )

@@ -14,21 +14,15 @@ import { vars as globalVars } from '../../css'
  * https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
  */
 
-const publicVars = createThemeContract({
-  trackWidth: null,
-})
-
 const privateVars = createThemeContract({
   trackHeight: null,
-  trackColor: null,
-  thumbColor: null,
   thumbSize: null,
 })
 
 const track: StyleRule = {
-  width: publicVars.trackWidth,
+  width: globalVars.space.full,
   height: privateVars.trackHeight,
-  background: privateVars.trackColor,
+  background: globalVars.colors.foregroundSecondary,
   borderRadius: globalVars.radii.full,
 }
 
@@ -36,22 +30,19 @@ const thumb: StyleRule = {
   borderRadius: globalVars.radii.full,
   height: privateVars.thumbSize,
   width: privateVars.thumbSize,
-  background: privateVars.thumbColor,
+  background: globalVars.colors.accent,
   cursor: 'pointer',
 }
 
 export const range = style({
   vars: assignVars(privateVars, {
     trackHeight: globalVars.space['0.5'],
-    trackColor: globalVars.colors.foregroundSecondary,
-    thumbColor: globalVars.colors.accent,
     thumbSize: globalVars.space[6],
   }),
 
   WebkitAppearance: 'none',
   appearance: 'none',
   height: privateVars.thumbSize,
-  width: publicVars.trackWidth,
   background: 'none',
 
   // Track styles
@@ -81,5 +72,3 @@ export const range = style({
     borderWidth: 0,
   },
 })
-
-export { publicVars as vars }
