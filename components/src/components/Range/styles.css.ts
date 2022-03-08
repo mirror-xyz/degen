@@ -8,7 +8,11 @@ import { calc } from '@vanilla-extract/css-utils'
 
 import { vars as globalVars } from '../../css'
 
-// https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+/**
+ * Tested on Chrome, Safari, Firefox
+ * All input styling techniques derived from:
+ * https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/
+ */
 
 const publicVars = createThemeContract({
   trackWidth: null,
