@@ -25,6 +25,7 @@ it('should expose correct exports', () => {
     'Heading',
     'IconNFT',
     'MediaPicker',
+    'Range',
     'Skeleton',
     'SkeletonGroup',
     'Spinner',
