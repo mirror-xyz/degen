@@ -21,7 +21,7 @@ export const Range = React.forwardRef(
       width = 'full',
       marginX = '0',
       marginY = '0',
-      step = 'any',
+      step,
       min,
       max,
       value,
