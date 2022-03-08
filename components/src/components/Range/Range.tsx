@@ -24,16 +24,13 @@ export const Range = React.forwardRef(
       onChange,
       form,
       name,
+      disabled,
     }: Props,
     ref: React.Ref<HTMLInputElement>,
   ) => {
     const style = React.useMemo(() => {
       return assignInlineVars(styles.vars, {
         trackWidth: globalVars.space[width],
-        trackHeight: globalVars.space['0.5'],
-        trackColor: globalVars.colors.foregroundSecondary,
-        thumbColor: globalVars.colors.accent,
-        thumbSize: globalVars.space[6],
       })
     }, [width])
 
@@ -41,6 +38,7 @@ export const Range = React.forwardRef(
       <Box
         as="input"
         className={styles.range}
+        disabled={disabled}
         form={form}
         margin="0"
         marginX={marginX}
