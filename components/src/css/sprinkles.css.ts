@@ -84,7 +84,7 @@ const responsiveProperties = defineProperties({
     borderTopLeftRadius: vars.radii,
     borderTopRightRadius: vars.radii,
     bottom: vars.space,
-    display: ['block', 'flex', 'grid', 'inline-block', 'none'],
+    display: ['block', 'flex', 'grid', 'inline-block', 'none', 'contents'],
     flex: {
       1: '1 1 0%',
       auto: '1 1 auto',
