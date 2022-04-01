@@ -19,12 +19,14 @@ const size = {
     fontSize: 'small',
     height: '10',
     paddingX: '4',
+    gap: '2',
   }),
   medium: atoms({
     borderRadius: '2xLarge',
     fontSize: 'base',
     height: '14',
     paddingX: '5',
+    gap: '4',
   }),
 }
 
@@ -189,7 +191,6 @@ export const variants = recipe({
       alignItems: 'center',
       cursor: 'pointer',
       display: 'flex',
-      gap: '4',
       transitionDuration: '150',
       transitionProperty: 'default',
       transitionTimingFunction: 'inOut',
