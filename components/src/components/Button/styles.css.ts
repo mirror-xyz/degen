@@ -21,6 +21,13 @@ const size = {
     paddingX: '4',
     gap: '2',
   }),
+  medium: atoms({
+    borderRadius: 'large',
+    fontSize: 'small',
+    height: '12',
+    paddingX: '4',
+    gap: '3',
+  }),
   large: atoms({
     borderRadius: '2xLarge',
     fontSize: 'base',
@@ -173,11 +180,11 @@ const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
     atoms({
       borderRadius:
         shape === 'square'
-          ? size === 'small'
+          ? size === 'small' || size === 'medium'
             ? 'large'
             : '2xLarge'
           : undefined,
-      minWidth: size === 'small' ? '10' : '14',
+      minWidth: size === 'small' || size === 'medium' ? '10' : '14',
     }),
     style({
       padding: 0,
@@ -233,8 +240,10 @@ export const variants = recipe({
   compoundVariants: [
     // Shape + Size
     getShapeSizeCompoundVariant('circle', 'large'),
+    getShapeSizeCompoundVariant('circle', 'medium'),
     getShapeSizeCompoundVariant('circle', 'small'),
     getShapeSizeCompoundVariant('square', 'large'),
+    getShapeSizeCompoundVariant('square', 'medium'),
     getShapeSizeCompoundVariant('square', 'small'),
     // Center + Size
     {
