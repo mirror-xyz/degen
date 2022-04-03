@@ -21,7 +21,7 @@ const size = {
     paddingX: '4',
     gap: '2',
   }),
-  medium: atoms({
+  large: atoms({
     borderRadius: '2xLarge',
     fontSize: 'base',
     height: '14',
@@ -232,15 +232,15 @@ export const variants = recipe({
   },
   compoundVariants: [
     // Shape + Size
-    getShapeSizeCompoundVariant('circle', 'medium'),
+    getShapeSizeCompoundVariant('circle', 'large'),
     getShapeSizeCompoundVariant('circle', 'small'),
-    getShapeSizeCompoundVariant('square', 'medium'),
+    getShapeSizeCompoundVariant('square', 'large'),
     getShapeSizeCompoundVariant('square', 'small'),
     // Center + Size
     {
       variants: {
         center: true,
-        size: 'medium',
+        size: 'large',
       },
       style: atoms({
         paddingX: '14',
@@ -249,7 +249,7 @@ export const variants = recipe({
     {
       variants: {
         center: true,
-        size: 'medium',
+        size: 'large',
       },
       style: atoms({
         paddingX: '15',

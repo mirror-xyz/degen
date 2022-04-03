@@ -63,7 +63,7 @@ export const Button = React.forwardRef(
       prefix,
       loading,
       shape,
-      size = 'medium',
+      size = 'large',
       suffix,
       tone = 'accent',
       variant = 'primary',
