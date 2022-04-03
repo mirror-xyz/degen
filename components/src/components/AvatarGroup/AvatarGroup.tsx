@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { Avatar, Props as AvatarProps } from '../Avatar'
 import { Box, BoxProps } from '../Box'
+import { useTheme } from '../ThemeProvider'
 import * as styles from './styles.css'
 
 type Props = {
@@ -21,8 +22,10 @@ export const AvatarGroup = ({
   members = [],
   size = '6',
 }: Props) => {
+  const { mode, forcedMode } = useTheme()
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
+  const variantSize = size < 5 ? 'small' : 'large'
   return (
     <Box alignItems="center" display="flex">
       <Box display="flex">
@@ -32,7 +35,7 @@ export const AvatarGroup = ({
             borderRadius="full"
             className={styles.wrapper}
             key={x.label}
-            marginLeft={i === 0 ? '0' : '-1.5'}
+            marginLeft={i === 0 ? '0' : variantSize === 'small' ? '-1' : '-1.5'}
           >
             <Avatar
               as={as}
@@ -46,10 +49,12 @@ export const AvatarGroup = ({
       </Box>
       {membersCount > limit && (
         <Box
+          className={styles.overflowText({
+            size: variantSize,
+            theme: forcedMode ?? mode ?? 'light',
+          })}
           color="textTertiary"
-          fontSize="base"
           fontWeight="semiBold"
-          marginLeft="1.5"
         >
           +{(membersCount - limit).toLocaleString()}
         </Box>
