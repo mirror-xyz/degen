@@ -44,6 +44,7 @@ type WithTypeNumber = {
   type?: 'number'
   max?: NativeInputProps['max']
   min?: NativeInputProps['min']
+  step?: NativeInputProps['step']
 }
 
 type Props = BaseProps & (WithTypeEmail | WithTypeText | WithTypeNumber)
