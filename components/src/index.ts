@@ -10,6 +10,7 @@ export {
   Heading,
   IconNFT,
   MediaPicker,
+  Range,
   Skeleton,
   SkeletonGroup,
   Spinner,
