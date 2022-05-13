@@ -42,6 +42,7 @@ it('should expose correct exports', () => {
     'atoms',
     'breakpoints',
     'getAccentText',
+    'getModeColors',
     'mapResponsiveValue',
     'motionSafe',
     'normalizeResponsiveValue',

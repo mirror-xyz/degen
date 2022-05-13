@@ -33,6 +33,7 @@ export {
   atoms,
   breakpoints,
   getAccentText,
+  getModeColors,
   mapResponsiveValue,
   motionSafe,
   normalizeResponsiveValue,
