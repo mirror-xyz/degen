@@ -9,6 +9,7 @@ export const fontSizes = {
   extraLarge: '1.3125rem',
   large: '1.1875rem',
   small: '0.9375rem',
+  extraSmall: '0.875rem',
   label: '0.8125rem',
   base: '1.0625rem',
   root: '16px',
