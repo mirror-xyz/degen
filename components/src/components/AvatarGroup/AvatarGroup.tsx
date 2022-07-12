@@ -14,6 +14,7 @@ type Props = {
     src?: AvatarProps['src']
   }[]
   size?: BoxProps['height']
+  tag?: string
 }
 
 export const AvatarGroup = ({
@@ -21,11 +22,14 @@ export const AvatarGroup = ({
   limit = 3,
   members = [],
   size = '6',
+  tag,
 }: Props) => {
   const { mode, forcedMode } = useTheme()
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
   const variantSize = size < 5 ? 'small' : 'large'
+  const showTag = membersCount > limit || tag
+  const tagValue = tag || `+${(membersCount - limit).toLocaleString()}`
   return (
     <Box alignItems="center" display="flex">
       <Box display="flex">
@@ -47,7 +51,7 @@ export const AvatarGroup = ({
           </Box>
         ))}
       </Box>
-      {membersCount > limit && (
+      {showTag && (
         <Box
           className={styles.overflowText({
             size: variantSize,
@@ -56,7 +60,7 @@ export const AvatarGroup = ({
           color="textTertiary"
           fontWeight="semiBold"
         >
-          +{(membersCount - limit).toLocaleString()}
+          {tagValue}
         </Box>
       )}
     </Box>
