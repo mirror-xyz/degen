@@ -22,6 +22,16 @@ export const Avatar = ({
   size = '12',
   src,
 }: Props) => {
+  const [error, setError] = React.useState(false)
+
+  const onError = React.useMemo(() => {
+    if (as !== 'img' || error) {
+      return undefined
+    }
+
+    return () => setError(true)
+  }, [as, error])
+
   return (
     <Box
       backgroundColor="foregroundSecondary"
@@ -32,7 +42,7 @@ export const Avatar = ({
       position="relative"
       width={size}
     >
-      {placeholder ? (
+      {placeholder || error ? (
         <Box
           alignItems="center"
           aria-label={label}
@@ -57,6 +67,7 @@ export const Avatar = ({
               decoding: 'async',
               layout: typeof as === 'string' ? undefined : 'fill',
             }}
+            onError={onError}
           />
         </>
       )}
