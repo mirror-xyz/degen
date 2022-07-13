@@ -9,17 +9,19 @@ export const wrapper = style({
 })
 
 export const overflowText = recipe({
+  base: [
+    wrapper,
+    atoms({
+      alignSelf: 'stretch',
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: 'full',
+    }),
+  ],
   variants: {
     size: {
       small: [
-        atoms({
-          alignSelf: 'stretch',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          borderRadius: 'full',
-        }),
-        wrapper,
         {
           fontSize: 8,
           letterSpacing: '-0.009em',
@@ -28,34 +30,25 @@ export const overflowText = recipe({
           marginLeft: '-0.1875rem',
         },
       ],
-      large: atoms({
-        fontSize: 'base',
-        marginLeft: '1.5',
-      }),
+      large: [
+        atoms({
+          fontSize: 'extraSmall',
+          marginLeft: '-1.5',
+        }),
+        {
+          letterSpacing: '-0.009em',
+          paddingLeft: '0.5rem',
+          paddingRight: '0.5rem',
+        },
+      ],
     },
     theme: {
-      light: {},
-      dark: {},
-    },
-  },
-  compoundVariants: [
-    {
-      variants: {
-        size: 'small',
-        theme: 'light',
-      },
-      style: {
+      light: {
         backgroundColor: '#ECECEC',
       },
-    },
-    {
-      variants: {
-        size: 'small',
-        theme: 'dark',
-      },
-      style: {
+      dark: {
         backgroundColor: '#262626',
       },
     },
-  ],
+  },
 })
