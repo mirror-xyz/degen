@@ -8,6 +8,7 @@ import * as styles from './styles.css'
 type Props = {
   as?: 'img' | React.ComponentType
   limit?: number
+  hover?: boolean
   members: {
     label: AvatarProps['label']
     placeholder?: AvatarProps['placeholder']
@@ -22,6 +23,7 @@ export const AvatarGroup = ({
   as,
   limit = 3,
   members = [],
+  hover,
   size = '6',
   tag,
 }: Props) => {
@@ -58,7 +60,10 @@ export const AvatarGroup = ({
           className={styles.wrapper}
           marginLeft={variantSize === 'small' ? '-1' : '-1.5'}
         >
-          <Tag size={variantSize === 'small' ? 'small' : 'medium'}>
+          <Tag
+            hover={hover}
+            size={variantSize === 'small' ? 'small' : 'medium'}
+          >
             {tagValue}
           </Tag>
         </Box>

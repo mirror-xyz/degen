@@ -8,6 +8,28 @@ export const wrapper = style({
   transform: `translateX(0px)`,
 })
 
+export const variants = recipe({
+  base: [
+    atoms({
+      alignItems: 'center',
+      borderRadius: 'full',
+      display: 'flex',
+      fontWeight: 'medium',
+      width: 'max',
+    }),
+  ],
+  variants: {
+    hover: {
+      true: atoms({
+        transitionProperty: 'colors',
+        transitionDuration: '150',
+        transitionTimingFunction: 'inOut',
+      }),
+      false: {},
+    },
+  },
+})
+
 export const overflowText = recipe({
   base: [
     wrapper,
