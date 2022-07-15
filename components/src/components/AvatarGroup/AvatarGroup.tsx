@@ -12,6 +12,7 @@ type Props = {
     label: AvatarProps['label']
     placeholder?: AvatarProps['placeholder']
     src?: AvatarProps['src']
+    address?: AvatarProps['address']
   }[]
   size?: BoxProps['height']
   tag?: string
