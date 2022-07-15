@@ -28,11 +28,13 @@ import { Avatar } from 'degen'
 
 ## Placeholder
 
-A placeholder can be shown by setting the `placeholder` prop to true. It will also be shown if the `src` is invalid and can not be loaded.
+A placeholder can be shown by setting the `placeholder` prop to true. The color is determined by the (optional) `address` prompt. It will default to blue. The placeholder will also be shown if the `src` is invalid and can not be loaded.
 
 ```tsx live=true expand=true
 <Stack align="center" direction="horizontal" wrap>
-  <Avatar placeholder />
+  <Avatar address="0x62500C50fh999506597609B640F1D3672A0082Dc" placeholder />
+  <Avatar address="0x78Bddfs96cC5c0d6B506597609B64F1D999D82Dc" placeholder />
+  <Avatar address="0x625BBa96Cc5c0d6B506597609B64F1D3672D82Dc" placeholder />
   <Avatar src="bad/url" />
 </Stack>
 ```
