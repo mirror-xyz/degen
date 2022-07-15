@@ -44,10 +44,10 @@ export const overflowText = recipe({
     },
     theme: {
       light: {
-        backgroundColor: '#ECECEC',
+        backgroundColor: '#F6F6F6',
       },
       dark: {
-        backgroundColor: '#262626',
+        backgroundColor: '#1D1D1D',
       },
     },
   },

@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Avatar, Props as AvatarProps } from '../Avatar'
 import { Box, BoxProps } from '../Box'
-import { useTheme } from '../ThemeProvider'
+import { Tag } from '../Tag'
 import * as styles from './styles.css'
 
 type Props = {
@@ -25,7 +25,6 @@ export const AvatarGroup = ({
   size = '6',
   tag,
 }: Props) => {
-  const { mode, forcedMode } = useTheme()
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
   const variantSize = size < 5 ? 'small' : 'large'
@@ -54,14 +53,14 @@ export const AvatarGroup = ({
       </Box>
       {showTag && (
         <Box
-          className={styles.overflowText({
-            size: variantSize,
-            theme: forcedMode ?? mode ?? 'light',
-          })}
-          color="textTertiary"
-          fontWeight="semiBold"
+          backgroundColor="background"
+          borderRadius="full"
+          className={styles.wrapper}
+          marginLeft={variantSize === 'small' ? '-1' : '-1.5'}
         >
-          {tagValue}
+          <Tag size={variantSize === 'small' ? 'small' : 'medium'}>
+            {tagValue}
+          </Tag>
         </Box>
       )}
     </Box>
