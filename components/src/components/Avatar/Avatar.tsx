@@ -16,7 +16,7 @@ export type Props = {
 const BACKGROUND_GRADIENTS = [
   'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #007AFF 0%, #00E0FF 100%)',
   'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #FF3B30 0%, #FFA030 100%)',
-  'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #34C759 34.38%, #34C780 100%)',
+  'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #34C759 34.38%, #7AF599 100%)',
 ]
 
 export const Avatar = ({
