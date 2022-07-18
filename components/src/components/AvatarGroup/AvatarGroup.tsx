@@ -44,6 +44,7 @@ export const AvatarGroup = ({
             marginLeft={i === 0 ? '0' : variantSize === 'small' ? '-1' : '-1.5'}
           >
             <Avatar
+              address={x.address}
               as={as}
               label={x.label}
               placeholder={x.placeholder}
