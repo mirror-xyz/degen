@@ -1,0 +1,26 @@
+---
+title: ButtonCard
+description: Card with button and text
+---
+
+```tsx
+import { ButtonCard } from 'degen'
+```
+
+```tsx live=true expand=true
+<ButtonCard
+  buttonText="Connect Wallet"
+  prefix={<IconExclamationCircle color="blue" />}
+  width="96"
+>
+  Collecting this entry requires a minimum balance of{' '}
+  <Text as="span" color="inherit" size="inherit" weight="semiBold">
+    0.1 Optimistic ETH
+  </Text>
+  . You can resolve this by bridging your ETH to oETH.
+</ButtonCard>
+```
+
+## Props
+
+<PropsTable sourceLink={sourceLink} types={types} />
