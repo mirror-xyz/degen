@@ -18,6 +18,7 @@ it('should expose correct exports', () => {
     'AvatarGroup',
     'Box',
     'Button',
+    'ButtonCard',
     'Card',
     'Field',
     'FieldSet',
