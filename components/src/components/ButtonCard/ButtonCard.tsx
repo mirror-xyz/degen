@@ -6,14 +6,24 @@ import { Props as ButtonProps } from '../Button/Button'
 import { Spinner } from '../Spinner'
 import * as styles from './styles.css'
 
-type Props = {
+type BaseProps = {
   /** Adds ReactNode before children */
   prefix?: ReactNodeNoStrings
   /** Adds ReactNode after children */
   suffix?: ReactNodeNoStrings
   /** Text displayed on button */
   buttonText: string
-} & Pick<ButtonProps, 'onClick' | 'width' | 'loading'>
+} & Pick<ButtonProps, 'onClick' | 'width' | 'loading' | 'disabled' | 'as'>
+
+type WithAnchor = {
+  as?: 'a'
+} & Pick<JSX.IntrinsicElements['a'], 'href' | 'rel' | 'target'>
+
+type WithoutAnchor = {
+  as?: 'button'
+}
+
+export type Props = BaseProps & (WithAnchor | WithoutAnchor)
 
 export const ButtonCard = ({
   prefix,
@@ -21,8 +31,8 @@ export const ButtonCard = ({
   width,
   buttonText,
   children,
-  onClick,
   loading,
+  ...buttonProps
 }: React.PropsWithChildren<Props>) => {
   return (
     <Box width={width}>
@@ -31,7 +41,11 @@ export const ButtonCard = ({
         <Box>{children}</Box>
         {suffix && <Box marginLeft="4">{suffix}</Box>}
       </Box>
-      <Box as="button" className={styles.button} onClick={onClick}>
+      <Box
+        as={buttonProps.as || 'button'}
+        className={styles.variants({ disabled: !!buttonProps.disabled })}
+        {...buttonProps}
+      >
         {buttonText}
         {loading && (
           <Box marginLeft="4">
