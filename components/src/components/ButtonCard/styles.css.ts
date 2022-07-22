@@ -1,3 +1,5 @@
+import { recipe } from '@vanilla-extract/recipes'
+
 import { atoms } from '../../css'
 
 export const card = atoms({
@@ -15,20 +17,35 @@ export const card = atoms({
   justifyContent: 'center',
 })
 
-export const button = atoms({
-  backgroundColor: { hover: 'accentSecondaryHover', base: 'accent' },
-  borderBottomRadius: 'large',
-  color: 'accentText',
-  cursor: 'pointer',
-  fontSize: 'small',
-  fontWeight: 'semiBold',
-  height: '12',
-  paddingX: '4',
-  transitionDuration: '150',
-  transitionProperty: 'colors',
-  width: 'full',
-  display: 'flex',
-  flexDirection: 'row',
-  alignItems: 'center',
-  justifyContent: 'center',
+export const variants = recipe({
+  base: [
+    atoms({
+      borderBottomRadius: 'large',
+      fontSize: 'small',
+      fontWeight: 'semiBold',
+      height: '12',
+      paddingX: '4',
+      transitionDuration: '150',
+      transitionProperty: 'colors',
+      width: 'full',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }),
+  ],
+  variants: {
+    disabled: {
+      true: atoms({
+        backgroundColor: 'foregroundSecondary',
+        color: 'textTertiary',
+        cursor: 'not-allowed',
+      }),
+      false: atoms({
+        backgroundColor: { hover: 'accentSecondaryHover', base: 'accent' },
+        color: 'accentText',
+        cursor: 'pointer',
+      }),
+    },
+  },
 })
