@@ -42,7 +42,7 @@ export const variants = recipe({
         cursor: 'not-allowed',
       }),
       false: atoms({
-        backgroundColor: { hover: 'accentSecondaryHover', base: 'accent' },
+        backgroundColor: 'accent',
         color: 'accentText',
         cursor: 'pointer',
       }),
