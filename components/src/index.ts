@@ -23,6 +23,8 @@ export {
   Input,
   ThemeProvider,
   useTheme,
+  themeModeAttribute,
+  getThemeAccentStyles,
   VisuallyHidden,
 } from './components'
 export type { BoxProps } from './components'

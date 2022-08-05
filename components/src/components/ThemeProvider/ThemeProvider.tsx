@@ -23,7 +23,7 @@ type ThemeContextValue = {
 
 const ThemeContext = React.createContext<ThemeContextValue | null>(null)
 
-export const attribute = 'data-theme'
+export const themeModeAttribute = 'data-theme'
 
 export type ThemeProviderProps = {
   /** Default accent name. */
@@ -67,14 +67,11 @@ export const ThemeProvider = ({
     const root = getElement(element)
     if (root) {
       const enable = disableAnimation()
-      root.setAttribute(attribute, resolvedMode)
-      setElementVars(root as HTMLElement, {
-        [vars.mode.colors.accent]: getModeColors(resolvedMode)[resolvedAccent],
-        [vars.mode.colors.accentText]: getAccentText(
-          resolvedMode,
-          resolvedAccent,
-        ),
-      })
+      root.setAttribute(themeModeAttribute, resolvedMode)
+      setElementVars(
+        root as HTMLElement,
+        getThemeAccentStyles({ mode: resolvedMode, accent: resolvedAccent }),
+      )
       enable()
     }
   }, [element, resolvedAccent, resolvedMode])
@@ -86,6 +83,19 @@ export const useTheme = () => {
   const context = React.useContext(ThemeContext)
   if (!context) throw Error('Must be used within ThemeProvider')
   return context
+}
+
+export const getThemeAccentStyles = ({
+  mode,
+  accent,
+}: {
+  mode: Mode
+  accent: Accent
+}) => {
+  return {
+    [vars.mode.colors.accent]: getModeColors(mode)[accent],
+    [vars.mode.colors.accentText]: getAccentText(mode, accent),
+  }
 }
 
 const getElement = (selector: string | HTMLElement = ':root') => {
