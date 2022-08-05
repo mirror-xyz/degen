@@ -3,7 +3,7 @@ import { render } from '@testing-library/react'
 
 import { Providers, actHook, cleanup, renderHook, screen } from '@/test'
 
-import { ThemeProvider, attribute, useTheme } from './ThemeProvider'
+import { ThemeProvider, themeModeAttribute, useTheme } from './ThemeProvider'
 
 describe('<ThemeProvider />', () => {
   afterEach(cleanup)
@@ -16,7 +16,9 @@ describe('<ThemeProvider />', () => {
   it('forcedMode', () => {
     render(<ThemeProvider forcedMode="dark">foo bar baz</ThemeProvider>)
     expect(
-      document.querySelector(`[${attribute}]`)?.getAttribute(attribute),
+      document
+        .querySelector(`[${themeModeAttribute}]`)
+        ?.getAttribute(themeModeAttribute),
     ).toStrictEqual('dark')
   })
 })

@@ -23,7 +23,7 @@ type ThemeContextValue = {
 
 const ThemeContext = React.createContext<ThemeContextValue | null>(null)
 
-export const attribute = 'data-theme'
+export const themeModeAttribute = 'data-theme'
 
 export type ThemeProviderProps = {
   /** Default accent name. */
@@ -46,77 +46,35 @@ export const ThemeProvider = ({
   forcedAccent,
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
-  const [state, setState] = React.useState<{
-    accent: Accent
-    mode: Mode
-  }>({
-    accent: defaultAccent,
-    mode: defaultMode,
-  })
-
-  const setAccent = React.useCallback(
-    (accent: Accent) => {
-      setState((x) => {
-        const root = getElement(element)
-        if (root) {
-          const enable = disableAnimation()
-          const resolvedAccent = forcedAccent ?? accent
-          const resolvedMode = forcedMode ?? x.mode
-          setElementVars(root as HTMLElement, {
-            [vars.mode.colors.accent]:
-              getModeColors(resolvedMode)[resolvedAccent],
-            [vars.mode.colors.accentText]: getAccentText(
-              resolvedMode,
-              resolvedAccent,
-            ),
-          })
-          enable()
-        }
-        return { ...x, accent }
-      })
-    },
-    [element, forcedAccent, forcedMode],
-  )
-
-  const setMode = React.useCallback(
-    (mode: Mode) => {
-      setState((x) => ({ ...x, mode }))
-      const enable = disableAnimation()
-      const root = getElement(element)
-      root?.setAttribute(attribute, mode)
-      enable()
-    },
-    [element],
-  )
+  const [accent, setAccent] = React.useState<Accent>(defaultAccent)
+  const [mode, setMode] = React.useState<Mode>(defaultMode)
 
   const value = React.useMemo(
     () => ({
-      accent: state.accent,
+      accent: accent,
       forcedAccent,
       forcedMode,
-      mode: state.mode,
+      mode: mode,
       setAccent,
       setMode,
     }),
-    [forcedAccent, forcedMode, state.accent, state.mode, setAccent, setMode],
+    [forcedAccent, forcedMode, accent, mode],
   )
 
-  // Set accent and mode on load
-  /* eslint-disable react-hooks/exhaustive-deps */
+  const resolvedAccent = forcedAccent ?? accent
+  const resolvedMode = forcedMode ?? mode
   React.useEffect(() => {
     const root = getElement(element)
-    const mode = forcedMode ?? defaultMode
-    root?.setAttribute(attribute, mode)
-    setAccent(defaultAccent)
-  }, [])
-  /* eslint-enable react-hooks/exhaustive-deps */
-
-  // When mode changes, update accent
-  /* eslint-disable react-hooks/exhaustive-deps */
-  React.useEffect(() => {
-    setAccent(state.accent)
-  }, [state.mode])
-  /* eslint-enable react-hooks/exhaustive-deps */
+    if (root) {
+      const enable = disableAnimation()
+      root.setAttribute(themeModeAttribute, resolvedMode)
+      setElementVars(
+        root as HTMLElement,
+        getThemeAccentStyles({ mode: resolvedMode, accent: resolvedAccent }),
+      )
+      enable()
+    }
+  }, [element, resolvedAccent, resolvedMode])
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
@@ -125,6 +83,19 @@ export const useTheme = () => {
   const context = React.useContext(ThemeContext)
   if (!context) throw Error('Must be used within ThemeProvider')
   return context
+}
+
+export const getThemeAccentStyles = ({
+  mode,
+  accent,
+}: {
+  mode: Mode
+  accent: Accent
+}) => {
+  return {
+    [vars.mode.colors.accent]: getModeColors(mode)[accent],
+    [vars.mode.colors.accentText]: getAccentText(mode, accent),
+  }
 }
 
 const getElement = (selector: string | HTMLElement = ':root') => {
