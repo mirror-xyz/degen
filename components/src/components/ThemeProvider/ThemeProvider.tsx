@@ -76,12 +76,11 @@ export const ThemeProvider = ({
     [forcedAccent, forcedMode, state.accent, state.mode, setAccent, setMode],
   )
 
+  const resolvedAccent = forcedAccent ?? state.accent
+  const resolvedMode = forcedMode ?? state.mode
   React.useEffect(() => {
     const root = getElement(element)
     if (root) {
-      const resolvedAccent = forcedAccent ?? state.accent
-      const resolvedMode = forcedMode ?? state.mode
-
       const enable = disableAnimation()
       root.setAttribute(attribute, resolvedMode)
       setElementVars(root as HTMLElement, {
@@ -93,7 +92,7 @@ export const ThemeProvider = ({
       })
       enable()
     }
-  }, [element, forcedAccent, forcedMode, state.accent, state.mode])
+  }, [element, resolvedAccent, resolvedMode])
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
