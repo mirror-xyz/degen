@@ -58,7 +58,7 @@ export const ThemeProvider = ({
       setAccent,
       setMode,
     }),
-    [forcedAccent, forcedMode, accent, mode, setAccent, setMode],
+    [forcedAccent, forcedMode, accent, mode],
   )
 
   const resolvedAccent = forcedAccent ?? accent
