@@ -46,38 +46,23 @@ export const ThemeProvider = ({
   forcedAccent,
   forcedMode,
 }: React.PropsWithChildren<ThemeProviderProps>) => {
-  const [state, setState] = React.useState<{
-    accent: Accent
-    mode: Mode
-  }>({
-    accent: defaultAccent,
-    mode: defaultMode,
-  })
-
-  const setAccent = React.useCallback((accent: Accent) => {
-    setState((x) => {
-      return { ...x, accent }
-    })
-  }, [])
-
-  const setMode = React.useCallback((mode: Mode) => {
-    setState((x) => ({ ...x, mode }))
-  }, [])
+  const [accent, setAccent] = React.useState<Accent>(defaultAccent)
+  const [mode, setMode] = React.useState<Mode>(defaultMode)
 
   const value = React.useMemo(
     () => ({
-      accent: state.accent,
+      accent: accent,
       forcedAccent,
       forcedMode,
-      mode: state.mode,
+      mode: mode,
       setAccent,
       setMode,
     }),
-    [forcedAccent, forcedMode, state.accent, state.mode, setAccent, setMode],
+    [forcedAccent, forcedMode, accent, mode, setAccent, setMode],
   )
 
-  const resolvedAccent = forcedAccent ?? state.accent
-  const resolvedMode = forcedMode ?? state.mode
+  const resolvedAccent = forcedAccent ?? accent
+  const resolvedMode = forcedMode ?? mode
   React.useEffect(() => {
     const root = getElement(element)
     if (root) {
