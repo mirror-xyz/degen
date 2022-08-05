@@ -64,6 +64,18 @@ export const ThemeProvider = ({
     setState((x) => ({ ...x, mode }))
   }, [])
 
+  const value = React.useMemo(
+    () => ({
+      accent: state.accent,
+      forcedAccent,
+      forcedMode,
+      mode: state.mode,
+      setAccent,
+      setMode,
+    }),
+    [forcedAccent, forcedMode, state.accent, state.mode, setAccent, setMode],
+  )
+
   React.useEffect(() => {
     const root = getElement(element)
     if (root) {
@@ -82,18 +94,6 @@ export const ThemeProvider = ({
       enable()
     }
   }, [element, forcedAccent, forcedMode, state.accent, state.mode])
-
-  const value = React.useMemo(
-    () => ({
-      accent: state.accent,
-      forcedAccent,
-      forcedMode,
-      mode: state.mode,
-      setAccent,
-      setMode,
-    }),
-    [forcedAccent, forcedMode, state.accent, state.mode, setAccent, setMode],
-  )
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
