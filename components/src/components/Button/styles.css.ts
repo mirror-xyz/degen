@@ -4,6 +4,8 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 
 import { atoms, rgb, vars } from '../../css'
 
+const boxShadowColorVar = createVar()
+
 const shape = {
   circle: atoms({
     borderRadius: 'full',
@@ -54,6 +56,7 @@ const getAccentVars = (colorVar: CSSVarFunction) => ({
 
 const tone = {
   accent: {},
+  background: {},
   blue: style({
     vars: getAccentVars(vars.mode.colors.blue),
   }),
@@ -72,8 +75,6 @@ const tone = {
 }
 
 export type Tone = keyof typeof tone
-
-const boxShadowColorVar = createVar()
 
 const variant = {
   primary: style([
@@ -253,6 +254,20 @@ export const variants = recipe({
       },
       style: atoms({
         paddingX: '14',
+      }),
+    },
+    // background tone
+    {
+      variants: {
+        tone: 'background',
+        variant: 'secondary',
+      },
+      style: style({
+        vars: {
+          [boxShadowColorVar]: vars.colors.background,
+          [vars.colors.accentSecondaryHover]: vars.colors.background,
+        },
+        backgroundColor: vars.colors.background,
       }),
     },
     {

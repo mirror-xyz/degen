@@ -3,7 +3,7 @@ import { recipe } from '@vanilla-extract/recipes'
 import { atoms } from '../../css'
 
 export const card = atoms({
-  backgroundColor: 'backgroundSecondary',
+  backgroundColor: 'foregroundTertiary',
   borderBottomRadius: 'none',
   borderTopRadius: 'large',
   padding: '4',
