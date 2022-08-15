@@ -158,13 +158,33 @@ Optional `center` prop reserves space for affixes and loading spinner.
 ## Shapes
 
 ```tsx live=true
-<Stack direction="horizontal" wrap>
-  <Button shape="square">
-    <IconPlusSmall />
-  </Button>
-  <Button shape="circle">
-    <IconPlusSmall />
-  </Button>
+<Stack direction="vertical">
+  <Stack direction="horizontal" wrap>
+    <Button shape="square">
+      <IconPlusSmall />
+    </Button>
+    <Button shape="circle">
+      <IconPlusSmall />
+    </Button>
+  </Stack>
+
+  <Stack direction="horizontal" wrap>
+    <Button shape="square" size="medium">
+      <IconPlusSmall />
+    </Button>
+    <Button shape="circle" size="medium">
+      <IconPlusSmall />
+    </Button>
+  </Stack>
+
+  <Stack direction="horizontal" wrap>
+    <Button shape="square" size="small">
+      <IconPlusSmall />
+    </Button>
+    <Button shape="circle" size="small">
+      <IconPlusSmall />
+    </Button>
+  </Stack>
 </Stack>
 ```
 
