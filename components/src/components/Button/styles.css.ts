@@ -5,38 +5,60 @@ import { RecipeVariants, recipe } from '@vanilla-extract/recipes'
 import { atoms, rgb, vars } from '../../css'
 
 const boxShadowColorVar = createVar()
+const buttonSize = createVar()
 
 const shape = {
-  circle: atoms({
-    borderRadius: 'full',
-  }),
-  square: {},
+  circle: [
+    { minWidth: buttonSize },
+    atoms({
+      borderRadius: 'full',
+    }),
+  ],
+  square: { minWidth: buttonSize },
 }
 
 export type Shape = keyof typeof shape
 
 const size = {
-  small: atoms({
-    borderRadius: 'large',
-    fontSize: 'small',
-    height: '10',
-    paddingX: '4',
-    gap: '2',
-  }),
-  medium: atoms({
-    borderRadius: 'large',
-    fontSize: 'small',
-    height: '12',
-    paddingX: '4',
-    gap: '3',
-  }),
-  large: atoms({
-    borderRadius: '2xLarge',
-    fontSize: 'base',
-    height: '14',
-    paddingX: '5',
-    gap: '4',
-  }),
+  small: [
+    {
+      vars: {
+        [buttonSize]: vars.space['10'],
+      },
+    },
+    atoms({
+      borderRadius: 'large',
+      fontSize: 'small',
+      paddingX: '4',
+      gap: '2',
+    }),
+  ],
+  medium: [
+    {
+      vars: {
+        [buttonSize]: vars.space['12'],
+      },
+    },
+    atoms({
+      borderRadius: 'large',
+      fontSize: 'small',
+      paddingX: '4',
+      gap: '3',
+    }),
+  ],
+  large: [
+    {
+      vars: {
+        [buttonSize]: vars.space['14'],
+      },
+    },
+    atoms({
+      borderRadius: '2xLarge',
+      fontSize: 'base',
+      paddingX: '5',
+      gap: '4',
+    }),
+  ],
 }
 
 export type Size = keyof typeof size
@@ -185,7 +207,6 @@ const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
             ? 'large'
             : '2xLarge'
           : undefined,
-      minWidth: size === 'small' || size === 'medium' ? '10' : '14',
     }),
     style({
       padding: 0,
@@ -204,6 +225,7 @@ export const variants = recipe({
       transitionTimingFunction: 'inOut',
     }),
     style({
+      height: buttonSize,
       boxShadow: `${vars.shadows['0']} ${boxShadowColorVar}`,
       selectors: {
         '&:hover': {
