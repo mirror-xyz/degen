@@ -39,7 +39,13 @@ import { Tag } from 'degen'
 ## Label
 
 ```tsx live=true
-<Tag label="Sold Out">100/100</Tag>
+<Stack direction="vertical">
+  <Tag label="Sold Out">100/100</Tag>
+
+  <Tag label="Sold Out" size="small">
+    100/100
+  </Tag>
+</Stack>
 ```
 
 ## Hover

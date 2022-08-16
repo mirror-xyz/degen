@@ -37,7 +37,7 @@ export const variants = recipe({
       alignItems: 'center',
       borderRadius: 'full',
       display: 'flex',
-      fontWeight: 'medium',
+      fontWeight: 'normal',
       width: 'max',
     }),
   ],
@@ -57,7 +57,7 @@ export const variants = recipe({
       }),
       medium: atoms({
         height: '6',
-        fontSize: 'small',
+        fontSize: 'extraSmall',
       }),
     },
     tone: {
