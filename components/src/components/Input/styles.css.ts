@@ -9,12 +9,13 @@ export const root = recipe({
   base: [
     atoms({
       backgroundColor: 'background',
-      borderWidth: '0.5',
+      borderWidth: 'px',
       borderColor: 'foregroundSecondary',
-      borderRadius: '2xLarge',
+      borderRadius: 'large',
       color: 'text',
       display: 'flex',
-      height: '14',
+      fontSize: 'small',
+      height: '12',
       transitionDuration: '150',
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
@@ -62,8 +63,7 @@ const container = atoms({
 const text = atoms({
   color: 'inherit',
   fontFamily: 'sans',
-  fontSize: 'base',
-  fontWeight: 'medium',
+  fontSize: 'small',
 })
 
 const affix = style([container, text, style({ lineHeight: 'normal' })])

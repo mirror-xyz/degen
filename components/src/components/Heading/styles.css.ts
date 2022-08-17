@@ -22,6 +22,14 @@ const level = {
       lineHeight: '1.25',
     }),
   ]),
+  '3': style([
+    atoms({
+      fontSize: 'headingThree',
+      fontWeight: 'semiBold',
+      letterSpacing: '-0.02',
+      lineHeight: '1.25',
+    }),
+  ]),
 }
 
 export const variants = recipe({
@@ -50,6 +58,16 @@ export const variants = recipe({
       style: atoms({
         fontSize: { xs: 'extraLarge', sm: 'headingTwo' },
         letterSpacing: { xs: '-0.015', sm: '-0.02' },
+      }),
+    },
+    {
+      variants: {
+        level: '3',
+        responsive: true,
+      },
+      style: atoms({
+        fontSize: 'extraLarge',
+        letterSpacing: '-0.015',
       }),
     },
   ],

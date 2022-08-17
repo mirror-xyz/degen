@@ -91,7 +91,7 @@ export const FieldSet = ({
               {legend}
             </Text>
           ) : (
-            <Heading as="legend" level="2" responsive>
+            <Heading as="legend" level="3">
               {legend}
             </Heading>
           )}
@@ -104,7 +104,7 @@ export const FieldSet = ({
 
         <Box
           color="textSecondary"
-          fontSize={isSmall ? 'small' : 'base'}
+          fontSize="small"
           lineHeight={isSmall ? '1.5' : undefined}
         >
           {description}

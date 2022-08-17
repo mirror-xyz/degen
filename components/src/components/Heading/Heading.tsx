@@ -6,6 +6,7 @@ import * as styles from './styles.css'
 const resolveDefaultComponent = {
   '1': 'h1',
   '2': 'h2',
+  '3': 'h3',
 } as const
 
 type Props = {
