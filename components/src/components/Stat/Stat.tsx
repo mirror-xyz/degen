@@ -24,7 +24,11 @@ export const Stat = ({ label, meta, size = 'medium', value }: Props) => {
           {value}
         </Text>
       )}
-      {meta !== undefined && <Text color="textTertiary">{meta}</Text>}
+      {meta !== undefined && (
+        <Text color="textTertiary" size="small">
+          {meta}
+        </Text>
+      )}
     </Stack>
   )
 }
