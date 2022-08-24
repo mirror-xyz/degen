@@ -116,7 +116,7 @@ const iconComponentsDir = path.join(
           export const ${svgName} = ({
             color,
             size = '6',
-            strokeWidth = '0.5',
+            strokeWidth = '0.375',
             ...props
           }: Props) => {
             return (
