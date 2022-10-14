@@ -1,2 +1,2 @@
-export { Avatar } from './Avatar'
+export { Avatar, getAvatarGradient } from './Avatar'
 export type { Props } from './Avatar'
