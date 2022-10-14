@@ -1,5 +1,6 @@
 export {
   Avatar,
+  getAvatarGradient,
   AvatarGroup,
   Box,
   Button,
