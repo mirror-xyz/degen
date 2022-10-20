@@ -63,6 +63,13 @@ export const variants = recipe({
         }),
       ]),
     },
+    underline: {
+      true: style([
+        style({
+          textDecoration: 'underline',
+        }),
+      ]),
+    },
   },
 })
 
