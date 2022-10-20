@@ -27,6 +27,7 @@ type Props = {
   weight?: BoxProps['fontWeight']
   whiteSpace?: BoxProps['whiteSpace']
   wordBreak?: BoxProps['wordBreak']
+  underline?: boolean
 } & styles.Variants
 
 export const Text = React.forwardRef(
@@ -46,6 +47,7 @@ export const Text = React.forwardRef(
       weight,
       whiteSpace,
       wordBreak,
+      underline,
     }: Props,
     ref: React.Ref<HTMLElement>,
   ) => {
@@ -55,6 +57,7 @@ export const Text = React.forwardRef(
         className={styles.variants({
           variant,
           ellipsis: ellipsis ? true : undefined,
+          underline: underline ? true : undefined,
         })}
         color={color}
         fontFamily={font}
