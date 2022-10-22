@@ -68,7 +68,11 @@ export const Avatar = ({
       minWidth={size}
       overflow="hidden"
       position="relative"
-      style={{ background: getAvatarGradient(address).value }}
+      style={
+        showPlaceholder
+          ? { background: getAvatarGradient(address).value }
+          : undefined
+      }
       width={size}
     >
       {!showPlaceholder && (
