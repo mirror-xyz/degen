@@ -15,9 +15,21 @@ export type Props = {
 
 export function getAvatarGradient(address = '0') {
   const BACKGROUND_GRADIENTS = [
-    'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #007AFF 0%, #00E0FF 100%)',
-    'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #FF3B30 0%, #FFA030 100%)',
-    'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #34C759 34.38%, #7AF599 100%)',
+    {
+      color: 'blue',
+      value:
+        'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #007AFF 0%, #00E0FF 100%)',
+    },
+    {
+      color: 'orange',
+      value:
+        'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #FF3B30 0%, #FFA030 100%)',
+    },
+    {
+      color: 'green',
+      value:
+        'radial-gradient(79.05% 79.05% at 21.62% 20.95%, #34C759 34.38%, #7AF599 100%)',
+    },
   ] as const
 
   return BACKGROUND_GRADIENTS[parseInt(address ?? '0') % 3]
@@ -56,7 +68,7 @@ export const Avatar = ({
       minWidth={size}
       overflow="hidden"
       position="relative"
-      style={{ background: getAvatarGradient(address) }}
+      style={{ background: getAvatarGradient(address).value }}
       width={size}
     >
       {!showPlaceholder && (
