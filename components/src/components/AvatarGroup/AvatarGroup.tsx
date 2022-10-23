@@ -29,7 +29,7 @@ export const AvatarGroup = ({
 }: Props) => {
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
-  const variantSize = size < 5 ? 'small' : 'large'
+  const variantSize = size < 6 ? 'small' : 'large'
   const showTag = membersCount > limit || tag
   const tagValue = tag || `+${(membersCount - limit).toLocaleString()}`
   return (
