@@ -4,7 +4,7 @@ description: Group of entity representations
 ---
 
 ```tsx
-import { AvatarGroup } from 'degen'
+import { AvatarGroup, Box, IconSparkles } from 'degen'
 ```
 
 ```tsx live=true expand=true
@@ -98,5 +98,32 @@ See [`Avatar`'s props](/components/Avatar#props) for more info.
     { label: 'Noun 3', address: '0x625BBa96Cc5c0d6B506597609B64F1D3672D82Dc' },
   ]}
   tag="Custom Tag"
+/>
+```
+
+## Custom JSX Tag
+
+```tsx live=true expand=true
+<AvatarGroup
+  limit={3}
+  members={[
+    { label: 'Noun 97', address: '0x62500C50fh999506597609B640F1D3672A0082Dc' },
+    { label: 'Noun 11', address: '0x78Bddfs96cC5c0d6B506597609B64F1D999D82Dc' },
+    { label: 'Noun 3', address: '0x625BBa96Cc5c0d6B506597609B64F1D3672D82Dc' },
+  ]}
+  size="5"
+  tag={
+    <Box
+      alignItems="center"
+      aspectRatio="1/1"
+      backgroundColor="foregroundSecondary"
+      borderRadius="full"
+      display="flex"
+      height="5"
+      justifyContent="center"
+    >
+      <IconSparkles color="textSecondary" size="3" />
+    </Box>
+  }
 />
 ```

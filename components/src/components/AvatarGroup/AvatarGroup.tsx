@@ -16,7 +16,7 @@ type Props = {
     address?: AvatarProps['address']
   }[]
   size?: BoxProps['height']
-  tag?: string
+  tag?: string | JSX.Element
 }
 
 export const AvatarGroup = ({
@@ -30,7 +30,7 @@ export const AvatarGroup = ({
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
   const variantSize = size < 6 ? 'small' : 'large'
-  const showTag = membersCount > limit || tag
+  const showTag = membersCount > limit || !!tag
   const tagValue = tag || `+${(membersCount - limit).toLocaleString()}`
   return (
     <Box alignItems="center" display="flex">
@@ -61,12 +61,16 @@ export const AvatarGroup = ({
           className={styles.wrapper}
           marginLeft={variantSize === 'small' ? '-1' : '-1.5'}
         >
-          <Tag
-            hover={hover}
-            size={variantSize === 'small' ? 'small' : 'medium'}
-          >
-            {tagValue}
-          </Tag>
+          {typeof tagValue === 'string' ? (
+            <Tag
+              hover={hover}
+              size={variantSize === 'small' ? 'small' : 'medium'}
+            >
+              {tagValue}
+            </Tag>
+          ) : (
+            tagValue
+          )}
         </Box>
       )}
     </Box>
