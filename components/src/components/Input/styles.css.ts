@@ -93,6 +93,7 @@ export const input = recipe({
       number: style({
         fontFeatureSettings: "'kern' 1,  'tnum' 1, 'calt' 0",
         fontVariantNumeric: 'tabular-nums',
+        MozAppearance: 'textfield',
       }),
       text: {},
     },
