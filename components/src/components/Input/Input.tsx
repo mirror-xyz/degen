@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { Box, BoxProps } from '../Box'
 import { Field, FieldBaseProps } from '../Field'
+import { useTheme } from '../ThemeProvider'
 import * as styles from './styles.css'
 
 type NativeInputProps = React.AllHTMLAttributes<HTMLInputElement>
@@ -47,7 +48,14 @@ type WithTypeNumber = {
   step?: NativeInputProps['step']
 }
 
-type Props = BaseProps & (WithTypeEmail | WithTypeText | WithTypeNumber)
+type WithTypeDateTime = {
+  type?: 'datetime-local'
+  max?: NativeInputProps['max']
+  min?: NativeInputProps['min']
+}
+
+type Props = BaseProps &
+  (WithTypeEmail | WithTypeText | WithTypeNumber | WithTypeDateTime)
 
 export const Input = React.forwardRef(
   (
@@ -87,6 +95,7 @@ export const Input = React.forwardRef(
   ) => {
     const defaultRef = React.useRef<HTMLInputElement>(null)
     const inputRef = (ref as React.RefObject<HTMLInputElement>) || defaultRef
+    const theme = useTheme()
 
     const [state, setState] = React.useState<{
       ghostValue?: Props['value']
@@ -184,6 +193,7 @@ export const Input = React.forwardRef(
                   styles.input({
                     disabled,
                     type: inputType,
+                    theme: theme.mode,
                   }),
                 ]}
                 defaultValue={defaultValue}
@@ -233,7 +243,7 @@ export const Input = React.forwardRef(
               )}
             </Box>
 
-            {max && (
+            {max && type === 'number' && (
               <Box
                 alignItems="center"
                 display="flex"

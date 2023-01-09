@@ -77,11 +77,44 @@ export const suffix = style([
 ])
 
 export const input = recipe({
-  base: atoms({
-    backgroundColor: 'transparent',
-    position: 'relative',
-    width: 'full',
-  }),
+  base: [
+    atoms({
+      backgroundColor: 'transparent',
+      position: 'relative',
+      width: 'full',
+    }),
+    style({
+      selectors: {
+        '&::-webkit-datetime-edit-year-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-month-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-day-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-hour-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-minute-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-second-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-millisecond-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-ampm-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+        '&::-webkit-datetime-edit-week-field:focus': {
+          backgroundColor: vars.colors.accent,
+        },
+      },
+    }),
+  ],
   variants: {
     disabled: {
       true: atoms({
@@ -96,6 +129,14 @@ export const input = recipe({
         MozAppearance: 'textfield',
       }),
       text: {},
+    },
+    theme: {
+      dark: style({
+        selectors: {
+          '&::-webkit-calendar-picker-indicator': { filter: 'invert(100%)' },
+        },
+      }),
+      light: {},
     },
   },
 })
