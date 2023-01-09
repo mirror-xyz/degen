@@ -23,7 +23,7 @@ type BaseProps = FieldBaseProps & {
   suffix?: React.ReactNode
   tabIndex?: NativeInputProps['tabIndex']
   textTransform?: BoxProps['textTransform']
-  type?: 'email' | 'number' | 'text'
+  type?: 'email' | 'number' | 'text' | 'datetime-local'
   units?: string
   value?: string | number
   onBlur?: NativeInputProps['onBlur']
