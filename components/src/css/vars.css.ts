@@ -9,6 +9,11 @@ import { Mode, tokens } from '../tokens'
 import { Theme } from './types'
 import { getVarName, rgb } from './utils'
 
+/**
+ * This is a wrapper around the normal createGlobalTheme that
+ * adds all these global rules to pseudo element children too.
+ * Some pseudo elements like ::backdrop don't inherit css variables
+ */
 const createGlobalTheme = <ThemeContract extends Contract>(
   selector: string,
   themeContract: ThemeContract,
