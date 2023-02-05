@@ -1,16 +1,36 @@
 import merge from 'deepmerge'
 import {
-  createGlobalTheme,
   createGlobalThemeContract,
+  createGlobalTheme as createGlobalThemeWithoutPseudos,
 } from '@vanilla-extract/css'
+import { Contract, MapLeafNodes } from '@vanilla-extract/private'
 
 import { Mode, tokens } from '../tokens'
 import { Theme } from './types'
 import { getVarName, rgb } from './utils'
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
+/**
+ * This is a wrapper around the normal createGlobalTheme that
+ * adds all these global rules to pseudo element children too.
+ * Some pseudo elements like ::backdrop don't inherit css variables
+ */
+const createGlobalTheme = <ThemeContract extends Contract>(
+  selector: string,
+  themeContract: ThemeContract,
+  tokens: MapLeafNodes<ThemeContract, string>,
+) => {
+  const pseudoSelectors = ['::backdrop']
+  const selectorWithPsuedos = `${selector}, ${pseudoSelectors
+    .map((pseudoSelector) => {
+      return `${selector} ${pseudoSelector}`
+    })
+    .join(',')}`
+
+  createGlobalThemeWithoutPseudos(selectorWithPsuedos, themeContract, tokens)
+}
+
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const { colors, shades, ...restTokens } = tokens
-/* eslint-enable @typescript-eslint/no-unused-vars */
 
 const baseTokens: Omit<Theme, 'colors' | 'mode'> = restTokens
 const baseVars = createGlobalThemeContract(baseTokens, getVarName)
