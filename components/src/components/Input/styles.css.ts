@@ -116,6 +116,12 @@ export const input = recipe({
     }),
   ],
   variants: {
+    uppercase: {
+      true: style({
+        textTransform: 'uppercase',
+      }),
+      false: {},
+    },
     disabled: {
       true: atoms({
         cursor: 'not-allowed',

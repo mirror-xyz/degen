@@ -30,6 +30,7 @@ type BaseProps = FieldBaseProps & {
   onChange?: React.EventHandler<React.ChangeEvent<HTMLInputElement>>
   onFocus?: NativeInputProps['onFocus']
   onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>
+  uppercase?: boolean
 }
 
 type WithTypeEmail = {
@@ -194,6 +195,7 @@ export const Input = React.forwardRef(
                     disabled,
                     type: inputType,
                     theme: theme.mode,
+                    uppercase: props.uppercase,
                   }),
                 ]}
                 defaultValue={defaultValue}
