@@ -20,6 +20,19 @@ const shape = {
 export type Shape = keyof typeof shape
 
 const size = {
+  extraSmall: [
+    {
+      vars: {
+        [buttonSize]: vars.space['8'],
+      },
+    },
+    atoms({
+      borderRadius: 'large',
+      fontSize: 'label',
+      paddingX: '2',
+      gap: '2',
+    }),
+  ],
   small: [
     {
       vars: {
