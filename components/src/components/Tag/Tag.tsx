@@ -35,7 +35,7 @@ export const Tag = ({
           <span>{label}</span>
         </Box>
       )}
-      <Box as={as} paddingX="2">
+      <Box alignItems="center" as={as} display="flex" gap="1" paddingX="2">
         {children}
       </Box>
     </Box>
