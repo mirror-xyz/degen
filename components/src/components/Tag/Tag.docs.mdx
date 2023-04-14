@@ -53,3 +53,25 @@ import { Tag } from 'degen'
 ```tsx live=true
 <Tag hover>Hover Me</Tag>
 ```
+
+## Ellipses
+
+```tsx live=true
+<Tag>
+  Very very very long tag to show ellipses very very long tag to show ellipses
+  very very long tag to show ellipses very very long tag to show ellipses
+</Tag>
+```
+
+## Complex Tag children
+
+```tsx live=true
+<Tag>
+  <Avatar
+    address="0x62500C50fh999506597609B640F1D3672A0082Dc"
+    placeholder
+    size="4"
+  />
+  Mirror Development
+</Tag>
+```

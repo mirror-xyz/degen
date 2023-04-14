@@ -38,7 +38,7 @@ export const variants = recipe({
       borderRadius: 'full',
       display: 'flex',
       fontWeight: 'normal',
-      width: 'max',
+      maxWidth: 'max',
     }),
   ],
   variants: {
