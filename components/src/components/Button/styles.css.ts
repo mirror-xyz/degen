@@ -29,7 +29,7 @@ const size = {
     atoms({
       borderRadius: 'large',
       fontSize: 'label',
-      paddingX: '2',
+      paddingX: '3.5',
       gap: '2',
     }),
   ],
