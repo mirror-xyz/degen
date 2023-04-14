@@ -35,8 +35,32 @@ export const Tag = ({
           <span>{label}</span>
         </Box>
       )}
-      <Box alignItems="center" as={as} display="flex" gap="1" paddingX="2">
-        {children}
+      <Box
+        alignItems="center"
+        as={as}
+        display="flex"
+        gap="1"
+        minWidth="0"
+        paddingX="2"
+      >
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return child
+          }
+          if (typeof child === 'string' || typeof child === 'number') {
+            return (
+              <Box
+                as="span"
+                display="block"
+                overflow="hidden"
+                style={{ textOverflow: 'ellipsis' }}
+                whiteSpace="nowrap"
+              >
+                {child}
+              </Box>
+            )
+          }
+        })}
       </Box>
     </Box>
   )
