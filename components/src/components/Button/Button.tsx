@@ -31,7 +31,7 @@ type BaseProps = {
   | 'type'
   | 'tabIndex'
 > &
-  Pick<BoxProps, 'width' | 'justifyContent'>
+  Pick<BoxProps, 'width' | 'justifyContent' | 'minWidth'>
 
 type WithTone = {
   tone?: styles.Tone
@@ -67,6 +67,7 @@ export const Button = React.forwardRef(
       suffix,
       tone = 'accent',
       variant = 'primary',
+      minWidth,
       ...boxProps
     }: Props,
     ref: React.Ref<HTMLButtonElement>,
@@ -115,6 +116,7 @@ export const Button = React.forwardRef(
         {...boxProps}
         as={boxProps.as ?? 'button'}
         justifyContent={boxProps.justifyContent ?? 'center'}
+        minWidth={minWidth}
         width={boxProps.width ?? 'max'}
       >
         {childContent}
