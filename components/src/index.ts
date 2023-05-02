@@ -27,6 +27,7 @@ export {
   themeModeAttribute,
   getThemeAccentStyles,
   VisuallyHidden,
+  NumericSelect,
 } from './components'
 export type { BoxProps } from './components'
 
