@@ -8,9 +8,15 @@ type Props = {
   count: number
   onChange: (newCount: number) => void
   max?: number
+  showMaxButton?: boolean
 }
 
-export const NumericSelect = ({ count, onChange, max }: Props) => {
+export const NumericSelect = ({
+  count,
+  onChange,
+  max,
+  showMaxButton,
+}: Props) => {
   const decrement = React.useCallback(
     () => onChange(count - 1),
     [count, onChange],
@@ -58,7 +64,7 @@ export const NumericSelect = ({ count, onChange, max }: Props) => {
         position="absolute"
         right="4"
       >
-        {max && !isMax && (
+        {showMaxButton && max && !isMax && (
           <Box
             as="button"
             backgroundColor="accentSecondary"
