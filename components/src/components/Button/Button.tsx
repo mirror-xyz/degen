@@ -31,7 +31,7 @@ type BaseProps = {
   | 'type'
   | 'tabIndex'
 > &
-  Pick<BoxProps, 'width' | 'justifyContent' | 'minWidth' | 'height'>
+  Pick<BoxProps, 'width' | 'justifyContent' | 'minWidth'>
 
 type WithTone = {
   tone?: styles.Tone
