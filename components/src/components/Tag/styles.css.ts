@@ -65,6 +65,10 @@ export const variants = recipe({
         color: 'accent',
         backgroundColor: 'accentTertiary',
       }),
+      background: atoms({
+        color: 'accent',
+        backgroundColor: 'background',
+      }),
       blue: style([
         atoms({
           color: 'blue',
