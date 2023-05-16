@@ -101,6 +101,78 @@ See [`Avatar`'s props](/components/Avatar#props) for more info.
 />
 ```
 
+## Tag tone
+
+```tsx live=true expand=true
+<Stack align="flex-start">
+  <AvatarGroup
+    limit={3}
+    members={[
+      {
+        label: 'Noun 97',
+        address: '0x62500C50fh999506597609B640F1D3672A0082Dc',
+      },
+      {
+        label: 'Noun 11',
+        address: '0x78Bddfs96cC5c0d6B506597609B64F1D999D82Dc',
+      },
+      {
+        label: 'Noun 3',
+        address: '0x625BBa96Cc5c0d6B506597609B64F1D3672D82Dc',
+      },
+    ]}
+    tag="Custom Tag"
+    tagTone="accent"
+  />
+
+  <AvatarGroup
+    limit={3}
+    members={[
+      {
+        label: 'Noun 97',
+        address: '0x62500C50fh999506597609B640F1D3672A0082Dc',
+      },
+      {
+        label: 'Noun 11',
+        address: '0x78Bddfs96cC5c0d6B506597609B64F1D999D82Dc',
+      },
+      {
+        label: 'Noun 3',
+        address: '0x625BBa96Cc5c0d6B506597609B64F1D3672D82Dc',
+      },
+    ]}
+    tag="Custom Tag"
+    tagTone="red"
+  />
+
+  <Box
+    backgroundColor="foregroundTertiary"
+    borderRadius="extraLarge"
+    padding="2"
+  >
+    <AvatarGroup
+      limit={3}
+      members={[
+        {
+          label: 'Noun 97',
+          address: '0x62500C50fh999506597609B640F1D3672A0082Dc',
+        },
+        {
+          label: 'Noun 11',
+          address: '0x78Bddfs96cC5c0d6B506597609B64F1D999D82Dc',
+        },
+        {
+          label: 'Noun 3',
+          address: '0x625BBa96Cc5c0d6B506597609B64F1D3672D82Dc',
+        },
+      ]}
+      tag="Custom Tag"
+      tagTone="background"
+    />
+  </Box>
+</Stack>
+```
+
 ## Custom JSX Tag
 
 ```tsx live=true expand=true

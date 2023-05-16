@@ -17,6 +17,7 @@ type Props = {
   }[]
   size?: BoxProps['height']
   tag?: string | JSX.Element
+  tagTone?: React.ComponentProps<typeof Tag>['tone']
 }
 
 export const AvatarGroup = ({
@@ -26,6 +27,7 @@ export const AvatarGroup = ({
   hover,
   size = '6',
   tag,
+  tagTone,
 }: Props) => {
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
@@ -65,6 +67,7 @@ export const AvatarGroup = ({
             <Tag
               hover={hover}
               size={variantSize === 'small' ? 'small' : 'medium'}
+              tone={tagTone}
             >
               {tagValue}
             </Tag>

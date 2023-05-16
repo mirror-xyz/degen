@@ -27,12 +27,19 @@ import { Tag } from 'degen'
 ## Tones
 
 ```tsx live=true
-<Stack direction="horizontal" wrap>
+<Stack align="center" direction="horizontal" wrap>
   <Tag tone="accent">Accent</Tag>
   <Tag tone="secondary">Secondary</Tag>
   <Tag tone="blue">Blue</Tag>
   <Tag tone="green">Green</Tag>
   <Tag tone="red">Red</Tag>
+  <Box
+    backgroundColor="foregroundTertiary"
+    borderRadius="extraLarge"
+    padding="2"
+  >
+    <Tag tone="background">Background</Tag>
+  </Box>
 </Stack>
 ```
 
