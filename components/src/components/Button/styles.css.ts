@@ -41,7 +41,7 @@ const size = {
     },
     atoms({
       borderRadius: 'large',
-      fontSize: 'small',
+      fontSize: 'extraSmall',
       paddingX: '4',
       gap: '2',
     }),
