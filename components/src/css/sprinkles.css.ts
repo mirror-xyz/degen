@@ -96,7 +96,7 @@ const responsiveProperties = defineProperties({
       ...vars.space,
       ...extendedSpace,
     },
-    flexDirection: ['column', 'row'],
+    flexDirection: ['column', 'row', 'column-reverse', 'row-reverse'],
     flexGrow: flexibility,
     flexShrink: flexibility,
     flexWrap: ['wrap', 'nowrap'],
