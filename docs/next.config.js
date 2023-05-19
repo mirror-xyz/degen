@@ -20,12 +20,27 @@ const componentPaths = glob
     return { name, route }
   })
 
+const tokenPaths = glob
+  .sync('../components/src/tokens/**/*.docs.mdx', {
+    cwd: process.cwd(),
+    absolute: true,
+  })
+  .map((x) => {
+    const name = path.basename(x, '.docs.mdx')
+    const route = `/components/${name}`
+    return { name, route }
+  })
+
 const config = {
   images: {
     domains: ['images.mirror-media.xyz'],
   },
   env: {
     navLinks: [
+      {
+        name: 'tokens',
+        links: tokenPaths,
+      },
       {
         name: 'components',
         links: componentPaths,
