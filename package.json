@@ -7,9 +7,6 @@
     "docs",
     "playroom"
   ],
-  "engines": {
-    "node": "18.x"
-  },
   "scripts": {
     "build": "yarn setup && yarn workspaces foreach -pi run build",
     "build:components": "yarn setup && yarn workspace degen build",
