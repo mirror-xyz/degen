@@ -10,6 +10,9 @@
     "lint:types": "tsc --noEmit",
     "start": "next start"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "@reach/skip-nav": "^0.16.0",
     "@sindresorhus/slugify": "^2.1.0",
