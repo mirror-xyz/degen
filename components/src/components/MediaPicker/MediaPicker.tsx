@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { Box, BoxProps } from '../Box'
 import { Button } from '../Button'
+import { Text } from '../Text'
 import { FileInput, FileInputProps } from '../FileInput'
 import { Spinner } from '../Spinner'
 import { Tag } from '../Tag'
@@ -31,13 +32,16 @@ type BaseProps = {
   id?: FileInputProps['id']
   label: React.ReactNode
   /** Size in megabytes */
-  maxSize?: number
+  maxSize?: number | null
   name?: string
   required?: FileInputProps['required']
   tabIndex?: FileInputProps['tabIndex']
   uploaded?: boolean
   uploading?: boolean
   uploadProgress?: number
+  borderWidth?: BoxProps['borderWidth']
+  labelTextSize?: React.ComponentProps<typeof Text>['size']
+  labelTextColor?: 'textSecondary' | 'textTertiary'
   onBlur?: FileInputProps['onBlur']
   onError?(error: string): void
   onChange?: FileInputProps['onChange']
@@ -75,6 +79,9 @@ export const MediaPicker = ({
   uploaded,
   uploading,
   uploadProgress,
+  borderWidth = '0.5',
+  labelTextSize = compact ? 'base' : 'large',
+  labelTextColor = 'textSecondary',
   onBlur,
   onChange,
   onError,
@@ -82,13 +89,17 @@ export const MediaPicker = ({
   onReset,
 }: Props) => {
   const hasError = error ? true : undefined
+  const activeLabelTextColor: React.ComponentProps<typeof Text>['color'] = (
+    { textSecondary: 'text', textTertiary: 'textSecondary' } as const
+  )[labelTextColor]
+
   return (
     <FileInput
       accept={accept}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
       id={id}
-      maxSize={maxSize}
+      maxSize={maxSize ?? undefined}
       name={name}
       tabIndex={tabIndex}
       onBlur={onBlur}
@@ -100,6 +111,7 @@ export const MediaPicker = ({
       {(context) => (
         <Box position="relative">
           <Box
+            borderWidth={borderWidth}
             className={styles.root({
               disabled,
               droppable: context.droppable,
@@ -116,11 +128,11 @@ export const MediaPicker = ({
                 uploading={uploading}
               />
               <Box as="span" className={styles.content({ compact })}>
-                <Box
+                <Text
                   as="span"
-                  color={context.file ? 'text' : 'textSecondary'}
-                  fontSize={compact ? 'base' : 'large'}
-                  fontWeight="semiBold"
+                  color={context.file ? activeLabelTextColor : labelTextColor}
+                  size={labelTextSize}
+                  weight="semiBold"
                   wordBreak="break-word"
                 >
                   {!cover && context.file ? (
@@ -133,7 +145,7 @@ export const MediaPicker = ({
                       )}
                     </>
                   )}
-                </Box>
+                </Text>
                 <MediaTag
                   compact={compact}
                   error={error}
@@ -258,7 +270,7 @@ const MediaTag = ({
         ? { label: 'Error', children: error }
         : { children: 'Error' }),
     }
-  else if (maxSize !== undefined)
+  else if (maxSize != undefined)
     statusProps = {
       label: 'Maximum size',
       children: `${maxSize} MB`,
