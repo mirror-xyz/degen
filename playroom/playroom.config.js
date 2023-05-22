@@ -25,9 +25,6 @@ module.exports = {
         ignoreOrder: true,
       }),
     ],
-    output: {
-      hashFunction: 'xxhash64',
-    },
     module: {
       rules: [
         {
