@@ -13,6 +13,8 @@ export const root = recipe({
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
       width: 'full',
+      display: 'flex',
+      alignItems: 'center',
     }),
   ],
   variants: {

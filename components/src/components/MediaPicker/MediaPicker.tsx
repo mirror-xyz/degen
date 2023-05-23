@@ -42,6 +42,7 @@ type BaseProps = {
   borderWidth?: BoxProps['borderWidth']
   labelTextSize?: React.ComponentProps<typeof Text>['size']
   labelTextColor?: 'textSecondary' | 'textTertiary'
+  height?: BoxProps['height']
   onBlur?: FileInputProps['onBlur']
   onError?(error: string): void
   onChange?: FileInputProps['onChange']
@@ -82,6 +83,7 @@ export const MediaPicker = ({
   borderWidth = '0.5',
   labelTextSize = compact ? 'base' : 'large',
   labelTextColor = 'textSecondary',
+  height,
   onBlur,
   onChange,
   onError,
@@ -98,6 +100,7 @@ export const MediaPicker = ({
       accept={accept}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
+      height={height}
       id={id}
       maxSize={maxSize ?? undefined}
       name={name}
@@ -109,70 +112,69 @@ export const MediaPicker = ({
       onReset={onReset}
     >
       {(context) => (
-        <Box position="relative">
-          <Box
-            borderWidth={borderWidth}
-            className={styles.root({
-              disabled,
-              droppable: context.droppable,
-              focused: context.focused,
-            })}
-          >
-            <Box className={styles.label({ compact, disabled })}>
-              <MediaPreview
+        <Box
+          borderWidth={borderWidth}
+          className={styles.root({
+            disabled,
+            droppable: context.droppable,
+            focused: context.focused,
+          })}
+          height={height}
+        >
+          <Box className={styles.label({ compact, disabled })}>
+            <MediaPreview
+              compact={compact}
+              fileName={context.name}
+              fileType={context.type}
+              hasError={hasError}
+              previewUrl={context.previewUrl}
+              uploading={uploading}
+            />
+            <Box as="span" className={styles.content({ compact })}>
+              <Text
+                as="span"
+                color={context.file ? activeLabelTextColor : labelTextColor}
+                size={labelTextSize}
+                weight="semiBold"
+                wordBreak="break-word"
+              >
+                {!cover && context.file ? (
+                  context.file.name
+                ) : (
+                  <>
+                    {label}{' '}
+                    {required && (
+                      <VisuallyHidden as="span">(required)</VisuallyHidden>
+                    )}
+                  </>
+                )}
+              </Text>
+              <MediaTag
                 compact={compact}
-                fileName={context.name}
-                fileType={context.type}
-                hasError={hasError}
-                previewUrl={context.previewUrl}
+                error={error}
+                maxSize={maxSize}
+                uploadProgress={uploadProgress}
+                uploaded={uploaded}
                 uploading={uploading}
               />
-              <Box as="span" className={styles.content({ compact })}>
-                <Text
-                  as="span"
-                  color={context.file ? activeLabelTextColor : labelTextColor}
-                  size={labelTextSize}
-                  weight="semiBold"
-                  wordBreak="break-word"
-                >
-                  {!cover && context.file ? (
-                    context.file.name
-                  ) : (
-                    <>
-                      {label}{' '}
-                      {required && (
-                        <VisuallyHidden as="span">(required)</VisuallyHidden>
-                      )}
-                    </>
-                  )}
-                </Text>
-                <MediaTag
-                  compact={compact}
-                  error={error}
-                  maxSize={maxSize}
-                  uploadProgress={uploadProgress}
-                  uploaded={uploaded}
-                  uploading={uploading}
-                />
-              </Box>
             </Box>
-
-            {cover && context.type && context.previewUrl && (
-              <Box
-                display="flex"
-                inset="0"
-                justifyContent="center"
-                position="absolute"
-              >
-                <Media
-                  cover
-                  name={context.name}
-                  type={context.type}
-                  url={context.previewUrl}
-                />
-              </Box>
-            )}
           </Box>
+
+          {cover && context.type && context.previewUrl && (
+            <Box
+              display="flex"
+              inset="0"
+              justifyContent="center"
+              position="absolute"
+            >
+              <Media
+                cover
+                name={context.name}
+                type={context.type}
+                url={context.previewUrl}
+              />
+            </Box>
+          )}
 
           {context.type && (
             <Box position="absolute" right="2" top="2">
