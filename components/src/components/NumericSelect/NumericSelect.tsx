@@ -8,6 +8,7 @@ type Props = {
   count: number
   onChange: (newCount: number) => void
   max?: number
+  min?: number
   showMaxButton?: boolean
 }
 
@@ -16,6 +17,7 @@ export const NumericSelect = ({
   onChange,
   max,
   showMaxButton,
+  min = 1,
 }: Props) => {
   const decrement = React.useCallback(
     () => onChange(count - 1),
@@ -29,7 +31,7 @@ export const NumericSelect = ({
 
   const setMax = React.useCallback(() => onChange(max || 0), [max, onChange])
 
-  const isMin = count === 1
+  const isMin = count === min
   const isMax = max ? count === max : false
 
   return (
