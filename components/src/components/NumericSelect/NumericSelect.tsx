@@ -37,13 +37,12 @@ export const NumericSelect = ({
   return (
     <Box
       alignItems="center"
-      backgroundColor="accentSecondary"
-      borderRadius="2xLarge"
+      backgroundColor="foregroundTertiary"
+      borderRadius="large"
       display="flex"
-      height="14"
+      height="10"
       justifyContent="center"
       position="relative"
-      width="full"
     >
       <Box
         alignItems="center"
@@ -56,9 +55,14 @@ export const NumericSelect = ({
         position="absolute"
         onClick={decrement}
       >
-        <IconMinus color={isMin ? 'accentSecondary' : 'accent'} size="5" />
+        <IconMinus
+          color={isMin ? 'textTertiary' : 'textSecondary'}
+          size="3.5"
+        />
       </Box>
-      <Text color="accent">{count}</Text>
+      <Text color="text" size="small" weight="semiBold">
+        {count}
+      </Text>
       <Box
         alignItems="center"
         display="flex"
@@ -69,7 +73,7 @@ export const NumericSelect = ({
         {showMaxButton && max && !isMax && (
           <Box
             as="button"
-            backgroundColor="accentSecondary"
+            backgroundColor="foregroundTertiary"
             borderRadius="medium"
             cursor={isMax ? 'not-allowed' : 'pointer'}
             disabled={isMax}
@@ -77,7 +81,7 @@ export const NumericSelect = ({
             padding="1"
             onClick={setMax}
           >
-            <Text color="accent" size="label">
+            <Text color="textSecondary" size="label">
               Max
             </Text>
           </Box>
@@ -89,7 +93,10 @@ export const NumericSelect = ({
           padding="2.5"
           onClick={increment}
         >
-          <IconPlus color={isMax ? 'accentSecondary' : 'accent'} size="5" />
+          <IconPlus
+            color={isMax ? 'textTertiary' : 'textSecondary'}
+            size="3.5"
+          />
         </Box>
       </Box>
     </Box>

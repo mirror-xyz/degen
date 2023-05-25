@@ -78,3 +78,51 @@ import { MediaPicker } from 'degen'
   />
 </Stack>
 ```
+
+## Border width
+
+```tsx live=true
+<Stack>
+  <MediaPicker borderWidth="0" label="Choose or drag and drop media" />
+  <MediaPicker borderWidth={undefined} label="Choose or drag and drop media" />
+  <MediaPicker borderWidth="2" label="Choose or drag and drop media" />
+</Stack>
+```
+
+## Label text color
+
+```tsx live=true
+<Stack>
+  <MediaPicker label="Choose or drag and drop media" />
+  <MediaPicker
+    label="Choose or drag and drop media"
+    labelTextColor="textTertiary"
+  />
+</Stack>
+```
+
+## Label text size
+
+```tsx live=true
+<Stack>
+  <MediaPicker label="Choose or drag and drop media" />
+  <MediaPicker label="Choose or drag and drop media" labelTextSize="base" />
+  <MediaPicker label="Choose or drag and drop media" labelTextSize="small" />
+</Stack>
+```
+
+## No max size
+
+```tsx live=true
+<Stack>
+  <MediaPicker label="Choose or drag and drop media" maxSize={null} />
+</Stack>
+```
+
+## Custom height
+
+```tsx live=true
+<Box display="flex" flexDirection="column" height="96">
+  <MediaPicker height="full" label="Choose or drag and drop media" />
+</Box>
+```

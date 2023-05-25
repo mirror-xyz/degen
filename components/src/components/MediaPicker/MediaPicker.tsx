@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { Box, BoxProps } from '../Box'
 import { Button } from '../Button'
+import { Text } from '../Text'
 import { FileInput, FileInputProps } from '../FileInput'
 import { Spinner } from '../Spinner'
 import { Tag } from '../Tag'
@@ -31,13 +32,17 @@ type BaseProps = {
   id?: FileInputProps['id']
   label: React.ReactNode
   /** Size in megabytes */
-  maxSize?: number
+  maxSize?: number | null
   name?: string
   required?: FileInputProps['required']
   tabIndex?: FileInputProps['tabIndex']
   uploaded?: boolean
   uploading?: boolean
   uploadProgress?: number
+  borderWidth?: BoxProps['borderWidth']
+  labelTextSize?: React.ComponentProps<typeof Text>['size']
+  labelTextColor?: 'textSecondary' | 'textTertiary'
+  height?: BoxProps['height']
   onBlur?: FileInputProps['onBlur']
   onError?(error: string): void
   onChange?: FileInputProps['onChange']
@@ -75,6 +80,10 @@ export const MediaPicker = ({
   uploaded,
   uploading,
   uploadProgress,
+  borderWidth = '0.5',
+  labelTextSize = compact ? 'base' : 'large',
+  labelTextColor = 'textSecondary',
+  height,
   onBlur,
   onChange,
   onError,
@@ -82,13 +91,18 @@ export const MediaPicker = ({
   onReset,
 }: Props) => {
   const hasError = error ? true : undefined
+  const activeLabelTextColor: React.ComponentProps<typeof Text>['color'] = (
+    { textSecondary: 'text', textTertiary: 'textSecondary' } as const
+  )[labelTextColor]
+
   return (
     <FileInput
       accept={accept}
       autoFocus={autoFocus}
       defaultValue={defaultValue}
+      height={height}
       id={id}
-      maxSize={maxSize}
+      maxSize={maxSize ?? undefined}
       name={name}
       tabIndex={tabIndex}
       onBlur={onBlur}
@@ -98,69 +112,69 @@ export const MediaPicker = ({
       onReset={onReset}
     >
       {(context) => (
-        <Box position="relative">
-          <Box
-            className={styles.root({
-              disabled,
-              droppable: context.droppable,
-              focused: context.focused,
-            })}
-          >
-            <Box className={styles.label({ compact, disabled })}>
-              <MediaPreview
+        <Box
+          borderWidth={borderWidth}
+          className={styles.root({
+            disabled,
+            droppable: context.droppable,
+            focused: context.focused,
+          })}
+          height={height}
+        >
+          <Box className={styles.label({ compact, disabled })}>
+            <MediaPreview
+              compact={compact}
+              fileName={context.name}
+              fileType={context.type}
+              hasError={hasError}
+              previewUrl={context.previewUrl}
+              uploading={uploading}
+            />
+            <Box as="span" className={styles.content({ compact })}>
+              <Text
+                as="span"
+                color={context.file ? activeLabelTextColor : labelTextColor}
+                size={labelTextSize}
+                weight="semiBold"
+                wordBreak="break-word"
+              >
+                {!cover && context.file ? (
+                  context.file.name
+                ) : (
+                  <>
+                    {label}{' '}
+                    {required && (
+                      <VisuallyHidden as="span">(required)</VisuallyHidden>
+                    )}
+                  </>
+                )}
+              </Text>
+              <MediaTag
                 compact={compact}
-                fileName={context.name}
-                fileType={context.type}
-                hasError={hasError}
-                previewUrl={context.previewUrl}
+                error={error}
+                maxSize={maxSize}
+                uploadProgress={uploadProgress}
+                uploaded={uploaded}
                 uploading={uploading}
               />
-              <Box as="span" className={styles.content({ compact })}>
-                <Box
-                  as="span"
-                  color={context.file ? 'text' : 'textSecondary'}
-                  fontSize={compact ? 'base' : 'large'}
-                  fontWeight="semiBold"
-                  wordBreak="break-word"
-                >
-                  {!cover && context.file ? (
-                    context.file.name
-                  ) : (
-                    <>
-                      {label}{' '}
-                      {required && (
-                        <VisuallyHidden as="span">(required)</VisuallyHidden>
-                      )}
-                    </>
-                  )}
-                </Box>
-                <MediaTag
-                  compact={compact}
-                  error={error}
-                  maxSize={maxSize}
-                  uploadProgress={uploadProgress}
-                  uploaded={uploaded}
-                  uploading={uploading}
-                />
-              </Box>
             </Box>
-
-            {cover && context.type && context.previewUrl && (
-              <Box
-                display="flex"
-                inset="0"
-                justifyContent="center"
-                position="absolute"
-              >
-                <Media
-                  cover
-                  name={context.name}
-                  type={context.type}
-                  url={context.previewUrl}
-                />
-              </Box>
-            )}
           </Box>
+
+          {cover && context.type && context.previewUrl && (
+            <Box
+              display="flex"
+              inset="0"
+              justifyContent="center"
+              position="absolute"
+            >
+              <Media
+                cover
+                name={context.name}
+                type={context.type}
+                url={context.previewUrl}
+              />
+            </Box>
+          )}
 
           {context.type && (
             <Box position="absolute" right="2" top="2">
@@ -258,7 +272,7 @@ const MediaTag = ({
         ? { label: 'Error', children: error }
         : { children: 'Error' }),
     }
-  else if (maxSize !== undefined)
+  else if (maxSize != undefined)
     statusProps = {
       label: 'Maximum size',
       children: `${maxSize} MB`,

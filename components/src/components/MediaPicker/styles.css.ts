@@ -7,13 +7,14 @@ export const root = recipe({
   base: [
     atoms({
       borderRadius: '2xLarge',
-      borderWidth: '0.5',
       overflow: 'hidden',
       position: 'relative',
       transitionDuration: '150',
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
       width: 'full',
+      display: 'flex',
+      alignItems: 'center',
     }),
   ],
   variants: {
