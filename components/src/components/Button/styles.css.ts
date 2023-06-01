@@ -207,25 +207,31 @@ const variant = {
 
 export type Variant = keyof typeof variant
 
-const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
-  variants: {
-    shape,
-    size,
-  },
-  style: style([
-    atoms({
-      borderRadius:
-        shape === 'square'
-          ? size === 'small' || size === 'medium'
-            ? 'large'
-            : '2xLarge'
-          : undefined,
-    }),
-    style({
-      padding: 0,
-    }),
-  ]),
-})
+const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => {
+  let borderRadius: 'medium' | 'large' | '2xLarge' | undefined
+  if (shape !== 'square') {
+    borderRadius = undefined
+  } else if (size === 'extraSmall' || size === 'small' || size === 'medium') {
+    borderRadius = 'large'
+  } else {
+    borderRadius = '2xLarge'
+  }
+
+  return {
+    variants: {
+      shape,
+      size,
+    },
+    style: style([
+      atoms({
+        borderRadius,
+      }),
+      style({
+        padding: 0,
+      }),
+    ]),
+  }
+}
 
 export const variants = recipe({
   base: style([
@@ -278,9 +284,11 @@ export const variants = recipe({
     getShapeSizeCompoundVariant('circle', 'large'),
     getShapeSizeCompoundVariant('circle', 'medium'),
     getShapeSizeCompoundVariant('circle', 'small'),
+    getShapeSizeCompoundVariant('circle', 'extraSmall'),
     getShapeSizeCompoundVariant('square', 'large'),
     getShapeSizeCompoundVariant('square', 'medium'),
     getShapeSizeCompoundVariant('square', 'small'),
+    getShapeSizeCompoundVariant('square', 'extraSmall'),
     // Center + Size
     {
       variants: {
