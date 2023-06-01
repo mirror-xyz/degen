@@ -9,12 +9,12 @@ const buttonSize = createVar()
 
 const shape = {
   circle: [
-    { minWidth: buttonSize },
+    { minWidth: buttonSize, padding: 0 },
     atoms({
       borderRadius: 'full',
     }),
   ],
-  square: { minWidth: buttonSize },
+  square: { minWidth: buttonSize, padding: 0 },
 }
 
 export type Shape = keyof typeof shape
@@ -207,26 +207,6 @@ const variant = {
 
 export type Variant = keyof typeof variant
 
-const getShapeSizeCompoundVariant = (shape: Shape, size: Size) => ({
-  variants: {
-    shape,
-    size,
-  },
-  style: style([
-    atoms({
-      borderRadius:
-        shape === 'square'
-          ? size === 'small' || size === 'medium'
-            ? 'large'
-            : '2xLarge'
-          : undefined,
-    }),
-    style({
-      padding: 0,
-    }),
-  ]),
-})
-
 export const variants = recipe({
   base: style([
     atoms({
@@ -274,13 +254,6 @@ export const variants = recipe({
     variant,
   },
   compoundVariants: [
-    // Shape + Size
-    getShapeSizeCompoundVariant('circle', 'large'),
-    getShapeSizeCompoundVariant('circle', 'medium'),
-    getShapeSizeCompoundVariant('circle', 'small'),
-    getShapeSizeCompoundVariant('square', 'large'),
-    getShapeSizeCompoundVariant('square', 'medium'),
-    getShapeSizeCompoundVariant('square', 'small'),
     // Center + Size
     {
       variants: {
