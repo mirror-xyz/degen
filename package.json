@@ -64,5 +64,6 @@
     "prompt": "^1.2.0",
     "size-limit": "^6.0.3",
     "typescript": "5.0.4"
-  }
+  },
+  "packageManager": "yarn@3.6.0"
 }
