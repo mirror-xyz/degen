@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "yarn gen:icons && yarn workspace playroom run build && next build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider && next build",
     "clean": "rimraf .next public/playroom",
     "dev": "next dev",
     "lint": "next lint",
