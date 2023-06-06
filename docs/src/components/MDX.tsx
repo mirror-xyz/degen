@@ -4,6 +4,7 @@ import slugify from '@sindresorhus/slugify'
 import { Box, Heading, Text } from 'degen/components'
 
 import * as styles from '~/styles/utils.css'
+
 import { CodeBlock } from './CodeBlock'
 import { Link } from './Link'
 import { SearchIcons } from './SearchIcons'

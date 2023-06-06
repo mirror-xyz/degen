@@ -22,7 +22,7 @@
     "@vanilla-extract/babel-plugin": "^1.1.2",
     "@vanilla-extract/css": "^1.6.3",
     "@vanilla-extract/webpack-plugin": "^2.1.0",
-    "babel-loader": "^9.1.2",
+    "babel-loader": "^8.3.0",
     "css-loader": "^6.5.0",
     "lodash": "^4.17.21",
     "mini-css-extract-plugin": "^2.4.3",
@@ -32,6 +32,9 @@
     "react-element-to-jsx-string": "^14.3.4",
     "rimraf": "^3.0.2",
     "utility-types": "^3.10.0",
-    "webpack": "^5.85.1"
+    "webpack": "^5.60.0"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }

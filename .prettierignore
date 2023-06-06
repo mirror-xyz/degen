@@ -7,3 +7,6 @@ components/src/components/icons/generated/
 
 .yarn/*
 yarn.lock
+
+icons
+*.svg
