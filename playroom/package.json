@@ -22,6 +22,7 @@
     "@vanilla-extract/babel-plugin": "^1.1.2",
     "@vanilla-extract/css": "^1.6.3",
     "@vanilla-extract/webpack-plugin": "^2.1.0",
+    "assert": "^2.0.0",
     "babel-loader": "^8.3.0",
     "css-loader": "^6.5.0",
     "lodash": "^4.17.21",
