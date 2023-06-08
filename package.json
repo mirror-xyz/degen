@@ -4,8 +4,7 @@
   "license": "MIT",
   "workspaces": [
     "components",
-    "docs",
-    "playroom"
+    "docs"
   ],
   "scripts": {
     "build": "yarn setup && yarn workspaces foreach -pi run build",

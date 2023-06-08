@@ -114,11 +114,7 @@
     "import/resolver": {
       "typescript": {
         "alwaysTryTypes": true,
-        "project": [
-          "components/tsconfig.json",
-          "docs/tsconfig.json",
-          "playroom/tsconfig.json"
-        ]
+        "project": ["components/tsconfig.json", "docs/tsconfig.json"]
       }
     },
     "react": {
