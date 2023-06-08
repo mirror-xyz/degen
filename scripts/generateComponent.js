@@ -96,26 +96,6 @@ const componentsDir = path.join(baseDir, 'components/src/components')
       'utf-8',
     )
 
-    // Write snippets file
-    console.log('Creating snippets...')
-    await fs.writeFile(
-      path.join(componentDir, `${componentName}.snippets.tsx`),
-      dedent`
-          import * as React from 'react'
-
-          import { Snippet } from '!/playroom/src/types'
-          import { ${componentName} } from './${componentName}'
-
-          export const snippets: Snippet[] = [
-            {
-              name: 'Basic',
-              code: <${componentName} />,
-            },
-          ]
-        `,
-      'utf-8',
-    )
-
     // Write test file
     console.log('Creating test...')
     await fs.writeFile(
