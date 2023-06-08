@@ -9,10 +9,6 @@ import * as Components from 'degen/components'
 import { Box, Button, Stack, Text, useTheme } from 'degen/components'
 import { vars } from 'degen/css'
 
-import { createPlayroomLink } from '~/utils/playroom'
-
-import { usePlayroomStore } from '../../../../playroom/src/PlayroomState'
-import { avatars } from '../../../../playroom/src/useScope'
 import { CopyButton } from '../CopyButton'
 import './styles.css'
 
@@ -42,7 +38,6 @@ export const CodePreview = ({
     ...initialState,
     expand,
   })
-  const store = usePlayroomStore()
   const themeValue = useTheme()
 
   return (
@@ -52,13 +47,11 @@ export const CodePreview = ({
       scope={{
         mdx,
         ...Components,
-        ...store,
         ...themeValue,
         previewRef,
         vars,
         NextImage,
         NextLink,
-        avatars,
       }}
       theme={theme}
       transformCode={(code) => '/** @jsx mdx */' + code}
@@ -109,16 +102,6 @@ export const CodePreview = ({
             onClick={() => setState((x) => ({ ...x, expand: !x.expand }))}
           >
             {state.expand ? 'Hide Code' : 'View Code'}
-          </Button>
-
-          <Button
-            as="a"
-            href={createPlayroomLink({ code })}
-            size="small"
-            target="_blank"
-            variant="transparent"
-          >
-            Open in Playroom
           </Button>
         </Stack>
       </Box>
