@@ -13,7 +13,6 @@ import { Box, BoxProps, useTheme } from 'degen/components'
 
 import { useIsMounted } from '~/utils/isMounted'
 
-import { PlayroomStateProvider } from '../../../playroom/src/PlayroomState'
 import { CopyButton } from './CopyButton'
 import type { Props as CodePreviewProps } from './CodePreview'
 
@@ -63,14 +62,12 @@ export const CodeBlock = ({
   const code = children.trim()
   if (live)
     return (
-      <PlayroomStateProvider>
-        <CodePreview
-          backgroundColor={backgroundColor}
-          code={code}
-          expand={expand}
-          theme={modifiedTheme}
-        />
-      </PlayroomStateProvider>
+      <CodePreview
+        backgroundColor={backgroundColor}
+        code={code}
+        expand={expand}
+        theme={modifiedTheme}
+      />
     )
 
   const language = className?.replace(/language-/, '') as Language

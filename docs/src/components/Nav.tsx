@@ -5,7 +5,6 @@ import NextImage from 'next/image'
 import { Box, Button, Stack, Text } from 'degen/components'
 
 import { createGitHubLink } from '~/utils/github'
-import { createPlayroomLink } from '~/utils/playroom'
 import { useIsMounted } from '~/utils/isMounted'
 import * as styles from '~/styles/utils.css'
 
@@ -87,14 +86,12 @@ export const Nav = ({ links }: Props) => {
         <Stack space="10">
           <Stack space="3">
             <NavLink href={createGitHubLink()}>GitHub</NavLink>
-            <NavLink href={createPlayroomLink()}>Playroom</NavLink>
           </Stack>
 
           <Stack>
             <Text variant="label">Guides</Text>
             <Stack space="3">
               <NavLink href="/guides/development">Development</NavLink>
-              <NavLink href="/guides/playroom">Playroom</NavLink>
             </Stack>
           </Stack>
 

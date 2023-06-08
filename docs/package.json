@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "yarn gen:icons && yarn workspace playroom run build && next build",
-    "clean": "rimraf .next public/playroom",
+    "build": "yarn gen:icons && next build",
+    "clean": "rimraf .next",
     "dev": "next dev",
     "lint": "next lint",
     "lint:types": "tsc --noEmit",
@@ -20,7 +20,6 @@
     "next": "12.3.4",
     "next-mdx-remote": "^3.0.6",
     "nookies": "^2.5.2",
-    "playroom": "0.27.7",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.2",
     "react-docgen-typescript": "^2.1.1",
