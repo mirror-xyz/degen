@@ -9,9 +9,6 @@ import * as Components from 'degen/components'
 import { Box, Button, Stack, Text, useTheme } from 'degen/components'
 import { vars } from 'degen/css'
 
-import { createPlayroomLink } from '~/utils/playroom'
-import { usePlayroomStore } from '../../../../playroom/src/PlayroomState'
-import { avatars } from '../../../../playroom/src/useScope'
 import { CopyButton } from '../CopyButton'
 import './styles.css'
 
@@ -30,6 +27,21 @@ const initialState = {
   expand: false,
 }
 
+export const avatars = {
+  noun2:
+    'https://images.mirror-media.xyz/publication-images/fHy5DSiGF6RZg8MYo3y_P.png',
+  noun3:
+    'https://images.mirror-media.xyz/publication-images/qmqVLl7GHPj4xfXRj21H-.png',
+  noun11:
+    'https://images.mirror-media.xyz/publication-images/9yZxF2aqRVvtb6xvYDOjs.png',
+  noun17:
+    'https://images.mirror-media.xyz/publication-images/DHNSNObmLOGtxjcluR7w2.png',
+  noun97:
+    'https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png',
+  noun102:
+    'https://images.mirror-media.xyz/publication-images/ncbsh8OPR_VdkRhGSljJD.png',
+}
+
 export const CodePreview = ({
   backgroundColor = 'background',
   code,
@@ -41,7 +53,6 @@ export const CodePreview = ({
     ...initialState,
     expand,
   })
-  const store = usePlayroomStore()
   const themeValue = useTheme()
 
   return (
@@ -51,7 +62,6 @@ export const CodePreview = ({
       scope={{
         mdx,
         ...Components,
-        ...store,
         ...themeValue,
         previewRef,
         vars,
@@ -108,16 +118,6 @@ export const CodePreview = ({
             onClick={() => setState((x) => ({ ...x, expand: !x.expand }))}
           >
             {state.expand ? 'Hide Code' : 'View Code'}
-          </Button>
-
-          <Button
-            as="a"
-            href={createPlayroomLink({ code })}
-            size="small"
-            target="_blank"
-            variant="transparent"
-          >
-            Open in Playroom
           </Button>
         </Stack>
       </Box>

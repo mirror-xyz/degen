@@ -9,7 +9,6 @@ yarn-debug.log*
 yarn-error.log*
 
 docs/.next/
-docs/public/playroom/
 
 components/dist/
 components/coverage/
