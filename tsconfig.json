@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "alwaysStrict": true,
     "esModuleInterop": true,
@@ -15,8 +15,9 @@
     "strict": true,
     "strictNullChecks": true,
     "target": "esnext",
-    "types": ["node"]
+    "types": ["node"],
+    "checkJs": true
   },
-  "include": ["components/**/*", "docs/**/*"],
+  "include": ["components/**/*", "docs/**/*", "scripts/**/*"],
   "exclude": ["node_modules"]
 }

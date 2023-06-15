@@ -1,31 +1,39 @@
 const fs = require('fs-extra')
 const glob = require('glob')
-const { default: svgr } = require('@svgr/core')
+const { transform } = require('@svgr/core')
 const dedent = require('dedent')
 const { pascalCase } = require('change-case')
 
 const path = require('path')
 
-const componentTemplate = ({ template }, opts, { componentName, jsx }) => {
-  const code = `
-    import * as React from 'react'
-    NEWLINE
-    import { IconProps } from '../../types'
-    NEWLINE
-    export const COMPONENT_NAME = ({ title, titleId, ...props }: IconProps) => COMPONENT_JSX
+/**
+ * @type {import('@svgr/core').Config['template']}
+ */
+const componentTemplate = (variables, ctx) => {
+  // const code = `
+  //   import * as React from 'react'
+  //   NEWLINE
+  //   import { IconProps } from '../../types'
+  //   NEWLINE
+  //   export const COMPONENT_NAME = ({ title, titleId, ...props }: IconProps) => COMPONENT_JSX
+  // `
+
+  return ctx.tpl`
+    ${variables.imports};
+
+    ${variables.interfaces};
+
+    const ${variables.componentName} = (${variables.props}) => (
+      ${variables.jsx}
+    );
+
+    ${variables.exports};
   `
-
-  const reactTemplate = template.smart(code, {
-    plugins: ['react', 'typescript'],
-  })
-
-  return reactTemplate({
-    COMPONENT_NAME: componentName,
-    COMPONENT_JSX: jsx,
-    NEWLINE: '\n',
-  })
 }
 
+/**
+ * @type {import('@svgr/core').Config}
+ */
 const svgrConfig = {
   plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
   replaceAttrValues: { '#000': 'currentColor' },
@@ -89,7 +97,9 @@ const iconComponentsDir = path.join(
 
     // Write SVG React component
     const componentName = `${svgName}Svg`
-    const svgComponentCode = svgr.sync(svg, svgrConfig, { componentName })
+    const svgComponentCode = transform.sync(svg, svgrConfig, {
+      componentName,
+    })
     await fs.writeFile(
       path.join(iconDir, `${componentName}.tsx`),
       svgComponentCode,
