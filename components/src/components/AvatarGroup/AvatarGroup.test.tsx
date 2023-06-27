@@ -10,6 +10,7 @@ describe('<AvatarGroup />', () => {
   it('renders', () => {
     render(
       <AvatarGroup
+        ens={false}
         members={[
           {
             label: 'Noun 97',

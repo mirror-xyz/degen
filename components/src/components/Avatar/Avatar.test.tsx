@@ -10,6 +10,7 @@ describe('<Avatar />', () => {
   it('renders', () => {
     render(
       <Avatar
+        ens={false}
         label="Avatar"
         src="https://images.mirror-media.xyz/publication-images/H-zIoEYWk4SpFkljJiwB9.png"
       />,
