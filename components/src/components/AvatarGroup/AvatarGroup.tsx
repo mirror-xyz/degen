@@ -18,6 +18,7 @@ type Props = {
   size?: BoxProps['height']
   tag?: string | JSX.Element
   tagTone?: React.ComponentProps<typeof Tag>['tone']
+  ens?: boolean
 }
 
 export const AvatarGroup = ({
@@ -28,6 +29,7 @@ export const AvatarGroup = ({
   size = '6',
   tag,
   tagTone,
+  ens,
 }: Props) => {
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
@@ -48,6 +50,7 @@ export const AvatarGroup = ({
             <Avatar
               address={x.address}
               as={as}
+              ens={ens}
               label={x.label}
               placeholder={x.placeholder}
               size={size}
