@@ -1,9 +1,11 @@
 import * as React from 'react'
 
+import { useEnsAvatar, useEnsName } from 'wagmi'
+
 import { Box, BoxProps } from '../Box'
 import * as styles from './styles.css'
 
-export type Props = {
+export type BaseProps = {
   as?: 'img' | React.ComponentType
   label: string
   placeholder?: boolean
@@ -12,6 +14,10 @@ export type Props = {
   size?: BoxProps['height']
   src?: string
 } & styles.Variants
+
+export type Props = BaseProps & {
+  ens?: boolean
+}
 
 export function getAvatarGradient(address = '0') {
   const BACKGROUND_GRADIENTS = [
@@ -34,8 +40,23 @@ export function getAvatarGradient(address = '0') {
 
   return BACKGROUND_GRADIENTS[parseInt(address ?? '0') % 3]
 }
+export const Avatar = ({ ens = true, ...props }: Props) => {
+  const AvatarComponent = ens ? AvatarWithENS : AvatarWithoutENS
 
-export const Avatar = ({
+  return <AvatarComponent {...props} />
+}
+
+const AvatarWithENS = ({ address, src, ...props }: BaseProps) => {
+  const addressString = address as `0x${string}`
+  const { data: name } = useEnsName({ address: addressString, chainId: 1 })
+  const { data: avatar } = useEnsAvatar({ name: name, chainId: 1 })
+
+  const srcOrAvatar = src ?? avatar ?? undefined
+
+  return <AvatarWithoutENS address={address} src={srcOrAvatar} {...props} />
+}
+
+const AvatarWithoutENS = ({
   as = 'img',
   label,
   placeholder,
@@ -44,7 +65,7 @@ export const Avatar = ({
   shape = 'circle',
   size = '12',
   src,
-}: Props) => {
+}: BaseProps) => {
   const [error, setError] = React.useState(false)
 
   const onError = React.useMemo(() => {
