@@ -34,7 +34,7 @@ jobs:
           cd components
           npm version ${{ github.event.release.tag_name }}
           git add package.json
-          git commit -m "${{ github.event.release.tag_name }}"
+          git commit -m "${{ github.event.release.tag_name }}" -n
       - name: Publish
         run: |
           yarn config set npmAuthToken ${{ secrets.NPM_TOKEN }}
