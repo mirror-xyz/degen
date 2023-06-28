@@ -32,7 +32,7 @@ jobs:
       - name: Bump version to ${{ github.event.release.tag_name }}
         run: |
           cd components
-          npm version ${{ github.event.release.tag_name }}
+          yarn version ${{ github.event.release.tag_name }}
           git add package.json
           git commit -m "${{ github.event.release.tag_name }}"
       - name: Publish
