@@ -40,10 +40,10 @@ export function getAvatarGradient(address = '0') {
 
   return BACKGROUND_GRADIENTS[parseInt(address ?? '0') % 3]
 }
-export const Avatar = ({ ens = true, ...props }: Props) => {
-  const AvatarComponent = ens ? AvatarWithENS : AvatarWithoutENS
+export const Avatar = ({ ens = true, address, ...props }: Props) => {
+  const AvatarComponent = ens && address ? AvatarWithENS : AvatarWithoutENS
 
-  return <AvatarComponent {...props} />
+  return <AvatarComponent address={address} {...props} />
 }
 
 const AvatarWithENS = ({ address, src, ...props }: BaseProps) => {
