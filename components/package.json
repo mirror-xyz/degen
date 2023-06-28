@@ -30,7 +30,7 @@
     "clean": "rimraf dist src/components/icons/generated/",
     "lint:types": "tsc --noEmit",
     "prepack": "yarn gen:icons && yarn build",
-    "publish": "yarn publish",
+    "publish": "yarn npm publish",
     "test": "jest"
   },
   "dependencies": {
