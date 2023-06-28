@@ -66,12 +66,16 @@
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0",
+    "viem": "^1.0.6",
     "vite": "^2.6.13",
     "vite-plugin-dts": "^0.9.2",
-    "vite-tsconfig-paths": "^3.3.17"
+    "vite-tsconfig-paths": "^3.3.17",
+    "wagmi": "^1.2.0"
   },
   "peerDependencies": {
     "react": "^17",
-    "react-dom": "^17"
+    "react-dom": "^17",
+    "viem": "^1.0",
+    "wagmi": "^1.2"
   }
 }
