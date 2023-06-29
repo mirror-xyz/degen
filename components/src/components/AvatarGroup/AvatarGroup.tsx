@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { Avatar, Props as AvatarProps } from '../Avatar'
-import { Box, BoxProps } from '../Box'
+import { Box } from '../Box'
 import { Tag } from '../Tag'
 import * as styles from './styles.css'
 
@@ -15,7 +15,7 @@ type Props = {
     src?: AvatarProps['src']
     address?: AvatarProps['address']
   }[]
-  size?: BoxProps['height']
+  size?: '5' | '6'
   tag?: string | JSX.Element
   tagTone?: React.ComponentProps<typeof Tag>['tone']
   ens?: boolean
@@ -33,7 +33,7 @@ export const AvatarGroup = ({
 }: Props) => {
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
-  const variantSize = +size < 6 ? 'small' : 'large'
+  const variantSize = size === '5' ? 'small' : 'large'
   const showTag = membersCount > limit || !!tag
   const tagValue = tag || `+${(membersCount - limit).toLocaleString()}`
   return (
