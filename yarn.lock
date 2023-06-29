@@ -11461,7 +11461,7 @@ __metadata:
     prettier: ^2.4.1
     prompt: ^1.2.0
     size-limit: ^6.0.3
-    typescript: 4.4.4
+    typescript: 5.0.4
   languageName: unknown
   linkType: soft
 
@@ -15928,13 +15928,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-typescript@4.4.4:
-  version: 4.4.4
-  resolution: "typescript@npm:4.4.4"
+typescript@5.0.4:
+  version: 5.0.4
+  resolution: "typescript@npm:5.0.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 89ecb8436bb48ef5594d49289f5f89103071716b6e4844278f4fb3362856e31203e187a9c76d205c3f0b674d221a058fd28310dbcbcf5d95e9a57229bb5203f1
+  checksum: 82b94da3f4604a8946da585f7d6c3025fff8410779e5bde2855ab130d05e4fd08938b9e593b6ebed165bda6ad9292b230984f10952cf82f0a0ca07bbeaa08172
   languageName: node
   linkType: hard
 
@@ -15948,13 +15948,13 @@ typescript@^4.3.2:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.4.4#~builtin<compat/typescript>":
-  version: 4.4.4
-  resolution: "typescript@patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=32657b"
+"typescript@patch:typescript@5.0.4#~builtin<compat/typescript>":
+  version: 5.0.4
+  resolution: "typescript@patch:typescript@npm%3A5.0.4#~builtin<compat/typescript>::version=5.0.4&hash=32657b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: c97c33903f1eb4f9e178649befdfc859d93157db1eccd1e521e84976ec6861db53412d8018e5e4c5d09268771c65498d42caa64bd881878346c3644f6b7cd202
+  checksum: eef93a07f84515b99738b7ea20d343036475c5623dd0f819a56609c676b1894493a83ce2f033791b0320dbca1ffacfbcb8c82a384d78539a531163f627f99d87
   languageName: node
   linkType: hard
 
