@@ -19,7 +19,7 @@ export const validStackComponents = [
 ] as const
 
 type Props = {
-  as?: typeof validStackComponents[number]
+  as?: (typeof validStackComponents)[number]
   align?: BoxProps['alignItems']
   children: ReactNodeNoStrings
   direction?: OptionalResponsiveValue<Direction>

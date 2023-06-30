@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14]
+        node-version: [18]
     steps:
       - uses: actions/checkout@v3
         with:
@@ -32,7 +32,7 @@ jobs:
       - name: Bump version to ${{ github.event.release.tag_name }}
         run: |
           cd components
-          npm version ${{ github.event.release.tag_name }}
+          yarn version ${{ github.event.release.tag_name }}
           git add package.json
           git commit -m "${{ github.event.release.tag_name }}"
       - name: Publish
