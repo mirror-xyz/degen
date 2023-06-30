@@ -5,8 +5,7 @@ import * as styles from './styles.css'
 
 export type EnsAvatarHook = (
   address: `0x${string}` | undefined,
-  callback: (uri: string | undefined) => void,
-) => void
+) => string | undefined
 
 export type Props = {
   as?: 'img' | React.ComponentType
@@ -52,10 +51,9 @@ export const Avatar = ({
   src,
   ensAvatarHook: useEnsAvatar = () => undefined,
 }: Props) => {
-  const [ensAvatar, setEnsAvatar] = React.useState<string>()
   const [error, setError] = React.useState(false)
 
-  useEnsAvatar(address as `0x${string}`, setEnsAvatar)
+  const ensAvatar = useEnsAvatar(address as `0x${string}`)
 
   const onError = React.useMemo(() => {
     if (as !== 'img' || error) {
