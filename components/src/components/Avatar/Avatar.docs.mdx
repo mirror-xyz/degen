@@ -88,6 +88,31 @@ By default, there is a light border around the edge to define image edges on sim
 
 You can supply a hook to resolve an ENS avatar from an address if your app interfaces with the ethereum network
 
+```tsx live=true
+<Stack direction="horizontal">
+  <Avatar
+    address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA97890"
+    ensAvatarHook={(address) => {
+      if (address === '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045') {
+        return 'https://ipfs.io/ipfs/QmSP4nq9fnN9dAiCj42ug9Wa79rqmQerZXZch82VqpiH7U/image.gif'
+      }
+    }}
+    label="Avatar"
+    size="24"
+  />
+  <Avatar
+    address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+    ensAvatarHook={(address) => {
+      if (address === '0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045') {
+        return 'https://ipfs.io/ipfs/QmSP4nq9fnN9dAiCj42ug9Wa79rqmQerZXZch82VqpiH7U/image.gif'
+      }
+    }}
+    label="Avatar"
+    size="24"
+  />
+</Stack>
+```
+
 ## next/image
 
 If you are using Next.js and configured [`next/image`](https://nextjs.org/docs/api-reference/next/image) appropriately, you can pass it in with the `as` prop.
