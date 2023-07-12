@@ -4,6 +4,7 @@ import { Avatar, Props as AvatarProps } from '../Avatar'
 import { Box } from '../Box'
 import { Tag } from '../Tag'
 import * as styles from './styles.css'
+import { EnsAvatarHook } from '../Avatar/Avatar'
 
 type Props = {
   as?: 'img' | React.ComponentType
@@ -18,6 +19,7 @@ type Props = {
   size?: '5' | '6'
   tag?: string | JSX.Element
   tagTone?: React.ComponentProps<typeof Tag>['tone']
+  ensAvatarHook?: EnsAvatarHook
 }
 
 export const AvatarGroup = ({
@@ -28,6 +30,7 @@ export const AvatarGroup = ({
   size = '6',
   tag,
   tagTone,
+  ensAvatarHook,
 }: Props) => {
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
@@ -48,6 +51,7 @@ export const AvatarGroup = ({
             <Avatar
               address={x.address}
               as={as}
+              ensAvatarHook={ensAvatarHook}
               label={x.label}
               placeholder={x.placeholder}
               size={size}
