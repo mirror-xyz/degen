@@ -13,6 +13,7 @@ describe('<MediaPicker />', () => {
   })
 
   it('receives user input', () => {
+    window.URL.revokeObjectURL = (_url: string) => null
     render(<MediaPicker label="Choose or drag and drop an image" />)
 
     const file = new File(['hello'], 'hello.png', { type: 'image/png' })
