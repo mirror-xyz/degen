@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react'
 import { render } from '@testing-library/react'
 
@@ -63,6 +64,7 @@ describe('useTheme', () => {
 
   it('sets defaults', () => {
     const { result } = renderHook(() => useTheme(), {
+      //@ts-ignore
       wrapper: ({ children }) => (
         <Providers themeProps={{ defaultMode: 'dark', defaultAccent: 'green' }}>
           {children}
@@ -76,6 +78,7 @@ describe('useTheme', () => {
 
   it('forcedMode', () => {
     const { result } = renderHook(() => useTheme(), {
+      //@ts-ignore
       wrapper: ({ children }) => (
         <Providers themeProps={{ defaultMode: 'dark', forcedMode: 'light' }}>
           {children}
@@ -89,6 +92,7 @@ describe('useTheme', () => {
 
   it('forcedAccent', () => {
     const { result } = renderHook(() => useTheme(), {
+      //@ts-ignore
       wrapper: ({ children }) => (
         <Providers
           themeProps={{ defaultAccent: 'blue', forcedAccent: 'indigo' }}
@@ -102,3 +106,4 @@ describe('useTheme', () => {
     expect(result.current.accent).toStrictEqual('blue')
   })
 })
+/* eslint-enable @typescript-eslint/ban-ts-comment */
