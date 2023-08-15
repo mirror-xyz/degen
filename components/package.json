@@ -13,10 +13,6 @@
     "./styles": {
       "import": "./dist/style.css",
       "require": "./dist/style.css"
-    },
-    "./types": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js"
     }
   },
   "sideEffects": [

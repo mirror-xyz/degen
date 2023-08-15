@@ -1,5 +1,4 @@
 export * from './icons'
-export type { BoxProps } from './Box'
 export { Avatar, getAvatarGradient } from './Avatar'
 export { AvatarGroup } from './AvatarGroup'
 export { Box } from './Box'
@@ -29,3 +28,7 @@ export {
   getThemeAccentStyles,
 } from './ThemeProvider'
 export { VisuallyHidden } from './VisuallyHidden'
+
+export type { BoxProps } from './Box'
+export type { ThemeProviderProps } from './ThemeProvider'
+export type { TagProps } from './Tag'
