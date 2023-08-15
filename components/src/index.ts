@@ -29,7 +29,7 @@ export {
   VisuallyHidden,
   NumericSelect,
 } from './components'
-export type { BoxProps } from './components'
+export type { BoxProps, ThemeProviderProps, TagProps } from './components'
 
 // Export generated icons
 export * from './components/icons/generated'
@@ -55,3 +55,5 @@ export type {
   Sprinkles,
   Theme,
 } from './css'
+
+export * from './tokens'
