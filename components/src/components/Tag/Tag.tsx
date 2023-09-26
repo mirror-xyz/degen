@@ -30,7 +30,7 @@ export const Tag = ({
           className={styles.label}
           display="flex"
           height="full"
-          paddingX="2"
+          paddingX="8px"
         >
           <span>{label}</span>
         </Box>
@@ -39,9 +39,9 @@ export const Tag = ({
         alignItems="center"
         as={as}
         display="flex"
-        gap="1"
-        minWidth="0"
-        paddingX="2"
+        gap="4px"
+        minWidth="0px"
+        paddingX="8px"
       >
         {React.Children.map(children, (child) => {
           if (React.isValidElement(child)) {

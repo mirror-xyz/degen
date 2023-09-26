@@ -13,8 +13,8 @@ type Props = {
 
 export const IconNFT = ({
   color,
-  size = '6',
-  strokeWidth = '0.5',
+  size = '24px',
+  strokeWidth = '2px',
   ...props
 }: Props) => {
   return (

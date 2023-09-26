@@ -9,8 +9,8 @@ type Props = {
 
 export const Header = ({ description, title }: Props) => {
   return (
-    <Box as="header" marginBottom={description ? '16' : '10'}>
-      <Stack space="10">
+    <Box as="header" marginBottom={description ? '64px' : '40px'}>
+      <Stack space="40px">
         <Heading color="foreground" level="1">
           {title}
         </Heading>

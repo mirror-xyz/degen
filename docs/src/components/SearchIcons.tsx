@@ -29,7 +29,7 @@ export const SearchIcons = () => {
   }, [state.query])
 
   return (
-    <Stack space="8">
+    <Stack space="32px">
       <Input
         hideLabel
         label="Search icons"
@@ -41,11 +41,11 @@ export const SearchIcons = () => {
         }
       />
 
-      <Stack direction="horizontal" space={{ xs: '4', md: '6' }} wrap>
+      <Stack direction="horizontal" space={{ xs: '16px', md: '24px' }} wrap>
         {filteredIcons.map((x) => (
           <Link href={`/components/${x.name}`} key={x.name}>
             <Box>
-              <Stack align="center" space="2">
+              <Stack align="center" space="8px">
                 <Box
                   backgroundColor="foregroundTertiary"
                   borderRadius="large"
@@ -54,14 +54,14 @@ export const SearchIcons = () => {
                     base: 'transparent',
                   }}
                   color="foreground"
-                  padding="4"
+                  padding="16px"
                   transitionDuration="150"
                   transitionProperty="shadow"
                   transitionTimingFunction="inOut"
                   width="max"
                 >
                   {React.createElement(x.Component as any, {
-                    size: { xs: '10', md: '12' },
+                    size: { xs: '40px', md: '48px' },
                   })}
                 </Box>
                 <Text align="center" color="text" size="label">

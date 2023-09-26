@@ -23,7 +23,7 @@ const CodePreview = dynamic<CodePreviewProps>(
       <Box
         backgroundColor="backgroundSecondary"
         borderRadius="large"
-        height="48"
+        height="192px"
         width="full"
       />
     ),
@@ -84,18 +84,18 @@ export const CodeBlock = ({
           as="pre"
           borderRadius="2xLarge"
           className={className}
-          padding="6"
+          padding="24px"
           position="relative"
           style={style}
         >
-          <Box position="absolute" right="3.5" top="3.5">
+          <Box position="absolute" right="14px" top="14px">
             <CopyButton content={code} />
           </Box>
 
           {tokens.map((line, i) => (
             <Box
               key={i}
-              paddingRight="8"
+              paddingRight="32px"
               whiteSpace="pre-wrap"
               {...getLineProps({ line, key: i })}
             >

@@ -36,8 +36,8 @@ const thumb: StyleRule = {
 
 export const range = style({
   vars: assignVars(vars, {
-    trackHeight: globalVars.space['0.5'],
-    thumbSize: globalVars.space[6],
+    trackHeight: globalVars.space['2px'],
+    thumbSize: globalVars.space['24px'],
   }),
 
   WebkitAppearance: 'none',

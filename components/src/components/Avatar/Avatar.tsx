@@ -47,7 +47,7 @@ export const Avatar = ({
   address,
   noBorder,
   shape = 'circle',
-  size = '12',
+  size = '48px',
   src,
   ensAvatarHook: useEnsAvatar = () => undefined,
 }: Props) => {

@@ -47,7 +47,7 @@ export const Field = ({
       alignItems="flex-end"
       display="flex"
       justifyContent="space-between"
-      paddingX="4"
+      paddingX="16px"
     >
       <Box
         as="label"
@@ -74,7 +74,7 @@ export const Field = ({
   else content = children
 
   return (
-    <Box display="flex" flexDirection="column" gap="2" width={width}>
+    <Box display="flex" flexDirection="column" gap="8px" width={width}>
       {hideLabel ? (
         <VisuallyHidden>{labelContent}</VisuallyHidden>
       ) : (
@@ -87,7 +87,7 @@ export const Field = ({
         <Box
           color="textTertiary"
           fontSize="small"
-          paddingX="4"
+          paddingX="16px"
           {...ids.description}
         >
           {description}
@@ -99,7 +99,7 @@ export const Field = ({
           aria-live="polite"
           color="red"
           fontSize="small"
-          paddingX="4"
+          paddingX="16px"
           {...ids.error}
         >
           {error}

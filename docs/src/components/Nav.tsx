@@ -43,12 +43,12 @@ export const Nav = ({ links }: Props) => {
 
   return (
     <Box flexDirection="column" height="full">
-      <Box paddingBottom={{ md: '5' }}>
+      <Box paddingBottom={{ md: '20px' }}>
         <Stack
           align={{ xs: 'center', md: 'flex-start' }}
           direction={{ xs: 'horizontal', md: 'vertical' }}
           justify={{ xs: 'space-between', md: 'flex-start' }}
-          space="5"
+          space="20px"
         >
           <Stack align="center" direction="horizontal">
             <NavLink active={router.asPath === '/'} href="/">
@@ -80,17 +80,17 @@ export const Nav = ({ links }: Props) => {
         className={styles.list}
         display={{ xs: state.open ? 'block' : 'none', md: 'block' }}
         height="full"
-        paddingBottom={{ md: '48' }}
-        paddingTop={{ xs: '10', md: '5' }}
+        paddingBottom={{ md: '192px' }}
+        paddingTop={{ xs: '40px', md: '20px' }}
       >
-        <Stack space="10">
-          <Stack space="3">
+        <Stack space="40px">
+          <Stack space="12px">
             <NavLink href={createGitHubLink()}>GitHub</NavLink>
           </Stack>
 
           <Stack>
             <Text variant="label">Guides</Text>
-            <Stack space="3">
+            <Stack space="12px">
               <NavLink href="/guides/development">Development</NavLink>
             </Stack>
           </Stack>
@@ -99,7 +99,7 @@ export const Nav = ({ links }: Props) => {
             <Stack key={x.name}>
               <Text variant="label">{x.name}</Text>
 
-              <Stack space="3">
+              <Stack space="12px">
                 {x.links.map((y) => (
                   <NavLink
                     active={

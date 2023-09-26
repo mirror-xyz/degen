@@ -39,7 +39,7 @@ export const FieldSet = ({
   legend,
   name,
   size,
-  space = '4',
+  space = '16px',
   status,
 }: Props) => {
   let statusText: string | undefined
@@ -82,10 +82,10 @@ export const FieldSet = ({
       <Box
         display="flex"
         flexDirection="column"
-        gap={isSmall ? '0' : '1'}
-        paddingX="4"
+        gap={isSmall ? '0px' : '4px'}
+        paddingX="16px"
       >
-        <Stack align="center" direction="horizontal" space="3">
+        <Stack align="center" direction="horizontal" space="12px">
           {isSmall ? (
             <Text size="base" weight="semiBold">
               {legend}

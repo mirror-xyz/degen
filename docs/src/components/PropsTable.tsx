@@ -12,8 +12,8 @@ type Props = {
 
 const dataProps: Parameters<typeof Box>[0] = {
   as: 'td',
-  paddingX: '4',
-  paddingY: '3',
+  paddingX: '16px',
+  paddingY: '12px',
 }
 
 export const PropsTable = ({ sourceLink, types }: Props) => {
@@ -49,7 +49,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                     backgroundColor="background"
                     key={x}
                     position="sticky"
-                    top="0"
+                    top="0px"
                   >
                     <Box
                       backgroundColor="foregroundTertiary"
@@ -58,8 +58,8 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
                       borderRightRadius={
                         i === headers.length - 1 ? 'large' : undefined
                       }
-                      paddingX="4"
-                      paddingY="2.5"
+                      paddingX="16px"
+                      paddingY="10px"
                     >
                       <Text variant="label">{x}</Text>
                     </Box>
@@ -70,7 +70,7 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
 
             <Box as="tbody">
               {props.map((x) => (
-                <Box as="tr" borderBottomWidth="px" key={x.name}>
+                <Box as="tr" borderBottomWidth="1px" key={x.name}>
                   <Box {...dataProps}>
                     <Text color="text" size="small">
                       {x.name}
@@ -112,8 +112,8 @@ export const PropsTable = ({ sourceLink, types }: Props) => {
         </Box>
       )}
 
-      <Box marginY="2">
-        <Stack direction="horizontal" justify="flex-end" space="2">
+      <Box marginY="8px">
+        <Stack direction="horizontal" justify="flex-end" space="8px">
           {!!props.length && (
             <Button
               size="small"

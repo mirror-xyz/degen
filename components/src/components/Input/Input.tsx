@@ -249,7 +249,7 @@ export const Input = React.forwardRef(
               <Box
                 alignItems="center"
                 display="flex"
-                paddingRight={suffix ? undefined : '4'}
+                paddingRight={suffix ? undefined : '16px'}
               >
                 <Box as="button" className={styles.max} onClick={handleMax}>
                   Max
