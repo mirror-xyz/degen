@@ -37,9 +37,9 @@ export const ButtonCard = ({
   return (
     <Box width={width}>
       <Box className={styles.card}>
-        {prefix && <Box marginRight="4">{prefix}</Box>}
+        {prefix && <Box marginRight="16px">{prefix}</Box>}
         <Box>{children}</Box>
-        {suffix && <Box marginLeft="4">{suffix}</Box>}
+        {suffix && <Box marginLeft="16px">{suffix}</Box>}
       </Box>
       <Box
         as={buttonProps.as || 'button'}
@@ -48,7 +48,7 @@ export const ButtonCard = ({
       >
         {buttonText}
         {loading && (
-          <Box marginLeft="4">
+          <Box marginLeft="16px">
             <Spinner color="current" />
           </Box>
         )}

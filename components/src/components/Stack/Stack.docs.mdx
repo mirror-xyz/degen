@@ -9,8 +9,8 @@ import { Stack } from 'degen'
 
 ```tsx expand=true live=true
 <Stack>
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
 </Stack>
 ```
 
@@ -21,29 +21,29 @@ import { Stack } from 'degen'
 ## Space
 
 ```tsx live=true
-<Stack space="8">
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+<Stack space="32px">
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
 </Stack>
 ```
 
 ## Direction
 
 ```tsx live=true
-<Stack space="8">
+<Stack space="32px">
   <Stack>
     <Text variant="label">Vertical</Text>
     <Stack>
-      <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-      <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+      <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+      <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
     </Stack>
   </Stack>
   <Stack>
     <Text variant="label">Horizontal</Text>
     <Stack direction="horizontal">
-      <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-      <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+      <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+      <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
     </Stack>
   </Stack>
 </Stack>
@@ -53,9 +53,9 @@ import { Stack } from 'degen'
 
 ```tsx live=true
 <Stack align="center" direction="horizontal">
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="32" width="32" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="128px" width="128px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
 </Stack>
 ```
 
@@ -63,9 +63,9 @@ import { Stack } from 'degen'
 
 ```tsx live=true
 <Stack direction="horizontal" justify="space-between">
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
 </Stack>
 ```
 
@@ -73,12 +73,12 @@ import { Stack } from 'degen'
 
 ```tsx live=true
 <Stack direction="horizontal" wrap>
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="64" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="64" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="64" />
-  <Box backgroundColor="foregroundSecondary" height="16" width="16" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="256px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="256px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="256px" />
+  <Box backgroundColor="foregroundSecondary" height="64px" width="64px" />
 </Stack>
 ```

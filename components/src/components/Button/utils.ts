@@ -9,7 +9,7 @@ export const getCenterProps = (
   if (!center) return {}
   const props: BoxProps = {
     position: 'absolute',
-    [side]: size === 'large' ? 4 : 5,
+    [side]: size === 'large' ? '16px' : '20px',
   }
   return props
 }

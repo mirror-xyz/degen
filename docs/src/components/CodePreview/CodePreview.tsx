@@ -76,7 +76,7 @@ export const CodePreview = ({
         backgroundColor="background"
         borderColor="foregroundSecondary"
         borderRadius="2xLarge"
-        borderWidth="0.5"
+        borderWidth="2px"
         overflow="hidden"
       >
         <Box
@@ -84,7 +84,7 @@ export const CodePreview = ({
           borderBottomRadius={state.expand ? undefined : '2xLarge'}
           borderTopRadius="2xLarge"
           overflow="scroll"
-          padding="6"
+          padding="24px"
           ref={previewRef}
         >
           <LivePreview />
@@ -103,15 +103,15 @@ export const CodePreview = ({
           <Box position="relative">
             <LiveEditor />
 
-            <Box position="absolute" right="3.5" top="3.5">
+            <Box position="absolute" right="14px" top="14px">
               <CopyButton content={code} />
             </Box>
           </Box>
         )}
       </Box>
 
-      <Box marginY="2">
-        <Stack direction="horizontal" justify="flex-end" space="2">
+      <Box marginY="8px">
+        <Stack direction="horizontal" justify="flex-end" space="8px">
           <Button
             size="small"
             variant="transparent"

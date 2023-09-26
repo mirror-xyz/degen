@@ -23,15 +23,15 @@ const flexibility = [0, 1, 2, 3, 4] as const
 
 const space = vars.space
 const negativeSpace = {
-  ['-px']: `${calc(space.px).negate()}`,
-  ['-0.5']: `${calc(space['0.5']).negate()}`,
-  ['-1']: `${calc(space['0.5']).negate()}`,
-  ['-1.5']: `${calc(space['1.5']).negate()}`,
-  ['-2']: `${calc(space['2']).negate()}`,
-  ['-2.5']: `${calc(space['2.5']).negate()}`,
-  ['-3']: `${calc(space['3']).negate()}`,
-  ['-3.5']: `${calc(space['3.5']).negate()}`,
-  ['-4']: `${calc(space['4']).negate()}`,
+  ['-1px']: `${calc(space['1px']).negate()}`,
+  ['-2px']: `${calc(space['2px']).negate()}`,
+  ['-4px']: `${calc(space['4px']).negate()}`,
+  ['-6px']: `${calc(space['6px']).negate()}`,
+  ['-8px']: `${calc(space['8px']).negate()}`,
+  ['-10px']: `${calc(space['10px']).negate()}`,
+  ['-12px']: `${calc(space['12px']).negate()}`,
+  ['-14px']: `${calc(space['14px']).negate()}`,
+  ['-16px']: `${calc(space['16px']).negate()}`,
 }
 
 const margins = {
@@ -40,17 +40,17 @@ const margins = {
 }
 
 const extendedSpace = {
-  '112': '28rem',
-  '128': '32rem',
-  '144': '36rem',
-  '168': '42rem',
-  '180': '45rem',
-  '192': '48rem',
-  '224': '56rem',
-  '244': '61rem',
-  '256': '64rem',
-  '288': '72rem',
-  '320': '80rem',
+  '448px': '448px',
+  '512px': '512px',
+  '576px': '576px',
+  '672px': '672px',
+  '720px': '720px',
+  '768px': '768px',
+  '896px': '896px',
+  '976px': '976px',
+  '1024px': '1024px',
+  '1152px': '1152px',
+  '1280px': '1280px',
   '1/4': '25%',
   '1/3': '33.333333%',
   '1/2': '50%',

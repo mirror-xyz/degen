@@ -46,18 +46,18 @@ export const label = recipe({
     display: 'flex',
     cursor: 'pointer',
     flexDirection: 'column',
-    gap: '5',
+    gap: '20px',
     width: 'full',
   }),
   variants: {
     compact: {
       true: atoms({
         flexDirection: 'row',
-        padding: '4',
-        paddingRight: '12',
+        padding: '16px',
+        paddingRight: '48px',
       }),
       false: atoms({
-        padding: '10',
+        padding: '40px',
       }),
     },
     disabled: {
@@ -86,12 +86,12 @@ export const preview = recipe({
   variants: {
     compact: {
       true: atoms({
-        height: '16',
-        minWidth: '16',
+        height: '64px',
+        minWidth: '64px',
       }),
       false: atoms({
-        height: '32',
-        width: '32',
+        height: '128px',
+        width: '128px',
       }),
     },
   },
@@ -109,12 +109,12 @@ export const content = recipe({
     compact: {
       true: atoms({
         alignItems: 'flex-start',
-        gap: '1.5',
+        gap: '6px',
         textAlign: 'left',
       }),
       false: atoms({
         alignItems: 'center',
-        gap: '4',
+        gap: '16px',
         textAlign: 'center',
       }),
     },

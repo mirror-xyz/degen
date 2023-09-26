@@ -61,7 +61,7 @@ import { Button } from 'degen'
 When `variant` is set to `primary` or `secondary`, you can `tone` to change the button accent color.
 
 ```tsx live=true
-<Stack space="8">
+<Stack space="32px">
   <Stack>
     <Text variant="label">Primary</Text>
     <Stack direction="horizontal" wrap>
@@ -105,7 +105,7 @@ When `variant` is set to `primary` or `secondary`, you can `tone` to change the 
 Optional `center` prop reserves space for affixes and loading spinner.
 
 ```tsx live=true
-<Stack space="8">
+<Stack space="32px">
   <Stack>
     <Text variant="label">Default</Text>
     <Stack direction="horizontal" wrap>
@@ -145,7 +145,7 @@ Optional `center` prop reserves space for affixes and loading spinner.
 
 ```tsx live=true
 <Stack>
-  <Button width="64">Fixed Width</Button>
+  <Button width="256px">Fixed Width</Button>
   <Button width="full">Full Width</Button>
   <Button width={{ xs: 'full', md: 'max' }}>Responsive Width</Button>
   <Button loading prefix={<IconPlusSmall />} width="full">

@@ -14,15 +14,15 @@ export const VisuallyHidden = ({
   return (
     <Box
       as={as}
-      borderWidth="0"
+      borderWidth="0px"
       className={styles.root}
-      height="px"
-      margin="-px"
+      height="1px"
+      margin="-1px"
       overflow="hidden"
-      padding="0"
+      padding="0px"
       position="absolute"
       whiteSpace="nowrap"
-      width="px"
+      width="1px"
     >
       {children}
     </Box>

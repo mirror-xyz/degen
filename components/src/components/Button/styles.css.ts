@@ -23,53 +23,53 @@ const size = {
   extraSmall: [
     {
       vars: {
-        [buttonSize]: vars.space['8'],
+        [buttonSize]: vars.space['32px'],
       },
     },
     atoms({
       borderRadius: 'large',
       fontSize: 'label',
-      paddingX: '3.5',
-      gap: '2',
+      paddingX: '14px',
+      gap: '8px',
     }),
   ],
   small: [
     {
       vars: {
-        [buttonSize]: vars.space['10'],
+        [buttonSize]: vars.space['40px'],
       },
     },
     atoms({
       borderRadius: 'large',
       fontSize: 'extraSmall',
-      paddingX: '4',
-      gap: '2',
+      paddingX: '16px',
+      gap: '8px',
     }),
   ],
   medium: [
     {
       vars: {
-        [buttonSize]: vars.space['12'],
+        [buttonSize]: vars.space['48px'],
       },
     },
     atoms({
       borderRadius: 'large',
       fontSize: 'small',
-      paddingX: '4',
-      gap: '3',
+      paddingX: '16px',
+      gap: '12px',
     }),
   ],
   large: [
     {
       vars: {
-        [buttonSize]: vars.space['14'],
+        [buttonSize]: vars.space['56px'],
       },
     },
     atoms({
       borderRadius: '2xLarge',
       fontSize: 'base',
-      paddingX: '5',
-      gap: '4',
+      paddingX: '20px',
+      gap: '16px',
     }),
   ],
 }
@@ -261,7 +261,7 @@ export const variants = recipe({
         size: 'large',
       },
       style: atoms({
-        paddingX: '14',
+        paddingX: '56px',
       }),
     },
     // background tone
@@ -284,7 +284,7 @@ export const variants = recipe({
         size: 'large',
       },
       style: atoms({
-        paddingX: '15',
+        paddingX: '60px',
       }),
     },
   ],

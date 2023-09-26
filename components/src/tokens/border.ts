@@ -4,22 +4,22 @@ export const borderStyles = {
 }
 
 export const borderWidths = {
-  '0': '0px',
-  px: '1px',
-  '0.375': '0.09375rem',
-  '0.5': '0.125rem',
-  '0.75': '0.1875rem',
-  '1': '0.25rem',
-  '2': '0.5rem',
+  '0px': '0px',
+  '1px': '1px',
+  '1.5px': '1.5px',
+  '2px': '2px',
+  '3px': '3px',
+  '4px': '4px',
+  '8px': '8px',
 }
 
 export const radii = {
-  none: '0',
-  medium: '0.375rem',
-  large: '0.5rem',
-  extraLarge: '0.75rem',
-  '2xLarge': '1rem',
-  '3xLarge': '1.5rem',
-  '4xLarge': '2.5rem',
+  none: '0px',
+  medium: '6px',
+  large: '8px',
+  extraLarge: '12px',
+  '2xLarge': '16px',
+  '3xLarge': '24px',
+  '4xLarge': '40px',
   full: '9999px',
 }

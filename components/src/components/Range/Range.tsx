@@ -19,8 +19,8 @@ export const Range = React.forwardRef(
   (
     {
       width = 'full',
-      marginX = '0',
-      marginY = '0',
+      marginX = '0px',
+      marginY = '0px',
       step,
       min,
       max,
@@ -46,7 +46,7 @@ export const Range = React.forwardRef(
         flexGrow={flexGrow}
         flexShrink={flexShrink}
         form={form}
-        margin="0"
+        margin="0px"
         marginX={marginX}
         marginY={marginY}
         max={max}

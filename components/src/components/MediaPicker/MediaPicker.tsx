@@ -80,7 +80,7 @@ export const MediaPicker = ({
   uploaded,
   uploading,
   uploadProgress,
-  borderWidth = '0.5',
+  borderWidth = '2px',
   labelTextSize = compact ? 'base' : 'large',
   labelTextColor = 'textSecondary',
   height,
@@ -163,7 +163,7 @@ export const MediaPicker = ({
           {cover && context.type && context.previewUrl && (
             <Box
               display="flex"
-              inset="0"
+              inset="0px"
               justifyContent="center"
               position="absolute"
             >
@@ -177,7 +177,7 @@ export const MediaPicker = ({
           )}
 
           {context.type && (
-            <Box position="absolute" right="2" top="2">
+            <Box position="absolute" right="8px" top="8px">
               <RemoveButton
                 cover={cover}
                 uploading={uploading}
@@ -303,9 +303,9 @@ const RemoveButton = ({ cover, uploading, onClick }: RemoveButtonProps) => {
         cursor="pointer"
         disabled={uploading}
         display="flex"
-        height="12"
+        height="48px"
         justifyContent="center"
-        width="12"
+        width="48px"
         onClick={onClick}
       >
         {uploading ? <Spinner /> : content}

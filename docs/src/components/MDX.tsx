@@ -20,7 +20,7 @@ export const MDX: MDXProviderProps['components'] = {
   h2: ({ children }) => {
     const id = slugify(children)
     return (
-      <Box display="block" marginBottom="6" marginTop="12">
+      <Box display="block" marginBottom="24px" marginTop="48px">
         <Heading color="textPrimary" id={id}>
           <Box
             as="a"
@@ -33,7 +33,7 @@ export const MDX: MDXProviderProps['components'] = {
               className={styles.hoverChild}
               color="textSecondary"
               display="inline-block"
-              marginLeft="2"
+              marginLeft="8px"
             >
               #
             </Box>
@@ -48,11 +48,11 @@ export const MDX: MDXProviderProps['components'] = {
     </Text>
   ),
   p: ({ children }) => (
-    <Box marginY="6">
+    <Box marginY="24px">
       <Text as="p" color="text" lineHeight="1.625" variant="base">
         {children}
       </Text>
     </Box>
   ),
-  pre: (props) => <Box marginY="6" {...props} />,
+  pre: (props) => <Box marginY="24px" {...props} />,
 }

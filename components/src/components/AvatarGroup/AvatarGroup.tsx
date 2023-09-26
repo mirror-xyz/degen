@@ -16,7 +16,7 @@ type Props = {
     src?: AvatarProps['src']
     address?: AvatarProps['address']
   }[]
-  size?: '5' | '6'
+  size?: '20px' | '24px'
   tag?: string | JSX.Element
   tagTone?: React.ComponentProps<typeof Tag>['tone']
   ensAvatarHook?: EnsAvatarHook
@@ -27,14 +27,14 @@ export const AvatarGroup = ({
   limit = 3,
   members = [],
   hover,
-  size = '6',
+  size = '24px',
   tag,
   tagTone,
   ensAvatarHook,
 }: Props) => {
   const membersCount = members.length
   const visibleMembers = members.slice(0, limit)
-  const variantSize = size === '5' ? 'small' : 'large'
+  const variantSize = size === '20px' ? 'small' : 'large'
   const showTag = membersCount > limit || !!tag
   const tagValue = tag || `+${(membersCount - limit).toLocaleString()}`
   return (
@@ -46,7 +46,9 @@ export const AvatarGroup = ({
             borderRadius="full"
             className={styles.wrapper}
             key={x.label}
-            marginLeft={i === 0 ? '0' : variantSize === 'small' ? '-1' : '-1.5'}
+            marginLeft={
+              i === 0 ? '0px' : variantSize === 'small' ? '-4px' : '-6px'
+            }
           >
             <Avatar
               address={x.address}
@@ -65,7 +67,7 @@ export const AvatarGroup = ({
           backgroundColor="background"
           borderRadius="full"
           className={styles.wrapper}
-          marginLeft={variantSize === 'small' ? '-1' : '-1.5'}
+          marginLeft={variantSize === 'small' ? '-4px' : '-6px'}
         >
           {typeof tagValue === 'string' ? (
             <Tag

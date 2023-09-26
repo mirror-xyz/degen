@@ -9,13 +9,13 @@ export const root = recipe({
   base: [
     atoms({
       backgroundColor: 'background',
-      borderWidth: 'px',
+      borderWidth: '1px',
       borderColor: 'foregroundSecondary',
       borderRadius: 'large',
       color: 'text',
       display: 'flex',
       fontSize: 'small',
-      height: '12',
+      height: '48px',
       transitionDuration: '150',
       transitionProperty: 'colors',
       transitionTimingFunction: 'inOut',
@@ -69,11 +69,11 @@ const text = atoms({
 const affix = style([container, text, style({ lineHeight: 'normal' })])
 export const prefix = style([
   affix,
-  atoms({ paddingLeft: '4', paddingRight: '2' }),
+  atoms({ paddingLeft: '16px', paddingRight: '8px' }),
 ])
 export const suffix = style([
   affix,
-  atoms({ paddingRight: '4', paddingLeft: '2' }),
+  atoms({ paddingRight: '16px', paddingLeft: '8px' }),
 ])
 
 export const input = recipe({
@@ -151,7 +151,7 @@ export const ghost = recipe({
   base: [
     atoms({
       borderColor: 'transparent',
-      inset: '0',
+      inset: '0px',
       position: 'absolute',
       pointerEvents: 'none',
       whiteSpace: 'pre',
@@ -170,7 +170,7 @@ export const ghost = recipe({
 })
 
 export const variants = recipe({
-  base: [style([container, text, atoms({ paddingX: '4' })])],
+  base: [style([container, text, atoms({ paddingX: '16px' })])],
   variants: {
     prefix: {
       true: atoms({
@@ -195,7 +195,7 @@ export const max = style([
     fontWeight: 'semiBold',
     height: 'max',
     lineHeight: 'none',
-    padding: '2',
+    padding: '8px',
     textTransform: 'uppercase',
     transitionDuration: '150',
     transitionProperty: 'colors',

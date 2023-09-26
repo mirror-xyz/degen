@@ -19,10 +19,10 @@ import { Avatar } from 'degen'
 
 ```tsx live=true
 <Stack align="center" direction="horizontal" wrap>
-  <Avatar label="Noun 97" size="24" src={avatars.noun97} />
-  <Avatar label="Noun 97" size="16" src={avatars.noun97} />
-  <Avatar label="Noun 97" size="12" src={avatars.noun97} />
-  <Avatar label="Noun 97" size="10" src={avatars.noun97} />
+  <Avatar label="Noun 97" size="96px" src={avatars.noun97} />
+  <Avatar label="Noun 97" size="64px" src={avatars.noun97} />
+  <Avatar label="Noun 97" size="48px" src={avatars.noun97} />
+  <Avatar label="Noun 97" size="40px" src={avatars.noun97} />
 </Stack>
 ```
 
@@ -46,13 +46,13 @@ A placeholder can be shown by setting the `placeholder` prop to true. The color 
   <Avatar
     label="Noun 97 circle"
     shape="circle"
-    size="24"
+    size="96px"
     src={avatars.noun97}
   />
   <Avatar
     label="Noun 97 square"
     shape="square"
-    size="24"
+    size="96px"
     src={avatars.noun97}
   />
 </Stack>
@@ -65,7 +65,7 @@ By default, there is a light border around the edge to define image edges on sim
 ```tsx live=true
 <Stack direction="horizontal">
   <Avatar
-    size="24"
+    size="96px"
     src={
       mode === 'light'
         ? 'https://images.mirror-media.xyz/publication-images/152cd86f-45ad-4f48-8971-4dd33fde5bc1.png'
@@ -74,7 +74,7 @@ By default, there is a light border around the edge to define image edges on sim
   />
   <Avatar
     noBorder
-    size="24"
+    size="96px"
     src={
       mode === 'light'
         ? 'https://images.mirror-media.xyz/publication-images/152cd86f-45ad-4f48-8971-4dd33fde5bc1.png'
@@ -98,7 +98,7 @@ You can supply a hook to resolve an ENS avatar from an address if your app inter
       }
     }}
     label="Avatar"
-    size="24"
+    size="96px"
   />
   <Avatar
     address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
@@ -108,7 +108,7 @@ You can supply a hook to resolve an ENS avatar from an address if your app inter
       }
     }}
     label="Avatar"
-    size="24"
+    size="96px"
   />
 </Stack>
 ```

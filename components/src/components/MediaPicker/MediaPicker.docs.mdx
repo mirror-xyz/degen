@@ -83,9 +83,9 @@ import { MediaPicker } from 'degen'
 
 ```tsx live=true
 <Stack>
-  <MediaPicker borderWidth="0" label="Choose or drag and drop media" />
+  <MediaPicker borderWidth="0px" label="Choose or drag and drop media" />
   <MediaPicker borderWidth={undefined} label="Choose or drag and drop media" />
-  <MediaPicker borderWidth="2" label="Choose or drag and drop media" />
+  <MediaPicker borderWidth="8px" label="Choose or drag and drop media" />
 </Stack>
 ```
 
@@ -122,7 +122,7 @@ import { MediaPicker } from 'degen'
 ## Custom height
 
 ```tsx live=true
-<Box display="flex" flexDirection="column" height="96">
+<Box display="flex" flexDirection="column" height="384px">
   <MediaPicker height="full" label="Choose or drag and drop media" />
 </Box>
 ```

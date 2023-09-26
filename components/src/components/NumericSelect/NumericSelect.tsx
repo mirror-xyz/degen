@@ -40,7 +40,7 @@ export const NumericSelect = ({
       backgroundColor="foregroundTertiary"
       borderRadius="large"
       display="flex"
-      height="10"
+      height="40px"
       justifyContent="center"
       position="relative"
     >
@@ -50,14 +50,14 @@ export const NumericSelect = ({
         cursor={isMin ? 'not-allowed' : 'pointer'}
         disabled={isMin}
         display="flex"
-        left="4"
-        padding="2.5"
+        left="16px"
+        padding="10px"
         position="absolute"
         onClick={decrement}
       >
         <IconMinus
           color={isMin ? 'textTertiary' : 'textSecondary'}
-          size="3.5"
+          size="14px"
         />
       </Box>
       <Text color="text" size="small" weight="semiBold">
@@ -66,9 +66,9 @@ export const NumericSelect = ({
       <Box
         alignItems="center"
         display="flex"
-        gap="2.5"
+        gap="10px"
         position="absolute"
-        right="4"
+        right="16px"
       >
         {showMaxButton && max && !isMax && (
           <Box
@@ -77,8 +77,8 @@ export const NumericSelect = ({
             borderRadius="medium"
             cursor={isMax ? 'not-allowed' : 'pointer'}
             disabled={isMax}
-            marginY="2.5"
-            padding="1"
+            marginY="10px"
+            padding="4px"
             onClick={setMax}
           >
             <Text color="textSecondary" size="label">
@@ -90,12 +90,12 @@ export const NumericSelect = ({
           as="button"
           cursor={isMax ? 'not-allowed' : 'pointer'}
           disabled={isMax}
-          padding="2.5"
+          padding="10px"
           onClick={increment}
         >
           <IconPlus
             color={isMax ? 'textTertiary' : 'textSecondary'}
-            size="3.5"
+            size="14px"
           />
         </Box>
       </Box>

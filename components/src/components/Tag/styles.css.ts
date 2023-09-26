@@ -52,11 +52,11 @@ export const variants = recipe({
     },
     size: {
       small: atoms({
-        height: '5',
+        height: '20px',
         fontSize: 'label',
       }),
       medium: atoms({
-        height: '6',
+        height: '24px',
         fontSize: 'extraSmall',
       }),
     },

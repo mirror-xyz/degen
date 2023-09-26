@@ -55,7 +55,7 @@ export const overflowText = recipe({
       large: [
         atoms({
           fontSize: 'extraSmall',
-          marginLeft: '-1.5',
+          marginLeft: '-6px',
         }),
         {
           letterSpacing: '-0.009em',

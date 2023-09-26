@@ -86,7 +86,7 @@ const Page: NextPageWithLayout<Props> = ({
       />
 
       {!docsLink.includes('generated') && (
-        <Box marginTop="20">
+        <Box marginTop="80px">
           <Link href={docsLink}>
             <Text color="textSecondary" size="small">
               Edit on GitHub
