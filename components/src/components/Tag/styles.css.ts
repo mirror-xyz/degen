@@ -61,6 +61,10 @@ export const variants = recipe({
       }),
     },
     tone: {
+      primary: atoms({
+        color: 'accentText',
+        backgroundColor: 'accent',
+      }),
       accent: atoms({
         color: 'accent',
         backgroundColor: 'accentTertiary',

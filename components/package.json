@@ -34,11 +34,11 @@
     "test": "jest"
   },
   "dependencies": {
-    "@vanilla-extract/css": "^1.6.3",
-    "@vanilla-extract/css-utils": "^0.1.1",
-    "@vanilla-extract/dynamic": "^2.0.0",
-    "@vanilla-extract/recipes": "^0.2.1",
-    "@vanilla-extract/sprinkles": "^1.3.1",
+    "@vanilla-extract/css": "^1.13.0",
+    "@vanilla-extract/css-utils": "^0.1.3",
+    "@vanilla-extract/dynamic": "^2.0.3",
+    "@vanilla-extract/recipes": "^0.5.0",
+    "@vanilla-extract/sprinkles": "^1.6.1",
     "clsx": "^1.1.1",
     "focus-visible": "^5.2.0"
   },
@@ -55,8 +55,8 @@
     "@types/react-dom": "^18.2.5",
     "@types/rimraf": "^3.0.2",
     "@types/testing-library__jest-dom": "^5.14.6",
-    "@vanilla-extract/private": "^1.0.1",
-    "@vanilla-extract/vite-plugin": "^3.0.0",
+    "@vanilla-extract/private": "^1.0.3",
+    "@vanilla-extract/vite-plugin": "^3.9.0",
     "deepmerge": "^4.2.2",
     "glob": "^7.2.0",
     "jest": "^27.3.1",
